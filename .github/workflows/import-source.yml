@@ -1,0 +1,38 @@
+name: Import verified offline source
+on:
+  push:
+    branches: [main]
+    paths: ['.import/READY.json']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: initial-source-import
+  cancel-in-progress: false
+jobs:
+  import:
+    if: github.repository == 'xnuonux/eternities-firstlight'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - name: Check out the exact import commit
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 1
+      - name: Verify and unpack the founder-authorized source
+        run: python3 .import/restore.py
+      - name: Publish only the verified source import
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --cached --quiet; then
+            echo 'No new import; existing files were not changed.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Import verified Firstlight 04 playable source, tests and handoff'
+          git push origin HEAD:refs/heads/main
