@@ -1,0 +1,20 @@
+{
+  "source_archive": "ETERNITIES_FIRSTLIGHT_06_REPOSITORY.zip",
+  "sha256": "20ce77c8ee972c0e68a658549d41b24d9275982d251c8da5acb352956d3478fa",
+  "scope": "Realm07 extends the verified attached Realm06 source. The provided unfinished Sunward Road work was reconstructed, completed and exercised in this runtime; only the newly executed reports certify this delivery. No private user accounts, memories or keys imported.",
+  "previous_ancestry": {
+    "source_archive": "ETERNITIES_FIRSTLIGHT_05_REPOSITORY.zip",
+    "sha256": "33620c1c292d7ab675c2bdc816aa29f1a3beff4364f3ef4cf8681789c8aa9be8",
+    "scope": "Realm 06 continues the actual v05 source. Earlier unfinished v06 implementation was reconstructed and refined. No private user account data imported.",
+    "previous_ancestry": {
+      "current_source_archive": "ETERNITIES_FIRSTLIGHT_04_REPOSITORY.zip",
+      "sha256": "7c221768f2c4f1128fa06ca4ccd18a296647678e2c52c8f77d09d7072920d24b",
+      "previous_ancestry": {
+        "source_archive": "ETERNITIES_REALM_03_SOURCE_AND_PLAYABLE.zip",
+        "sha256": "a898e298a5415620d905dc7aa18203e78ddfbee2a6c23c1ede4a40a644adeb25",
+        "scope": "Continuing Firstlight Realm 03. Earlier source unchanged in original archive. No private conversations or AI memories copied."
+      },
+      "scope": "Version 5 continues the actual Realm 04 source. New mechanics use independent local sandbox state. Private conversations, tokens and live resident histories were not imported."
+    }
+  }
+}

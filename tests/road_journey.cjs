@@ -1,0 +1,27 @@
+/* Earn chapter I then II with accepted movement/game commands only.
+ * No inventory grants, player position edits or planted defeats.
+ * Automated tactics + accelerated 50ms steps are not a human playtest. */
+'use strict';const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),C=require('../src/core.js'),A=require('../src/adventure.js'),R=require('../src/road.js');
+function journey(options={}){
+ const out=options.out||path.join(__dirname,'../evidence07');fs.mkdirSync(out,{recursive:true});if(!options.start)require('./chapter_journey.cjs').journey();
+ const start=options.start||JSON.parse(fs.readFileSync(path.join(out,'chapter1/CHAPTER_COMPLETED.json'))),sim=new C.Simulation(start);let seq=0,accepted=0,events=[];
+ function act(t,p={}){const r=sim.adventureCommand('road-journey-'+(++seq),t,p);assert.ok(r.ok,t+': '+r.error);accepted++;return r;}
+ function survival(){if(!A.combatScene(sim))return;const s=sim.state.adventure,r=A.runtime(sim);assert.ok(s.hp>0,'Survives without editing health');if(s.hp<90&&s.tonics&&s.elapsed>=r.cooldowns.heal)act('heal');const e=r.enemies.filter(e=>e.hp>0&&Math.hypot(e.x-sim.state.player.x,e.z-sim.state.player.z)<global.RealmArsenal.weapon(s).reach&&Math.hypot(e.x-sim.state.player.x,e.z-sim.state.player.z)>.04&&(global.RealmArsenal.weapon(s).style==='bow'?global.RealmArsenal.aimClear(sim,sim.state.player,e):A.visible(sim,sim.state.player,e)))[0];if(e&&s.stamina>=global.RealmArsenal.weapon(s).stamina&&s.elapsed>=r.cooldowns.attack)act('attack',{target:e.id});if(e&&s.stamina>=55&&s.elapsed>=r.cooldowns.pulse)act('pulse');}
+ function step(t){for(let i=0;i<Math.ceil(t/.05);i++){survival();sim.tick(.05);}}
+ function walk(x,z){const r=sim.moveTo(x,z);assert.ok(r.ok,'walk '+x+','+z+': '+r.error);for(let i=0;sim.playerPath.length&&i<6000;i++)step(.05);assert.ok(Math.hypot(sim.state.player.x-x,sim.state.player.z-z)<.15,'arrived '+x+','+z);}
+ walk(0,3);act('rest');walk(44,6);fs.writeFileSync(path.join(out,'CHAPTER_II_START_EARNED.json'),JSON.stringify(sim.snapshot(),null,2));act('road-enter');events.push('Entered through the story-gated lookout');
+ walk(-2,8);step(5);assert.ok(sim.state.adventure.defeated.includes('road-prowler'));act('loot',{id:'road-prowler'});
+ walk(-9,5);act('seek');step(7);assert.ok(sim.state.adventure.road.revealed.includes('cart-latch'));walk(-11,3);act('road-cache',{id:'cart-latch'});events.push('Fox followed the scent to the missing latch');
+ walk(-10,12);act('cart-repair');act('trade',{offer:'mantle'});act('equip',{id:'courier_mantle'});act('trade',{offer:'sell-copper'});events.push('Repaired cart, bought/equipped mantle and sold copper');
+ walk(2,3.4);walk(2,-4);walk(6,global.RealmArsenal.weapon(sim.state.adventure).style==='bow'?-5:-8);step(7);assert.ok(sim.state.adventure.defeated.includes('road-prism'));walk(6,-8);act('loot',{id:'road-prism'});
+ walk(9,-13);act('seek');step(7);assert.ok(sim.state.adventure.road.revealed.includes('old-surveyor'));walk(11,-13);act('road-cache',{id:'old-surveyor'});events.push('Crossed actual bridge and found optional second cache');walk(0,-15.5);
+ for(let i=0;i<500&&!sim.state.adventure.defeated.includes('road-ram');i++){
+  const e=A.runtime(sim).enemies.find(e=>e.id==='road-ram'&&e.hp>0);if(!e)break;const s=sim.state.adventure,r=A.runtime(sim),p=sim.state.player;
+  if(e.mode==='windup'&&e.timer<.6&&s.stamina>=22&&s.elapsed>=r.cooldowns.dodge)act('dodge',{dx:Math.cos(e.yaw),dz:-Math.sin(e.yaw)});
+  if(['recover','idle'].includes(e.mode)&&Math.hypot(p.x-e.x,p.z-e.z)>2.3){const opts=Array.from({length:12},(_,i)=>({x:e.x+Math.sin(i*Math.PI/6)*1.8,z:e.z+Math.cos(i*Math.PI/6)*1.8}));for(const q of opts)if(C.pathfind(p,q,sim.navRoom)){sim.moveTo(q.x,q.z);break;}}
+  step(.2);
+ }
+ assert.ok(sim.state.adventure.defeated.includes('road-ram'),'Defeat guardian with actual attacks');walk(0,-19);act('loot',{id:'road-ram'});walk(0,-24);act('beacon-light');events.push('Defeated charging guardian; lit the beacon');fs.writeFileSync(path.join(out,'BEACON_LIT_EARNED.json'),JSON.stringify(sim.snapshot(),null,2));walk(0,17);act('road-leave');walk(0,3);act('road-report');act('equip',{id:'wayfarer_band'});act('rest');assert.ok(R.objectives(sim.state.adventure).every(x=>x.done));
+ const saved=sim.snapshot();assert.deepEqual(new C.Simulation(saved).snapshot(),saved);for(const k of['score','retreat','visitor','notes','flowers'])assert.deepEqual(saved[k],start[k],k+' preserved');fs.writeFileSync(path.join(out,'CHAPTER_II_COMPLETE_EARNED.json'),JSON.stringify(saved,null,2));
+ const report={status:'passed',method:options.start?'Separate variant beginning with a command-earned ranged checkpoint; accepted road commands and 50ms automated steps.':'Fresh-world chapter I journey then accepted commands. Automated tactics and accelerated 50ms steps.',weapon:sim.state.adventure.equipment.weapon,directPositionEdits:0,inventoryGrants:0,plantedDefeats:0,acceptedCommands:accepted,events,finalStats:A.stats(saved.adventure),road:saved.adventure.road,hp:saved.adventure.hp};fs.writeFileSync(path.join(out,'ROAD_JOURNEY_REPORT.json'),JSON.stringify(report,null,2));return report;
+}if(require.main===module)console.log(JSON.stringify(journey(),null,2));module.exports={journey};

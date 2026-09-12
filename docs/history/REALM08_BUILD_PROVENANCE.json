@@ -1,0 +1,20 @@
+{
+  "version": "8.0.0",
+  "local_commit": "cabee897ba72b5f715d087ed69515c6cd846624e",
+  "parent_local_commit": "ea2219f799690e72dea7a57ae989347915ed1e7d",
+  "local_branch": "development/bow-and-gem",
+  "remote_commit_not_implied": true,
+  "bundle": "SOURCE.bundle",
+  "bundle_sha256": "796f4036082c896a1642ae2d09b4de4b73cfb32ff9c83c225353acb6289a131f",
+  "html_sha256": "90922339441f53165c5b24cb6f68bcf061d7f7f2be736ad4578ed687315340cf",
+  "bundle_reproduction": {
+    "clone_with_default_command": true,
+    "git_object_integrity": true,
+    "rebuild_identical": true,
+    "rules_passed": 299,
+    "legacy_both_chapters": true,
+    "bow_entire_road": true
+  },
+  "source_manifest_records": 99,
+  "scope": "Complete source and selected final-run evidence. Exploratory failed logs and intermediate frames are not packaged. Historical06/07 docs/examples remain explicitly dated."
+}
