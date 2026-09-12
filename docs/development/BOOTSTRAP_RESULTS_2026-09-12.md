@@ -28,15 +28,18 @@ Python 3.13.15, Node v24.18.0, pinned Playwright 1.57.0 with its managed Chromiu
 | Earlier gameplay browser UI | 106 passed | Current HTML, including equipment, crafting, soul, music exports, fallback and touch-sized UI |
 | Camera cutaway | 6 passed | Rendered framebuffer comparison |
 | Water reflection | 8 passed | Rendered asymmetric landmarks at four orbits |
+| Native loopback origin | 11 passed | Actual HTTP navigation, Map/Character UI, production save, full browser restart and exact notebook marker restored in both localStorage and loaded game state |
 
 The four browser reports contain no unhandled browser errors or external resource requests. Their 221 UI checks use labelled Map-backed storage; that result alone does not prove native persistence. The portable verifier was also exercised with a deliberately failing temporary rule test and returned nonzero; the probe was then removed.
+
+The separate native test uses an ephemeral `127.0.0.1` server and temporary isolated persistent Chromium profile. It hashes the actual HTTP response, submits a labelled synthetic notebook command through accepted rules, saves through the production path, closes/relaunches the browser, and verifies exact retained content. No personal profile is used. This closes the earlier handoff's loopback-navigation evidence gap on this host; native file-origin storage, RTX performance and personal-save migration remain unqualified. Its report records Chromium's user agent and zero unhandled browser errors.
 
 Initial Python baseline result was 19 successful cases plus one error while trying to create a symlink (`WinError 1314`), before testing importer behavior. The workflow commit changes only that fixture to an explicit capability skip. It does not disable the importer's symlink refusal or change Windows privileges.
 
 ## Reproduce and read live status
 
-`python tools/verify.py` rebuilds, rejects stale HTML, checks syntax/rules/helper cases and runs both current journeys. `python tools/verify.py --browser` adds the four current browser suites. See `tests/README.md` for the optional environment. Logs are ignored under `verification/`; generated browser/journey evidence is under `evidence10/` and the retained reflection output path `evidence07/regression/`.
+`python tools/verify.py` rebuilds, rejects stale HTML, checks syntax/rules/helper cases and runs both current journeys. `python tools/verify.py --browser` adds the four current browser suites and native-origin persistence smoke. See `tests/README.md` for the optional environment. Logs are ignored under `verification/`; generated browser/journey evidence is under `evidence10/` and the retained reflection output path `evidence07/regression/`.
 
 The new `verify.yml` workflow has read-only repository permission, pinned action revisions, Windows/Linux source jobs and a Linux Chromium job. It does not deploy or write commits. The old `import-source.yml` and `.import/READY.json` path are not activated. Hosted CI results and the exact pushed head are available on the source-import PR; a workflow file is not itself a claim that hosted checks ran.
 
-Main merge, public hosting, tags/releases, visibility/license changes and gameplay progression changes are outside this bootstrap. Remaining product work is the bounded starter quest/equipment/combat loop in `docs/NEXT_TASK.md`, followed by a real human playtest. Native-origin results and remote fresh-clone results are recorded once those checks complete; historical browser evidence is not counted again.
+Main merge, public hosting, tags/releases, visibility/license changes and gameplay progression changes are outside this bootstrap. Remaining product work is the bounded starter quest/equipment/combat loop in `docs/NEXT_TASK.md`, followed by a real human playtest. Remote fresh-clone results are recorded once that check completes; historical browser evidence is not counted again.

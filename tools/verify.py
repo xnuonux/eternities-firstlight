@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--browser', action='store_true', help='Also run the current four browser suites (requires requirements-dev.txt and Chromium).')
+    parser.add_argument('--browser', action='store_true', help='Also run the four current browser suites and native persistence smoke (requires requirements-dev.txt and Chromium).')
     parser.add_argument('--output', type=Path, default=ROOT / 'verification', help='Directory for fresh command logs.')
     args = parser.parse_args()
     if not shutil.which('node'):
@@ -62,7 +62,7 @@ def main():
     run('crossing-blade', ['node', 'tests/crossing_journey.cjs'])
     run('crossing-bow', ['node', 'tests/crossing_journey.cjs', '--bow'])
     if args.browser:
-        for suite in ['crossing_browser', 'regression09_browser', 'cutaway_browser', 'reflection_browser']:
+        for suite in ['crossing_browser', 'regression09_browser', 'cutaway_browser', 'reflection_browser', 'native_origin_browser']:
             run(suite, [sys.executable, f'tests/{suite}.py'], timeout=300)
     print('Verification passed. Automated checks do not qualify human pacing or device performance.', flush=True)
 

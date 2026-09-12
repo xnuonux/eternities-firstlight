@@ -20,6 +20,8 @@ Current UI gates are `crossing_browser.py` and `regression09_browser.py`. The la
 
 UI tests use isolated contexts and labelled Map-backed storage fixtures. Automated tactics, accelerated time and touch-sized emulation do not qualify human balance, native saves, GPU performance or physical phones. Original delivery browser totals remain historical unless rerun.
 
+`--browser` also runs `native_origin_browser.py`: an ephemeral loopback server and temporary persistent Chromium profile exercise real navigation and localStorage. A labelled notebook command goes through the production save path; after the whole browser closes and relaunches, both storage and loaded game state must retain its exact text. This uses no personal browser profile or save. It qualifies this controlled HTTP-origin restart, not file-origin storage or every gameplay migration.
+
 `chapter_journey.cjs`, `road_journey.cjs`, `arsenal_journey.cjs`, `ranged_road_journey.cjs` and `beacon_journey.cjs` remain additional command journeys. The default gate runs the two current Chapter IV journeys; do not add unexecuted totals. Older browser drivers, including `rpg_browser.py` and `run_browser_suites.py`, remain historical and may target obsolete UI.
 
 `verify_package.py` and `tools/summarize_validation.py` validate the original delivery manifest/report set. They are archive checks, not fresh-clone CI entrypoints or new test runs. Full immutable input archives remain outside the checkout, with metadata and source history in `docs/provenance/2026-09-12/`.
