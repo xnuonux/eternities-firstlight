@@ -1,0 +1,17 @@
+{
+  "as_of": "2026-09-11",
+  "target": "xnuonux/eternities-firstlight",
+  "version": "6.0.0",
+  "branch": "development/feather-beneath-wildwood",
+  "pull_request": "https://github.com/xnuonux/eternities-firstlight/pull/1",
+  "document_commit": "80847fe147f85ecb4d05f5d25f08a626dfb58ddb",
+  "document_blob": "2a8a8c87038c9251fb17a54aea29dceb1ba3424a",
+  "document_path": "docs/FIRSTLIGHT_VERTICAL_SLICE_GDD.md",
+  "document_byte_match": true,
+  "runtime_source_published": false,
+  "source_package": "ETERNITIES_FIRSTLIGHT_06_REPOSITORY.zip",
+  "status": "complete_playable_source_local_design_published_bulk_source_import_pending",
+  "main_observed": "1aae2f14f2b2ab0ba54a5bf8571bd45bbf32ab46",
+  "deployment": false,
+  "note": "File writes are available and GDD publication succeeded. The full source was not bulk-uploaded; this is a publication scope limit, not a claim the connection is read-only. The exact playable source and verified local Git bundle are in the delivery."
+}

@@ -1,0 +1,2987 @@
+{
+  "sandbox": {
+    "version": 1,
+    "elapsed": 1983.149999998744,
+    "revision": 188,
+    "inventory": {
+      "wood": 16,
+      "stone": 17,
+      "fiber": 6,
+      "crystal": 9,
+      "plank": 9,
+      "block": 4,
+      "seeds": 7,
+      "berry": 3,
+      "axe": 1,
+      "pick": 1,
+      "floor": 6,
+      "wall": 0,
+      "masonry": 2,
+      "lantern": 0,
+      "bench": 0,
+      "bed": 0,
+      "fire": 0,
+      "workbench": 0
+    },
+    "nodes": [
+      {
+        "id": "timber-1",
+        "hp": 4,
+        "readyAt": 0
+      },
+      {
+        "id": "timber-2",
+        "hp": 4,
+        "readyAt": 0
+      },
+      {
+        "id": "timber-3",
+        "hp": 4,
+        "readyAt": 0
+      },
+      {
+        "id": "timber-4",
+        "hp": 4,
+        "readyAt": 0
+      },
+      {
+        "id": "stone-1",
+        "hp": 4,
+        "readyAt": 0
+      },
+      {
+        "id": "stone-2",
+        "hp": 4,
+        "readyAt": 0
+      },
+      {
+        "id": "stone-3",
+        "hp": 4,
+        "readyAt": 0
+      },
+      {
+        "id": "fibre-1",
+        "hp": 1,
+        "readyAt": 0
+      },
+      {
+        "id": "fibre-2",
+        "hp": 1,
+        "readyAt": 0
+      },
+      {
+        "id": "fibre-3",
+        "hp": 1,
+        "readyAt": 0
+      },
+      {
+        "id": "wild-timber-1",
+        "hp": 4,
+        "readyAt": 0
+      },
+      {
+        "id": "wild-timber-2",
+        "hp": 4,
+        "readyAt": 0
+      },
+      {
+        "id": "wild-timber-3",
+        "hp": 4,
+        "readyAt": 0
+      },
+      {
+        "id": "wild-stone-1",
+        "hp": 4,
+        "readyAt": 0
+      },
+      {
+        "id": "wild-stone-2",
+        "hp": 4,
+        "readyAt": 0
+      },
+      {
+        "id": "wild-fibre",
+        "hp": 1,
+        "readyAt": 0
+      },
+      {
+        "id": "crystal-1",
+        "hp": 0,
+        "readyAt": 2072.149999998827
+      },
+      {
+        "id": "crystal-2",
+        "hp": 4,
+        "readyAt": 0
+      }
+    ],
+    "bridge": true,
+    "placed": [
+      {
+        "id": 1,
+        "kind": "floor",
+        "gx": -2,
+        "gz": 2,
+        "level": 0,
+        "rotation": 0,
+        "crop": null
+      },
+      {
+        "id": 2,
+        "kind": "bed",
+        "gx": -2,
+        "gz": 2,
+        "level": 1,
+        "rotation": 0,
+        "crop": null
+      },
+      {
+        "id": 3,
+        "kind": "floor",
+        "gx": -1,
+        "gz": 2,
+        "level": 0,
+        "rotation": 0,
+        "crop": null
+      },
+      {
+        "id": 4,
+        "kind": "lantern",
+        "gx": -1,
+        "gz": 2,
+        "level": 1,
+        "rotation": 0,
+        "crop": null
+      },
+      {
+        "id": 5,
+        "kind": "masonry",
+        "gx": -2,
+        "gz": 1,
+        "level": 1,
+        "rotation": 0,
+        "crop": null
+      },
+      {
+        "id": 6,
+        "kind": "masonry",
+        "gx": -2,
+        "gz": 1,
+        "level": 2,
+        "rotation": 0,
+        "crop": null
+      },
+      {
+        "id": 8,
+        "kind": "floor",
+        "gx": 1,
+        "gz": 2,
+        "level": 0,
+        "rotation": 0,
+        "crop": null
+      },
+      {
+        "id": 9,
+        "kind": "floor",
+        "gx": 2,
+        "gz": 2,
+        "level": 0,
+        "rotation": 0,
+        "crop": null
+      },
+      {
+        "id": 10,
+        "kind": "floor",
+        "gx": 1,
+        "gz": 1,
+        "level": 0,
+        "rotation": 0,
+        "crop": null
+      },
+      {
+        "id": 11,
+        "kind": "floor",
+        "gx": 2,
+        "gz": 1,
+        "level": 0,
+        "rotation": 0,
+        "crop": null
+      },
+      {
+        "id": 12,
+        "kind": "floor",
+        "gx": 1,
+        "gz": 0,
+        "level": 0,
+        "rotation": 0,
+        "crop": null
+      },
+      {
+        "id": 13,
+        "kind": "floor",
+        "gx": 2,
+        "gz": 0,
+        "level": 0,
+        "rotation": 0,
+        "crop": null
+      },
+      {
+        "id": 14,
+        "kind": "floor",
+        "gx": 1,
+        "gz": -1,
+        "level": 0,
+        "rotation": 0,
+        "crop": null
+      },
+      {
+        "id": 15,
+        "kind": "floor",
+        "gx": 2,
+        "gz": -1,
+        "level": 0,
+        "rotation": 0,
+        "crop": null
+      },
+      {
+        "id": 16,
+        "kind": "floor",
+        "gx": -1,
+        "gz": -1,
+        "level": 0,
+        "rotation": 0,
+        "crop": null
+      },
+      {
+        "id": 17,
+        "kind": "floor",
+        "gx": -2,
+        "gz": -1,
+        "level": 0,
+        "rotation": 0,
+        "crop": null
+      },
+      {
+        "id": 18,
+        "kind": "floor",
+        "gx": -1,
+        "gz": 0,
+        "level": 0,
+        "rotation": 0,
+        "crop": null
+      },
+      {
+        "id": 19,
+        "kind": "floor",
+        "gx": -2,
+        "gz": 0,
+        "level": 0,
+        "rotation": 0,
+        "crop": null
+      },
+      {
+        "id": 20,
+        "kind": "workbench",
+        "gx": 2,
+        "gz": 2,
+        "level": 1,
+        "rotation": 0,
+        "crop": null
+      },
+      {
+        "id": 21,
+        "kind": "bench",
+        "gx": 2,
+        "gz": 1,
+        "level": 1,
+        "rotation": 0,
+        "crop": null
+      },
+      {
+        "id": 22,
+        "kind": "fire",
+        "gx": 1,
+        "gz": 0,
+        "level": 1,
+        "rotation": 0,
+        "crop": null
+      },
+      {
+        "id": 23,
+        "kind": "wall",
+        "gx": 2,
+        "gz": -1,
+        "level": 1,
+        "rotation": 0,
+        "crop": null
+      },
+      {
+        "id": 24,
+        "kind": "wall",
+        "gx": 1,
+        "gz": -1,
+        "level": 1,
+        "rotation": 0,
+        "crop": null
+      },
+      {
+        "id": 25,
+        "kind": "wall",
+        "gx": 2,
+        "gz": 0,
+        "level": 1,
+        "rotation": 1,
+        "crop": null
+      },
+      {
+        "id": 26,
+        "kind": "lantern",
+        "gx": 1,
+        "gz": 2,
+        "level": 1,
+        "rotation": 0,
+        "crop": null
+      },
+      {
+        "id": 27,
+        "kind": "lantern",
+        "gx": -1,
+        "gz": -1,
+        "level": 1,
+        "rotation": 0,
+        "crop": null
+      },
+      {
+        "id": 28,
+        "kind": "bed",
+        "gx": -2,
+        "gz": -1,
+        "level": 1,
+        "rotation": 0,
+        "crop": {
+          "stage": "ripe",
+          "plantedAt": 1892.1499999988268,
+          "readyAt": 1982.1499999988268
+        }
+      },
+      {
+        "id": 29,
+        "kind": "bed",
+        "gx": -2,
+        "gz": 0,
+        "level": 1,
+        "rotation": 0,
+        "crop": {
+          "stage": "ripe",
+          "plantedAt": 1892.1499999988268,
+          "readyAt": 1982.1499999988268
+        }
+      },
+      {
+        "id": 30,
+        "kind": "bed",
+        "gx": -1,
+        "gz": 0,
+        "level": 1,
+        "rotation": 0,
+        "crop": {
+          "stage": "ripe",
+          "plantedAt": 1892.1499999988268,
+          "readyAt": 1982.1499999988268
+        }
+      }
+    ],
+    "nextId": 31,
+    "stats": {
+      "gathered": 132,
+      "crafted": 43,
+      "harvested": 1
+    },
+    "milestones": [
+      "gather",
+      "tool",
+      "bridge",
+      "build",
+      "crop",
+      "light"
+    ],
+    "recentCommands": [
+      {
+        "id": "play-1789100107694-30",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"stone-2\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Mine · 2 strength remaining"
+        }
+      },
+      {
+        "id": "play-1789100107712-31",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"stone-2\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Mine · 1 strength remaining"
+        }
+      },
+      {
+        "id": "play-1789100108091-32",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"stone-2\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "+5 Stone"
+        }
+      },
+      {
+        "id": "play-1789100109918-33",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"stone-1\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Mine · 3 strength remaining"
+        }
+      },
+      {
+        "id": "play-1789100109944-34",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"stone-1\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Mine · 2 strength remaining"
+        }
+      },
+      {
+        "id": "play-1789100109956-35",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"stone-1\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Mine · 1 strength remaining"
+        }
+      },
+      {
+        "id": "play-1789100110468-36",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"stone-1\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "+5 Stone"
+        }
+      },
+      {
+        "id": "play-1789100111896-37",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"fibre-1\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "+3 Meadow fibre · +1 seed"
+        }
+      },
+      {
+        "id": "play-1789100114394-38",
+        "fingerprint": "{\"type\":\"craft\",\"node\":null,\"recipe\":\"pick\",\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Crafted 1 × Stone pickaxe"
+        }
+      },
+      {
+        "id": "play-1789100115107-39",
+        "fingerprint": "{\"type\":\"craft\",\"node\":null,\"recipe\":\"axe\",\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Crafted 1 × Woodcutter’s axe"
+        }
+      },
+      {
+        "id": "play-1789100115823-40",
+        "fingerprint": "{\"type\":\"craft\",\"node\":null,\"recipe\":\"plank\",\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Crafted 4 × Planks"
+        }
+      },
+      {
+        "id": "play-1789100116139-41",
+        "fingerprint": "{\"type\":\"craft\",\"node\":null,\"recipe\":\"plank\",\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Crafted 4 × Planks"
+        }
+      },
+      {
+        "id": "play-1789100116415-42",
+        "fingerprint": "{\"type\":\"craft\",\"node\":null,\"recipe\":\"plank\",\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Crafted 4 × Planks"
+        }
+      },
+      {
+        "id": "play-1789100116635-43",
+        "fingerprint": "{\"type\":\"craft\",\"node\":null,\"recipe\":\"plank\",\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Crafted 4 × Planks"
+        }
+      },
+      {
+        "id": "play-1789100116889-44",
+        "fingerprint": "{\"type\":\"craft\",\"node\":null,\"recipe\":\"plank\",\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Crafted 4 × Planks"
+        }
+      },
+      {
+        "id": "play-1789100117208-45",
+        "fingerprint": "{\"type\":\"craft\",\"node\":null,\"recipe\":\"plank\",\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Crafted 4 × Planks"
+        }
+      },
+      {
+        "id": "play-1789100117795-46",
+        "fingerprint": "{\"type\":\"craft\",\"node\":null,\"recipe\":\"floor\",\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Crafted 2 × Timber deck"
+        }
+      },
+      {
+        "id": "play-1789100118064-47",
+        "fingerprint": "{\"type\":\"craft\",\"node\":null,\"recipe\":\"floor\",\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Crafted 2 × Timber deck"
+        }
+      },
+      {
+        "id": "play-1789100118317-48",
+        "fingerprint": "{\"type\":\"craft\",\"node\":null,\"recipe\":\"floor\",\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Crafted 2 × Timber deck"
+        }
+      },
+      {
+        "id": "play-1789100119068-49",
+        "fingerprint": "{\"type\":\"craft\",\"node\":null,\"recipe\":\"bed\",\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Crafted 1 × Growing bed"
+        }
+      },
+      {
+        "id": "play-1789100119657-50",
+        "fingerprint": "{\"type\":\"craft\",\"node\":null,\"recipe\":\"workbench\",\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Crafted 1 × Field workbench"
+        }
+      },
+      {
+        "id": "play-1789100120250-51",
+        "fingerprint": "{\"type\":\"craft\",\"node\":null,\"recipe\":\"bench\",\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Crafted 1 × Garden bench"
+        }
+      },
+      {
+        "id": "play-1789100120764-52",
+        "fingerprint": "{\"type\":\"craft\",\"node\":null,\"recipe\":\"block\",\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Crafted 4 × Stone blocks"
+        }
+      },
+      {
+        "id": "play-1789100120891-53",
+        "fingerprint": "{\"type\":\"craft\",\"node\":null,\"recipe\":\"block\",\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Crafted 4 × Stone blocks"
+        }
+      },
+      {
+        "id": "play-1789100121514-54",
+        "fingerprint": "{\"type\":\"craft\",\"node\":null,\"recipe\":\"masonry\",\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Crafted 2 × Stackable stone"
+        }
+      },
+      {
+        "id": "play-1789100121624-55",
+        "fingerprint": "{\"type\":\"craft\",\"node\":null,\"recipe\":\"masonry\",\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Crafted 2 × Stackable stone"
+        }
+      },
+      {
+        "id": "play-1789100122498-56",
+        "fingerprint": "{\"type\":\"bridge\",\"node\":null,\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Wildwood Reach is open. A new shore to make your own."
+        }
+      },
+      {
+        "id": "play-1789100123638-57",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"crystal-1\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Mine · 2 strength remaining"
+        }
+      },
+      {
+        "id": "play-1789100123647-58",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"crystal-1\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "+3 Moon crystal"
+        }
+      },
+      {
+        "id": "play-1789100125967-59",
+        "fingerprint": "{\"type\":\"craft\",\"node\":null,\"recipe\":\"lantern\",\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Crafted 1 × Garden lantern"
+        }
+      },
+      {
+        "id": "play-1789100127081-60",
+        "fingerprint": "{\"type\":\"place\",\"node\":null,\"recipe\":null,\"kind\":\"floor\",\"gx\":-2,\"gz\":2,\"rotation\":0,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Timber deck placed. Reclaim returns the crafted item."
+        }
+      },
+      {
+        "id": "play-1789100128357-61",
+        "fingerprint": "{\"type\":\"place\",\"node\":null,\"recipe\":null,\"kind\":\"bed\",\"gx\":-2,\"gz\":2,\"rotation\":0,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Growing bed placed. Reclaim returns the crafted item."
+        }
+      },
+      {
+        "id": "play-1789100128779-62",
+        "fingerprint": "{\"type\":\"crop\",\"node\":null,\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":2}",
+        "result": {
+          "ok": true,
+          "text": "Seed planted. Interact again to water it."
+        }
+      },
+      {
+        "id": "play-1789100129538-63",
+        "fingerprint": "{\"type\":\"crop\",\"node\":null,\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":2}",
+        "result": {
+          "ok": true,
+          "text": "Watered. Sunberries ripen after 90 seconds of active world time."
+        }
+      },
+      {
+        "id": "play-1789100129842-64",
+        "fingerprint": "{\"type\":\"crop\",\"node\":null,\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":2}",
+        "result": {
+          "ok": true,
+          "text": "Harvested 3 sunberries + 2 seeds. The bed is ready again."
+        }
+      },
+      {
+        "id": "play-1789100130897-65",
+        "fingerprint": "{\"type\":\"place\",\"node\":null,\"recipe\":null,\"kind\":\"floor\",\"gx\":-1,\"gz\":2,\"rotation\":0,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Timber deck placed. Reclaim returns the crafted item."
+        }
+      },
+      {
+        "id": "play-1789100131778-66",
+        "fingerprint": "{\"type\":\"place\",\"node\":null,\"recipe\":null,\"kind\":\"lantern\",\"gx\":-1,\"gz\":2,\"rotation\":0,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Garden lantern placed. Reclaim returns the crafted item."
+        }
+      },
+      {
+        "id": "play-1789100132682-67",
+        "fingerprint": "{\"type\":\"place\",\"node\":null,\"recipe\":null,\"kind\":\"masonry\",\"gx\":-2,\"gz\":1,\"rotation\":0,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Stackable stone placed. Reclaim returns the crafted item."
+        }
+      },
+      {
+        "id": "play-1789100133548-68",
+        "fingerprint": "{\"type\":\"place\",\"node\":null,\"recipe\":null,\"kind\":\"masonry\",\"gx\":-2,\"gz\":1,\"rotation\":0,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Stackable stone placed. Reclaim returns the crafted item."
+        }
+      },
+      {
+        "id": "play-1789100134291-69",
+        "fingerprint": "{\"type\":\"place\",\"node\":null,\"recipe\":null,\"kind\":\"masonry\",\"gx\":-2,\"gz\":1,\"rotation\":0,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Stackable stone placed. Reclaim returns the crafted item."
+        }
+      },
+      {
+        "id": "play-1789100134849-70",
+        "fingerprint": "{\"type\":\"reclaim\",\"node\":null,\"recipe\":null,\"kind\":null,\"gx\":-2,\"gz\":1,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Stackable stone returned to your pack."
+        }
+      },
+      {
+        "id": "showcase-1",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"timber-1\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Chop · 2 strength remaining"
+        }
+      },
+      {
+        "id": "showcase-2",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"timber-1\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "+5 Timber"
+        }
+      },
+      {
+        "id": "showcase-3",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"timber-2\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Chop · 2 strength remaining"
+        }
+      },
+      {
+        "id": "showcase-4",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"timber-2\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "+5 Timber"
+        }
+      },
+      {
+        "id": "showcase-5",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"timber-3\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Chop · 2 strength remaining"
+        }
+      },
+      {
+        "id": "showcase-6",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"timber-3\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "+5 Timber"
+        }
+      },
+      {
+        "id": "showcase-7",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"timber-4\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Chop · 2 strength remaining"
+        }
+      },
+      {
+        "id": "showcase-8",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"timber-4\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "+5 Timber"
+        }
+      },
+      {
+        "id": "showcase-9",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"wild-timber-1\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Chop · 2 strength remaining"
+        }
+      },
+      {
+        "id": "showcase-10",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"wild-timber-1\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "+5 Timber"
+        }
+      },
+      {
+        "id": "showcase-11",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"wild-timber-2\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Chop · 2 strength remaining"
+        }
+      },
+      {
+        "id": "showcase-12",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"wild-timber-2\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "+5 Timber"
+        }
+      },
+      {
+        "id": "showcase-13",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"wild-timber-3\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Chop · 2 strength remaining"
+        }
+      },
+      {
+        "id": "showcase-14",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"wild-timber-3\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "+5 Timber"
+        }
+      },
+      {
+        "id": "showcase-15",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"timber-1\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Chop · 2 strength remaining"
+        }
+      },
+      {
+        "id": "showcase-16",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"timber-1\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "+5 Timber"
+        }
+      },
+      {
+        "id": "showcase-17",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"stone-1\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Mine · 2 strength remaining"
+        }
+      },
+      {
+        "id": "showcase-18",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"stone-1\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "+5 Stone"
+        }
+      },
+      {
+        "id": "showcase-19",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"stone-2\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Mine · 2 strength remaining"
+        }
+      },
+      {
+        "id": "showcase-20",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"stone-2\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "+5 Stone"
+        }
+      },
+      {
+        "id": "showcase-21",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"stone-3\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Mine · 2 strength remaining"
+        }
+      },
+      {
+        "id": "showcase-22",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"stone-3\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "+5 Stone"
+        }
+      },
+      {
+        "id": "showcase-23",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"wild-stone-1\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Mine · 2 strength remaining"
+        }
+      },
+      {
+        "id": "showcase-24",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"wild-stone-1\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "+5 Stone"
+        }
+      },
+      {
+        "id": "showcase-25",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"fibre-1\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "+3 Meadow fibre · +1 seed"
+        }
+      },
+      {
+        "id": "showcase-26",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"fibre-2\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "+3 Meadow fibre · +1 seed"
+        }
+      },
+      {
+        "id": "showcase-27",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"fibre-3\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "+3 Meadow fibre · +1 seed"
+        }
+      },
+      {
+        "id": "showcase-28",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"wild-fibre\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "+3 Meadow fibre · +1 seed"
+        }
+      },
+      {
+        "id": "showcase-29",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"crystal-1\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Mine · 2 strength remaining"
+        }
+      },
+      {
+        "id": "showcase-30",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"crystal-1\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "+3 Moon crystal"
+        }
+      },
+      {
+        "id": "showcase-31",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"crystal-2\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Mine · 2 strength remaining"
+        }
+      },
+      {
+        "id": "showcase-32",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"crystal-2\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "+3 Moon crystal"
+        }
+      },
+      {
+        "id": "showcase-33",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"crystal-1\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Mine · 2 strength remaining"
+        }
+      },
+      {
+        "id": "showcase-34",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"crystal-1\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "+3 Moon crystal"
+        }
+      },
+      {
+        "id": "showcase-35",
+        "fingerprint": "{\"type\":\"craft\",\"node\":null,\"recipe\":\"plank\",\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Crafted 4 × Planks"
+        }
+      },
+      {
+        "id": "showcase-36",
+        "fingerprint": "{\"type\":\"craft\",\"node\":null,\"recipe\":\"plank\",\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Crafted 4 × Planks"
+        }
+      },
+      {
+        "id": "showcase-37",
+        "fingerprint": "{\"type\":\"craft\",\"node\":null,\"recipe\":\"plank\",\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Crafted 4 × Planks"
+        }
+      },
+      {
+        "id": "showcase-38",
+        "fingerprint": "{\"type\":\"craft\",\"node\":null,\"recipe\":\"plank\",\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Crafted 4 × Planks"
+        }
+      },
+      {
+        "id": "showcase-39",
+        "fingerprint": "{\"type\":\"craft\",\"node\":null,\"recipe\":\"plank\",\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Crafted 4 × Planks"
+        }
+      },
+      {
+        "id": "showcase-40",
+        "fingerprint": "{\"type\":\"craft\",\"node\":null,\"recipe\":\"plank\",\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Crafted 4 × Planks"
+        }
+      },
+      {
+        "id": "showcase-41",
+        "fingerprint": "{\"type\":\"craft\",\"node\":null,\"recipe\":\"plank\",\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Crafted 4 × Planks"
+        }
+      },
+      {
+        "id": "showcase-42",
+        "fingerprint": "{\"type\":\"craft\",\"node\":null,\"recipe\":\"plank\",\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Crafted 4 × Planks"
+        }
+      },
+      {
+        "id": "showcase-43",
+        "fingerprint": "{\"type\":\"craft\",\"node\":null,\"recipe\":\"floor\",\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Crafted 2 × Timber deck"
+        }
+      },
+      {
+        "id": "showcase-44",
+        "fingerprint": "{\"type\":\"craft\",\"node\":null,\"recipe\":\"floor\",\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Crafted 2 × Timber deck"
+        }
+      },
+      {
+        "id": "showcase-45",
+        "fingerprint": "{\"type\":\"craft\",\"node\":null,\"recipe\":\"floor\",\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Crafted 2 × Timber deck"
+        }
+      },
+      {
+        "id": "showcase-46",
+        "fingerprint": "{\"type\":\"craft\",\"node\":null,\"recipe\":\"floor\",\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Crafted 2 × Timber deck"
+        }
+      },
+      {
+        "id": "showcase-47",
+        "fingerprint": "{\"type\":\"craft\",\"node\":null,\"recipe\":\"floor\",\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Crafted 2 × Timber deck"
+        }
+      },
+      {
+        "id": "showcase-48",
+        "fingerprint": "{\"type\":\"craft\",\"node\":null,\"recipe\":\"floor\",\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Crafted 2 × Timber deck"
+        }
+      },
+      {
+        "id": "showcase-49",
+        "fingerprint": "{\"type\":\"craft\",\"node\":null,\"recipe\":\"floor\",\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Crafted 2 × Timber deck"
+        }
+      },
+      {
+        "id": "showcase-50",
+        "fingerprint": "{\"type\":\"craft\",\"node\":null,\"recipe\":\"wall\",\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Crafted 1 × Timber wall"
+        }
+      },
+      {
+        "id": "showcase-51",
+        "fingerprint": "{\"type\":\"craft\",\"node\":null,\"recipe\":\"wall\",\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Crafted 1 × Timber wall"
+        }
+      },
+      {
+        "id": "showcase-52",
+        "fingerprint": "{\"type\":\"craft\",\"node\":null,\"recipe\":\"wall\",\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Crafted 1 × Timber wall"
+        }
+      },
+      {
+        "id": "showcase-53",
+        "fingerprint": "{\"type\":\"craft\",\"node\":null,\"recipe\":\"bed\",\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Crafted 1 × Growing bed"
+        }
+      },
+      {
+        "id": "showcase-54",
+        "fingerprint": "{\"type\":\"craft\",\"node\":null,\"recipe\":\"bed\",\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Crafted 1 × Growing bed"
+        }
+      },
+      {
+        "id": "showcase-55",
+        "fingerprint": "{\"type\":\"craft\",\"node\":null,\"recipe\":\"bed\",\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Crafted 1 × Growing bed"
+        }
+      },
+      {
+        "id": "showcase-56",
+        "fingerprint": "{\"type\":\"craft\",\"node\":null,\"recipe\":\"lantern\",\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Crafted 1 × Garden lantern"
+        }
+      },
+      {
+        "id": "showcase-57",
+        "fingerprint": "{\"type\":\"craft\",\"node\":null,\"recipe\":\"lantern\",\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Crafted 1 × Garden lantern"
+        }
+      },
+      {
+        "id": "showcase-58",
+        "fingerprint": "{\"type\":\"craft\",\"node\":null,\"recipe\":\"fire\",\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Crafted 1 × Hearth"
+        }
+      },
+      {
+        "id": "showcase-59",
+        "fingerprint": "{\"type\":\"place\",\"node\":null,\"recipe\":null,\"kind\":\"floor\",\"gx\":1,\"gz\":2,\"rotation\":0,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Timber deck placed. Reclaim returns the crafted item."
+        }
+      },
+      {
+        "id": "showcase-60",
+        "fingerprint": "{\"type\":\"place\",\"node\":null,\"recipe\":null,\"kind\":\"floor\",\"gx\":2,\"gz\":2,\"rotation\":0,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Timber deck placed. Reclaim returns the crafted item."
+        }
+      },
+      {
+        "id": "showcase-61",
+        "fingerprint": "{\"type\":\"place\",\"node\":null,\"recipe\":null,\"kind\":\"floor\",\"gx\":1,\"gz\":1,\"rotation\":0,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Timber deck placed. Reclaim returns the crafted item."
+        }
+      },
+      {
+        "id": "showcase-62",
+        "fingerprint": "{\"type\":\"place\",\"node\":null,\"recipe\":null,\"kind\":\"floor\",\"gx\":2,\"gz\":1,\"rotation\":0,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Timber deck placed. Reclaim returns the crafted item."
+        }
+      },
+      {
+        "id": "showcase-63",
+        "fingerprint": "{\"type\":\"place\",\"node\":null,\"recipe\":null,\"kind\":\"floor\",\"gx\":1,\"gz\":0,\"rotation\":0,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Timber deck placed. Reclaim returns the crafted item."
+        }
+      },
+      {
+        "id": "showcase-64",
+        "fingerprint": "{\"type\":\"place\",\"node\":null,\"recipe\":null,\"kind\":\"floor\",\"gx\":2,\"gz\":0,\"rotation\":0,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Timber deck placed. Reclaim returns the crafted item."
+        }
+      },
+      {
+        "id": "showcase-65",
+        "fingerprint": "{\"type\":\"place\",\"node\":null,\"recipe\":null,\"kind\":\"floor\",\"gx\":1,\"gz\":-1,\"rotation\":0,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Timber deck placed. Reclaim returns the crafted item."
+        }
+      },
+      {
+        "id": "showcase-66",
+        "fingerprint": "{\"type\":\"place\",\"node\":null,\"recipe\":null,\"kind\":\"floor\",\"gx\":2,\"gz\":-1,\"rotation\":0,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Timber deck placed. Reclaim returns the crafted item."
+        }
+      },
+      {
+        "id": "showcase-67",
+        "fingerprint": "{\"type\":\"place\",\"node\":null,\"recipe\":null,\"kind\":\"floor\",\"gx\":-1,\"gz\":-1,\"rotation\":0,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Timber deck placed. Reclaim returns the crafted item."
+        }
+      },
+      {
+        "id": "showcase-68",
+        "fingerprint": "{\"type\":\"place\",\"node\":null,\"recipe\":null,\"kind\":\"floor\",\"gx\":-2,\"gz\":-1,\"rotation\":0,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Timber deck placed. Reclaim returns the crafted item."
+        }
+      },
+      {
+        "id": "showcase-69",
+        "fingerprint": "{\"type\":\"place\",\"node\":null,\"recipe\":null,\"kind\":\"floor\",\"gx\":-1,\"gz\":0,\"rotation\":0,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Timber deck placed. Reclaim returns the crafted item."
+        }
+      },
+      {
+        "id": "showcase-70",
+        "fingerprint": "{\"type\":\"place\",\"node\":null,\"recipe\":null,\"kind\":\"floor\",\"gx\":-2,\"gz\":0,\"rotation\":0,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Timber deck placed. Reclaim returns the crafted item."
+        }
+      },
+      {
+        "id": "showcase-71",
+        "fingerprint": "{\"type\":\"place\",\"node\":null,\"recipe\":null,\"kind\":\"workbench\",\"gx\":2,\"gz\":2,\"rotation\":0,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Field workbench placed. Reclaim returns the crafted item."
+        }
+      },
+      {
+        "id": "showcase-72",
+        "fingerprint": "{\"type\":\"place\",\"node\":null,\"recipe\":null,\"kind\":\"bench\",\"gx\":2,\"gz\":1,\"rotation\":0,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Garden bench placed. Reclaim returns the crafted item."
+        }
+      },
+      {
+        "id": "showcase-73",
+        "fingerprint": "{\"type\":\"place\",\"node\":null,\"recipe\":null,\"kind\":\"fire\",\"gx\":1,\"gz\":0,\"rotation\":0,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Hearth placed. Reclaim returns the crafted item."
+        }
+      },
+      {
+        "id": "showcase-74",
+        "fingerprint": "{\"type\":\"place\",\"node\":null,\"recipe\":null,\"kind\":\"wall\",\"gx\":2,\"gz\":-1,\"rotation\":0,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Timber wall placed. Reclaim returns the crafted item."
+        }
+      },
+      {
+        "id": "showcase-75",
+        "fingerprint": "{\"type\":\"place\",\"node\":null,\"recipe\":null,\"kind\":\"wall\",\"gx\":1,\"gz\":-1,\"rotation\":0,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Timber wall placed. Reclaim returns the crafted item."
+        }
+      },
+      {
+        "id": "showcase-76",
+        "fingerprint": "{\"type\":\"place\",\"node\":null,\"recipe\":null,\"kind\":\"wall\",\"gx\":2,\"gz\":0,\"rotation\":1,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Timber wall placed. Reclaim returns the crafted item."
+        }
+      },
+      {
+        "id": "showcase-77",
+        "fingerprint": "{\"type\":\"place\",\"node\":null,\"recipe\":null,\"kind\":\"lantern\",\"gx\":1,\"gz\":2,\"rotation\":0,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Garden lantern placed. Reclaim returns the crafted item."
+        }
+      },
+      {
+        "id": "showcase-78",
+        "fingerprint": "{\"type\":\"place\",\"node\":null,\"recipe\":null,\"kind\":\"lantern\",\"gx\":-1,\"gz\":-1,\"rotation\":0,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Garden lantern placed. Reclaim returns the crafted item."
+        }
+      },
+      {
+        "id": "showcase-79",
+        "fingerprint": "{\"type\":\"place\",\"node\":null,\"recipe\":null,\"kind\":\"bed\",\"gx\":-2,\"gz\":-1,\"rotation\":0,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Growing bed placed. Reclaim returns the crafted item."
+        }
+      },
+      {
+        "id": "showcase-80",
+        "fingerprint": "{\"type\":\"crop\",\"node\":null,\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":28}",
+        "result": {
+          "ok": true,
+          "text": "Seed planted. Interact again to water it."
+        }
+      },
+      {
+        "id": "showcase-81",
+        "fingerprint": "{\"type\":\"crop\",\"node\":null,\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":28}",
+        "result": {
+          "ok": true,
+          "text": "Watered. Sunberries ripen after 90 seconds of active world time."
+        }
+      },
+      {
+        "id": "showcase-82",
+        "fingerprint": "{\"type\":\"place\",\"node\":null,\"recipe\":null,\"kind\":\"bed\",\"gx\":-2,\"gz\":0,\"rotation\":0,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Growing bed placed. Reclaim returns the crafted item."
+        }
+      },
+      {
+        "id": "showcase-83",
+        "fingerprint": "{\"type\":\"crop\",\"node\":null,\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":29}",
+        "result": {
+          "ok": true,
+          "text": "Seed planted. Interact again to water it."
+        }
+      },
+      {
+        "id": "showcase-84",
+        "fingerprint": "{\"type\":\"crop\",\"node\":null,\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":29}",
+        "result": {
+          "ok": true,
+          "text": "Watered. Sunberries ripen after 90 seconds of active world time."
+        }
+      },
+      {
+        "id": "showcase-85",
+        "fingerprint": "{\"type\":\"place\",\"node\":null,\"recipe\":null,\"kind\":\"bed\",\"gx\":-1,\"gz\":0,\"rotation\":0,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Growing bed placed. Reclaim returns the crafted item."
+        }
+      },
+      {
+        "id": "showcase-86",
+        "fingerprint": "{\"type\":\"crop\",\"node\":null,\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":30}",
+        "result": {
+          "ok": true,
+          "text": "Seed planted. Interact again to water it."
+        }
+      },
+      {
+        "id": "showcase-87",
+        "fingerprint": "{\"type\":\"crop\",\"node\":null,\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":30}",
+        "result": {
+          "ok": true,
+          "text": "Watered. Sunberries ripen after 90 seconds of active world time."
+        }
+      }
+    ],
+    "cooldownUntil": 1892.549999998827
+  },
+  "score": {
+    "format": "eternities.score.v1",
+    "title": "A Window Left Open",
+    "bpm": 88,
+    "voice": "felt",
+    "melody": [
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0
+      ]
+    ],
+    "bass": [
+      1,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0
+    ],
+    "drums": [
+      [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0
+      ]
+    ]
+  },
+  "scoreRevision": 0,
+  "retreat": {
+    "version": 1,
+    "revision": 0,
+    "wall": "moss",
+    "floor": "oak",
+    "items": [
+      {
+        "slot": "nw",
+        "kind": "shelf",
+        "rotation": 0
+      },
+      {
+        "slot": "ne",
+        "kind": "piano",
+        "rotation": 0
+      },
+      {
+        "slot": "w",
+        "kind": "sofa",
+        "rotation": 1
+      },
+      {
+        "slot": "e",
+        "kind": "plant",
+        "rotation": 0
+      },
+      {
+        "slot": "c",
+        "kind": "rug",
+        "rotation": 0
+      }
+    ]
+  },
+  "visitor": {
+    "name": "Visitor",
+    "skin": 0,
+    "cloak": 0,
+    "hair": 0
+  },
+  "version": 4,
+  "seed": 2317,
+  "day": 2,
+  "hour": 17.3,
+  "weather": "clear",
+  "player": {
+    "x": 0,
+    "z": -35.6,
+    "yaw": 3.141592653589793
+  },
+  "visited": [
+    "market",
+    "observatory",
+    "stage"
+  ],
+  "flowers": [],
+  "notes": [],
+  "journal": [
+    {
+      "seq": 1,
+      "day": 1,
+      "hour": 17.200225,
+      "kind": "routine",
+      "text": "Ilan is heading to amphitheatre."
+    },
+    {
+      "seq": 2,
+      "day": 1,
+      "hour": 17.200225,
+      "kind": "routine",
+      "text": "Mara is heading to observatory."
+    },
+    {
+      "seq": 3,
+      "day": 1,
+      "hour": 17.200225,
+      "kind": "routine",
+      "text": "Oren is heading to workshop."
+    },
+    {
+      "seq": 4,
+      "day": 1,
+      "hour": 17.209900000000015,
+      "kind": "discovery",
+      "text": "You found The makers’ exchange."
+    },
+    {
+      "seq": 5,
+      "day": 1,
+      "hour": 17.605225000000654,
+      "kind": "sandbox",
+      "text": "Chop · 3 strength remaining"
+    },
+    {
+      "seq": 6,
+      "day": 1,
+      "hour": 17.60770000000066,
+      "kind": "sandbox",
+      "text": "Chop · 2 strength remaining"
+    },
+    {
+      "seq": 7,
+      "day": 1,
+      "hour": 17.610175000000662,
+      "kind": "sandbox",
+      "text": "Chop · 1 strength remaining"
+    },
+    {
+      "seq": 8,
+      "day": 1,
+      "hour": 17.612650000000666,
+      "kind": "sandbox",
+      "text": "+5 Timber"
+    },
+    {
+      "seq": 9,
+      "day": 1,
+      "hour": 18.025300000001334,
+      "kind": "sandbox",
+      "text": "Chop · 3 strength remaining"
+    },
+    {
+      "seq": 10,
+      "day": 1,
+      "hour": 18.027775000001338,
+      "kind": "sandbox",
+      "text": "Chop · 2 strength remaining"
+    },
+    {
+      "seq": 11,
+      "day": 1,
+      "hour": 18.03025000000134,
+      "kind": "sandbox",
+      "text": "Chop · 1 strength remaining"
+    },
+    {
+      "seq": 12,
+      "day": 1,
+      "hour": 18.032725000001346,
+      "kind": "sandbox",
+      "text": "+5 Timber"
+    },
+    {
+      "seq": 13,
+      "day": 1,
+      "hour": 18.04825000000137,
+      "kind": "discovery",
+      "text": "You found The little observatory."
+    },
+    {
+      "seq": 14,
+      "day": 1,
+      "hour": 18.0655750000014,
+      "kind": "discovery",
+      "text": "You found The little amphitheatre."
+    },
+    {
+      "seq": 15,
+      "day": 1,
+      "hour": 18.40015000000194,
+      "kind": "routine",
+      "text": "Ilan is heading to family house."
+    },
+    {
+      "seq": 16,
+      "day": 1,
+      "hour": 18.40015000000194,
+      "kind": "routine",
+      "text": "Mara is heading to family house."
+    },
+    {
+      "seq": 17,
+      "day": 1,
+      "hour": 18.40015000000194,
+      "kind": "routine",
+      "text": "Oren is heading to family house."
+    },
+    {
+      "seq": 18,
+      "day": 1,
+      "hour": 18.445375000002013,
+      "kind": "sandbox",
+      "text": "Chop · 3 strength remaining"
+    },
+    {
+      "seq": 19,
+      "day": 1,
+      "hour": 18.447850000002017,
+      "kind": "sandbox",
+      "text": "Chop · 2 strength remaining"
+    },
+    {
+      "seq": 20,
+      "day": 1,
+      "hour": 18.45032500000202,
+      "kind": "sandbox",
+      "text": "Chop · 1 strength remaining"
+    },
+    {
+      "seq": 21,
+      "day": 1,
+      "hour": 18.452800000002025,
+      "kind": "sandbox",
+      "text": "+5 Timber"
+    },
+    {
+      "seq": 22,
+      "day": 1,
+      "hour": 18.865450000002692,
+      "kind": "sandbox",
+      "text": "Chop · 3 strength remaining"
+    },
+    {
+      "seq": 23,
+      "day": 1,
+      "hour": 18.867925000002696,
+      "kind": "sandbox",
+      "text": "Chop · 2 strength remaining"
+    },
+    {
+      "seq": 24,
+      "day": 1,
+      "hour": 18.8704000000027,
+      "kind": "sandbox",
+      "text": "Chop · 1 strength remaining"
+    },
+    {
+      "seq": 25,
+      "day": 1,
+      "hour": 18.872875000002704,
+      "kind": "sandbox",
+      "text": "+5 Timber"
+    },
+    {
+      "seq": 26,
+      "day": 1,
+      "hour": 19.28552500000337,
+      "kind": "sandbox",
+      "text": "Chop · 3 strength remaining"
+    },
+    {
+      "seq": 27,
+      "day": 1,
+      "hour": 19.288000000003375,
+      "kind": "sandbox",
+      "text": "Chop · 2 strength remaining"
+    },
+    {
+      "seq": 28,
+      "day": 1,
+      "hour": 19.29047500000338,
+      "kind": "sandbox",
+      "text": "Chop · 1 strength remaining"
+    },
+    {
+      "seq": 29,
+      "day": 1,
+      "hour": 19.292950000003383,
+      "kind": "sandbox",
+      "text": "+5 Timber"
+    },
+    {
+      "seq": 30,
+      "day": 1,
+      "hour": 19.70560000000405,
+      "kind": "sandbox",
+      "text": "Mine · 3 strength remaining"
+    },
+    {
+      "seq": 31,
+      "day": 1,
+      "hour": 19.708075000004055,
+      "kind": "sandbox",
+      "text": "Mine · 2 strength remaining"
+    },
+    {
+      "seq": 32,
+      "day": 1,
+      "hour": 19.71055000000406,
+      "kind": "sandbox",
+      "text": "Mine · 1 strength remaining"
+    },
+    {
+      "seq": 33,
+      "day": 1,
+      "hour": 19.713025000004063,
+      "kind": "sandbox",
+      "text": "+5 Stone"
+    },
+    {
+      "seq": 34,
+      "day": 1,
+      "hour": 20.000125000004527,
+      "kind": "routine",
+      "text": "Ilan is heading to commons."
+    },
+    {
+      "seq": 35,
+      "day": 1,
+      "hour": 20.000125000004527,
+      "kind": "routine",
+      "text": "Mara is heading to observatory."
+    },
+    {
+      "seq": 36,
+      "day": 1,
+      "hour": 20.000125000004527,
+      "kind": "routine",
+      "text": "Oren is heading to garden."
+    },
+    {
+      "seq": 37,
+      "day": 1,
+      "hour": 20.12567500000473,
+      "kind": "sandbox",
+      "text": "Mine · 3 strength remaining"
+    },
+    {
+      "seq": 38,
+      "day": 1,
+      "hour": 20.128150000004734,
+      "kind": "sandbox",
+      "text": "Mine · 2 strength remaining"
+    },
+    {
+      "seq": 39,
+      "day": 1,
+      "hour": 20.130625000004738,
+      "kind": "sandbox",
+      "text": "Mine · 1 strength remaining"
+    },
+    {
+      "seq": 40,
+      "day": 1,
+      "hour": 20.13310000000474,
+      "kind": "sandbox",
+      "text": "+5 Stone"
+    },
+    {
+      "seq": 41,
+      "day": 1,
+      "hour": 20.54575000000541,
+      "kind": "sandbox",
+      "text": "Mine · 3 strength remaining"
+    },
+    {
+      "seq": 42,
+      "day": 1,
+      "hour": 20.548225000005413,
+      "kind": "sandbox",
+      "text": "Mine · 2 strength remaining"
+    },
+    {
+      "seq": 43,
+      "day": 1,
+      "hour": 20.550700000005417,
+      "kind": "sandbox",
+      "text": "Mine · 1 strength remaining"
+    },
+    {
+      "seq": 44,
+      "day": 1,
+      "hour": 20.55317500000542,
+      "kind": "sandbox",
+      "text": "+5 Stone"
+    },
+    {
+      "seq": 45,
+      "day": 1,
+      "hour": 20.965825000006088,
+      "kind": "sandbox",
+      "text": "Mine · 3 strength remaining"
+    },
+    {
+      "seq": 46,
+      "day": 1,
+      "hour": 20.968300000006092,
+      "kind": "sandbox",
+      "text": "Mine · 2 strength remaining"
+    },
+    {
+      "seq": 47,
+      "day": 1,
+      "hour": 20.970775000006096,
+      "kind": "sandbox",
+      "text": "Mine · 1 strength remaining"
+    },
+    {
+      "seq": 48,
+      "day": 1,
+      "hour": 20.9732500000061,
+      "kind": "sandbox",
+      "text": "+5 Stone"
+    },
+    {
+      "seq": 49,
+      "day": 1,
+      "hour": 21.385900000006767,
+      "kind": "sandbox",
+      "text": "+3 Meadow fibre · +1 seed"
+    },
+    {
+      "seq": 50,
+      "day": 1,
+      "hour": 21.760975000007374,
+      "kind": "sandbox",
+      "text": "Crafted 1 × Stone pickaxe"
+    },
+    {
+      "seq": 51,
+      "day": 1,
+      "hour": 21.760975000007374,
+      "kind": "sandbox",
+      "text": "Crafted 1 × Woodcutter’s axe"
+    },
+    {
+      "seq": 52,
+      "day": 1,
+      "hour": 21.760975000007374,
+      "kind": "sandbox",
+      "text": "Crafted 4 × Planks"
+    },
+    {
+      "seq": 53,
+      "day": 1,
+      "hour": 21.760975000007374,
+      "kind": "sandbox",
+      "text": "Crafted 4 × Planks"
+    },
+    {
+      "seq": 54,
+      "day": 1,
+      "hour": 21.760975000007374,
+      "kind": "sandbox",
+      "text": "Crafted 4 × Planks"
+    },
+    {
+      "seq": 55,
+      "day": 1,
+      "hour": 21.760975000007374,
+      "kind": "sandbox",
+      "text": "Crafted 4 × Planks"
+    },
+    {
+      "seq": 56,
+      "day": 1,
+      "hour": 21.760975000007374,
+      "kind": "sandbox",
+      "text": "Crafted 4 × Planks"
+    },
+    {
+      "seq": 57,
+      "day": 1,
+      "hour": 21.760975000007374,
+      "kind": "sandbox",
+      "text": "Crafted 4 × Planks"
+    },
+    {
+      "seq": 58,
+      "day": 1,
+      "hour": 21.760975000007374,
+      "kind": "sandbox",
+      "text": "Crafted 2 × Timber deck"
+    },
+    {
+      "seq": 59,
+      "day": 1,
+      "hour": 21.760975000007374,
+      "kind": "sandbox",
+      "text": "Crafted 2 × Timber deck"
+    },
+    {
+      "seq": 60,
+      "day": 1,
+      "hour": 21.760975000007374,
+      "kind": "sandbox",
+      "text": "Crafted 2 × Timber deck"
+    },
+    {
+      "seq": 61,
+      "day": 1,
+      "hour": 21.760975000007374,
+      "kind": "sandbox",
+      "text": "Crafted 1 × Growing bed"
+    },
+    {
+      "seq": 62,
+      "day": 1,
+      "hour": 21.760975000007374,
+      "kind": "sandbox",
+      "text": "Crafted 1 × Field workbench"
+    },
+    {
+      "seq": 63,
+      "day": 1,
+      "hour": 21.760975000007374,
+      "kind": "sandbox",
+      "text": "Crafted 1 × Garden bench"
+    },
+    {
+      "seq": 64,
+      "day": 1,
+      "hour": 21.760975000007374,
+      "kind": "sandbox",
+      "text": "Crafted 4 × Stone blocks"
+    },
+    {
+      "seq": 65,
+      "day": 1,
+      "hour": 21.760975000007374,
+      "kind": "sandbox",
+      "text": "Crafted 4 × Stone blocks"
+    },
+    {
+      "seq": 66,
+      "day": 1,
+      "hour": 21.760975000007374,
+      "kind": "sandbox",
+      "text": "Crafted 2 × Stackable stone"
+    },
+    {
+      "seq": 67,
+      "day": 1,
+      "hour": 21.760975000007374,
+      "kind": "sandbox",
+      "text": "Crafted 2 × Stackable stone"
+    },
+    {
+      "seq": 68,
+      "day": 1,
+      "hour": 22.00015000000776,
+      "kind": "routine",
+      "text": "Ilan is heading to family house."
+    },
+    {
+      "seq": 69,
+      "day": 1,
+      "hour": 22.00015000000776,
+      "kind": "routine",
+      "text": "Mara is heading to family house."
+    },
+    {
+      "seq": 70,
+      "day": 1,
+      "hour": 22.00015000000776,
+      "kind": "routine",
+      "text": "Oren is heading to family house."
+    },
+    {
+      "seq": 71,
+      "day": 1,
+      "hour": 22.121200000007956,
+      "kind": "sandbox",
+      "text": "Wildwood Reach is open. A new shore to make your own."
+    },
+    {
+      "seq": 72,
+      "day": 1,
+      "hour": 22.774150000009012,
+      "kind": "sandbox",
+      "text": "Mine · 2 strength remaining"
+    },
+    {
+      "seq": 73,
+      "day": 1,
+      "hour": 22.776625000009016,
+      "kind": "sandbox",
+      "text": "+3 Moon crystal"
+    },
+    {
+      "seq": 74,
+      "day": 1,
+      "hour": 23.19422500000969,
+      "kind": "sandbox",
+      "text": "Crafted 1 × Garden lantern"
+    },
+    {
+      "seq": 75,
+      "day": 1,
+      "hour": 23.599450000010346,
+      "kind": "sandbox",
+      "text": "Timber deck placed. Reclaim returns the crafted item."
+    },
+    {
+      "seq": 76,
+      "day": 1,
+      "hour": 23.599450000010346,
+      "kind": "sandbox",
+      "text": "Growing bed placed. Reclaim returns the crafted item."
+    },
+    {
+      "seq": 77,
+      "day": 1,
+      "hour": 23.599450000010346,
+      "kind": "sandbox",
+      "text": "Seed planted. Interact again to water it."
+    },
+    {
+      "seq": 78,
+      "day": 1,
+      "hour": 23.599450000010346,
+      "kind": "sandbox",
+      "text": "Watered. Sunberries ripen after 90 seconds of active world time."
+    },
+    {
+      "seq": 79,
+      "day": 2,
+      "hour": 0.0001750000109943528,
+      "kind": "day",
+      "text": "Another day begins in Firstlight Valley."
+    },
+    {
+      "seq": 80,
+      "day": 2,
+      "hour": 0.009175000010994356,
+      "kind": "sandbox",
+      "text": "Harvested 3 sunberries + 2 seeds. The bed is ready again."
+    },
+    {
+      "seq": 81,
+      "day": 2,
+      "hour": 0.009175000010994356,
+      "kind": "sandbox",
+      "text": "Timber deck placed. Reclaim returns the crafted item."
+    },
+    {
+      "seq": 82,
+      "day": 2,
+      "hour": 0.009175000010994356,
+      "kind": "sandbox",
+      "text": "Garden lantern placed. Reclaim returns the crafted item."
+    },
+    {
+      "seq": 83,
+      "day": 2,
+      "hour": 0.009175000010994356,
+      "kind": "sandbox",
+      "text": "Stackable stone placed. Reclaim returns the crafted item."
+    },
+    {
+      "seq": 84,
+      "day": 2,
+      "hour": 0.009175000010994356,
+      "kind": "sandbox",
+      "text": "Stackable stone placed. Reclaim returns the crafted item."
+    },
+    {
+      "seq": 85,
+      "day": 2,
+      "hour": 0.009175000010994356,
+      "kind": "sandbox",
+      "text": "Stackable stone placed. Reclaim returns the crafted item."
+    },
+    {
+      "seq": 86,
+      "day": 2,
+      "hour": 0.009175000010994356,
+      "kind": "sandbox",
+      "text": "Stackable stone returned to your pack."
+    },
+    {
+      "seq": 87,
+      "day": 2,
+      "hour": 0.009400000010994355,
+      "kind": "routine",
+      "text": "Ilan is heading to family house."
+    },
+    {
+      "seq": 88,
+      "day": 2,
+      "hour": 0.009400000010994355,
+      "kind": "routine",
+      "text": "Mara is heading to family house."
+    },
+    {
+      "seq": 89,
+      "day": 2,
+      "hour": 0.009400000010994355,
+      "kind": "routine",
+      "text": "Oren is heading to family house."
+    },
+    {
+      "seq": 90,
+      "day": 2,
+      "hour": 0.01142500001099435,
+      "kind": "sandbox",
+      "text": "Chop · 2 strength remaining"
+    },
+    {
+      "seq": 91,
+      "day": 2,
+      "hour": 0.013675000010994346,
+      "kind": "sandbox",
+      "text": "+5 Timber"
+    },
+    {
+      "seq": 92,
+      "day": 2,
+      "hour": 0.015925000010994343,
+      "kind": "sandbox",
+      "text": "Chop · 2 strength remaining"
+    },
+    {
+      "seq": 93,
+      "day": 2,
+      "hour": 0.018175000010994338,
+      "kind": "sandbox",
+      "text": "+5 Timber"
+    },
+    {
+      "seq": 94,
+      "day": 2,
+      "hour": 0.020425000010994333,
+      "kind": "sandbox",
+      "text": "Chop · 2 strength remaining"
+    },
+    {
+      "seq": 95,
+      "day": 2,
+      "hour": 0.022675000010994328,
+      "kind": "sandbox",
+      "text": "+5 Timber"
+    },
+    {
+      "seq": 96,
+      "day": 2,
+      "hour": 0.024925000010994323,
+      "kind": "sandbox",
+      "text": "Chop · 2 strength remaining"
+    },
+    {
+      "seq": 97,
+      "day": 2,
+      "hour": 0.027175000010994318,
+      "kind": "sandbox",
+      "text": "+5 Timber"
+    },
+    {
+      "seq": 98,
+      "day": 2,
+      "hour": 0.029425000010994313,
+      "kind": "sandbox",
+      "text": "Chop · 2 strength remaining"
+    },
+    {
+      "seq": 99,
+      "day": 2,
+      "hour": 0.03167500001099431,
+      "kind": "sandbox",
+      "text": "+5 Timber"
+    },
+    {
+      "seq": 100,
+      "day": 2,
+      "hour": 0.03392500001099434,
+      "kind": "sandbox",
+      "text": "Chop · 2 strength remaining"
+    },
+    {
+      "seq": 101,
+      "day": 2,
+      "hour": 0.03617500001099437,
+      "kind": "sandbox",
+      "text": "+5 Timber"
+    },
+    {
+      "seq": 102,
+      "day": 2,
+      "hour": 0.0384250000109944,
+      "kind": "sandbox",
+      "text": "Chop · 2 strength remaining"
+    },
+    {
+      "seq": 103,
+      "day": 2,
+      "hour": 0.04067500001099443,
+      "kind": "sandbox",
+      "text": "+5 Timber"
+    },
+    {
+      "seq": 104,
+      "day": 2,
+      "hour": 0.8574250000110185,
+      "kind": "sandbox",
+      "text": "Chop · 2 strength remaining"
+    },
+    {
+      "seq": 105,
+      "day": 2,
+      "hour": 0.8596750000110188,
+      "kind": "sandbox",
+      "text": "+5 Timber"
+    },
+    {
+      "seq": 106,
+      "day": 2,
+      "hour": 0.8619250000110191,
+      "kind": "sandbox",
+      "text": "Mine · 2 strength remaining"
+    },
+    {
+      "seq": 107,
+      "day": 2,
+      "hour": 0.8641750000110194,
+      "kind": "sandbox",
+      "text": "+5 Stone"
+    },
+    {
+      "seq": 108,
+      "day": 2,
+      "hour": 0.8664250000110197,
+      "kind": "sandbox",
+      "text": "Mine · 2 strength remaining"
+    },
+    {
+      "seq": 109,
+      "day": 2,
+      "hour": 0.86867500001102,
+      "kind": "sandbox",
+      "text": "+5 Stone"
+    },
+    {
+      "seq": 110,
+      "day": 2,
+      "hour": 0.8709250000110204,
+      "kind": "sandbox",
+      "text": "Mine · 2 strength remaining"
+    },
+    {
+      "seq": 111,
+      "day": 2,
+      "hour": 0.8731750000110207,
+      "kind": "sandbox",
+      "text": "+5 Stone"
+    },
+    {
+      "seq": 112,
+      "day": 2,
+      "hour": 0.875425000011021,
+      "kind": "sandbox",
+      "text": "Mine · 2 strength remaining"
+    },
+    {
+      "seq": 113,
+      "day": 2,
+      "hour": 0.8776750000110213,
+      "kind": "sandbox",
+      "text": "+5 Stone"
+    },
+    {
+      "seq": 114,
+      "day": 2,
+      "hour": 0.8799250000110216,
+      "kind": "sandbox",
+      "text": "+3 Meadow fibre · +1 seed"
+    },
+    {
+      "seq": 115,
+      "day": 2,
+      "hour": 0.8821750000110219,
+      "kind": "sandbox",
+      "text": "+3 Meadow fibre · +1 seed"
+    },
+    {
+      "seq": 116,
+      "day": 2,
+      "hour": 0.8844250000110222,
+      "kind": "sandbox",
+      "text": "+3 Meadow fibre · +1 seed"
+    },
+    {
+      "seq": 117,
+      "day": 2,
+      "hour": 0.8866750000110225,
+      "kind": "sandbox",
+      "text": "+3 Meadow fibre · +1 seed"
+    },
+    {
+      "seq": 118,
+      "day": 2,
+      "hour": 0.8889250000110228,
+      "kind": "sandbox",
+      "text": "Mine · 2 strength remaining"
+    },
+    {
+      "seq": 119,
+      "day": 2,
+      "hour": 0.8911750000110231,
+      "kind": "sandbox",
+      "text": "+3 Moon crystal"
+    },
+    {
+      "seq": 120,
+      "day": 2,
+      "hour": 0.8934250000110234,
+      "kind": "sandbox",
+      "text": "Mine · 2 strength remaining"
+    },
+    {
+      "seq": 121,
+      "day": 2,
+      "hour": 0.8956750000110237,
+      "kind": "sandbox",
+      "text": "+3 Moon crystal"
+    },
+    {
+      "seq": 122,
+      "day": 2,
+      "hour": 1.7124250000107837,
+      "kind": "sandbox",
+      "text": "Mine · 2 strength remaining"
+    },
+    {
+      "seq": 123,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "+3 Moon crystal"
+    },
+    {
+      "seq": 124,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "Crafted 4 × Planks"
+    },
+    {
+      "seq": 125,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "Crafted 4 × Planks"
+    },
+    {
+      "seq": 126,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "Crafted 4 × Planks"
+    },
+    {
+      "seq": 127,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "Crafted 4 × Planks"
+    },
+    {
+      "seq": 128,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "Crafted 4 × Planks"
+    },
+    {
+      "seq": 129,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "Crafted 4 × Planks"
+    },
+    {
+      "seq": 130,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "Crafted 4 × Planks"
+    },
+    {
+      "seq": 131,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "Crafted 4 × Planks"
+    },
+    {
+      "seq": 132,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "Crafted 2 × Timber deck"
+    },
+    {
+      "seq": 133,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "Crafted 2 × Timber deck"
+    },
+    {
+      "seq": 134,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "Crafted 2 × Timber deck"
+    },
+    {
+      "seq": 135,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "Crafted 2 × Timber deck"
+    },
+    {
+      "seq": 136,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "Crafted 2 × Timber deck"
+    },
+    {
+      "seq": 137,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "Crafted 2 × Timber deck"
+    },
+    {
+      "seq": 138,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "Crafted 2 × Timber deck"
+    },
+    {
+      "seq": 139,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "Crafted 1 × Timber wall"
+    },
+    {
+      "seq": 140,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "Crafted 1 × Timber wall"
+    },
+    {
+      "seq": 141,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "Crafted 1 × Timber wall"
+    },
+    {
+      "seq": 142,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "Crafted 1 × Growing bed"
+    },
+    {
+      "seq": 143,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "Crafted 1 × Growing bed"
+    },
+    {
+      "seq": 144,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "Crafted 1 × Growing bed"
+    },
+    {
+      "seq": 145,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "Crafted 1 × Garden lantern"
+    },
+    {
+      "seq": 146,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "Crafted 1 × Garden lantern"
+    },
+    {
+      "seq": 147,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "Crafted 1 × Hearth"
+    },
+    {
+      "seq": 148,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "Timber deck placed. Reclaim returns the crafted item."
+    },
+    {
+      "seq": 149,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "Timber deck placed. Reclaim returns the crafted item."
+    },
+    {
+      "seq": 150,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "Timber deck placed. Reclaim returns the crafted item."
+    },
+    {
+      "seq": 151,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "Timber deck placed. Reclaim returns the crafted item."
+    },
+    {
+      "seq": 152,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "Timber deck placed. Reclaim returns the crafted item."
+    },
+    {
+      "seq": 153,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "Timber deck placed. Reclaim returns the crafted item."
+    },
+    {
+      "seq": 154,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "Timber deck placed. Reclaim returns the crafted item."
+    },
+    {
+      "seq": 155,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "Timber deck placed. Reclaim returns the crafted item."
+    },
+    {
+      "seq": 156,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "Timber deck placed. Reclaim returns the crafted item."
+    },
+    {
+      "seq": 157,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "Timber deck placed. Reclaim returns the crafted item."
+    },
+    {
+      "seq": 158,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "Timber deck placed. Reclaim returns the crafted item."
+    },
+    {
+      "seq": 159,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "Timber deck placed. Reclaim returns the crafted item."
+    },
+    {
+      "seq": 160,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "Field workbench placed. Reclaim returns the crafted item."
+    },
+    {
+      "seq": 161,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "Garden bench placed. Reclaim returns the crafted item."
+    },
+    {
+      "seq": 162,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "Hearth placed. Reclaim returns the crafted item."
+    },
+    {
+      "seq": 163,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "Timber wall placed. Reclaim returns the crafted item."
+    },
+    {
+      "seq": 164,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "Timber wall placed. Reclaim returns the crafted item."
+    },
+    {
+      "seq": 165,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "Timber wall placed. Reclaim returns the crafted item."
+    },
+    {
+      "seq": 166,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "Garden lantern placed. Reclaim returns the crafted item."
+    },
+    {
+      "seq": 167,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "Garden lantern placed. Reclaim returns the crafted item."
+    },
+    {
+      "seq": 168,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "Growing bed placed. Reclaim returns the crafted item."
+    },
+    {
+      "seq": 169,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "Seed planted. Interact again to water it."
+    },
+    {
+      "seq": 170,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "Watered. Sunberries ripen after 90 seconds of active world time."
+    },
+    {
+      "seq": 171,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "Growing bed placed. Reclaim returns the crafted item."
+    },
+    {
+      "seq": 172,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "Seed planted. Interact again to water it."
+    },
+    {
+      "seq": 173,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "Watered. Sunberries ripen after 90 seconds of active world time."
+    },
+    {
+      "seq": 174,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "Growing bed placed. Reclaim returns the crafted item."
+    },
+    {
+      "seq": 175,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "Seed planted. Interact again to water it."
+    },
+    {
+      "seq": 176,
+      "day": 2,
+      "hour": 1.7146750000107829,
+      "kind": "sandbox",
+      "text": "Watered. Sunberries ripen after 90 seconds of active world time."
+    }
+  ],
+  "nextEvent": 177,
+  "residents": [
+    {
+      "id": "ilan",
+      "x": -11,
+      "z": -1.6,
+      "yaw": -1.9668777683592122,
+      "progress": 0.40004599999978135,
+      "conversations": 0
+    },
+    {
+      "id": "mara",
+      "x": -11,
+      "z": -1.6,
+      "yaw": -1.9693187724613137,
+      "progress": 0.3960049999997898,
+      "conversations": 0
+    },
+    {
+      "id": "oren",
+      "x": -11,
+      "z": -1.6,
+      "yaw": -2.811645561443235,
+      "progress": 0.397822999999786,
+      "conversations": 0
+    }
+  ],
+  "settings": {
+    "quality": "low",
+    "reducedMotion": false,
+    "labels": true,
+    "timeFlow": false,
+    "sound": false
+  }
+}

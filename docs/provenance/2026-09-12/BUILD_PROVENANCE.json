@@ -1,0 +1,22 @@
+{
+  "edition": "10.0.0",
+  "title": "Firstlight \u2014 Bellweather Crossing",
+  "prepared": "2026-09-12",
+  "source_zip": {
+    "name": "ETERNITIES_FIRSTLIGHT_09_REPOSITORY.zip",
+    "bytes": 8689202,
+    "sha256": "e52b8833a177e6c6216a4ebc0a41e3c99f9c276f4d8350371c7c0b4e4992d660",
+    "modified": false
+  },
+  "local_parent_commit": "8b7db2d406d68049e8bc7f02d936a9323c5f84ca",
+  "local_source_commit": "54070083b7d4654d1113514e6d7bd1b3a48eb860",
+  "source_files": 133,
+  "source_manifest_sha256": "06928a69ccb098a0e74986e180374dc1939db0eed977fc2750f07cd2dbb2a165",
+  "source_bundle_sha256": "1ceaf5ff62cf33ac63d8d40d4963d5b156fe96561e21b662faba1ab849ecd110",
+  "html_sha256": "6b1905b62b321c6335a641257bacedc997e1272fa35671852a35d076300c921a",
+  "html_bytes": 489117,
+  "validation_summary_sha256": "f0958f77a7d652e556ea2431361bd60804ddcac812dacd411814ec0a2b6b23af",
+  "pushed": false,
+  "deployed": false,
+  "restoration_receipt": "External FIRSTLIGHT_10_DELIVERY.json binds completed fresh ZIP/bundle restoration results."
+}

@@ -1,0 +1,39 @@
+__pycache__/
+*.pyc
+.venv/
+node_modules/
+artifacts/_preview_frames/
+*.bundle
+MANIFEST.json
+PUBLICATION_RECEIPT.local.json
+dist/
+
+# Evidence media are supplied in the delivery ZIP, not this source snapshot.
+artifacts/*.png
+artifacts/*.mp4
+artifacts/*.wav
+artifacts/*.mid
+artifacts/*.log
+artifacts/_preview05/
+
+# Current evidence is retained in the delivery ZIP, not source Git history.
+artifacts06/
+.source/
+
+# Realm07 current media/test artifacts are delivered separately from source history.
+evidence07/
+__pycache__/
+
+# Realm08 verification media live in the delivery ZIP, not source history.
+evidence08/
+
+# Realm09 generated evidence is delivered in ZIP separately.
+evidence09/
+
+# Realm10 generated verification, delivered separately in ZIP.
+evidence10/
+
+# Local development logs, environments and personal backup folders.
+/verification/
+/personal-saves/
+/save-backups/
