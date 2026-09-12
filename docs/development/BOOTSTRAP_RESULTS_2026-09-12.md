@@ -42,4 +42,12 @@ Initial Python baseline result was 19 successful cases plus one error while tryi
 
 The new `verify.yml` workflow has read-only repository permission, pinned action revisions, Windows/Linux source jobs and a Linux Chromium job. It does not deploy or write commits. The old `import-source.yml` and `.import/READY.json` path are not activated. Hosted CI results and the exact pushed head are available on the source-import PR; a workflow file is not itself a claim that hosted checks ran.
 
-Main merge, public hosting, tags/releases, visibility/license changes and gameplay progression changes are outside this bootstrap. Remaining product work is the bounded starter quest/equipment/combat loop in `docs/NEXT_TASK.md`, followed by a real human playtest. Remote fresh-clone results are recorded once that check completes; historical browser evidence is not counted again.
+## Remote restoration checkpoint
+
+Pushed code/tooling commit `ff4af83983dd73ec7ae43a6182d76fbd6ca787ea` to `import/firstlight10-bootstrap-20260912` and read back the identical remote head. Remote main remained `1aae2f14f2b2ab0ba54a5bf8571bd45bbf32ab46`.
+
+A fresh HTTPS clone from GitHub at that code commit, under `C:\dev\firstlight-artifacts\bootstrap-2026-09-12\fresh-clone-code`, ran `python tools/verify.py` successfully: exact HTML hash, 24 syntax checks, 399 rule passes, 19 helper passes with one Windows capability skip, and both weapon journeys. Its tracked working tree stayed clean. This records the code revision explicitly; a later documentation-only commit records this result. The source-import PR reports the final pushed head and its final fresh-clone/hosted-CI results.
+
+Independent review checked all 133 baseline blobs, unchanged runtime/HTML/charter, portability/CI and the native save test; no actionable defects remained. Original remote branches and PRs #1–3 are preserved, including the PR #3 handoff incorporated here.
+
+Main merge, public hosting, tags/releases, visibility/license changes and gameplay progression changes are outside this bootstrap. Remaining product work is the bounded starter quest/equipment/combat loop in `docs/NEXT_TASK.md`, followed by a real human playtest. Historical browser evidence is not counted again.

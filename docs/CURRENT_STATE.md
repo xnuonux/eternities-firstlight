@@ -10,6 +10,8 @@ Verified import-only commit: `d7c57ee47833dad4fb9ec3332d352468abf32109`. All 133
 
 Review branch: `import/firstlight10-bootstrap-20260912`, based on observed `main` at `1aae2f14f2b2ab0ba54a5bf8571bd45bbf32ab46`, with PR #3's handoff preserved. Main is not merged by this bootstrap. Use `git log -1 --format=%H` and `git status --short` for the current checkout; fetch before deciding what is current remotely. See [bootstrap results](development/BOOTSTRAP_RESULTS_2026-09-12.md) for fresh evidence and limits.
 
+Verified remote code/tooling checkpoint: `ff4af83983dd73ec7ae43a6182d76fbd6ca787ea`, successfully rebuilt/tested from a fresh GitHub clone. Later documentation records that result; the source-import PR carries final-head and CI readback. Controlled native loopback-origin persistence also passes with an isolated test profile and accepted synthetic notebook entry. Personal saves and file-origin storage were not tested.
+
 ## Launch and verify
 
 Open `FIRSTLIGHT_VALLEY.html` in a browser, or run `OPEN_REALM_WINDOWS.cmd` on Windows. No runtime package install, account or CDN is required. An optional stable local origin is `python -m http.server 8000 --bind 127.0.0.1`; visit `http://127.0.0.1:8000/`. File origins and different HTTP ports have separate browser storage.
