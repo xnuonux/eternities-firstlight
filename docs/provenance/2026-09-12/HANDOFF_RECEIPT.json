@@ -1,0 +1,26 @@
+{
+  "prepared": "2026-09-12",
+  "task": "Firstlight Codex bootstrap, not a gameplay release",
+  "original_archive_sha256": "bd8fe0345b871707114188933a91865eaf0d09c203f042a4b1994866b30af973",
+  "source_manifest_entries_verified": 133,
+  "rebuilt_html_sha256": "6b1905b62b321c6335a641257bacedc997e1272fa35671852a35d076300c921a",
+  "rule_tests": {
+    "passed": 399,
+    "failed": 0,
+    "node": "v22.16.0",
+    "log": "BASELINE_RULES.tap"
+  },
+  "browser_tests_run_this_turn": false,
+  "github": {
+    "branch": "handoff/codex-firstlight10-20260912",
+    "commit": "53572a25049362c5f02cb1d29ef54f2c9a177714",
+    "pr": 3,
+    "scope": "one new handoff document",
+    "full_source_imported": false,
+    "main_changed": false
+  },
+  "personal_saves_accessed": false,
+  "gameplay_changed": false,
+  "codex_session_dispatched": false,
+  "deployed": false
+}

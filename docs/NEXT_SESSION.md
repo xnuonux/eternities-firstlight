@@ -1,5 +1,7 @@
 # Firstlight10 — next development handoff
 
+Historical edition handoff. For the current assignment read [NEXT_TASK.md](NEXT_TASK.md) and [CURRENT_STATE.md](CURRENT_STATE.md). Dom's subsequent starter-region quest/loot/progression priority supersedes the task ordering below; the original text remains preserved as context.
+
 Begin from this complete source package. Read README.md, VALIDATION.md, and docs/BELLWEATHER_CROSSING.md. Build and test; do not substitute Firstlight06 or Shared Commons07. Preserve the founder's save exports and original09 ZIP. Keep the sanctuary/Heaven repository boundaries intact.
 
 ## Ask the next real playthrough, then tune

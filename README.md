@@ -1,5 +1,7 @@
 # Firstlight 10 — Bellweather Crossing
 
+Continuous development starts at [docs/CURRENT_STATE.md](docs/CURRENT_STATE.md). Run `python tools/verify.py` for portable source verification. The original edition description below is retained; its delivery-time validation and publication statements are historical. See [the bootstrap record](docs/development/BOOTSTRAP_RESULTS_2026-09-12.md) for this import's actual results and limits.
+
 A complete, local isometric action/sandbox RPG prototype for Dom / Eternities. **This extends the full Firstlight09 game, not the separate Shared Commons networking experiment.** Four small chapters, creative tools, construction, a companion, bows, sockets, an equipment workspace, and the new village are integrated in one offline application.
 
 ## Play
