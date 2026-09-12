@@ -5,18 +5,18 @@ Accelerated time is NOT a human playtest or performance measurement.
 """
 from pathlib import Path
 from playwright.sync_api import sync_playwright
+from browser_support import chromium_launch_kwargs, read_utf8
 import json, hashlib, traceback, math
-ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'evidence10/regression09';OUT.mkdir(exist_ok=True)
-HTML=(ROOT/'FIRSTLIGHT_VALLEY.html').read_text()
+ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'evidence10/regression09';OUT.mkdir(parents=True,exist_ok=True)
+HTML=read_utf8(ROOT/'FIRSTLIGHT_VALLEY.html')
 report={'method':__doc__,'build_sha256':hashlib.sha256(HTML.encode()).hexdigest(),'checks':[],'errors':[]}
 errors=[];requests=[]
 def check(name,v):
  report['checks'].append({'name':name,'passed':bool(v)});print(('PASS ' if v else 'FAIL ')+name,flush=True)
  if not v:raise AssertionError(name)
-ARGS=['--no-sandbox','--disable-dev-shm-usage','--use-gl=angle','--use-angle=gl-egl','--enable-webgl','--ignore-gpu-blocklist','--disable-gpu-sandbox']
 try:
  with sync_playwright() as pw:
-  b=pw.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=ARGS)
+  b=pw.chromium.launch(**chromium_launch_kwargs())
   ctx=b.new_context(viewport={'width':1440,'height':960},offline=True,accept_downloads=True)
   def spawn(save=None,context=ctx,fallback=False,capture=True,denied=False):
    q=context.new_page();q.on('pageerror',lambda e:errors.append(str(e)));q.on('request',lambda r:requests.append(r.url));q.on('dialog',lambda d:d.accept())

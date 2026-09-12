@@ -5,22 +5,22 @@ separate and labelled. Map-backed localStorage is not native persistence proof.
 """
 from pathlib import Path
 from playwright.sync_api import sync_playwright
+from browser_support import chromium_launch_kwargs, read_utf8
 import json,hashlib,math,traceback
 R=Path(__file__).resolve().parents[1];O=R/'evidence10/browser';O.mkdir(parents=True,exist_ok=True)
-HTML=(R/'FIRSTLIGHT_VALLEY.html').read_text();report={'method':__doc__,'build_sha256':hashlib.sha256(HTML.encode()).hexdigest(),'checks':[],'errors':[]};errors=[];requests=[]
+HTML=read_utf8(R/'FIRSTLIGHT_VALLEY.html');report={'method':__doc__,'build_sha256':hashlib.sha256(HTML.encode()).hexdigest(),'checks':[],'errors':[]};errors=[];requests=[]
 def ck(name,v):
  report['checks'].append({'name':name,'passed':bool(v)});print(('PASS ' if v else 'FAIL ')+name,flush=True)
  if not v:raise AssertionError(name)
-ARGS=['--no-sandbox','--disable-dev-shm-usage','--use-gl=angle','--use-angle=gl-egl','--enable-webgl','--ignore-gpu-blocklist','--disable-gpu-sandbox']
 try:
  with sync_playwright() as pw:
-  b=pw.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=ARGS)
+  b=pw.chromium.launch(**chromium_launch_kwargs())
   ctx=b.new_context(viewport={'width':1440,'height':960},offline=True,accept_downloads=True)
   def spawn(save,context=ctx,capture=True,fallback=False):
    q=context.new_page();q.on('pageerror',lambda e:errors.append(str(e)));q.on('request',lambda r:requests.append(r.url));q.on('dialog',lambda d:d.accept())
    q.evaluate('''({save,capture,fallback})=>{window.__ETERNITIES_TEST_MODE=true;window.__ETERNITIES_CAPTURE_MODE=capture;window.ST=new Map([['eternities.realm10.save.v9',JSON.stringify(save)]]);Object.defineProperty(window,'localStorage',{value:{getItem:k=>ST.get(k)||null,setItem:(k,v)=>ST.set(k,String(v)),removeItem:k=>ST.delete(k)}});if(fallback){let old=HTMLCanvasElement.prototype.getContext;HTMLCanvasElement.prototype.getContext=function(t,...a){return t==='webgl2'?null:old.call(this,t,...a)}}}''',{'save':save,'capture':capture,'fallback':fallback})
    q.set_content(HTML,wait_until='load');q.wait_for_function('window.Realm');q.evaluate('Realm.test.quality("low");Realm.test.render()');return q
-  initial=json.loads((R/'evidence10/journey/CROSSING_READY_EARNED.json').read_text());p=spawn(initial)
+  initial=json.loads(read_utf8(R/'examples/REALM10_CROSSING_READY_EARNED.json'));p=spawn(initial)
   ev=lambda js,arg=None:p.evaluate(js,arg)
   state=lambda:ev('Realm.state');dg=lambda:ev('Realm.diagnostics')
   def render():ev('Realm.test.render()')

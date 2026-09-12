@@ -4,14 +4,14 @@ No external requests, no game performance claim.
 """
 from pathlib import Path
 from playwright.sync_api import sync_playwright
+from browser_support import chromium_launch_kwargs, read_utf8
 import json,hashlib
 root=Path(__file__).resolve().parents[1];report={'checks':[],'mode':'Offline Chromium/WebGL2 reflection framebuffer readback'}
 (root/'evidence07/regression').mkdir(parents=True,exist_ok=True)
-args=['--no-sandbox','--disable-dev-shm-usage','--use-gl=angle','--use-angle=gl-egl','--enable-webgl','--ignore-gpu-blocklist','--disable-gpu-sandbox']
 with sync_playwright() as p:
- b=p.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=args)
+ b=p.chromium.launch(**chromium_launch_kwargs())
  c=b.new_context(viewport={'width':1000,'height':700},offline=True);page=c.new_page();errs=[];page.on('pageerror',lambda e:errs.append(str(e)))
- page.set_content('<canvas id="canvas"></canvas><script>'+ (root/'src/engine.js').read_text()+'</script>')
+ page.set_content('<canvas id="canvas"></canvas><script>'+ read_utf8(root/'src/engine.js')+'</script>')
  page.evaluate('''()=>{const e=window.e=new RealmEngine.Engine(document.querySelector('canvas'));e.quality='high';e.resize(1000,700,1);e.waterStill=true;e.reflectionStrength=4; e.clear();
  e.batch('box',[{p:[-5,3,-2],s:[2,6,2],c:[1,.02,.02],em:.3},{p:[5,3,2],s:[2,6,2],c:[.02,1,.02],em:.3}]);}''')
  for angle in [.3,1.4,2.8,4.6]:
