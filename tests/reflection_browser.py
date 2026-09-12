@@ -28,3 +28,4 @@ with sync_playwright() as p:
   if angle==.3:page.screenshot(path=str(root/'evidence07/regression/REFLECTION_ORIENTATION_SPECIMEN.png'))
  report['browser_errors']=errs;report['passed']=not errs and all(s['passed'] for s in report['checks']);report['engine_sha256']=hashlib.sha256((root/'src/engine.js').read_bytes()).hexdigest();b.close()
 (root/'evidence07/regression/REFLECTION_TEST_REPORT.json').write_text(json.dumps(report,indent=2));print(json.dumps(report,indent=2))
+raise SystemExit(0 if report['passed'] else 1)

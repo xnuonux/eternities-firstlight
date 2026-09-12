@@ -30,5 +30,9 @@ class ImportRules(unittest.TestCase):
  def test_case_duplicate_refused(self):
   p=self.src/'SOURCE_MANIFEST.json';d=json.loads(p.read_text());d['files']*=2;p.write_text(json.dumps(d));self.assertRaises(ValueError,imp.plan,self.dst,self.src)
  def test_symlink_refused(self):
-  (self.dst/'hello.txt').symlink_to(self.src/'hello.txt');self.git('add','.');self.git('commit','-m','symlink');self.assertRaises(ValueError,imp.plan,self.dst,self.src)
+  try:(self.dst/'hello.txt').symlink_to(self.src/'hello.txt')
+  except OSError as exc:
+   if getattr(exc,'winerror',None)==1314:self.skipTest('Windows account lacks symlink privilege; real symlink refusal is exercised on Linux CI')
+   raise
+  self.git('add','.');self.git('commit','-m','symlink');self.assertRaises(ValueError,imp.plan,self.dst,self.src)
 if __name__=='__main__':unittest.main(verbosity=2)

@@ -1,0 +1,71 @@
+#!/usr/bin/env python3
+"""Rebuild and test Firstlight without shell-specific globs or runtime packages."""
+from pathlib import Path
+import argparse
+import hashlib
+import os
+import shutil
+import subprocess
+import sys
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--browser', action='store_true', help='Also run the current four browser suites (requires requirements-dev.txt and Chromium).')
+    parser.add_argument('--output', type=Path, default=ROOT / 'verification', help='Directory for fresh command logs.')
+    args = parser.parse_args()
+    if not shutil.which('node'):
+        parser.error('Node.js is required for development checks. Install Node 22 or 24.')
+    output = args.output.resolve()
+    output.mkdir(parents=True, exist_ok=True)
+    env = {**os.environ, 'PYTHONUTF8': '1'}
+    print(f'Python: {sys.version.split()[0]}; Node: {subprocess.check_output(["node", "--version"], text=True).strip()}', flush=True)
+    print(f'Logs: {output}', flush=True)
+
+    def run(name, command, timeout=180):
+        print(f'Running {name}...', flush=True)
+        log = output / (name + '.log')
+        with log.open('wb') as stream:
+            try:
+                result = subprocess.run(command, cwd=ROOT, env=env, stdout=stream,
+                                        stderr=subprocess.STDOUT, timeout=timeout)
+            except subprocess.TimeoutExpired:
+                print(f'FAILED: {name} exceeded {timeout}s; see {log}', file=sys.stderr)
+                raise SystemExit(1)
+        if result.returncode:
+            print(log.read_text(encoding='utf-8', errors='replace')[-6000:], file=sys.stderr)
+            raise SystemExit(f'FAILED: {name} (exit {result.returncode}); see {log}')
+        print(f'PASS: {name}', flush=True)
+
+    html = [ROOT / 'FIRSTLIGHT_VALLEY.html', ROOT / 'index.html']
+    before = [p.read_bytes() if p.exists() else None for p in html]
+    run('build', [sys.executable, 'build.py'])
+    after = [p.read_bytes() for p in html]
+    if before != after:
+        raise SystemExit('FAILED: checked-in HTML was stale or missing. Review the rebuilt HTML, then run verification again.')
+    if after[0] != after[1]:
+        raise SystemExit('FAILED: the two HTML outputs differ.')
+    print(f'HTML: {len(after[0])} bytes; SHA-256 {hashlib.sha256(after[0]).hexdigest()}', flush=True)
+
+    modules = sorted((ROOT / 'src').glob('*.js'))
+    rules = sorted((ROOT / 'tests').glob('*.test.cjs'))
+    if not modules or not rules:
+        raise SystemExit('FAILED: source modules or rule tests are missing.')
+    for module in modules:
+        run('syntax-' + module.stem, ['node', '--check', str(module)])
+    run('rules', ['node', '--test', '--test-reporter=tap', *map(str, rules)])
+    print('\n'.join((output / 'rules.log').read_text(encoding='utf-8').splitlines()[-9:]), flush=True)
+    run('python', [sys.executable, '-m', 'unittest', 'discover', '-s', 'tests', '-p', 'test_*.py', '-v'])
+    print('\n'.join((output / 'python.log').read_text(encoding='utf-8').splitlines()[-5:]), flush=True)
+    run('crossing-blade', ['node', 'tests/crossing_journey.cjs'])
+    run('crossing-bow', ['node', 'tests/crossing_journey.cjs', '--bow'])
+    if args.browser:
+        for suite in ['crossing_browser', 'regression09_browser', 'cutaway_browser', 'reflection_browser']:
+            run(suite, [sys.executable, f'tests/{suite}.py'], timeout=300)
+    print('Verification passed. Automated checks do not qualify human pacing or device performance.', flush=True)
+
+
+if __name__ == '__main__':
+    main()

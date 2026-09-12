@@ -32,3 +32,8 @@ evidence09/
 
 # Realm10 generated verification, delivered separately in ZIP.
 evidence10/
+
+# Local development logs, environments and personal backup folders.
+/verification/
+/personal-saves/
+/save-backups/
