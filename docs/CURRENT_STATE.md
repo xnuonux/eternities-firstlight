@@ -10,7 +10,7 @@ Verified import-only commit: `d7c57ee47833dad4fb9ec3332d352468abf32109`. All 133
 
 Review branch: `import/firstlight10-bootstrap-20260912`, based on observed `main` at `1aae2f14f2b2ab0ba54a5bf8571bd45bbf32ab46`, with PR #3's handoff preserved. Main is not merged by this bootstrap. Use `git log -1 --format=%H` and `git status --short` for the current checkout; fetch before deciding what is current remotely. See [bootstrap results](development/BOOTSTRAP_RESULTS_2026-09-12.md) for fresh evidence and limits.
 
-Verified remote code/tooling checkpoint: `ff4af83983dd73ec7ae43a6182d76fbd6ca787ea`, successfully rebuilt/tested from a fresh GitHub clone. Later documentation records that result; the source-import PR carries final-head and CI readback. Controlled native loopback-origin persistence also passes with an isolated test profile and accepted synthetic notebook entry. Personal saves and file-origin storage were not tested.
+Verified remote code/tooling checkpoint: `ff4af83983dd73ec7ae43a6182d76fbd6ca787ea`, rebuilt/tested from a fresh GitHub clone; the full browser command also passed from a clone at `1fb9ad5b9018012f92882292bc88c05cec902b25`. Later bootstrap changes split the hosted browser suites and adjust execution bounds after a documented CI timeout. [Source-import PR #4](https://github.com/xnuonux/eternities-firstlight/pull/4) carries final-head and CI readback. Controlled native loopback-origin persistence passes with an isolated profile and accepted synthetic notebook entry. Personal saves and file-origin storage were not tested.
 
 ## Launch and verify
 

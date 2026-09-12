@@ -63,7 +63,7 @@ def main():
     run('crossing-bow', ['node', 'tests/crossing_journey.cjs', '--bow'])
     if args.browser:
         for suite in ['crossing_browser', 'regression09_browser', 'cutaway_browser', 'reflection_browser', 'native_origin_browser']:
-            run(suite, [sys.executable, f'tests/{suite}.py'], timeout=300)
+            run(suite, [sys.executable, f'tests/{suite}.py'], timeout=600)
     print('Verification passed. Automated checks do not qualify human pacing or device performance.', flush=True)
 
 
