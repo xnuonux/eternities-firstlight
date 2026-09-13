@@ -15,7 +15,7 @@ class Handler(SimpleHTTPRequestHandler):
     def log_message(self, *_args): pass
 
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("--frames", type=int, default=300); ap.add_argument("--quality", default="balanced"); ap.add_argument("--renderer", choices=("software", "hardware"), default="software"); ap.add_argument("--output", type=Path, default=Path("evidence10/gpu-frame-report.json")); args=ap.parse_args()
+    ap = argparse.ArgumentParser(); ap.add_argument("--frames", type=int, default=600); ap.add_argument("--quality", default="balanced"); ap.add_argument("--renderer", choices=("software", "hardware"), default="software"); ap.add_argument("--scenes", type=Path, help="JSON list of {name,expression} setup snippets"); ap.add_argument("--output", type=Path, default=Path("evidence10/gpu-frame-report.json")); args=ap.parse_args()
     html = ROOT / "FIRSTLIGHT_VALLEY.html"; expected = hashlib.sha256(html.read_bytes()).hexdigest()
     server = ThreadingHTTPServer(("127.0.0.1", 0), Handler); threading.Thread(target=server.serve_forever, daemon=True).start()
     result = {"html_sha256": expected, "origin": f"http://127.0.0.1:{server.server_port}/FIRSTLIGHT_VALLEY.html", "quality": args.quality, "renderer_requested": args.renderer, "frames_requested": args.frames}
@@ -27,9 +27,12 @@ def main():
             page.wait_for_function("window.Realm"); page.evaluate(f'Realm.test.quality({json.dumps(args.quality)});Realm.test.render()')
             result["webgl"] = page.evaluate("""()=>{const c=document.querySelector('canvas'),g=c&&c.getContext('webgl2');return g?{renderer:g.getExtension('WEBGL_debug_renderer_info')?g.getParameter(g.getExtension('WEBGL_debug_renderer_info').UNMASKED_RENDERER_WEBGL):'unavailable',vendor:g.getExtension('WEBGL_debug_renderer_info')?g.getParameter(g.getExtension('WEBGL_debug_renderer_info').UNMASKED_VENDOR_WEBGL):'unavailable',mode:Realm.diagnostics.mode}: {mode:'unavailable'} }""")
             result["hardware_renderer"] = not any(x in result["webgl"].get("renderer", "").lower() for x in ("swiftshader", "llvmpipe", "software"))
-            intervals = page.evaluate("""(n)=>new Promise(resolve=>{let a=[],last;function f(t){if(last!==undefined)a.push(t-last);last=t;if(a.length<n)requestAnimationFrame(f);else resolve(a)}requestAnimationFrame(f)})""", args.frames)
-            intervals.sort(); pct=lambda p: intervals[min(len(intervals)-1, int(len(intervals)*p))]
-            result.update({"scene": page.evaluate("Realm.diagnostics.scene"), "frame_time_ms":{"p50":pct(.50),"p95":pct(.95),"p99":pct(.99),"max":max(intervals)}, "stutter_over_33ms":sum(x>33.333 for x in intervals), "stutter_over_50ms":sum(x>50 for x in intervals)})
+            scenes = json.loads(args.scenes.read_text(encoding="utf-8")) if args.scenes else [{"name": page.evaluate("Realm.diagnostics.scene"), "expression": "Realm.test.render()"}]
+            result["scenes"] = []
+            for scene in scenes:
+                page.evaluate(scene["expression"]); intervals = page.evaluate("""(n)=>new Promise(resolve=>{let a=[],last;function f(t){if(last!==undefined)a.push(t-last);last=t;if(a.length<n)requestAnimationFrame(f);else resolve(a)}requestAnimationFrame(f)})""", args.frames)
+                intervals.sort(); pct=lambda p: intervals[min(len(intervals)-1, int(len(intervals)*p))]
+                result["scenes"].append({"name":scene["name"],"frame_time_ms":{"p50":pct(.5),"p95":pct(.95),"p99":pct(.99),"max":max(intervals)},"stutter_over_33ms":sum(x>33.333 for x in intervals),"stutter_over_50ms":sum(x>50 for x in intervals)})
             browser.close()
     finally:
         server.shutdown(); args.output.parent.mkdir(parents=True, exist_ok=True); args.output.write_text(json.dumps(result, indent=2), encoding="utf-8")
