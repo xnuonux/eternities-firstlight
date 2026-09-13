@@ -66,3 +66,10 @@ body.rpg-edition{--gold:#dbc18c;--ink:#111d21;--pane:rgba(15,29,33,.94);--muted:
 
 /* Keep legacy context readable against the new HUD palette. */
 .rpg-edition #context,.rpg-edition #context-text{color:#e2e7d5}.rpg-edition #toast{color:#e2e7d5}
+
+/* Third-person health readouts face the camera and retain a small screen footprint. */
+#enemy-health{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.enemy-health{position:absolute;transform:translate(-50%,-50%);width:42px;height:4px;border:1px solid #1b2925;border-radius:3px;background:#1d2727;box-shadow:0 1px 3px #10191980}
+.enemy-health i{display:block;height:100%;border-radius:2px;background:#c2ad80}
+.enemy-health.selected{width:56px;border-color:#e4c791}.enemy-health.selected i{background:#cb9292}
+.camera-presets{flex-wrap:wrap;max-width:280px}

@@ -72,7 +72,7 @@ function draw(out,sim,t,art){const A=G.RealmAdventure,a=sim.state.adventure,s=a.
  for(let j=0;j<6;j++){let u=j*TAU/6+clock*.22;add('octa',e.x+Math.sin(u)*1.2,4.97,e.z+Math.cos(u)*1.2,.24,.20,.4,0xc1aa80,{r:[0,u,0],em:.24});}
  if(G.RealmCombat.runtime(sim).target===e.id)ring(e.x,e.z,1.6,0xffd99b,40);if(e.exposedUntil>a.elapsed)ring(e.x,e.z,1.76,0x9ce2be,28);
  if(e.mode==='windup'&&e.aim){if(e.ringMode==='outer'){ring(e.aim.x,e.aim.z,6.2,0xda97bf,70);ring(e.aim.x,e.aim.z,2.1,0xa3d2bf,40);for(let j=0;j<24;j++){let u=j*TAU/24;box(e.aim.x+Math.sin(u)*4.1,1.67,e.aim.z+Math.cos(u)*4.1,.09,.035,3.6,0xb383a9,{r:[0,u,0],em:.3});}}else{ring(e.aim.x,e.aim.z,2.8,0xe9a077,48);ring(e.aim.x,e.aim.z,Math.max(.2,e.timer/1.2*2.8),0xf7c9a7,36);}}
- box(e.x,5.5,e.z,2,.10,.10,0x33443e);box(e.x-(1-e.hp/e.maxHP),5.52,e.z+.06,2*e.hp/e.maxHP,.075,.075,0xe1bc86,{em:.35});
+ if(!sim.presentation?.perspective){box(e.x,5.5,e.z,2,.10,.10,0x33443e);box(e.x-(1-e.hp/e.maxHP),5.52,e.z+.06,2*e.hp/e.maxHP,.075,.075,0xe1bc86,{em:.35});}
  }
  if(!quiet)for(let i=0;i<15;i++){let x=-12+(i*3.71%26),z=-7+(i*7.13%31);add('box',x,2.3+Math.sin(clock+i)*.2,z,.085,.03,.09,i%2?0xe3c896:0xc3c6b5,{r:[0,clock+i,0]});}
 }

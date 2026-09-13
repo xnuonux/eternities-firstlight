@@ -43,7 +43,7 @@ function draw(out,sim,t,art){
   if(cr.target===e.id)ring(e.x,e.z,big?1.2:.8,1.64,0xffdd9a);
   if(e.exposedUntil>a.elapsed)ring(e.x,e.z,big?1.35:.94,1.65,0xa3d9b5,16);
   if(e.mode==='windup'&&e.aim){const rad=big?2.5:1.3;ring(e.aim.x,e.aim.z,rad,1.66,e.aimWard?0xee876b:0xe895c6);ring(e.aim.x,e.aim.z,rad*Math.max(.1,e.timer/(big?1.35:1)),1.67,0xf1c1d5,24);}
-  box(e.x,1.58+h*2.5,e.z,big?1.65:1,.09,.08,0x292e33);box(e.x,1.59+h*2.5,e.z+.04,(big?1.65:1)*e.hp/e.maxHP,.065,.065,0xd98787,{em:.35});
+  if(!sim.presentation?.perspective){box(e.x,1.58+h*2.5,e.z,big?1.65:1,.09,.08,0x292e33);box(e.x,1.59+h*2.5,e.z+.04,(big?1.65:1)*e.hp/e.maxHP,.065,.065,0xd98787,{em:.35});}
  }
  if(a.beacon.complete&&a.beacon.relic==='undecided'){add('octa',2,2.0,-22,.35,.62,.33,0xb05a72,{em:.9});ring(2,-22,.5,1.65,0xe09598,16);}
 }

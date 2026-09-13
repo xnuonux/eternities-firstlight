@@ -33,7 +33,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        suite: [crossing_browser, regression09_browser, cutaway_browser, reflection_browser, native_origin_browser, starter_browser]
+        suite: [crossing_browser, regression09_browser, cutaway_browser, reflection_browser, native_origin_browser, starter_browser, camera_browser]
     runs-on: ubuntu-latest
     timeout-minutes: 12
     steps:

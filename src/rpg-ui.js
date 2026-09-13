@@ -44,8 +44,8 @@ class RPGUI{
    <section id="quest-tracker" aria-label="Tracked quest"><div class="tracker-switch">${button('Story','track','story')}${button('Homestead','track','homestead')}</div><button id="tracked-open"><small id="tracked-chapter"></small><strong id="tracked-title"></strong><span id="tracked-detail"></span><i id="tracked-progress"></i></button></section>
    <section id="target-frame" hidden aria-label="Selected enemy"><div id="target-icon">${icon('shield')}</div><div><small id="target-rank"></small><strong id="target-name"></strong><div class="target-health"><i id="target-health-fill"></i></div><span id="target-state"></span></div><button id="target-clear" aria-label="Clear target">×</button></section>
    <section id="beacon-tracker" hidden aria-label="Beacon defense"><small>CHAPTER III · THE BEACON ANSWERS</small><strong id="beacon-phase"></strong><div class="ward-meter"><i id="ward-fill"></i></div><span id="beacon-status"></span><button id="beacon-menu">Approach & speak · E</button></section>
-   <div class="camera-presets" aria-label="Camera presets">${button('Follow','camera','follow')}${button('Tactical','camera','tactical')}${button('Wide','camera','wide')}</div>
-   <div id="combat-numbers" aria-hidden="true"></div>
+   <div class="camera-presets" aria-label="Camera presets">${button('Adventure','camera','adventure')}${button('Follow','camera','follow')}${button('Tactical','camera','tactical')}${button('Wide','camera','wide')}</div>
+   <div id="enemy-health" aria-hidden="true"></div><div id="combat-numbers" aria-hidden="true"></div>
    <section id="skillbar" aria-label="Combat skill bar">
     <button id="health-orb" title="Character & equipment"><b id="rpg-health">100</b><small>HEALTH</small></button>
     <div class="skill-main"><div class="stamina-track"><i id="rpg-stamina"></i><span id="stamina-label"></span></div><div class="skill-row">
@@ -133,7 +133,7 @@ class RPGUI{
   if(k==='j'||k==='u'||k==='8'){this.open('journal');return true;}
   if(k==='k'||k==='9'){this.open('craft');return true;}
   if(k==='o'){this.api.openPanel('inhabitants');return true;}
-  if(k==='r'){this.api.camera('follow');return true;}
+  if(k==='r'){this.api.camera('adventure');return true;}
   if(k==='['||k===']'){this.api.rotate(k==='['?-.7854:.7854);return true;}
   return false;
  }
@@ -280,7 +280,15 @@ class RPGUI{
   const bm=$('#beacon-menu');bm.textContent=b.phase==='assault'?'Repair ward · E · 20 stamina':'Speak with the envoy · E';bm.disabled=b.phase==='assault'&&(!B.near(sim)||b.ward>=100||b.time<b.playerRepairAt||a.stamina<20);
   sim.presentation=sim.presentation||{};sim.presentation.attackTarget=t.target||(this.api.adventure().intent?.kind==='attack'?this.api.adventure().intent.id:null);
   const lastHit=t.hits.at(-1);if(lastHit&&this.soundedHit!==lastHit){this.soundedHit=lastHit;if(a.elapsed-lastHit.at<.25)this.api.adventure().sound('confirmed-hit');}
-  this.numbers();this.crossing.tick();this.starter.tick();
+  this.numbers();this.worldHealth();this.crossing.tick();this.starter.tick();
+ }
+ worldHealth(){
+  const root=$('#enemy-health');root.replaceChildren();if(!this.sim.presentation?.perspective||!A.combatScene(this.sim))return;
+  const selected=T.runtime(this.sim).target,player=this.sim.state.player;
+  for(const e of A.runtime(this.sim).enemies){if(e.hp<=0||e.hidden||e.kind==='practice'||(e.id!==selected&&Math.hypot(e.x-player.x,e.z-player.z)>16))continue;
+   const pos=this.api.project(e.x,e.kind==='boss'||e.custom==='bell'?5.4:e.eventEnemy?3.8:3.05,e.z);if(!pos?.visible)continue;
+   const bar=document.createElement('div');bar.className='enemy-health'+(e.id===selected?' selected':'');bar.style.left=pos.x+'px';bar.style.top=pos.y+'px';const fill=document.createElement('i');fill.style.width=(100*e.hp/e.maxHP)+'%';bar.append(fill);root.append(bar);
+  }
  }
  numbers(){const t=T.runtime(this.sim),now=this.state.elapsed,root=$('#combat-numbers');root.replaceChildren();for(const h of t.hits){const pos=this.api.project(h.x,3.3+(this.sim.state.settings.reducedMotion?0:now-h.at),h.z);if(!pos?.visible)continue;const el=document.createElement('span');el.textContent=h.n;el.style.left=pos.x+'px';el.style.top=pos.y+'px';el.style.opacity=String(Math.max(0,1-(now-h.at)/.9));root.append(el);}}
 }

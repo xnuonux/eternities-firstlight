@@ -19,7 +19,7 @@ function draw(out,sim,t){let s=sim.state.adventure;if(!s)return;let r=A.runtime(
  const add=(kind,x,y,z,w,h,d,c,opt={})=>out[kind].push({p:[x,y,z],s:[w,h,d],c,...opt}),box=(x,y,z,w,h,d,c,opt={})=>add('box',x,y,z,w,h,d,c,opt);
  const ring=(x,z,radius,c,y=1.58)=>{for(let i=0;i<32;i++){let a=i/32*TAU;box(x+Math.sin(a)*radius,y,z+Math.cos(a)*radius,.10,.04,.19,c,{r:[0,a,0],em:.75});if(i%8===0)box(x+Math.sin(a)*radius*.73,y+.03,z+Math.cos(a)*radius*.73,.12,.04,.35,c,{r:[0,a,0],em:.55});}};
  if(sim.room==='mine'){
-  for(let gx=-6;gx<=6;gx++)for(let gz=-6;gz<=6;gz++){if(A.isFloor(s,gx,gz))continue;const pos=A.cellPoint(gx,gz),ore=A.mineral(gx,gz),chip=s.chips.find(c=>c.id===A.key(gx,gz)),h=chip?.hp===1?1.05:1.6;box(pos.x,1.49+h/2,pos.z,1.92,h,1.92,ore?0x696b68:0x495b60,{rough:.9});add('octa',pos.x+.19,1.55+h,pos.z-.04,1.83,.51,1.85,ore?0xa18162:0x6b7f7b);if(ore)for(let j=0;j<3;j++)add('octa',pos.x+Math.sin(j*2.3)*.57,2+h*.22,pos.z+Math.cos(j*2.3)*.91,.34,.39,.22,0xe1ae7b,{em:.20});}
+  for(let gx=-6;gx<=6;gx++)for(let gz=-6;gz<=6;gz++){if(A.isFloor(s,gx,gz))continue;const pos=A.cellPoint(gx,gz),ore=A.mineral(gx,gz),chip=s.chips.find(c=>c.id===A.key(gx,gz)),h=chip?.hp===1?1.05:1.6;box(pos.x,1.49+h/2,pos.z,1.92,h,1.92,ore?0x696b68:0x495b60,{rough:.9,cameraSolid:true});add('octa',pos.x+.19,1.55+h,pos.z-.04,1.83,.51,1.85,ore?0xa18162:0x6b7f7b);if(ore)for(let j=0;j<3;j++)add('octa',pos.x+Math.sin(j*2.3)*.57,2+h*.22,pos.z+Math.cos(j*2.3)*.91,.34,.39,.22,0xe1ae7b,{em:.20});}
  }
  if(A.combatScene(sim)){
   for(const e of r.enemies){if(e.hp<=0||e.kind==='practice'||e.eventEnemy||e.custom==='bell')continue;const starts=Object.fromEntries(Object.entries(out).map(([k,v])=>[k,v.length]));let flash=e.flash>s.elapsed,body=flash?0xf8e4b9:e.kind==='boss'?0x688f83:e.kind==='sentinel'?0x9e92b8:e.custom==='river-bristle'?0x866747:0x7e8670;
@@ -36,7 +36,7 @@ function draw(out,sim,t){let s=sim.state.adventure;if(!s)return;let r=A.runtime(
    if(sim.presentation?.attackTarget===e.id)ring(e.x,e.z,e.kind==='charger'?1.35:.8,0xf1d29a);
    if(e.kind==='charger'&&e.mode==='windup'){for(let j=0;j<18;j++)for(const sign of[-1,1]){let u=j*.5,dx=e.chargeDir.x,dz=e.chargeDir.z;box(e.x+dx*u+dz*.9*sign,1.63,e.z+dz*u-dx*.9*sign,.10,.045,.25,0xe5a5b7,{r:[0,e.yaw,0],em:.7});}ring(e.x+e.chargeDir.x*9,e.z+e.chargeDir.z*9,.85,0xf0bfd1);}
    if(e.kind!=='charger'&&e.mode==='windup'){let rad=e.telegraphRadius??(e.kind==='boss'?2.4:e.kind==='sentinel'?1.2:1.05);ring(e.aim.x,e.aim.z,rad,0xd098c8);if(!sim.state.settings.reducedMotion)ring(e.aim.x,e.aim.z,rad*Math.min(1,Math.max(.15,e.timer/(e.windup??1))),0xe0bad4,1.6);}
-   let w=e.kind==='boss'?2.1:1.15,y=e.kind==='boss'?5.35:3.9;box(e.x,y,e.z,w,.10,.09,0x273743);box(e.x-w/2+w*e.hp/e.maxHP/2,y+.008,e.z+.035,w*e.hp/e.maxHP,.072,.07,e.kind==='boss'?0xcf9ba4:0xd1ba8d,{em:.4});
+   if(!sim.presentation?.perspective){let w=e.kind==='boss'?2.1:1.15,y=e.kind==='boss'?5.35:3.9;box(e.x,y,e.z,w,.10,.09,0x273743);box(e.x-w/2+w*e.hp/e.maxHP/2,y+.008,e.z+.035,w*e.hp/e.maxHP,.072,.07,e.kind==='boss'?0xcf9ba4:0xd1ba8d,{em:.4});}
   }
   for(const id of s.drops){let e=A.roster(sim).find(e=>e.id===id);if(!e)continue;box(e.x,1.88,e.z,.60,.47,.5,0x947856);box(e.x,2.11,e.z,.68,.13,.58,0xc9b489);add('octa',e.x,2.56+Math.sin(t*2)*.1,e.z,.19,.38,.19,0xf2d299,{em:1.2});}
   if(sim.room==='mine'&&!s.relic){let glow=s.defeated.includes('hart');for(let i=0;i<7;i++)box(9+i*.055,2.47+i*.09,-10,.13,.28,.07,glow?0xffe8ba:0x99ac9f,{r:[0,0,-.35],em:glow?1.3:.1});}

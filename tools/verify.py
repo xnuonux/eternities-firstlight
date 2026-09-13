@@ -65,7 +65,7 @@ def main():
     run('starter-bow', ['node', 'tests/starter_journey.cjs', '--bow'])
     run('starter-veteran', ['node', 'tests/starter_veteran.cjs'])
     if args.browser:
-        for suite in ['crossing_browser', 'regression09_browser', 'cutaway_browser', 'reflection_browser', 'native_origin_browser', 'starter_browser']:
+        for suite in ['crossing_browser', 'regression09_browser', 'cutaway_browser', 'reflection_browser', 'native_origin_browser', 'starter_browser', 'camera_browser']:
             run(suite, [sys.executable, f'tests/{suite}.py'], timeout=600)
     print('Verification passed. Automated checks do not qualify human pacing or device performance.', flush=True)
 
