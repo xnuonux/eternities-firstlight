@@ -128,6 +128,9 @@ try:
   check('Reward disables duplicate claim',p.locator('[data-id="beacon-reward"]').is_disabled())
   action('relic','accept');check('Accepting cinder alone never corrupts',state()['adventure']['beacon']['soul']['corruption']==0)
   action('chart','forest');check('Future route records intent, no teleport',state()['adventure']['beacon']['route']=='forest' and diag()['scene']=='road');snapshot('09-beacon-network.png')
+  # Aegis and cinder share the spirit cooldown. Faster fights can finish while
+  # the final aegis is still recovering; wait for real readiness before replay.
+  remaining=max(0,diag()['adventure']['tactics']['cooldowns']['spirit']-state()['adventure']['elapsed']);step(remaining+.05)
   action('beacon-command','beacon-replay');step(1);key('Tab');hp=state()['adventure']['hp'];key('5')
   check('Cinder skill spends health and records choice',state()['adventure']['hp']==hp-12 and state()['adventure']['beacon']['soul']['corruption']==1)
   walk(0,17);key('e');step(.2);check('Replay withdrawal preserves stable story beacon',state()['adventure']['beacon']['status']=='stable' and state()['adventure']['beacon']['complete'])

@@ -59,7 +59,7 @@ class RPGUI{
   d.addEventListener('input',e=>{if(e.target.id==='bag-search'){this.search=e.target.value;this.paintBag();}});
   $('#tracked-open').onclick=()=>this.open('journal');$('#beacon-menu').onclick=()=>{if(B.runtime(this.sim).phase==='assault')this.run('beacon-repair');else this.open('beacon');};$('#target-clear').onclick=()=>this.run('target-clear');$('#health-orb').onclick=()=>this.open('equipment');
   for(const el of hud.querySelectorAll('[data-skill]'))el.onclick=()=>this.skill(el.dataset.skill);
-  this.crossing=new G.RealmCrossingUI.CrossingUI(this);
+  this.crossing=new G.RealmCrossingUI.CrossingUI(this);this.starter=new G.RealmStarterUI.StarterUI(this);if(this.state.starter.accepted&&!this.state.starter.reward)this.quest='starter';
  }
  get sim(){return this.api.sim();} get state(){return this.sim.state.adventure;}
  run(t,p={},quiet=false){const paused=this.sim.paused;try{if(this.dialog.open)this.sim.paused=false;const r=this.api.adventure().run(t,p,quiet);if(r.ok&&this.dialog.open)this.paint();return r;}finally{this.sim.paused=paused;}}
@@ -70,7 +70,7 @@ class RPGUI{
  close(){if(!this.dialog.open)return;this.dialog.close();this.sim.paused=this.wasPaused;this.api.clearKeys();this.api.focusWorld();}
  cameraPaint(mode){for(const el of document.querySelectorAll('[data-rpg="camera"]'))el.setAttribute('aria-pressed',String(el.dataset.id===mode));}
  reset(){if(this.dialog.open)this.close();this.item=null;this.seenPhase='';}
- action(el){if(this.crossing.action(el))return;const act=el.dataset.rpg,id=el.dataset.id,a=this.state;
+ action(el){if(this.starter.action(el))return;if(this.crossing.action(el))return;const act=el.dataset.rpg,id=el.dataset.id,a=this.state;
   if(act==='open'){this.open(id);return;}
   if(act==='track'){this.quest=id;if(this.dialog.open)this.paint();this.tick();return;}
   if(act==='camera'){this.api.camera(id);return;}
@@ -139,6 +139,7 @@ class RPGUI{
  }
  intercept(name){const map={armory:'craft',craft:'craft',pack:'bag',adventure:'journal',journey:'journal'};if(map[name]){if(name==='journey')this.quest='homestead';this.open(map[name]);return true;}return false;}
  interact(){
+  if(this.starter.interact())return true;
   if(this.crossing.interact())return true;
   if(this.sim.room==='road'&&this.state.road.cartRepaired&&Math.hypot(this.sim.state.player.x+10,this.sim.state.player.z-12)<3){this.open('merchant');return true;}
   if(!B.near(this.sim)||!this.state.road.beaconLit||!this.state.road.cartRepaired)return false;
@@ -148,7 +149,7 @@ class RPGUI{
   this.open('beacon');return true;
  }
  paint(){
-  const extra=this.crossing.page(this.tab);
+  const extra=this.starter.page(this.tab)||this.crossing.page(this.tab);
   const titles={equipment:'Your character',bag:'Your belongings',companion:'Your companion',soul:'The paths within',craft:'The workbench',journal:'Your journal',beacon:'The Beacon Answers',more:'Life in Firstlight',merchant:'Tessa’s road shop'};
   $('#rpg-heading').textContent=extra?.title||titles[this.tab]||'Firstlight';
   $('#rpg-tabs').innerHTML=[['equipment','Equipment'],['bag','Inventory'],['companion','Companion'],['soul','Soul'],['craft','Crafting'],['journal','Journal'],['atlas','Map']].map(([id,n])=>button(n,'open',id,false,'aria-current="'+(this.tab===id?'page':'false')+'"')).join('');
@@ -163,6 +164,7 @@ class RPGUI{
   else if(this.tab==='beacon')body.innerHTML=this.beacon();
   else if(this.tab==='merchant')body.innerHTML=this.merchant();
   else body.innerHTML=this.more();
+  if(this.tab==='journal')body.insertAdjacentHTML('afterbegin',this.starter.journal());
  }
  inventory(){
   const a=this.state,st=A.stats(a),slots=['weapon','armor','charm'];
@@ -252,6 +254,7 @@ class RPGUI{
   G.RealmArt.WorldArt.prototype.person(out,0,0,yaw,A.GEAR[a.equipment.armor]?.color||G.RealmCreative.CLOAKS[x.cloak],0,false,'visitor',true,0,x);
   const col=A.GEAR[a.equipment.weapon]?.color||'#bcb590';
   if(a.equipment.weapon){const add=(xx,y,z,sx,sy,sz,c)=>out.box.push({p:[xx*Math.cos(yaw)+z*Math.sin(yaw),y,-xx*Math.sin(yaw)+z*Math.cos(yaw)],s:[sx,sy,sz],c,r:[0,yaw,0]});
+   if(G.RealmStarter.bonus(a,a.equipment.weapon))add(.52,.52,.08,.20,.1,.17,'#82beb0');
    if(AR.weapon(a).style==='bow'){for(let i=0;i<11;i++){let u=i/10*Math.PI;add(.52+Math.sin(u)*.24,.24+i*.112,.12,.065,.14,.07,col);}add(.52,.8,.12,.022,1.1,.022,'#ddd5b8');}else{add(.52,.84,.08,.10,1.1,.10,col);add(.52,.58,.08,.4,.07,.13,'#c4a66f');}
   }
   out.disc.push({p:[0,-.08,0],s:[2.0,.12,2.0],c:0x566864});
@@ -276,9 +279,10 @@ class RPGUI{
   $('#beacon-tracker').hidden=!(sim.room==='road'&&a.beacon.introduced);if(!$('#beacon-tracker').hidden){$('#beacon-phase').textContent=({arrival:'A road believed dead',ready:'Prepare the defense',assault:'Breach '+b.wave+' / 3',intermission:'Regroup · '+Math.max(0,Math.ceil(b.nextWave-b.time))+'s',failed:'The ward has fallen',won:'The light held'})[b.phase]||'The envoy awaits';$('#ward-fill').style.width=b.ward+'%';$('#beacon-status').textContent='Ward '+Math.ceil(b.ward)+' / 100 · '+(b.phase==='assault'?'E repairs near the light':'Your community stands beside you.');}
   const bm=$('#beacon-menu');bm.textContent=b.phase==='assault'?'Repair ward · E · 20 stamina':'Speak with the envoy · E';bm.disabled=b.phase==='assault'&&(!B.near(sim)||b.ward>=100||b.time<b.playerRepairAt||a.stamina<20);
   sim.presentation=sim.presentation||{};sim.presentation.attackTarget=t.target||(this.api.adventure().intent?.kind==='attack'?this.api.adventure().intent.id:null);
-  this.numbers();this.crossing.tick();
+  const lastHit=t.hits.at(-1);if(lastHit&&this.soundedHit!==lastHit){this.soundedHit=lastHit;if(a.elapsed-lastHit.at<.25)this.api.adventure().sound('confirmed-hit');}
+  this.numbers();this.crossing.tick();this.starter.tick();
  }
- numbers(){const t=T.runtime(this.sim),now=this.state.elapsed,root=$('#combat-numbers');root.replaceChildren();for(const h of t.hits){const pos=this.api.project(h.x,3.3+(now-h.at),h.z);if(!pos?.visible)continue;const el=document.createElement('span');el.textContent=h.n;el.style.left=pos.x+'px';el.style.top=pos.y+'px';el.style.opacity=String(Math.max(0,1-(now-h.at)/.9));root.append(el);}}
+ numbers(){const t=T.runtime(this.sim),now=this.state.elapsed,root=$('#combat-numbers');root.replaceChildren();for(const h of t.hits){const pos=this.api.project(h.x,3.3+(this.sim.state.settings.reducedMotion?0:now-h.at),h.z);if(!pos?.visible)continue;const el=document.createElement('span');el.textContent=h.n;el.style.left=pos.x+'px';el.style.top=pos.y+'px';el.style.opacity=String(Math.max(0,1-(now-h.at)/.9));root.append(el);}}
 }
 G.RealmRPGUI={RPGUI,icon};
 })(globalThis);
