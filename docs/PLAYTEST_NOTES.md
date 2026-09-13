@@ -32,3 +32,9 @@ Use a separate test profile/origin and the labelled fixtures in CURRENT_STATE. C
 | Returning campaign | Pending Dom | Pending Dom | Pending Dom |
 
 Real-time automated footage and the separate hardware report are linked from the implementation results. Software CI, GPU measurements, human enjoyment and personal saves remain different claims.
+
+## Third-person direction, 2026-09-13
+
+Dom requested continued graphics refinement, a third-person view recalling Dragon's Dogma / WoW / GW2, and consideration of wider FOV. This is a design request, not a reported playtest result. Codex implemented Adventure perspective and procedural shape/terrain refinements on a separate stacked branch.
+
+Automated real input covers camera-relative walking, right-drag orbit, wheel distance, FOV persistence, house transitions, physical scenery clearance, body selection and combat, modal input, nearby labels and a 390×844 viewport. A new real-time Chrome recording completes the existing outing. These do not answer the pending human questions above. Record Dom's comfortable distance/FOV and any camera pull-in, unreadable shape or lost objective when he plays.
