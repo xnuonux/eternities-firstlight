@@ -36,6 +36,8 @@ Initial camera unit tests demonstrated four intended failures before implementat
 
 The first pushed head `a78b9477ee61dcc4552ee0881f0058312d51abb4` passed its entire fresh remote-clone gate, but hosted run `34748091961` exposed a camera-test timing assumption: a fixed 480 ms key hold could contain no movement frame on slow software rendering. A labelled local reproduction delaying RAF scheduling by 1000 ms observed zero movement with the old hold and 0.32 units with a condition-based hold. The test now holds a real keyboard key until at least 0.3 units of movement is observed, bounded at 30 seconds, records elapsed time/frame count, and keeps the original direction assertions. Production RAF/movement, source and footage are unchanged. The final PR receipt records the subsequent fresh-clone and hosted outcomes, without hiding the first failure.
 
+That first hosted run also timed out the long prior-gameplay suite after 12 minutes and 79 passing assertions, while it was still progressing through the soul-history journey. This is an incomplete run, not a pass. The workflow now gives only `regression09_browser` a bounded 20 minutes for the full campaign plus creative/export journey on software WebGL; other browser jobs retain 12 minutes. No assertion, scene, quality or production behavior is removed or weakened. The following pushed head's full local gate passed again; final hosted evidence is recorded on the PR.
+
 See [actual footage, frames and provenance](../evidence/third-person/README.md). The recording uses normal RAF, accepted commands and visible UI on a command-earned fresh-kit world. Camera choices are scripted. It is an engineering playthrough, not a human pacing/comfort test.
 
 ## Desktop sample
