@@ -30,6 +30,7 @@ function landRadius(x,z){let a=Math.atan2(z,x);return 23.4+Math.sin(3*a+.3)*1.25
 function solid(x,z,o,r){return o.r!==undefined?Math.hypot(x-o.x,z-o.z)<o.r+r:Math.abs(x-o.x)<o.w/2+r&&Math.abs(z-o.z)<o.d/2+r;}
 function walkable(x,z,room=null,r=.31){
  if(!finite(x)||!finite(z))return false;
+ if(room&&typeof room==='object'&&room.id==='riverbank')return G.RealmStarter.walkable(x,z,r);
  if(room&&typeof room==='object'&&room.id==='crossing')return G.RealmCrossing.walkable(x,z,r);
  if(room&&typeof room==='object'&&room.id==='range')return G.RealmArsenal.rangeWalkable(x,z,r);
  if(room&&typeof room==='object'&&room.id==='road')return G.RealmRoad.walkable(x,z,r);
@@ -62,7 +63,7 @@ function validate(raw){if(raw&&raw.version===2)raw={...clone(raw),version:3,scor
 function load(storage){try{let data=storage.getItem(KEY),legacy=false;if(!data){data=storage.getItem(LEGACY_KEY);legacy=!!data;}if(!data){data=storage.getItem('eternities.realm08.save.v7');legacy=!!data;}if(!data){data=storage.getItem('eternities.realm07.save.v6');legacy=!!data;}if(!data){data=storage.getItem('eternities.realm06.save.v5');legacy=!!data;}if(!data){data=storage.getItem('eternities.realm05.save.v4');legacy=!!data;}if(!data){data=storage.getItem('eternities.realm03.save.v3');legacy=!!data;}if(!data){data=storage.getItem('eternities.realm02.save.v2');legacy=!!data;}if(!data)return{state:fresh(),status:'new'};return{state:validate(JSON.parse(data)),status:legacy?'migrated':'loaded'};}catch(e){return{state:fresh(),status:'unavailable-or-corrupt',preserveExisting:true,error:String(e.message)};}}
 class Simulation{
  constructor(state=fresh()){this.state=validate(state);this.room=null;this.returnPos=null;this.playerPath=[];this.runs=new Map();this.elapsed=0;this.paused=false;this.gathering=null;this.homeUndo=[];this.homeRedo=[];this.commands=new Map();for(let r of this.state.residents)this.runs.set(r.id,{goal:schedule(r.id,this.state.hour),path:[],walking:false,inside:false});}
- get navRoom(){if(this.room==='crossing')return{id:'crossing'};if(this.room==='range')return{id:'range'};if(this.room==='road')return{id:'road',adventure:this.state.adventure};if(this.room==='mine')return{id:'mine',adventure:this.state.adventure};return this.room==='retreat'?{id:'retreat',layout:this.state.retreat}:this.room||{id:'outdoors',sandbox:this.state.sandbox};}
+ get navRoom(){if(this.room==='riverbank')return{id:'riverbank'};if(this.room==='crossing')return{id:'crossing'};if(this.room==='range')return{id:'range'};if(this.room==='road')return{id:'road',adventure:this.state.adventure};if(this.room==='mine')return{id:'mine',adventure:this.state.adventure};return this.room==='retreat'?{id:'retreat',layout:this.state.retreat}:this.room||{id:'outdoors',sandbox:this.state.sandbox};}
  event(kind,text){let s=this.state;if(s.nextEvent>=Number.MAX_SAFE_INTEGER-1)return;s.journal.push({seq:s.nextEvent++,day:s.day,hour:s.hour,kind,text:text.slice(0,350)});if(s.journal.length>200)s.journal.shift();}
  snapshot(){let s=clone(this.state);if(this.room&&this.returnPos)s.player={...this.returnPos};return validate(s);}
  moveTo(x,z){if(this.state.adventure.hp<=0)return{ok:false,error:'Return to the spring first.'};let p=pathfind(this.state.player,{x,z},this.navRoom);if(!p)return{ok:false,error:'There is no walkable path to that point.'};this.playerPath=p;return{ok:true,waypoints:p.length};}
