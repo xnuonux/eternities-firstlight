@@ -1,0 +1,137 @@
+[
+  {
+    "key": "e",
+    "wait_ms": 1600
+  },
+  {
+    "scroll": ".starter-rewards",
+    "wait_ms": 1800
+  },
+  {
+    "click": "[data-rpg=\"starter-accept\"]",
+    "wait_ms": 500
+  },
+  {
+    "click": "#rpg-close"
+  },
+  {
+    "walk": [
+      15,
+      7
+    ]
+  },
+  {
+    "key": "e",
+    "wait_ms": 900
+  },
+  {
+    "walk": [
+      -7,
+      3
+    ]
+  },
+  {
+    "key": "e",
+    "wait_ms": 300
+  },
+  {
+    "fight": "river-skitter-west",
+    "wait_ms": 450
+  },
+  {
+    "walk": [
+      5,
+      -3
+    ]
+  },
+  {
+    "key": "e",
+    "wait_ms": 300
+  },
+  {
+    "fight": "river-skitter-east",
+    "wait_ms": 450
+  },
+  {
+    "walk": [
+      -5,
+      -11
+    ]
+  },
+  {
+    "key": "e",
+    "wait_ms": 300
+  },
+  {
+    "fight": "river-old-bristle",
+    "wait_ms": 450
+  },
+  {
+    "walk": [
+      0,
+      12
+    ]
+  },
+  {
+    "key": "e",
+    "wait_ms": 350
+  },
+  {
+    "walk": [
+      11,
+      9
+    ]
+  },
+  {
+    "key": "e",
+    "wait_ms": 700
+  },
+  {
+    "scroll": ".starter-rewards",
+    "wait_ms": 1800
+  },
+  {
+    "click": "[data-rpg=\"starter-claim\"][data-id=\"oren_sunblade\"]",
+    "wait_ms": 800
+  },
+  {
+    "click": "[data-rpg=\"equip\"][data-id=\"oren_sunblade\"]",
+    "wait_ms": 350
+  },
+  {
+    "click": "#rpg-close"
+  },
+  {
+    "key": "c",
+    "wait_ms": 1500
+  },
+  {
+    "click": "#rpg-close"
+  },
+  {
+    "walk": [
+      15,
+      7
+    ]
+  },
+  {
+    "key": "e"
+  },
+  {
+    "walk": [
+      -5,
+      11.5
+    ]
+  },
+  {
+    "evaluate": "Realm.test.adventure('video-practice','target-select',{id:'river-practice'})"
+  },
+  {
+    "key": "1",
+    "wait_ms": 2000
+  },
+  {
+    "key": "1",
+    "wait_ms": 500
+  }
+]

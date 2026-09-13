@@ -19,3 +19,16 @@ Build attachment and capability through useful local quests, rewards and returns
 After the bounded starter chain is implemented, ask a fresh and returning character to identify the goal/reward, complete the two compatible objectives, return, equip an upgrade and explain what changed. Try sword and bow. Record confusion, time spent finding targets/services, perceived impact, ordinary-fight enjoyment and whether the next outing feels desirable. Keep player observations separate from proposed fixes.
 
 No new human playtest, RTX 3080 frame-rate benchmark or physical-device qualification occurred during repository bootstrap. Automated journeys/browser assertions are engineering evidence, recorded separately.
+
+## Starter implementation evidence, 2026-09-12
+
+No new Dom playtest has occurred. Fresh blade and command-crafted bow complete Oren's outing through accepted rules and visible UI. A newly earned four-chapter Dawn's edge + keeper coat + chime clasp loadout receives the finite 42→44 temper. These automated tactics do not establish enjoyment.
+
+Use a separate test profile/origin and the labelled fixtures in CURRENT_STATE. Complete the two goals, return, deliberately choose/equip, then hit the practice bundle. For the returning case choose a temper on the existing weapon. Enemies do not scale to equipped power.
+
+| Case | Did you know where to go? | Did fights feel better? | Did the reward make you want another outing? |
+|---|---|---|---|
+| Fresh kit | Pending Dom | Pending Dom | Pending Dom |
+| Returning campaign | Pending Dom | Pending Dom | Pending Dom |
+
+Real-time automated footage and the separate hardware report are linked from the implementation results. Software CI, GPU measurements, human enjoyment and personal saves remain different claims.
