@@ -44,7 +44,7 @@ class RPGUI{
    <section id="quest-tracker" aria-label="Tracked quest"><div class="tracker-switch">${button('Story','track','story')}${button('Homestead','track','homestead')}</div><button id="tracked-open"><small id="tracked-chapter"></small><strong id="tracked-title"></strong><span id="tracked-detail"></span><i id="tracked-progress"></i></button></section>
    <section id="target-frame" hidden aria-label="Selected enemy"><div id="target-icon">${icon('shield')}</div><div><small id="target-rank"></small><strong id="target-name"></strong><div class="target-health"><i id="target-health-fill"></i></div><span id="target-state"></span></div><button id="target-clear" aria-label="Clear target">×</button></section>
    <section id="beacon-tracker" hidden aria-label="Beacon defense"><small>CHAPTER III · THE BEACON ANSWERS</small><strong id="beacon-phase"></strong><div class="ward-meter"><i id="ward-fill"></i></div><span id="beacon-status"></span><button id="beacon-menu">Approach & speak · E</button></section>
-   <div class="camera-presets" aria-label="Camera presets">${button('Adventure','camera','adventure')}${button('Follow','camera','follow')}${button('Tactical','camera','tactical')}${button('Wide','camera','wide')}</div>
+   <div class="camera-presets" aria-label="Camera styles: V switches, R resets the current view">${button('3rd person','camera','adventure')}${button('Diorama','camera','follow')}${button('Tactical','camera','tactical')}${button('Wide','camera','wide')}</div>
    <div id="enemy-health" aria-hidden="true"></div><div id="combat-numbers" aria-hidden="true"></div>
    <section id="skillbar" aria-label="Combat skill bar">
     <button id="health-orb" title="Character & equipment"><b id="rpg-health">100</b><small>HEALTH</small></button>
@@ -133,8 +133,8 @@ class RPGUI{
   if(k==='j'||k==='u'||k==='8'){this.open('journal');return true;}
   if(k==='k'||k==='9'){this.open('craft');return true;}
   if(k==='o'){this.api.openPanel('inhabitants');return true;}
-  if(k==='r'){this.api.camera('adventure');return true;}
-  if(k==='['||k===']'){this.api.rotate(k==='['?-.7854:.7854);return true;}
+  if(k==='r'){if(!this.api.panel())this.api.resetCamera();return true;}
+  if(k==='['||k===']'){if(this.api.panel())return true;this.api.rotate(k==='['?-.7854:.7854);return true;}
   return false;
  }
  intercept(name){const map={armory:'craft',craft:'craft',pack:'bag',adventure:'journal',journey:'journal'};if(map[name]){if(name==='journey')this.quest='homestead';this.open(map[name]);return true;}return false;}

@@ -1,0 +1,22 @@
+[
+  {"evaluate":"Realm.test.view({yaw:.6,elevation:.25,distance:6});Realm.test.render()","wait_ms":1800},
+  {"key":"v","wait_ms":2200},
+  {"key":"v","wait_ms":1800},
+  {"key":"e","wait_ms":900},
+  {"scroll":".starter-rewards","wait_ms":1500},
+  {"click":"[data-rpg=\"starter-accept\"]","wait_ms":500},
+  {"click":"#rpg-close"},
+  {"walk":[15,7]},
+  {"key":"e","wait_ms":1000},
+  {"evaluate":"Realm.test.view({yaw:0,elevation:.24,distance:8});Realm.test.render()","wait_ms":1500},
+  {"walk":[-7,3]},
+  {"key":"e","wait_ms":350},
+  {"key":"v","wait_ms":1000},
+  {"fight":"river-skitter-west","wait_ms":700},
+  {"key":"v","wait_ms":1600},
+  {"walk":[5,-3]},
+  {"key":"e","wait_ms":300},
+  {"fight":"river-skitter-east","wait_ms":800},
+  {"key":"v","wait_ms":2000},
+  {"key":"v","wait_ms":2000}
+]

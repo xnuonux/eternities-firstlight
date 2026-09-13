@@ -34,3 +34,12 @@ Dom's new request authorizes a bounded camera/graphics pass from PR #5, without 
 - Static opaque geometry blocks the camera by default, with explicit opt-out; dynamic construction and mine blocks opt in. Animated foliage cuts away. Conservative bounds may shorten the view earlier than an exact mesh intersection.
 - Camera preferences are optional presentation data on world schema/key9; no adventure/quest/XP/ownership migration. Reduced motion disables camera smoothing. No camera shake, automatic orbit or speed-dependent FOV.
 - Media and GPU evidence must identify the rendered source hash, fixture, automation method and hardware. Human camera comfort and the earlier fresh/returning outing questions stay pending.
+
+## Interchangeable styles, 2026-09-13
+
+Dom explicitly wants both 2.5D diorama and third-person views available in this prototype. `gameplay/interchangeable-views` continues from PR #6 at `117ec56c9cd8b24b1f81f43e38422d49c3db6880`.
+
+- V swaps third person and the last selected overhead variant; visible controls expose all four modes. R resets the current mode, replacing the prior always-third-person reset behavior. Menus and text input consume camera shortcuts.
+- Each mode stores bounded orbit/pitch and distance or scene-relative zoom in optional `cameraViews` version 1. Rendering fits interior/viewport limits without changing the stored zoom intent. Unknown or invalid profiles safely fall back independently; save schemas and browser keys remain unchanged.
+- Third-person FOV and diorama zoom remain distinct controls. Switching preserves combat intent and progression, and does not follow a new movement path or reset the quest.
+- The user's visual approval authorizes this continuation. Fresh/returning enjoyment, comfortable framing and pacing still require human observations.
