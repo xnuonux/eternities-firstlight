@@ -27,6 +27,23 @@ try:
         def diag():return ev('Realm.diagnostics')
         def render():ev('Realm.test.render()')
         def view(**kw):ev('(v)=>Realm.test.view(v)',kw);render()
+        def real_walk(axis):
+            # Real keyboard + normal RAF: slow software renderers may not draw a
+            # movement frame during a fixed wall-clock hold. Wait for displacement.
+            origin=diag()['adventure']['player'];ev('Realm.test.pause(false)');page.keyboard.down('w')
+            try:
+                observed=ev('''([axis,origin])=>new Promise(resolve=>{
+                    const begun=performance.now();let frames=0;
+                    function poll(){frames++;const player=Realm.diagnostics.adventure.player;
+                        const reached=Math.abs(player[axis]-origin)>=.3,elapsed_ms=performance.now()-begun;
+                        if(reached||elapsed_ms>30000)resolve({player,frames,elapsed_ms,reached});
+                        else requestAnimationFrame(poll);}
+                    requestAnimationFrame(poll);})''',[axis,origin[axis]])
+                report.setdefault('physical_walks',[]).append({'axis':axis,'origin':origin,**observed})
+                if not observed['reached']:raise AssertionError(f'No real keyboard movement before timeout: {observed}')
+            finally:
+                page.keyboard.up('w');ev('Realm.test.pause(true)')
+            return diag()['adventure']['player']
         def walk(x,z):
             check(f'Accepted route {x},{z}',ev('([x,z])=>Realm.test.move(x,z)',[x,z])['ok'])
             ev('()=>{for(let i=0;i<6000&&Realm.test.path.length;i++)Realm.test.step(.05);Realm.test.step(.05);Realm.test.pause(true);Realm.test.render()}')
@@ -37,10 +54,10 @@ try:
         check('Right drag orbits without issuing movement',abs(diag()['camera']['yaw']-yaw)>.4 and not ev('Realm.test.path.length') and before==diag()['adventure']['player'])
         distance=diag()['camera']['distance'];page.mouse.wheel(0,450);render();check('Wheel changes distance without FOV pumping',diag()['camera']['distance']>distance and diag()['camera']['fov']==60)
         view(yaw=0,elevation=.28,distance=7.5)
-        ev('Realm.test.pause(false)');page.keyboard.down('w');page.wait_for_timeout(480);page.keyboard.up('w');ev('Realm.test.pause(true)');after=diag()['adventure']['player']
+        after=real_walk('z')
         check('Real W input walks forward relative to the camera',after['z']<before['z']-.2 and abs(after['x']-before['x'])<.1)
         view(yaw=math.pi/2)
-        ev('Realm.test.pause(false)');page.keyboard.down('w');page.wait_for_timeout(480);page.keyboard.up('w');ev('Realm.test.pause(true)');side=diag()['adventure']['player']
+        side=real_walk('x')
         check('Orbit changes real WASD world direction',side['x']<after['x']-.2 and abs(side['z']-after['z'])<.1)
         view(yaw=0,elevation=.18);before=diag()['adventure']['player'];page.mouse.click(800,115);render()
         check('Sky click is ignored without an invalid path or error',not ev('Realm.test.path.length') and before==diag()['adventure']['player'] and not diag()['errors'])

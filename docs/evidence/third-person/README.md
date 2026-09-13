@@ -8,7 +8,7 @@ Rendered source: `3b30949682eed0723bb517772a7898b4f5125c0d`. HTML SHA-256: `7d70
 
 - [Recording receipt](GAMEPLAY_RECORDING.json): source/fixture hashes, actions, actual end-state, renderer and empty browser-error list. Original capture path is retained for local traceability; the portable video is linked above.
 - [GPU report](GPU_REPORT.json) and [scene setup](gpu-scenes.json): a separate 1920×1080 balanced-quality measurement, hardware RTX 3080/ANGLE D3D11 explicitly confirmed. Three 900-interval samples; p50 6.9 ms, p95 7.0 ms, max 7.1 ms, no interval over 33.3 ms. This is headless RAF timing, not GPU render duration or a general FPS guarantee.
-- [Camera UI report](CAMERA_BROWSER_REPORT.json): 36 software-Chromium checks at the rendered source, with normal RAF for physical input and labelled accelerated walking for setup. The final full clone/CI receipt is on the implementation PR.
+- [Camera UI report](CAMERA_BROWSER_REPORT.json): 36 software-Chromium checks at the rendered source, with normal RAF for physical input and labelled accelerated walking for setup. The real keyboard holds wait for observed displacement with a bounded timeout and record their timing. [Synthetic slow-RAF reproduction](CI_TIMING_REPRODUCTION.json) documents why the first hosted run's fixed 480 ms hold was unreliable. The final full clone/CI receipt is on the implementation PR.
 
 These unedited frame extractions were visually inspected:
 

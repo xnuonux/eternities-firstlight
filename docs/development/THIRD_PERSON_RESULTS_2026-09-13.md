@@ -34,6 +34,8 @@ After the final visual refinement, the targeted camera/geometry cases passed and
 
 Initial camera unit tests demonstrated four intended failures before implementation. During browser development, a supposed clear direction actually faced another building, and a paused fixture correctly refused quest entry. The tests now use an observed clear direction and resume before gameplay actions; no collision or pause rule was bypassed. A renderer review proposed opt-in for all static geometry; that would disable existing building clearance, so the deliberate static/default and dynamic/opt-in distinction was documented instead.
 
+The first pushed head `a78b9477ee61dcc4552ee0881f0058312d51abb4` passed its entire fresh remote-clone gate, but hosted run `34748091961` exposed a camera-test timing assumption: a fixed 480 ms key hold could contain no movement frame on slow software rendering. A labelled local reproduction delaying RAF scheduling by 1000 ms observed zero movement with the old hold and 0.32 units with a condition-based hold. The test now holds a real keyboard key until at least 0.3 units of movement is observed, bounded at 30 seconds, records elapsed time/frame count, and keeps the original direction assertions. Production RAF/movement, source and footage are unchanged. The final PR receipt records the subsequent fresh-clone and hosted outcomes, without hiding the first failure.
+
 See [actual footage, frames and provenance](../evidence/third-person/README.md). The recording uses normal RAF, accepted commands and visible UI on a command-earned fresh-kit world. Camera choices are scripted. It is an engineering playthrough, not a human pacing/comfort test.
 
 ## Desktop sample

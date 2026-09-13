@@ -1,0 +1,24 @@
+{
+  "label": "synthetic 1000ms RAF scheduling delay; real keyboard and production movement",
+  "before": {
+    "x": 2.5,
+    "z": 6,
+    "yaw": 0
+  },
+  "fixed_480ms": {
+    "x": 2.5,
+    "z": 6,
+    "yaw": 0
+  },
+  "conditional": {
+    "player": {
+      "x": 2.5,
+      "z": 5.68,
+      "yaw": 3.141592653589793
+    },
+    "frames": 1,
+    "elapsed_ms": 1013
+  },
+  "fixed_passed": false,
+  "conditional_passed": true
+}
