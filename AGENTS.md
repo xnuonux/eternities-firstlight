@@ -32,3 +32,7 @@ The current portable verifier includes fresh starter blade/bow and a newly earne
 Read the 2026-09-13 task/results notes. Adventure is true perspective; Follow/Tactical/Wide retain orthographic contracts. Preserve inverse ground picking, behind-eye/sky rejection, visible-body selection, camera-relative movement, text/menu input boundaries and stationary attacks. Camera mode/FOV are optional world9 preferences; no progression migration.
 
 Static opaque shapes block camera clearance by default; dynamic construction/mine solids opt in with `cameraSolid`. Exclude actors, effects, ghosts and wind foliage. The camera browser gate belongs in the portable verifier and CI. Actual footage/desktop measurements remain distinct from software WebGL tests and human comfort. Extend the current branch without reimporting archives or merging/deploying automatically.
+
+## Interchangeable views
+
+Dom wants both diorama and third person retained. V swaps styles; R resets the current mode. Optional `cameraViews` version 1 holds per-mode framing. Keep orthographic user zoom separate from the fitted scene half-width so interior/viewport limits never overwrite outdoor framing. Preserve the internal mode IDs and world9/adventure6/starter1 contracts. Validate older/invalid preferences without discarding game state. The 51-case camera browser gate includes switching/reload, scene clamps, live combat intent and actual notebook/menu input; current rules total 444. Report fresh results, not these counts alone.
