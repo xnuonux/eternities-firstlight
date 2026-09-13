@@ -1683,7 +1683,7 @@ class WorldArt{
   }
   add('round',0,1.35+bob,.15,.052,.061,.067,skin);
   add('box',0,.72+bob,.025,.36,.064,.30,0x70614c);add('box',0,.72+bob,.183,.076,.077,.026,0xc6af7e);
-  if(player){const cloak=profile?X.CLOAKS[profile.cloak]:0xdbc99c;for(let i=0;i<3;i++)add('round',0,1.03-i*.18+bob,-.17-i*.018,.40+i*.055,.34,.12,cloak);add('round',.08,1.12+bob,.15,.067,.065,.04,0xddc58f);out.disc.push({p:[x,base+.014,z],s:[.88,1,.88],c:0xcebc87,rough:.65,em:.05});}
+  if(player){const cloak=profile?X.CLOAKS[profile.cloak]:0xdbc99c;add('round',0,.84+bob,-.19,.49,.72,.12,cloak);add('round',.08,1.12+bob,.15,.067,.065,.04,0xddc58f);out.disc.push({p:[x,base+.014,z],s:[.88,1,.88],c:0xcebc87,rough:.65,em:.05});}
   if(role==='musician'){add('octa',.31,.8,.22,.34,.48,.14,0xbd955f);add('box',.38,1.08,.24,.06,.47,.06,0x806747);}
   if(role==='researcher')add('box',.27,.9,.23,.24,.30,.07,0xb8c8be);
  }
@@ -1890,7 +1890,7 @@ function draw(out,sim,t){let s=sim.state.adventure;if(!s)return;let r=A.runtime(
  }
  if(A.combatScene(sim)){
   for(const e of r.enemies){if(e.hp<=0||e.kind==='practice'||e.eventEnemy||e.custom==='bell')continue;const starts=Object.fromEntries(Object.entries(out).map(([k,v])=>[k,v.length]));let flash=e.flash>s.elapsed,body=flash?0xf8e4b9:e.kind==='boss'?0x688f83:e.kind==='sentinel'?0x9e92b8:e.custom==='river-bristle'?0x866747:0x7e8670;
-   if(e.kind==='skitter'){add('octa',e.x,2.1,e.z,.95,.76,1.22,body);add('octa',e.x,2.22,e.z+.48,.55,.40,.5,0xbb987b);for(let i=0;i<6;i++){let a=i*TAU/6;box(e.x+Math.sin(a)*.55,1.74,e.z+Math.cos(a)*.45,.12,.53,.15,0x938670,{r:[.4,a,.3]});}for(const dx of[-.18,.18])add('round',e.x+dx,2.29,e.z+.71,.095,.095,.08,0xf9bf9a,{em:1});}
+   if(e.kind==='skitter'){add('round',e.x,2.1,e.z,.95,.84,1.22,body);add('round',e.x,2.22,e.z+.48,.55,.40,.5,0xbb987b);for(let i=0;i<6;i++){let a=i*TAU/6;add('round',e.x+Math.sin(a)*.55,1.74,e.z+Math.cos(a)*.45,.12,.53,.15,0x938670,{r:[.4,a,.3]});}for(const dx of[-.18,.18])add('round',e.x+dx,2.29,e.z+.71,.095,.095,.08,0xf9bf9a,{em:1});}
    else if(e.kind==='sentinel'){add('octa',e.x,2.7+Math.sin(t*1.8)*.14,e.z,1.2,1.9,1.2,body,{r:[0,t*.25,0],rough:.25});for(let i=0;i<4;i++){let a=i*1.57+t*.65;add('octa',e.x+Math.sin(a)*.9,2.6,e.z+Math.cos(a)*.9,.20,.65,.20,0xddc59b,{em:.9});}}
    else if(e.kind==='charger'){add('round',e.x,2.55,e.z,2.2,1.8,2.8,body);add('octa',e.x,2.8,e.z+1.15,1.3,1.1,1.2,0xb6a480);for(const sign of[-1,1]){add('round',e.x+sign*.9,3.2,e.z+.9,.55,.83,.78,0xd8c8a0);box(e.x+sign*.65,1.95,e.z+.65,.32,1,.37,0x68634e);box(e.x+sign*.65,1.95,e.z-.85,.32,1,.37,0x68634e);add('round',e.x+sign*.30,3.03,e.z+1.67,.10,.10,.08,0xf5c188,{em:1});}for(let i=0;i<5;i++)add('octa',e.x,3.1,e.z-.9+i*.35,.42,.7,.42,0xc79874,{em:.22});}
    else{add('round',e.x,2.75,e.z,1.85,1.7,2.7,body);add('octa',e.x,3.48,e.z+1.05,.91,1.4,.85,body);for(const dx of[-.64,.64])for(const dz of[-.72,.75])box(e.x+dx,2,e.z+dz,.26,1.3,.3,0x55796e,{r:[Math.sin(t*2+dx+dz)*.08,0,0]});for(const sign of[-1,1]){box(e.x+sign*.48,4.35,e.z+.98,.15,1.7,.15,0xccbf96,{r:[0,0,-sign*.40]});for(let j=0;j<3;j++)box(e.x+sign*(.56+j*.18),4.12+j*.43,e.z+1,.56,.11,.12,0xe0cda1,{r:[0,0,sign*.2]});}for(let i=0;i<5;i++)add('octa',e.x+Math.sin(i*2.1)*.6,3.25,e.z-.8+i*.35,.36,.75,.36,e.hp<e.maxHP/2?0xc392bc:0xabc5bb,{em:.45});for(const dx of[-.26,.26])add('round',e.x+dx,3.6,e.z+1.48,.13,.13,.13,0xf2dab0,{em:1});}
@@ -2687,8 +2687,11 @@ class StarterUI{
   if(this.rpg.quest==='starter'){const next=!q.accepted?'Speak to Oren at the workshop':q.reward?'Try your reward, then choose another outing':Q.complete(a)?'Return to Oren and choose your reward':q.bundles.length<3?'Recover the riverbank supplies':'Drive away Old Bristle';$('#tracked-chapter').textContent='CLOSE TO HOME · OPTIONAL';$('#tracked-title').textContent=next;$('#tracked-detail').textContent=q.reward?'Your old equipment is kept. Character shows the real changes.':'M maps the route · J keeps all objectives';$('#tracked-progress').textContent=q.bundles.length+'/3 bundles · '+(a.defeated.includes('river-old-bristle')?'beast cleared':'beast remains');}
   const e=T.selected(sim);if(e?.custom==='river-bristle')$('#target-state').textContent=(e.mode==='windup'?'Marked strike · Brace or move clear ('+e.timer.toFixed(1)+'s)':e.mode==='recover'?'Recovery opening · strike now':Math.ceil(e.hp)+' / '+e.maxHP)+' · '+T.readiness(sim);
   if(e?.id===Q.PRACTICE.id&&A.runtime(sim).training)$('#target-state').textContent='Last confirmed impact: '+A.runtime(sim).training.lastDamage+' · no XP or loot';
-  const root=$('#starter-labels');root.replaceChildren();if(sim.room!==Q.ROOM)return;
-  for(const p of Q.points(sim)){const pos=this.rpg.api.project(p.x,p.kind==='practice'?3.5:2.5,p.z);if(!pos?.visible)continue;const label=document.createElement('span');label.textContent=p.name;label.style.left=pos.x+'px';label.style.top=pos.y+'px';root.append(label);}
+  const root=$('#starter-labels');root.replaceChildren();if(sim.room!==Q.ROOM||!sim.state.settings.labels||this.rpg.dialog.open)return;
+  const perspective=sim.presentation?.perspective,shown=[],points=Q.points(sim).map(p=>({...p,d:Math.hypot(p.x-sim.state.player.x,p.z-sim.state.player.z)})).sort((a,b)=>a.d-b.d);
+  for(const p of points){if(perspective&&(p.d<2.4||p.d>22||shown.length>=3))continue;const pos=this.rpg.api.project(p.x,p.kind==='practice'?3.5:2.5,p.z);if(!pos?.visible)continue;
+   const width=Math.min(250,p.name.length*7+22);if(perspective&&shown.some(q=>Math.abs(q.x-pos.x)<(q.width+width)/2+8&&Math.abs(q.y-pos.y)<30))continue;
+   const label=document.createElement('span');label.textContent=p.name;label.style.left=pos.x+'px';label.style.top=pos.y+'px';root.append(label);shown.push({...pos,width});}
  }
 }
 G.RealmStarterUI={StarterUI,mapCanvas,mapSVG,projection};

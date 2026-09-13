@@ -136,7 +136,7 @@ class WorldArt{
   }
   add('round',0,1.35+bob,.15,.052,.061,.067,skin);
   add('box',0,.72+bob,.025,.36,.064,.30,0x70614c);add('box',0,.72+bob,.183,.076,.077,.026,0xc6af7e);
-  if(player){const cloak=profile?X.CLOAKS[profile.cloak]:0xdbc99c;for(let i=0;i<3;i++)add('round',0,1.03-i*.18+bob,-.17-i*.018,.40+i*.055,.34,.12,cloak);add('round',.08,1.12+bob,.15,.067,.065,.04,0xddc58f);out.disc.push({p:[x,base+.014,z],s:[.88,1,.88],c:0xcebc87,rough:.65,em:.05});}
+  if(player){const cloak=profile?X.CLOAKS[profile.cloak]:0xdbc99c;add('round',0,.84+bob,-.19,.49,.72,.12,cloak);add('round',.08,1.12+bob,.15,.067,.065,.04,0xddc58f);out.disc.push({p:[x,base+.014,z],s:[.88,1,.88],c:0xcebc87,rough:.65,em:.05});}
   if(role==='musician'){add('octa',.31,.8,.22,.34,.48,.14,0xbd955f);add('box',.38,1.08,.24,.06,.47,.06,0x806747);}
   if(role==='researcher')add('box',.27,.9,.23,.24,.30,.07,0xb8c8be);
  }
