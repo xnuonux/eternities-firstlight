@@ -7,7 +7,7 @@ from pathlib import Path
 from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
 import argparse, hashlib, json, threading, time
 from playwright.sync_api import sync_playwright
-from browser_support import chromium_launch_kwargs
+from browser_support import launch_kwargs
 
 ROOT = Path(__file__).resolve().parents[1]
 class Handler(SimpleHTTPRequestHandler):
@@ -15,13 +15,13 @@ class Handler(SimpleHTTPRequestHandler):
     def log_message(self, *_args): pass
 
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("--frames", type=int, default=300); ap.add_argument("--quality", default="balanced"); ap.add_argument("--output", type=Path, default=Path("evidence10/gpu-frame-report.json")); args=ap.parse_args()
+    ap = argparse.ArgumentParser(); ap.add_argument("--frames", type=int, default=300); ap.add_argument("--quality", default="balanced"); ap.add_argument("--renderer", choices=("software", "hardware"), default="software"); ap.add_argument("--output", type=Path, default=Path("evidence10/gpu-frame-report.json")); args=ap.parse_args()
     html = ROOT / "FIRSTLIGHT_VALLEY.html"; expected = hashlib.sha256(html.read_bytes()).hexdigest()
     server = ThreadingHTTPServer(("127.0.0.1", 0), Handler); threading.Thread(target=server.serve_forever, daemon=True).start()
-    result = {"html_sha256": expected, "origin": f"http://127.0.0.1:{server.server_port}/FIRSTLIGHT_VALLEY.html", "quality": args.quality, "frames_requested": args.frames}
+    result = {"html_sha256": expected, "origin": f"http://127.0.0.1:{server.server_port}/FIRSTLIGHT_VALLEY.html", "quality": args.quality, "renderer_requested": args.renderer, "frames_requested": args.frames}
     try:
         with sync_playwright() as pw:
-            browser = pw.chromium.launch(**chromium_launch_kwargs()); result["browser_version"] = browser.version
+            browser = pw.chromium.launch(**launch_kwargs(args.renderer)); result["browser_version"] = browser.version
             cdp = browser.new_browser_cdp_session(); result["cdp_system_info"] = cdp.send("SystemInfo.getInfo")
             page = browser.new_page(viewport={"width": 1280, "height": 720}); page.add_init_script("window.__ETERNITIES_TEST_MODE=true;"); response = page.goto(result["origin"], wait_until="load"); result["response_sha256"] = hashlib.sha256(response.body()).hexdigest()
             page.wait_for_function("window.Realm"); page.evaluate(f'Realm.test.quality({json.dumps(args.quality)});Realm.test.render()')
