@@ -35,7 +35,7 @@ function draw(out,sim,t){if(sim.room)return;const s=sim.state.sandbox;if(!s)retu
   if(focus){for(let j=0;j<16;j++){let a=j/16*Math.PI*2;box(x+Math.cos(a)*.9,1.31,z+Math.sin(a)*.9,.18,.035,.06,empty?0x8f9b83:0xebd298,{r:[0,-a,0],em:.3});}}
  }
  const building=(p,ghost=false)=>{const w=S.worldCell(p.gx,p.gz),x=w.x,z=w.z,rot=p.rotation*Math.PI/2,deck=s.placed.some(o=>o.gx===p.gx&&o.gz===p.gz&&o.kind==='floor')?.13:0,base=1.3+deck;
-  const b=(dx,y,dz,sx,sy,sz,c,opt={})=>box(x+dx*Math.cos(rot)+dz*Math.sin(rot),y,z-dx*Math.sin(rot)+dz*Math.cos(rot),sx,sy,sz,ghost?(sim.presentation?.blueprint?.valid?0xb4dbb8:0xd18491):c,{...opt,r:[0,rot,0],em:ghost?.28:(opt.em||0)});
+  const b=(dx,y,dz,sx,sy,sz,c,opt={})=>box(x+dx*Math.cos(rot)+dz*Math.sin(rot),y,z-dx*Math.sin(rot)+dz*Math.cos(rot),sx,sy,sz,ghost?(sim.presentation?.blueprint?.valid?0xb4dbb8:0xd18491):c,{...opt,cameraSolid:!ghost&&['masonry','wall','lantern','workbench'].includes(p.kind),r:[0,rot,0],em:ghost?.28:(opt.em||0)});
   if(p.kind==='floor'){for(let j=0;j<5;j++)b(-.62+j*.31,1.36,0,.285,.12,1.56,0xbe9e71,{wet:1});}
   if(p.kind==='masonry'){let y=base+(p.level-.5)*.8;b(0,y,0,1.42,.76,1.42,p.level%2?0xa4b3a4:0xbbc4b3);b(0,y+.4,0,1.46,.04,1.46,0xd5cbb0);}
   if(p.kind==='wall'){for(let j=0;j<5;j++)b(-.62+j*.31,base+.95,0,.285,1.9,.16,0xaf936c);b(0,base+.4,-.12,1.58,.12,.10,0x7a6b51);b(0,base+1.55,-.12,1.58,.12,.10,0x7a6b51);}

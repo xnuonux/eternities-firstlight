@@ -62,8 +62,11 @@ class StarterUI{
   if(this.rpg.quest==='starter'){const next=!q.accepted?'Speak to Oren at the workshop':q.reward?'Try your reward, then choose another outing':Q.complete(a)?'Return to Oren and choose your reward':q.bundles.length<3?'Recover the riverbank supplies':'Drive away Old Bristle';$('#tracked-chapter').textContent='CLOSE TO HOME · OPTIONAL';$('#tracked-title').textContent=next;$('#tracked-detail').textContent=q.reward?'Your old equipment is kept. Character shows the real changes.':'M maps the route · J keeps all objectives';$('#tracked-progress').textContent=q.bundles.length+'/3 bundles · '+(a.defeated.includes('river-old-bristle')?'beast cleared':'beast remains');}
   const e=T.selected(sim);if(e?.custom==='river-bristle')$('#target-state').textContent=(e.mode==='windup'?'Marked strike · Brace or move clear ('+e.timer.toFixed(1)+'s)':e.mode==='recover'?'Recovery opening · strike now':Math.ceil(e.hp)+' / '+e.maxHP)+' · '+T.readiness(sim);
   if(e?.id===Q.PRACTICE.id&&A.runtime(sim).training)$('#target-state').textContent='Last confirmed impact: '+A.runtime(sim).training.lastDamage+' · no XP or loot';
-  const root=$('#starter-labels');root.replaceChildren();if(sim.room!==Q.ROOM)return;
-  for(const p of Q.points(sim)){const pos=this.rpg.api.project(p.x,p.kind==='practice'?3.5:2.5,p.z);if(!pos?.visible)continue;const label=document.createElement('span');label.textContent=p.name;label.style.left=pos.x+'px';label.style.top=pos.y+'px';root.append(label);}
+  const root=$('#starter-labels');root.replaceChildren();if(sim.room!==Q.ROOM||!sim.state.settings.labels||this.rpg.dialog.open)return;
+  const perspective=sim.presentation?.perspective,shown=[],points=Q.points(sim).map(p=>({...p,d:Math.hypot(p.x-sim.state.player.x,p.z-sim.state.player.z)})).sort((a,b)=>a.d-b.d);
+  for(const p of points){if(perspective&&(p.d<2.4||p.d>22||shown.length>=3))continue;const pos=this.rpg.api.project(p.x,p.kind==='practice'?3.5:2.5,p.z);if(!pos?.visible)continue;
+   const width=Math.min(250,p.name.length*7+22);if(perspective&&shown.some(q=>Math.abs(q.x-pos.x)<(q.width+width)/2+8&&Math.abs(q.y-pos.y)<30))continue;
+   const label=document.createElement('span');label.textContent=p.name;label.style.left=pos.x+'px';label.style.top=pos.y+'px';root.append(label);shown.push({...pos,width});}
  }
 }
 G.RealmStarterUI={StarterUI,mapCanvas,mapSVG,projection};

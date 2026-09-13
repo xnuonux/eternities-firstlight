@@ -11,5 +11,5 @@ test('named warning geometry includes the exact rule-defined strike radius',()=>
  const s=sim(),e=A.runtime(s).enemies.find(e=>e.id==='river-old-bristle');e.mode='windup';e.aim={x:-4,z:-14};e.timer=1.25;const out=empty();global.RealmAdventureArt.draw(out,s,0);const ring=out.box.filter(b=>b.c===0xd098c8);assert.ok(ring.length>0);assert.ok(Math.abs(Math.max(...ring.map(b=>Math.hypot(b.p[0]-e.aim.x,b.p[2]-e.aim.z)))-e.telegraphRadius)<1e-8);
 });
 test('riverbank rendering enables existing outdoor water and matches collision obstacles',()=>{
- const s=sim(),calls=[],art={e:{},begin(){},box(){},add(...p){calls.push(p);},tree(){},lamp(){},commit(){}};global.RealmStarterArt.make(art);assert.equal(art.e.isInterior,false);for(const o of Q.OBSTACLES)assert.ok(calls.some(p=>p[0]==='octa'&&p[1]===o.x&&p[3]===o.z&&p[4]===o.r*2));
+ const s=sim(),calls=[],art={e:{},begin(){},box(){},add(...p){calls.push(p);},tree(){},lamp(){},commit(){}};global.RealmStarterArt.make(art);assert.equal(art.e.isInterior,false);for(const o of Q.OBSTACLES)assert.ok(calls.some(p=>p[0]==='round'&&p[1]===o.x&&p[3]===o.z&&p[4]===o.r*2));
 });

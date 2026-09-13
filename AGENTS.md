@@ -26,3 +26,9 @@ The bootstrap authorizes source import, separate portable tooling/CI, continuity
 The riverbank is owned by `starter.js`, `starter-ui.js`, `starter-art.js`; generic adventure/combat/arsenal/core dispatch remains authoritative. Read the dated task/results notes. Preserve stable IDs, adventure-6/starter-1 migration, the 1–5 curve, atomic single reward, weapon identity/socket and existing browser keys.
 
 The current portable verifier includes fresh starter blade/bow and a newly earned four-chapter strongest veteran journey. `--browser` runs six suites including native persistence and starter UI. Report actual counts (432 rules / 147 starter UI checks at this checkpoint). Record real browser footage with fixture/hash/renderer provenance; no concept art or animation substitute. Human feedback remains a separate acceptance step.
+
+## Perspective camera extension
+
+Read the 2026-09-13 task/results notes. Adventure is true perspective; Follow/Tactical/Wide retain orthographic contracts. Preserve inverse ground picking, behind-eye/sky rejection, visible-body selection, camera-relative movement, text/menu input boundaries and stationary attacks. Camera mode/FOV are optional world9 preferences; no progression migration.
+
+Static opaque shapes block camera clearance by default; dynamic construction/mine solids opt in with `cameraSolid`. Exclude actors, effects, ghosts and wind foliage. The camera browser gate belongs in the portable verifier and CI. Actual footage/desktop measurements remain distinct from software WebGL tests and human comfort. Extend the current branch without reimporting archives or merging/deploying automatically.

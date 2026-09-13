@@ -17,7 +17,18 @@ class AdventureUI{
   for(const p of candidates){if(!C.walkable(p.x,p.z,sim.navRoom)||ranged&&!AR.aimClear(sim,p,q))continue;const path=C.pathfind(sim.state.player,p,sim.navRoom);if(!path)continue;let d=0,last=sim.state.player;for(const n of path){d+=Math.hypot(n.x-last.x,n.z-last.z);last=n;}if(!best||d<best.d)best={...p,d};}
   if(!best){this.api.toast('There is no open route yet. Chip an exposed wall to make a passage.');return false;}this.api.walkLocal(best.x,best.z);this.api.closePanel();this.intent={kind,id,q};return true;
  }
- worldClick(p){if(!A.combatScene(this.sim))return false;const s=this.state,r=A.runtime(this.sim),enemy=r.enemies.filter(e=>e.hp>0&&!e.hidden&&Math.hypot(e.x-p.x,e.z-p.z)<1.5).sort((a,b)=>Math.hypot(a.x-p.x,a.z-p.z)-Math.hypot(b.x-p.x,b.z-p.z))[0];
+ screenClick(x,y){
+  if(!A.combatScene(this.sim))return false;
+  const base=this.sim.room?1.58:1.3,candidates=[];
+  for(const e of A.runtime(this.sim).enemies){if(e.hp<=0||e.hidden)continue;
+   const height=e.kind==='boss'?4.8:e.custom==='bell'?3.8:e.eventEnemy?2.2:1.5;
+   const foot=this.api.project(e.x,base+.12,e.z),head=this.api.project(e.x,base+height,e.z);if(!foot?.visible&&!head?.visible)continue;
+   const dx=head.x-foot.x,dy=head.y-foot.y,t=Math.max(0,Math.min(1,((x-foot.x)*dx+(y-foot.y)*dy)/(dx*dx+dy*dy||1))),radius=Math.max(12,Math.hypot(dx,dy)*(e.kind==='boss'?.24:.48));
+   if(Math.hypot(x-foot.x-t*dx,y-foot.y-t*dy)<=radius)candidates.push({e,depth:foot.depth});
+  }
+  candidates.sort((a,b)=>a.depth-b.depth);return candidates.length?this.worldClick(candidates[0].e):false;
+ }
+ worldClick(p){if(!p||!A.combatScene(this.sim))return false;const s=this.state,r=A.runtime(this.sim),enemy=r.enemies.filter(e=>e.hp>0&&!e.hidden&&Math.hypot(e.x-p.x,e.z-p.z)<1.5).sort((a,b)=>Math.hypot(a.x-p.x,a.z-p.z)-Math.hypot(b.x-p.x,b.z-p.z))[0];
   if(enemy){if(this.run('target-select',{id:enemy.id},true).ok){this.intent=null;this.sim.playerPath=[];const t=G.RealmCombat.runtime(this.sim);t.auto=true;}return true;}if(this.sim.room==='mine'&&!s.companion.bonded&&Math.hypot(p.x-A.FOX.x,p.z-A.FOX.z)<1.1){this.approach(A.FOX,'rescue');return true;}
   const drop=s.drops.map(id=>A.roster(this.sim).find(e=>e.id===id)).filter(Boolean).find(e=>Math.hypot(e.x-p.x,e.z-p.z)<.8);if(drop){this.approach(drop,'loot',drop.id);return true;}
   if(this.sim.room==='riverbank'||this.sim.room==='range'||this.sim.room==='crossing'){this.intent=null;return false;}if(this.sim.room==='road'){const q=R.CACHES.find(c=>s.road.revealed.includes(c.id)&&!s.road.claimed.includes(c.id)&&Math.hypot(p.x-c.x,p.z-c.z)<1.1);if(q){this.approach(q,'road-cache',q.id);return true;}this.intent=null;return false;}

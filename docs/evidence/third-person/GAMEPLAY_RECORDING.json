@@ -1,0 +1,260 @@
+{
+  "origin": "http://127.0.0.1:65351/FIRSTLIGHT_VALLEY.html",
+  "html_sha256": "7d7084fffddf9ad5a2ac657627a2545f3c75345aef27b43c9342ced0840f6bd8",
+  "default_duration_requested_seconds": null,
+  "performance_claim": false,
+  "browser_version": "153.0.8010.36",
+  "fixture": "docs\\evidence\\starter-region\\FRESH_KIT_EARNED.json",
+  "fixture_sha256": "2bb8fc5c20e692a7528cb8dd336592308eda3048fab7349e0ad4ea9ec2da9a9f",
+  "method": "Automated accepted commands and UI on normal real-time RAF; command-earned checkpoint, no gameplay state grants; video is not an FPS measurement.",
+  "actions": [
+    {
+      "action": {
+        "evaluate": "Realm.test.view({preset:'adventure',yaw:.6,elevation:.25,distance:6});Realm.test.render()",
+        "wait_ms": 1600
+      },
+      "result": null
+    },
+    {
+      "action": {
+        "evaluate": "Realm.test.view({yaw:0,elevation:.24,distance:8,fov:66});Realm.test.render()",
+        "wait_ms": 1500
+      },
+      "result": null
+    },
+    {
+      "fight": "river-skitter-west",
+      "defeated": true,
+      "seconds": 0.7014000000059605,
+      "guards": 1
+    },
+    {
+      "fight": "river-skitter-east",
+      "defeated": true,
+      "seconds": 0.6881999999880791,
+      "guards": 0
+    },
+    {
+      "action": {
+        "evaluate": "Realm.test.view({yaw:.35,elevation:.3,distance:6.5,fov:60});Realm.test.render()"
+      },
+      "result": null
+    },
+    {
+      "fight": "river-old-bristle",
+      "defeated": true,
+      "seconds": 2.8210999999940394,
+      "guards": 1
+    },
+    {
+      "action": {
+        "evaluate": "Realm.test.adventure('video-practice','target-select',{id:'river-practice'})"
+      },
+      "result": {
+        "ok": true,
+        "text": "Target: Oren\u2019s practice bundle"
+      }
+    }
+  ],
+  "browser_errors": [],
+  "final_diagnostics": {
+    "version": "10.0.0",
+    "mode": "webgl2",
+    "scene": "riverbank",
+    "networkDependencies": 0,
+    "liveAI": false,
+    "multiplayer": false,
+    "adventure": {
+      "tactics": {
+        "scene": "riverbank",
+        "target": "river-practice",
+        "auto": false,
+        "nextAttack": 0,
+        "guardUntil": 29.532100000001048,
+        "shield": 0,
+        "shieldUntil": 0,
+        "cooldowns": {
+          "guard": 34.53210000000105,
+          "insight": 0,
+          "spirit": 0
+        },
+        "hits": [
+          {
+            "x": -5,
+            "z": 10,
+            "n": 22,
+            "at": 44.337600000000464,
+            "id": 28
+          }
+        ],
+        "serial": 28,
+        "windup": null,
+        "motion": {
+          "style": "blade",
+          "at": 44.337600000000464
+        }
+      },
+      "beacon": {
+        "phase": "idle",
+        "time": 0,
+        "wave": 0,
+        "ward": 100,
+        "actors": [],
+        "serial": 0,
+        "notice": "",
+        "repairAt": 0,
+        "maraAt": 0,
+        "ilanAt": 0,
+        "playerRepairAt": 0,
+        "defeats": 0
+      },
+      "crossing": {
+        "room": "riverbank",
+        "tones": [],
+        "seek": false,
+        "rangAt": -10,
+        "tone": null,
+        "toneSerial": 0
+      },
+      "player": {
+        "x": -5,
+        "z": 11.5,
+        "yaw": 3.141592653589793
+      },
+      "paused": false,
+      "intent": null,
+      "stats": {
+        "level": 2,
+        "attack": 22,
+        "defense": 1,
+        "maxHP": 110
+      },
+      "weapon": {
+        "style": "blade",
+        "reach": 2.65,
+        "cooldown": 0.52,
+        "stamina": 0,
+        "primary": "Sunstrike",
+        "special": "Dawn sweep"
+      },
+      "arrows": [],
+      "range": {
+        "active": false,
+        "start": 0,
+        "hits": {},
+        "shots": 0,
+        "message": "A calm place to learn a different rhythm."
+      },
+      "enemies": [
+        {
+          "id": "river-practice",
+          "x": -5,
+          "z": 10,
+          "hp": 100,
+          "maxHP": 100,
+          "hidden": false,
+          "eventEnemy": false,
+          "kind": "practice",
+          "ringMode": null,
+          "custom": null,
+          "mode": "idle",
+          "timer": 0,
+          "aim": null
+        }
+      ],
+      "companion": {
+        "room": "riverbank",
+        "x": 0,
+        "z": 12,
+        "yaw": 3.141592653589793,
+        "path": [],
+        "nextPath": 0,
+        "nextHit": 0,
+        "seek": null,
+        "status": "Beside you"
+      }
+    },
+    "sandbox": {
+      "bridge": false,
+      "objects": 0,
+      "elapsed": 45.12930000000037,
+      "autoGather": null,
+      "buildMode": null
+    },
+    "saveState": "saved",
+    "fps": 143.9946914399469,
+    "errors": [],
+    "camera": {
+      "yaw": 6.283185307179586,
+      "elevation": 0.28,
+      "half": 17,
+      "distance": 7.5,
+      "actualDistance": 7.499999709913182,
+      "fov": 60,
+      "center": [
+        -4.999999999964539,
+        3.0700000000000003,
+        11.500000000003547
+      ],
+      "overview": false,
+      "preset": "adventure",
+      "tour": false,
+      "projection": "perspective",
+      "eye": [
+        -4.99999999996454,
+        5.142667284063723,
+        18.707915508544815
+      ],
+      "target": [
+        -4.999999999964539,
+        3.0700000000000003,
+        11.500000000003547
+      ]
+    },
+    "metrics": {
+      "drawCalls": 23,
+      "instances": 905,
+      "triangles": 79160
+    },
+    "reflection": {
+      "method": "world-plane P*V*H",
+      "height": 0.01,
+      "horizontalFlip": false
+    },
+    "cutaway": {
+      "enabled": true,
+      "focus": [
+        -5,
+        2.45,
+        11.5
+      ]
+    },
+    "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3080 (0x00002216) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "music": {
+      "playing": false,
+      "scoreRevision": 0,
+      "playingRevision": -1,
+      "step": -1
+    },
+    "gathering": null,
+    "layoutRevision": 0,
+    "audio": {
+      "enabled": false,
+      "state": "not-created"
+    }
+  },
+  "final_quest": {
+    "version": 1,
+    "accepted": true,
+    "bundles": [
+      "river-rope",
+      "river-tools",
+      "river-canvas"
+    ],
+    "reward": {
+      "choice": "oren_sunblade",
+      "weapon": "oren_sunblade"
+    }
+  },
+  "video_path": "C:\\dev\\firstlight-artifacts\\third-person-2026-09-13\\recording-final\\1134a411495109eb5d368dc089536923.webm"
+}

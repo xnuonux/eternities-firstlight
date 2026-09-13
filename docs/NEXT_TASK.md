@@ -1,11 +1,11 @@
-# Next task: play the ordinary outing and review its implementation
+# Next task: play the new view through the ordinary outing
 
-The bounded starter-region milestone is implemented on `gameplay/starter-region-progression`, stacked against unmerged PR #4. Start at [CURRENT_STATE.md](CURRENT_STATE.md) and [results](development/STARTER_REGION_RESULTS_2026-09-12.md). Fetch and inspect latest PR comments before changing code; do not replace this tree with another archive.
+Dom requested the third-person camera and graphics pass on 2026-09-13. It is implemented on `gameplay/third-person-visual-polish`, stacked against unmerged PR #5. Start at [CURRENT_STATE](CURRENT_STATE.md) and [results](development/THIRD_PERSON_RESULTS_2026-09-13.md). Fetch current branches and comments before extending the work.
 
-Dom plays one fresh-kit case and one returning strongest-gear case. The three questions are: **did you know where to go, did the fights feel better, and did the reward make you want another outing?** Record weapon, confusion, unnecessary walking, named tell/recovery and perceived reward difference in PLAYTEST_NOTES. The 10–20 minute outing remains a pacing hypothesis, not a verified duration.
+Play one fresh-kit case and one returning campaign case on an isolated origin. Start with Adventure at 60 vertical FOV, try 70–80, then compare Follow/Tactical. Record whether the character stays readable, clearance causes uncomfortable pull-in, and the route remains clear during combat. R resets behind the character; drag orbits; wheel changes distance. Name concrete confusing shapes or views when discussing the procedural art.
 
-Astra reviews the diff, fixed reward matrix, migration/atomicity boundaries, exact results and actual footage. Working names/dialogue/tuning remain provisional. Automated checks do not approve taste or enjoyment.
+The original outing questions remain: **did you know where to go, did fights feel better, and did the reward make you want another outing?** Add camera distance/FOV and any obstruction to PLAYTEST_NOTES. A short automated recording is not the proposed 10–20 minute human pacing test.
 
-After feedback, fix concrete route/reward/combat friction before extending the chain. A second outing needs its own bounded purpose and acceptance note. A 1–10 curve requires a separate banked-XP migration decision; do not reset/rescale XP or silently promote existing saves.
+Astra can review the camera/picking/preference diff, unchanged gameplay rules, footage and fresh verification receipt in the implementation PR. No taste approval or human combat enjoyment follows from automated checks.
 
-Keep the browser, original optional story order, creative/home/companion/soul systems and old save keys. No automatic main merge, public deployment, release tag, recurring automation, new realm, sanctuary/Heaven move or Unreal rewrite follows from this checkpoint.
+Prioritize concrete camera, route, reward or combat friction before a larger asset pipeline or second quest. Keep the original optional story order, browser target, creative/home/companion systems and explicit soul choices. A 1–10 curve needs a separate banked-XP migration decision. Main merge, release tags, public deployment, recurring work, a new realm and an Unreal rewrite remain outside this checkpoint.

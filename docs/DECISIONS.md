@@ -24,3 +24,13 @@ Dom explicitly accepted Astra's PR #4 assignment from reviewed base `aa4e2105621
 - Click selects stationary autoattack without forcing pursuit. Reduced motion suppresses added recoil, weapon displacement and number drift. No camera shake.
 
 Names/dialogue/art/tuning and 10–20 minute pacing remain provisional for founder playtest. Main stays unmerged; no public deployment or background automation.
+
+## Third-person view, 2026-09-13
+
+Dom's new request authorizes a bounded camera/graphics pass from PR #5, without waiting for another archive. `gameplay/third-person-visual-polish` remains stacked against the unmerged gameplay branch.
+
+- Adventure uses true perspective, default 60 vertical FOV with a visible 45–80 control. Follow/Tactical/Wide remain orthographic. R resets behind the character. These numeric/art choices are Codex implementation choices for founder playtest.
+- The same WebGL2 renderer, scene geometry ownership, combat and save authority remain. Rounded original procedural forms serve the closer view; no downloaded model pipeline or new playable region was introduced.
+- Static opaque geometry blocks the camera by default, with explicit opt-out; dynamic construction and mine blocks opt in. Animated foliage cuts away. Conservative bounds may shorten the view earlier than an exact mesh intersection.
+- Camera preferences are optional presentation data on world schema/key9; no adventure/quest/XP/ownership migration. Reduced motion disables camera smoothing. No camera shake, automatic orbit or speed-dependent FOV.
+- Media and GPU evidence must identify the rendered source hash, fixture, automation method and hardware. Human camera comfort and the earlier fresh/returning outing questions stay pending.
