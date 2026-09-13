@@ -11,3 +11,16 @@
 | 2026-09-12 | Accepted boundary | Browser remains the gameplay laboratory; Unreal is a later production-client direction. Shared Commons, the resident sanctuary and Heaven repository remain separate. | Founder direction and handoff sections 1, 6 |
 
 Local implementation choice: `C:\dev\eternities-firstlight` is the integration checkout; original extraction/evidence stays under `C:\dev\firstlight-artifacts\bootstrap-2026-09-12`; delegated edits use separate worktrees. This is workspace configuration, not a design lock or permission to replace other work.
+
+## Implemented starter milestone, 2026-09-12
+
+Dom explicitly accepted Astra's PR #4 assignment from reviewed base `aa4e21056219768b24b3f36d2f60671a6a831fb6`. The [pre-implementation note](development/STARTER_REGION_TASK_2026-09-12.md) records fixed IDs, entry state, reward matrix, ownership and migration before coding.
+
+- One nearby riverbank pocket reuses engine, navigation, combat and saves; initial kit only, original story order retained.
+- Three unique bundles and one named encounter progress after visible acceptance. Normal inventory is untouched. Turn-in validates atomically and pays once, including across reload/new request IDs.
+- Fixed early blade/bow or exactly one +2 temper on an explicitly selected owned weapon. Identity/socket/cadence/reach/stamina remain unchanged; no automatic equip, repeat upgrade or equipped-power scaling.
+- Adventure 6/starter 1; world schema/key 9 and level 1–5 curve unchanged. Retain banked XP and old consent/reward history.
+- Autoattack anticipation occupies the final 0.12 seconds before a legal strike; authoritative cooldown is not shortened. Hit feedback follows actual damage. Old Bristle locks a 1.8-radius strike for 1.25 seconds, with 1.8-second recovery; brace and movement both work.
+- Click selects stationary autoattack without forcing pursuit. Reduced motion suppresses added recoil, weapon displacement and number drift. No camera shake.
+
+Names/dialogue/art/tuning and 10–20 minute pacing remain provisional for founder playtest. Main stays unmerged; no public deployment or background automation.

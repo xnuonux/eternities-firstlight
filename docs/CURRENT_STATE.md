@@ -1,3 +1,23 @@
+# Current gameplay checkpoint: starter riverbank outing
+
+Updated 2026-09-12. `gameplay/starter-region-progression` is stacked on PR #4's reviewed import head `aa4e21056219768b24b3f36d2f60671a6a831fb6`. Gameplay/UI implementation checkpoint: `6c23d4730b265df0bc008e472f02d868aae3c5fb`. Read the implementation PR for final pushed head, fresh clone and CI results. Main remains unmerged. [Implementation results](development/STARTER_REGION_RESULTS_2026-09-12.md) distinguish evidence and limits.
+
+Oren now offers an optional nearby riverbank outing immediately after the initial expedition kit. Recover three separately identified bundles and drive away Old Bristle along one route, with two ordinary skitters. Return for six sunmarks, 25 XP and an explicit choice: a fixed early blade, a fixed early bow, or one finite +2 temper on one owned weapon. New weapons require deliberate equipping. Recovered supplies persist beside the workshop.
+
+Tab/click selection and stationary autoattack are explicit. Click no longer forces pursuit; movement remains the player's choice. The real blade/bow cooldowns govern 0.12-second anticipation and recovery. Facing, confirmed-hit feedback, weapon materials and the named warning/opening are visible. Reduced motion suppresses added displacement; no camera shake or renderer replacement was introduced.
+
+World schema/key remain **9 / eternities.realm10.save.v9**. Adventure **6** adds nested starter **1**: accepted flag, unique supply IDs and one nullable reward record. Adventure 5 migrates to a fresh quest; older migrations still chain. Levels remain **1–5** at 30/80/150/260 XP, with all banked XP through 9999 retained. Creative work, home/build/crops, equipment/sockets, companion, completed chapters and soul choices remain preserved. Unresolved fights restart at the existing safe exterior checkpoint; completed objectives and rewards persist. No scaling or repeat temper economy.
+
+Launch from this checkout with `OPEN_REALM_WINDOWS.cmd`, or `python -m http.server 8766 --bind 127.0.0.1` and visit `http://127.0.0.1:8766/`. Walk to Oren, E for the kit, E again to review/accept. The sign east of Oren enters the nearby riverbank. M maps the route; J lists objectives; E collects/returns; Tab/click selects; 1 toggles stationary attacks; 3 braces. Return to choose, use C to inspect/equip, then try the practice bundle by the riverbank entrance.
+
+For personal play, export your existing world and keep its backup outside Git. Imports replace the active world. The labelled [fresh-kit](evidence/starter-region/FRESH_KIT_EARNED.json) and [returning campaign](evidence/starter-region/VETERAN_CAMPAIGN_EARNED.json) fixtures are command-earned test worlds. Use a separate browser profile/origin for these. No personal save was read or changed.
+
+Run `python tools/verify.py` or `python tools/verify.py --browser` with [optional dependencies](../tests/README.md). The latter runs six software-Chromium suites. Current code covers 432 rules, fresh starter blade/bow and a newly earned four-chapter strongest veteran route. Always report freshly printed counts. Human enjoyment/pacing, personal saves, file-origin migration, physical phones and Unreal remain unqualified. [NEXT_TASK.md](NEXT_TASK.md) now calls for Dom's fresh/returning playtest and Astra's diff review.
+
+---
+
+The following is the preserved **historical bootstrap checkpoint**, superseded by the gameplay state above. Its schema, counts and unbuilt-task descriptions describe the import only.
+
 # Current Firstlight development state
 
 Updated 2026-09-12. Start here, then read [NEXT_TASK.md](NEXT_TASK.md), [PLAYTEST_NOTES.md](PLAYTEST_NOTES.md) and [DECISIONS.md](DECISIONS.md).

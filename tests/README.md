@@ -25,3 +25,12 @@ UI tests use isolated contexts and labelled Map-backed storage fixtures. Automat
 `chapter_journey.cjs`, `road_journey.cjs`, `arsenal_journey.cjs`, `ranged_road_journey.cjs` and `beacon_journey.cjs` remain additional command journeys. The default gate runs the two current Chapter IV journeys; do not add unexecuted totals. Older browser drivers, including `rpg_browser.py` and `run_browser_suites.py`, remain historical and may target obsolete UI.
 
 `verify_package.py` and `tools/summarize_validation.py` validate the original delivery manifest/report set. They are archive checks, not fresh-clone CI entrypoints or new test runs. Full immutable input archives remain outside the checkout, with metadata and source history in `docs/provenance/2026-09-12/`.
+
+
+## Starter-region gates
+
+The verifier additionally runs `starter_journey.cjs` for fresh blade and command-crafted bow, then `starter_veteran.cjs`. The latter regenerates four chapters with the explicit Dawn's edge choice, earns keeper coat/chime clasp, and checks finite 42→44 temper. Its labelled migration boundary represents the earned campaign data as adventure 5 without starter state; it never grants ownership or objective flags.
+
+`starter_browser.py` serves actual HTML on isolated loopback HTTP, covering visible acceptance/route/combat/claim/equip, native reloads, both weapon families, veteran temper and a separately labelled synthetic currency-capacity boundary. No personal profile/save. Current counts are 432 rules and 147 starter UI checks; report fresh outputs.
+
+`tools/record_browser_gameplay.py --fixture <earned.json> --actions <actions.json> --output <directory>` records normal RAF with accepted commands/UI and an engineering label. `tools/measure_gpu_browser.py --renderer hardware --frames 600 --quality balanced --scenes <json>` records 1920×1080 CDP/WebGL provenance and per-scene interval distributions. Set `FIRSTLIGHT_CHROMIUM_EXECUTABLE` to installed Chrome for hardware tools. This headless GPU evidence is separate from software CI, human pacing and Unreal qualification.

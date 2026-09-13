@@ -12,13 +12,14 @@ const skills=Object.freeze({
 function runtime(sim){
  const r=G.RealmAdventure.runtime(sim);
  if(!r.tactics)r.tactics={scene:sim.room,target:null,auto:false,nextAttack:0,guardUntil:0,shield:0,shieldUntil:0,cooldowns:{guard:0,insight:0,spirit:0},hits:[],serial:0};
- if(r.tactics.scene!==sim.room){r.tactics.scene=sim.room;r.tactics.target=null;r.tactics.auto=false;}
+ if(r.tactics.scene!==sim.room){r.tactics.scene=sim.room;r.tactics.target=null;r.tactics.auto=false;r.tactics.windup=null;r.tactics.motion=null;r.tactics.hits=[];}
  return r.tactics;
 }
 function canTarget(sim,e){return !!e&&e.hp>0&&!e.hidden&&dist(sim.state.player,e)<=22;}
 function candidates(sim){return G.RealmAdventure.runtime(sim).enemies.filter(e=>canTarget(sim,e)).sort((a,b)=>dist(sim.state.player,a)-dist(sim.state.player,b)||a.id.localeCompare(b.id));}
 function selected(sim){const t=runtime(sim);return G.RealmAdventure.runtime(sim).enemies.find(e=>e.id===t.target&&canTarget(sim,e))||null;}
-function stop(sim,clear=false){const t=runtime(sim);t.auto=false;if(clear)t.target=null;}
+function stop(sim,clear=false){const t=runtime(sim);t.auto=false;t.windup=null;if(clear)t.target=null;}
+function pose(sim){const t=runtime(sim),now=sim.state.adventure.elapsed;if(t.windup)return{style:t.windup.style,phase:'anticipate',progress:Math.min(1,(now-t.windup.started)/.12)};if(t.motion&&now-t.motion.at<.28)return{style:t.motion.style,phase:'recover',progress:(now-t.motion.at)/.28};return{style:G.RealmArsenal.weapon(sim.state.adventure).style,phase:'idle',progress:0};}
 function readiness(sim){
  const A=G.RealmAdventure,a=sim.state.adventure,r=A.runtime(sim),t=runtime(sim),e=selected(sim),w=G.RealmArsenal.weapon(a);
  if(!e)return 'Select a target with Tab';
@@ -46,7 +47,7 @@ function handle(sim,type,p={}){
  if(type==='auto-toggle'){
   if(!A.combatScene(sim)||!a.started)return fail('Autoattack is for expeditions and the practice court.');
   if(!t.auto&&!selected(sim)){const list=candidates(sim);if(!list.length)return fail('No enemy to select.');t.target=list[0].id;}
-  t.auto=!t.auto;return yes(t.auto?'Autoattack on. Move into range; movement remains yours.':'Autoattack off.');
+  t.auto=!t.auto;if(!t.auto)t.windup=null;return yes(t.auto?'Autoattack on. Move into range; movement remains yours.':'Autoattack off.');
  }
  if(!['guard','insight','spirit'].includes(type))return null;
  if(!A.combatScene(sim)||!a.started||a.hp<=0)return fail('Use this skill during an expedition.');
@@ -84,7 +85,7 @@ function mitigate(sim,damage){
  if(a.elapsed<t.shieldUntil&&t.shield>0){const absorb=Math.min(t.shield,n);t.shield-=absorb;n-=absorb;}
  return n;
 }
-function hit(sim,e,n){const t=runtime(sim),a=sim.state.adventure;t.hits.push({x:e.x,z:e.z,n,at:a.elapsed,id:++t.serial});if(t.hits.length>20)t.hits.shift();}
+function hit(sim,e,n){const t=runtime(sim),a=sim.state.adventure;e.hitAt=a.elapsed;e.hitFrom={x:sim.state.player.x,z:sim.state.player.z};t.hits.push({x:e.x,z:e.z,n,at:a.elapsed,id:++t.serial});if(t.hits.length>20)t.hits.shift();}
 function tick(sim){
  const A=G.RealmAdventure,a=sim.state.adventure,r=A.runtime(sim),t=runtime(sim);
  if(t.scene!==sim.room){t.scene=sim.room;t.target=null;t.auto=false;}
@@ -92,13 +93,18 @@ function tick(sim){
  if(a.elapsed>=t.shieldUntil)t.shield=0;
  if(a.hp<=0){stop(sim,true);return;}
  if(t.target&&!selected(sim)){stop(sim,true);return;}
- if(sim.paused||!t.auto)return;
+ if(sim.paused||!t.auto){t.windup=null;return;}
  const e=selected(sim),w=G.RealmArsenal.weapon(a);
- if(!e||!A.combatScene(sim)||a.elapsed<Math.max(r.cooldowns.attack,t.nextAttack)||a.stamina<w.stamina)return;
- if(dist(sim.state.player,e)>=w.reach||!(w.style==='bow'?G.RealmArsenal.aimClear(sim,sim.state.player,e):A.visible(sim,sim.state.player,e)))return;
- t.nextAttack=a.elapsed+.1;
- sim.adventureCommand('auto-'+(++t.serial)+'-'+a.revision,'attack',{target:e.id});
+ if(!e||!A.combatScene(sim)||a.stamina<w.stamina||dist(sim.state.player,e)>=w.reach||!(w.style==='bow'?G.RealmArsenal.aimClear(sim,sim.state.player,e):A.visible(sim,sim.state.player,e))){t.windup=null;return;}
+ if(t.windup&&(t.windup.target!==e.id||t.windup.weapon!==a.equipment.weapon))t.windup=null;
+ // Anticipation occupies the last .12s of recovery. It never subtracts from
+ // the weapon's authoritative cooldown or grants damage from presentation.
+ if(!t.windup){if(a.elapsed<r.cooldowns.attack-.12)return;t.windup={target:e.id,weapon:a.equipment.weapon,style:w.style,started:a.elapsed,impactAt:Math.max(a.elapsed+.12,r.cooldowns.attack)};}
+ sim.state.player.yaw=Math.atan2(e.x-sim.state.player.x,e.z-sim.state.player.z);
+ if(a.elapsed+1e-8<t.windup.impactAt||a.elapsed<r.cooldowns.attack)return;
+ const result=sim.adventureCommand('auto-'+(++t.serial)+'-'+a.revision,'attack',{target:e.id});
+ if(result.ok)t.motion={style:w.style,at:a.elapsed};t.windup=null;
 }
-G.RealmCombat={skills,runtime,candidates,selected,stop,readiness,handle,mitigate,hit,tick};
+G.RealmCombat={skills,runtime,candidates,selected,stop,pose,readiness,handle,mitigate,hit,tick};
 if(typeof module!=='undefined')module.exports=G.RealmCombat;
 })(globalThis);

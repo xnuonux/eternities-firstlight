@@ -114,6 +114,8 @@ body.rpg-edition{--gold:#dbc18c;--ink:#111d21;--pane:rgba(15,29,33,.94);--muted:
 #rpg-window #cross-atlas-map{width:100%;height:auto;max-height:530px;display:block}@media(max-width:650px){#rpg-window #cross-atlas-map{max-height:345px}}
 
 #rpg-window #cross-atlas-map text{stroke:none;paint-order:normal} .rpg-nav [data-id=atlas] svg{width:20px;height:20px}
+
+.starter-service{max-width:1080px;margin:auto;padding:8px 10px 24px}.starter-service>small,.starter-journal>small,.starter-reward>small{color:#a9c8ba;letter-spacing:.13em;font-size:10px}.starter-service h2{font:30px Georgia,serif;color:#eddfbd;margin:10px 0 16px}.starter-service p{line-height:1.65;color:#c3cfc0}.starter-intro{max-width:760px;font-size:16px}.starter-rewards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:20px 0}.starter-reward{padding:19px;background:#203c39;border:1px solid #517064;border-radius:12px}.starter-reward h3{font:21px Georgia,serif;color:#eee1bf}.starter-reward p{font-size:12px;min-height:105px}.starter-reward select{width:100%;padding:9px;background:#132e2e;color:#e6dcbc;border:1px solid #789583;border-radius:5px}.starter-reward label{display:block;font-size:12px;margin-bottom:7px}.starter-compare{width:100%;font-size:12px;margin:16px 0;border-collapse:collapse}.starter-compare caption{text-align:left;font-size:10px;color:#b7c7b4;padding-bottom:8px}.starter-compare th{text-align:left;font-weight:400;color:#b7c5b6}.starter-compare td{text-align:right}.starter-compare th,.starter-compare td{padding:6px 3px;border-bottom:1px solid #476056}.starter-reward>button{width:100%;margin-top:9px}.starter-journal{padding:17px 20px;border-left:3px solid #90bca2;margin:16px 0;background:#1e3835}.starter-journal ol{padding-left:22px;line-height:1.9}.starter-journal li.done{color:#aaceb2}.starter-journal li.done:after{content:' ✓'}.starter-journal button,.starter-links button,.starter-thanks button{margin:5px 8px 5px 0}.starter-links{border-top:1px solid #476056;padding-top:15px;margin-top:24px}.starter-thanks{padding:20px;border:1px solid #96b58a;background:#284239;border-radius:10px}#starter-labels{position:absolute;inset:0;pointer-events:none}#starter-labels span{position:absolute;transform:translate(-50%,-100%);font-size:12px;color:#efdfb5;background:#19312bd9;border:1px solid #7c916459;border-radius:16px;padding:4px 10px;white-space:nowrap}#starter-map{display:block;width:100%;max-height:540px}.starter-service [data-rpg="starter-accept"]{padding:14px 20px;background:#426350;border-color:#c3bf8c;color:#fff0c9}.starter-service button:disabled{opacity:.48}.tracker-switch{flex-wrap:wrap}@media(max-width:900px){.starter-rewards{grid-template-columns:1fr}.starter-reward p{min-height:0}.starter-service h2{font-size:25px}}@media(prefers-reduced-motion:reduce){#starter-labels span{transition:none}}.reduced #combat-numbers span{transition:none}
 </style></head>
 <body><canvas tabindex="0" id="world" aria-label="Interactive isometric Firstlight Valley. Click to walk, drag to orbit, scroll to zoom. Use the Explore menu for accessible destinations."></canvas><canvas tabindex="0" id="map-fallback" aria-label="Interactive map fallback. Click to move or choose a destination in Explore."></canvas><div id="labels" aria-hidden="true"></div>
 <div id="hud"><header class="brand"><span class="seal" aria-hidden="true">Σ</span><div><div class="wordmark">ETERNITIES</div><div class="tagline">A window into another life.</div></div></header>
@@ -126,7 +128,90 @@ body.rpg-edition{--gold:#dbc18c;--ink:#111d21;--pane:rgba(15,29,33,.94);--muted:
 <aside id="drawer" aria-label="Realm panel" inert><div id="drawer-head"><h2 id="panel-title">Explore</h2><button id="close-panel" aria-label="Close panel">✕</button></div><div id="drawer-body"></div></aside><div id="toast" role="status" aria-live="polite"></div><div id="fallback-banner" role="status">3D is unavailable. Explore the same local world using this map.</div></div>
 <button id="photo-exit">Return to the realm · H</button><input id="import-file" class="file-input" type="file" accept=".json,application/json" aria-label="Import a saved local world"><div id="loading"><span class="seal">Σ</span><div>Opening Firstlight Valley</div><p>EVERYTHING IS ALREADY HERE.</p><noscript>This interactive world needs JavaScript enabled in a full browser. Download the HTML and open it in Chrome, Edge, Firefox or Safari rather than a document preview.</noscript></div>
 <dialog id="story-dialog" aria-labelledby="story-title"><div class="story-sigil">✦</div><small id="story-speaker">THE ENVOY</small><h2 id="story-title"></h2><p id="story-body"></p><div id="story-buttons"></div><button id="story-close">Continue another time</button></dialog><dialog id="fallen-dialog" aria-labelledby="fallen-title"><span class="story-sigil">✧</span><h2 id="fallen-title">The light has not left you.</h2><p>Your belongings and home are safe. Defeated encounters and excavated paths remain.</p><button id="revive-button">Return to the spring</button></dialog><dialog id="studio-dialog" aria-labelledby="studio-title"><div class="studio-heading"><div><span class="overline">ETERNITIES · THE LISTENING ROOM</span><h2 id="studio-title">A little music, made here.</h2></div><button id="studio-close" aria-label="Close music workspace">✕</button></div><div id="studio-body"></div></dialog><input id="score-import" class="file-input" type="file" accept=".json,application/json" aria-label="Import an editable score">
-<script>/* Firstlight 10 — Bellweather Crossing. Local chapter and waystone rules.
+<script>/* One local outing. Definitions, durable state and atomic accepted commands. */
+(function(G){'use strict';
+const VERSION=1,ROOM='riverbank',ID='oren_riverbank_supplies';
+const OREN=Object.freeze({x:11,z:9}),GATE=Object.freeze({x:15,z:7}),ENTRY=Object.freeze({x:0,z:12,yaw:Math.PI});
+const BUNDLES=Object.freeze([
+ {id:'river-rope',name:'Coiled river rope',x:-7,z:3},
+ {id:'river-tools',name:'Wrapped hand tools',x:5,z:-3},
+ {id:'river-canvas',name:'Folded worksite canvas',x:-5,z:-11}
+]);
+const ENEMIES=Object.freeze([
+ {id:'river-skitter-west',name:'Riverbank skitter',kind:'skitter',x:-7,z:0,hp:32,damage:8,xp:8,ore:1,coins:2},
+ {id:'river-skitter-east',name:'Reed skitter',kind:'skitter',x:5,z:-6,hp:32,damage:8,xp:8,ore:1,coins:2},
+ {id:'river-old-bristle',name:'Old Bristle',kind:'skitter',custom:'river-bristle',x:-4,z:-15,hp:90,damage:18,xp:20,ore:1,coins:4,windup:1.25,recovery:1.8,telegraphRadius:1.8}
+]);
+const PRACTICE=Object.freeze({id:'river-practice',name:'Oren’s practice bundle',kind:'practice',x:-5,z:10,hp:100,radius:.65});
+const OBSTACLES=Object.freeze([{x:-1,z:1,r:1.05},{x:2,z:-9,r:.9},{x:-9,z:-8,r:.8}]);
+const TREES=Object.freeze([[-10,8,1,1],[-10,-2,.9,1],[-10,-17,1.1,1],[8,7,.85,1],[7,-11,1,1],[3,-18,.9,1]]);
+const GEAR=Object.freeze({
+ oren_sunblade:{name:'Oren’s riversteel blade',slot:'weapon',style:'blade',attack:16,defense:0,hp:0,tier:'Local quest',color:'#82beb0',desc:'A balanced early blade, fitted with a river-green grip. One removable gem socket.'},
+ oren_reedbow:{name:'Oren’s reedbound bow',slot:'weapon',style:'bow',attack:13,defense:0,hp:0,tier:'Local quest',color:'#82beb0',desc:'A fixed early bow with green bindings. Real travelling arrows and one removable gem socket.'}
+});
+const distance=(a,b)=>Math.hypot(a.x-b.x,a.z-b.z);
+function fresh(){return{version:VERSION,accepted:false,bundles:[],reward:null};}
+function complete(a){return !!a.starter?.accepted&&BUNDLES.every(q=>a.starter.bundles.includes(q.id))&&a.defeated.includes('river-old-bristle');}
+function bonus(a,weapon){return a.starter?.reward?.choice==='temper'&&a.starter.reward.weapon===weapon?2:0;}
+function validate(raw,a){
+ const bad=m=>{throw Error('Invalid starter quest: '+m);};
+ if(!raw||raw.version!==VERSION||typeof raw.accepted!=='boolean')bad('version or acceptance');
+ if(!Array.isArray(raw.bundles)||raw.bundles.length>BUNDLES.length||new Set(raw.bundles).size!==raw.bundles.length||raw.bundles.some(id=>!BUNDLES.some(q=>q.id===id)))bad('bundle IDs');
+ const q={version:VERSION,accepted:raw.accepted,bundles:raw.bundles.slice(),reward:null};
+ if(q.accepted&&!a.started||!q.accepted&&(q.bundles.length||a.defeated.some(id=>ENEMIES.some(e=>e.id===id))))bad('accepted prerequisites');
+ if(raw.reward!==null){
+  const r=raw.reward,gear=G.RealmAdventure.GEAR;
+  if(!r||typeof r!=='object'||!['oren_sunblade','oren_reedbow','temper'].includes(r.choice)||!Object.hasOwn(gear,r.weapon)||gear[r.weapon].slot!=='weapon'||!a.owned.includes(r.weapon))bad('owned reward weapon');
+  if(!complete({...a,starter:q})||r.choice!=='temper'&&r.weapon!==r.choice)bad('reward prerequisites');
+  q.reward={choice:r.choice,weapon:r.weapon};
+ }
+ return q;
+}
+function land(x,z,r=.31){return Number.isFinite(x)&&Number.isFinite(z)&&x>-12+r&&x<10-r&&z>-20+r&&z<15-r;}
+function walkable(x,z,r=.31){return land(x,z,r)&&!OBSTACLES.some(o=>Math.hypot(x-o.x,z-o.z)<o.r+r)&&!TREES.some(t=>Math.hypot(x-t[0],z-t[1])<.24*t[2]+r);}
+function line(a,b){if(!a||!b||!Number.isFinite(distance(a,b))||distance(a,b)>100)return false;const n=Math.max(1,Math.ceil(distance(a,b)/.1));for(let i=0;i<=n;i++)if(!walkable(a.x+(b.x-a.x)*i/n,a.z+(b.z-a.z)*i/n,.04))return false;return true;}
+function near(sim,p,r=3){return distance(sim.state.player,p)<r;}
+function points(sim){const a=sim.state.adventure;
+ if(sim.room===ROOM)return[{id:'river-exit',name:'Return to the workshop',...ENTRY,kind:'gate'},{...PRACTICE,kind:'practice'},...(a.starter.accepted?BUNDLES.filter(q=>!a.starter.bundles.includes(q.id)).map(q=>({...q,kind:'supplies'})):[]),...(a.starter.accepted&&!a.defeated.includes('river-old-bristle')?[{...ENEMIES[2],kind:'threat'}]:[])];
+ if(!sim.room)return[{id:'oren-outing',name:'Oren · riverbank supplies',...OREN,kind:'quest'},{id:'river-gate',name:'Nearby riverbank worksite',...GATE,kind:'gate'}];return[];
+}
+function practiceHit(sim,e,n){const A=G.RealmAdventure,t=sim.state.adventure.elapsed;e.flash=t+.18;G.RealmCombat.hit(sim,e,n);A.runtime(sim).training={lastDamage:n,style:G.RealmArsenal.weapon(sim.state.adventure).style,at:t};}
+function handle(sim,type,p={}){
+ if(!type.startsWith('starter-'))return null;
+ const A=G.RealmAdventure,a=sim.state.adventure,q=a.starter,fail=error=>({ok:false,error}),yes=text=>({ok:true,text});
+ switch(type){
+ case'starter-accept':
+  if(!a.started||sim.room||!near(sim,OREN))return fail('Take the initial expedition kit and speak to Oren at the workshop.');
+  if(q.accepted)return fail('Oren’s riverbank outing is already in your journal.');
+  q.accepted=true;sim.event('quest','You agreed to recover Oren’s three supply bundles and drive away Old Bristle at the nearby riverbank. Choose a blade, bow or one weapon temper when you return.');return yes('Riverbank outing accepted. The path sign is just east of Oren’s workshop.');
+ case'starter-enter':
+  if(!a.started||sim.room||!near(sim,GATE))return fail('With your initial kit, approach the riverbank sign beside Oren’s workshop.');
+  sim.returnPos={...sim.state.player};sim.room=ROOM;sim.state.player={...ENTRY};sim.playerPath=[];A.syncScene(sim);G.RealmCombat.stop(sim,true);return yes('The nearby riverbank · bundles and Old Bristle share one short route.');
+ case'starter-leave':
+  if(sim.room!==ROOM||!near(sim,ENTRY))return fail('Return to the southern workshop path.');
+  sim.leave();A.syncScene(sim);G.RealmCombat.stop(sim,true);return yes('Back beside Oren’s workshop.');
+ case'starter-pickup':{
+  const bundle=BUNDLES.find(b=>b.id===p.id);
+  if(sim.room!==ROOM||!q.accepted||q.reward||!bundle||q.bundles.includes(p.id)||!near(sim,bundle,2.4)||!A.visible(sim,sim.state.player,bundle))return fail('Accept Oren’s outing, then approach a visible, unrecovered supply bundle.');
+  q.bundles.push(p.id);sim.event('quest',bundle.name+' recovered ('+q.bundles.length+'/3). Your normal inventory is unchanged.');return yes(bundle.name+' secured · '+q.bundles.length+'/3 supplies');}
+ case'starter-claim':{
+  if(sim.room||!near(sim,OREN)||!complete(a)||q.reward)return fail('Return to Oren with three bundles and Old Bristle driven away. The reward is claimed once.');
+  const choice=p.choice,weapon=choice==='temper'?p.weapon:choice;
+  if(!['oren_sunblade','oren_reedbow','temper'].includes(choice))return fail('Choose the riversteel blade, reedbound bow or one owned weapon to temper.');
+  if(choice==='temper'&&(!Object.hasOwn(A.GEAR,weapon)||A.GEAR[weapon].slot!=='weapon'||!a.owned.includes(weapon)))return fail('Tempering needs an explicitly selected, owned weapon.');
+  if(choice!=='temper'&&(a.owned.includes(weapon)||a.owned.length>=Object.keys(A.GEAR).length))return fail('That weapon is already owned or your equipment catalogue is full. Choose another reward.');
+  if(a.coins>9993)return fail('Make room for six sunmarks. Your completed objectives and unclaimed reward are safe.');
+  // All validation above precedes the single payout. This record is also the temper ledger.
+  if(choice!=='temper')a.owned.push(weapon);
+  q.reward={choice,weapon};a.coins+=6;A.awardXP(sim,25);
+  sim.event('quest','Oren’s supplies are back at the workshop. You chose '+(choice==='temper'?'one +2 temper on ':'' )+A.GEAR[weapon].name+'. This outing pays once.');
+  return yes(choice==='temper'?A.GEAR[weapon].name+' tempered once · +2 attack, same weapon and socket.':A.GEAR[weapon].name+' received. Inspect and equip it when you choose.');}
+ default:return fail('Unknown riverbank command.');
+ }
+}
+const api={VERSION,ROOM,ID,OREN,GATE,ENTRY,BUNDLES,ENEMIES,PRACTICE,OBSTACLES,TREES,GEAR,fresh,validate,complete,bonus,land,walkable,line,near,points,practiceHit,handle};G.RealmStarter=api;if(typeof module!=='undefined')module.exports=api;
+})(globalThis);
+</script><script>/* Firstlight 10 — Bellweather Crossing. Local chapter and waystone rules.
  * Long-lived achievements are explicit; fights, paths, and bell input are transient.
  * There is no network authority or inference about the person playing. */
 (function(G){'use strict';
@@ -316,11 +401,12 @@ function validate(raw,a){const bad=m=>{throw Error('Invalid arsenal: '+m);};if(!
  if(a&&!a.started&&(s.rangeMedal||Object.values(s.gems).some(Boolean)||Object.keys(s.sockets).length))bad('unstarted');return s;
 }
 function activeGem(a){const id=a.arsenal?.sockets[a.equipment.weapon];return has(GEMS,id)?GEMS[id]:null;}
-function weapon(a){const bow=has(GEAR,a.equipment.weapon);return{style:bow?'bow':'blade',reach:bow?11:2.65,cooldown:bow?.75:.52,stamina:bow?6:0,primary:bow?'Loose arrow':'Sunstrike',special:bow?'Piercing light':'Dawn sweep'};}
+function weapon(a){const gear=G.RealmAdventure?.GEAR||GEAR;const id=a.equipment.weapon;const bow=has(gear,id)&&gear[id].slot==='weapon'&&gear[id].style==='bow';return{style:bow?'bow':'blade',reach:bow?11:2.65,cooldown:bow?.75:.52,stamina:bow?6:0,primary:bow?'Loose arrow':'Sunstrike',special:bow?'Piercing light':'Dawn sweep'};}
 function rangeWalkable(x,z,r=.31){return Number.isFinite(x)&&Number.isFinite(z)&&Math.abs(x)<14-r&&Math.abs(z)<13-r&&![...RANGE.pillars,...RANGE.scenery].some(p=>p.r!==undefined?Math.hypot(x-p.x,z-p.z)<p.r+r:Math.abs(x-p.x)<p.w/2+r&&Math.abs(z-p.z)<p.d/2+r);}
 function targetPose(def,t){return{...def,x:def.x+(def.id==='range-east'?Math.sin(t*.7)*1.8:0),z:def.z};}
 function projectileGround(sim,x,z){
  const A=G.RealmAdventure,R=G.RealmRoad;
+ if(sim.room==='riverbank')return G.RealmStarter.walkable(x,z,.035);
  if(sim.room==='crossing')return G.RealmCrossing.projectileGround(x,z,.035);
  if(sim.room==='mine')return A.walkable(sim.state.adventure,x,z,.035);
  if(sim.room==='range')return rangeWalkable(x,z,.035);
@@ -365,7 +451,7 @@ function update(sim,dt){const A=G.RealmAdventure,a=sim.state.adventure,r=runtime
  }
  const keep=[];
  for(const shot of r.arrows){if(shot.room!==sim.room||a.hp<=0)continue;const step=Math.min(shot.left,dt*22),end={x:shot.x+shot.dx*step,z:shot.z+shot.dz*step},hit=trace(shot,end,r.enemies,(x,z)=>projectileGround(sim,x,z),shot.hit);let stopped=false;
-  for(const {e,u}of hit.hits){shot.hit.push(e.id);shot.pierce--;if(e.kind==='practice')practiceHit(sim,e);else{A.damageEnemy(sim,e,shot.damage);e.awareness=a.elapsed+3;e.lastKnown={x:sim.state.player.x,z:sim.state.player.z};}
+  for(const {e,u}of hit.hits){shot.hit.push(e.id);shot.pierce--;if(e.kind==='practice'&&sim.room!=='riverbank')practiceHit(sim,e);else{A.damageEnemy(sim,e,shot.damage);e.awareness=a.elapsed+3;e.lastKnown={x:sim.state.player.x,z:sim.state.player.z};}
    A.fx(sim,'arrow-hit',shot.x+(end.x-shot.x)*u,shot.z+(end.z-shot.z)*u,shot.color);
    if(shot.pierce<=0){stopped=true;break;}}
   if(!stopped&&hit.wall!==null){A.fx(sim,'arrow-wall',shot.x+(end.x-shot.x)*hit.wall,shot.z+(end.z-shot.z)*hit.wall,0xb4bab0);stopped=true;}
@@ -587,13 +673,14 @@ const skills=Object.freeze({
 function runtime(sim){
  const r=G.RealmAdventure.runtime(sim);
  if(!r.tactics)r.tactics={scene:sim.room,target:null,auto:false,nextAttack:0,guardUntil:0,shield:0,shieldUntil:0,cooldowns:{guard:0,insight:0,spirit:0},hits:[],serial:0};
- if(r.tactics.scene!==sim.room){r.tactics.scene=sim.room;r.tactics.target=null;r.tactics.auto=false;}
+ if(r.tactics.scene!==sim.room){r.tactics.scene=sim.room;r.tactics.target=null;r.tactics.auto=false;r.tactics.windup=null;r.tactics.motion=null;r.tactics.hits=[];}
  return r.tactics;
 }
 function canTarget(sim,e){return !!e&&e.hp>0&&!e.hidden&&dist(sim.state.player,e)<=22;}
 function candidates(sim){return G.RealmAdventure.runtime(sim).enemies.filter(e=>canTarget(sim,e)).sort((a,b)=>dist(sim.state.player,a)-dist(sim.state.player,b)||a.id.localeCompare(b.id));}
 function selected(sim){const t=runtime(sim);return G.RealmAdventure.runtime(sim).enemies.find(e=>e.id===t.target&&canTarget(sim,e))||null;}
-function stop(sim,clear=false){const t=runtime(sim);t.auto=false;if(clear)t.target=null;}
+function stop(sim,clear=false){const t=runtime(sim);t.auto=false;t.windup=null;if(clear)t.target=null;}
+function pose(sim){const t=runtime(sim),now=sim.state.adventure.elapsed;if(t.windup)return{style:t.windup.style,phase:'anticipate',progress:Math.min(1,(now-t.windup.started)/.12)};if(t.motion&&now-t.motion.at<.28)return{style:t.motion.style,phase:'recover',progress:(now-t.motion.at)/.28};return{style:G.RealmArsenal.weapon(sim.state.adventure).style,phase:'idle',progress:0};}
 function readiness(sim){
  const A=G.RealmAdventure,a=sim.state.adventure,r=A.runtime(sim),t=runtime(sim),e=selected(sim),w=G.RealmArsenal.weapon(a);
  if(!e)return 'Select a target with Tab';
@@ -621,7 +708,7 @@ function handle(sim,type,p={}){
  if(type==='auto-toggle'){
   if(!A.combatScene(sim)||!a.started)return fail('Autoattack is for expeditions and the practice court.');
   if(!t.auto&&!selected(sim)){const list=candidates(sim);if(!list.length)return fail('No enemy to select.');t.target=list[0].id;}
-  t.auto=!t.auto;return yes(t.auto?'Autoattack on. Move into range; movement remains yours.':'Autoattack off.');
+  t.auto=!t.auto;if(!t.auto)t.windup=null;return yes(t.auto?'Autoattack on. Move into range; movement remains yours.':'Autoattack off.');
  }
  if(!['guard','insight','spirit'].includes(type))return null;
  if(!A.combatScene(sim)||!a.started||a.hp<=0)return fail('Use this skill during an expedition.');
@@ -659,7 +746,7 @@ function mitigate(sim,damage){
  if(a.elapsed<t.shieldUntil&&t.shield>0){const absorb=Math.min(t.shield,n);t.shield-=absorb;n-=absorb;}
  return n;
 }
-function hit(sim,e,n){const t=runtime(sim),a=sim.state.adventure;t.hits.push({x:e.x,z:e.z,n,at:a.elapsed,id:++t.serial});if(t.hits.length>20)t.hits.shift();}
+function hit(sim,e,n){const t=runtime(sim),a=sim.state.adventure;e.hitAt=a.elapsed;e.hitFrom={x:sim.state.player.x,z:sim.state.player.z};t.hits.push({x:e.x,z:e.z,n,at:a.elapsed,id:++t.serial});if(t.hits.length>20)t.hits.shift();}
 function tick(sim){
  const A=G.RealmAdventure,a=sim.state.adventure,r=A.runtime(sim),t=runtime(sim);
  if(t.scene!==sim.room){t.scene=sim.room;t.target=null;t.auto=false;}
@@ -667,14 +754,19 @@ function tick(sim){
  if(a.elapsed>=t.shieldUntil)t.shield=0;
  if(a.hp<=0){stop(sim,true);return;}
  if(t.target&&!selected(sim)){stop(sim,true);return;}
- if(sim.paused||!t.auto)return;
+ if(sim.paused||!t.auto){t.windup=null;return;}
  const e=selected(sim),w=G.RealmArsenal.weapon(a);
- if(!e||!A.combatScene(sim)||a.elapsed<Math.max(r.cooldowns.attack,t.nextAttack)||a.stamina<w.stamina)return;
- if(dist(sim.state.player,e)>=w.reach||!(w.style==='bow'?G.RealmArsenal.aimClear(sim,sim.state.player,e):A.visible(sim,sim.state.player,e)))return;
- t.nextAttack=a.elapsed+.1;
- sim.adventureCommand('auto-'+(++t.serial)+'-'+a.revision,'attack',{target:e.id});
+ if(!e||!A.combatScene(sim)||a.stamina<w.stamina||dist(sim.state.player,e)>=w.reach||!(w.style==='bow'?G.RealmArsenal.aimClear(sim,sim.state.player,e):A.visible(sim,sim.state.player,e))){t.windup=null;return;}
+ if(t.windup&&(t.windup.target!==e.id||t.windup.weapon!==a.equipment.weapon))t.windup=null;
+ // Anticipation occupies the last .12s of recovery. It never subtracts from
+ // the weapon's authoritative cooldown or grants damage from presentation.
+ if(!t.windup){if(a.elapsed<r.cooldowns.attack-.12)return;t.windup={target:e.id,weapon:a.equipment.weapon,style:w.style,started:a.elapsed,impactAt:Math.max(a.elapsed+.12,r.cooldowns.attack)};}
+ sim.state.player.yaw=Math.atan2(e.x-sim.state.player.x,e.z-sim.state.player.z);
+ if(a.elapsed+1e-8<t.windup.impactAt||a.elapsed<r.cooldowns.attack)return;
+ const result=sim.adventureCommand('auto-'+(++t.serial)+'-'+a.revision,'attack',{target:e.id});
+ if(result.ok)t.motion={style:w.style,at:a.elapsed};t.windup=null;
 }
-G.RealmCombat={skills,runtime,candidates,selected,stop,readiness,handle,mitigate,hit,tick};
+G.RealmCombat={skills,runtime,candidates,selected,stop,pose,readiness,handle,mitigate,hit,tick};
 if(typeof module!=='undefined')module.exports=G.RealmCombat;
 })(globalThis);
 </script><script>/* Firstlight 08 — The Feather Beneath Wildwood and the Sunward Road.
@@ -687,10 +779,11 @@ const AR=G.RealmArsenal||(typeof require==='function'?require('./arsenal.js'):nu
 const B=G.RealmBeacon||(typeof require==='function'?require('./beacon.js'):null);
 const T=G.RealmCombat||(typeof require==='function'?require('./combat.js'):null);
 const CROSS=G.RealmCrossing||(typeof require==='function'?require('./crossing.js'):null);
-const VERSION=5,CELL=2,LIMIT=7,REACH=2.8,dist=(a,b)=>Math.hypot(a.x-b.x,a.z-b.z);
+const Q=G.RealmStarter||(typeof require==='function'?require('./starter.js'):null);
+const VERSION=6,CELL=2,LIMIT=7,REACH=2.8,dist=(a,b)=>Math.hypot(a.x-b.x,a.z-b.z);
 const MINE={id:'mine',name:'The Rootbound Underways',x:0,z:-48},ENTRANCE={x:0,z:11,yaw:Math.PI},FOX={x:-8,z:2},RELIC={x:9,z:-10};
 const GEAR=Object.freeze({
- ...AR.GEAR,...CROSS.GEAR,
+ ...AR.GEAR,...CROSS.GEAR,...Q.GEAR,
  courier_mantle:{name:'Courier’s storm mantle',slot:'armor',attack:0,defense:7,hp:20,tier:'Merchant',color:'#91bdc0',desc:'Tessa’s weatherproof travelling armor. 18 sunmarks.'},
  wayfarer_band:{name:'Band of the returning light',slot:'charm',attack:4,defense:2,hp:15,tier:'Quest',color:'#e7c691',desc:'The envoy’s recognition of a road restored, not a replacement for your first gift.'},
  trail_blade:{name:'Trail blade',slot:'weapon',attack:12,defense:0,hp:0,tier:'Common',color:'#c0c8bd',desc:'A dependable blade from Oren’s workshop.'},
@@ -714,14 +807,15 @@ function mineral(x,z){return!initialFloor(x,z)&&((x*13+z*7)%5===0||x<=-3&&z<=-2)
 function wallHP(x,z){return mineral(x,z)?3:2;}
 function walkable(s,x,z,r=.31){if(!s||!Number.isFinite(x)||!Number.isFinite(z))return false;for(const[dx,dz]of[[-r,-r],[-r,r],[r,-r],[r,r],[0,0]]){const c=cellAt(x+dx,z+dz);if(!isFloor(s,c.gx,c.gz))return false;}return true;}
 function line(s,a,b){const n=Math.ceil(dist(a,b)/.18);for(let i=0;i<=n;i++){const t=n?i/n:0;if(!walkable(s,a.x+(b.x-a.x)*t,a.z+(b.z-a.z)*t,.04))return false;}return true;}
-function fresh(){return{version:VERSION,crossing:CROSS.fresh(),beacon:B.fresh(),arsenal:AR.fresh(),road:ROAD.fresh(),elapsed:0,revision:0,started:false,dug:[],chips:[],defeated:[],drops:[],ore:0,coins:0,xp:0,hp:100,stamina:100,tonics:3,equipment:{weapon:null,armor:null,charm:null},owned:[],companion:{bonded:false,name:'Briar',mode:'follow'},relic:false,angelSeen:false,reward:null,deaths:0,receipts:[]};}
+function fresh(){return{version:VERSION,starter:Q.fresh(),crossing:CROSS.fresh(),beacon:B.fresh(),arsenal:AR.fresh(),road:ROAD.fresh(),elapsed:0,revision:0,started:false,dug:[],chips:[],defeated:[],drops:[],ore:0,coins:0,xp:0,hp:100,stamina:100,tonics:3,equipment:{weapon:null,armor:null,charm:null},owned:[],companion:{bonded:false,name:'Briar',mode:'follow'},relic:false,angelSeen:false,reward:null,deaths:0,receipts:[]};}
 function level(s){return 1+[30,80,150,260].filter(n=>s.xp>=n).length;}
-function stats(s){let l=level(s),o={level:l,attack:4+(l-1)*2,defense:0,maxHP:100+(l-1)*10};for(const id of Object.values(s.equipment)){const g=GEAR[id];if(g){o.attack+=g.attack;o.defense+=g.defense;o.maxHP+=g.hp;}}const gem=AR.activeGem(s);if(gem){o.attack+=gem.attack;o.maxHP+=gem.hp;}return o;}
+function stats(s){let l=level(s),o={level:l,attack:4+(l-1)*2,defense:0,maxHP:100+(l-1)*10};for(const id of Object.values(s.equipment)){const g=GEAR[id];if(g){o.attack+=g.attack+Q.bonus(s,id);o.defense+=g.defense;o.maxHP+=g.hp;}}const gem=AR.activeGem(s);if(gem){o.attack+=gem.attack;o.maxHP+=gem.hp;}return o;}
 function validate(raw){
  if(raw&&raw.version===1)raw={...raw,version:3,arsenal:AR.fresh(),road:ROAD.fresh()};
  if(raw&&raw.version===2)raw={...raw,version:3,arsenal:AR.fresh()};
  if(raw&&raw.version===3)raw={...raw,version:4,beacon:B.fresh()};
- if(raw&&raw.version===4)raw={...raw,version:VERSION,crossing:CROSS.fresh()};
+ if(raw&&raw.version===4)raw={...raw,version:5,crossing:CROSS.fresh()};
+ if(raw&&raw.version===5)raw={...raw,version:VERSION,starter:Q.fresh()};
  const no=f=>{throw Error('Invalid adventure: '+f);};if(!raw||raw.version!==VERSION)no('version');const s=fresh();
  for(const k of['elapsed','hp','stamina']){if(!Number.isFinite(raw[k])||raw[k]<0||raw[k]>1e9)no(k);s[k]=raw[k];}
  for(const k of['revision','ore','coins','xp','tonics','deaths']){if(!Number.isSafeInteger(raw[k])||raw[k]<0||raw[k]>(k==='revision'?1e9:9999))no(k);s[k]=raw[k];}
@@ -730,23 +824,24 @@ function validate(raw){
  for(const id of raw.dug){if(typeof id!=='string'||!/^(-?\d+),(-?\d+)$/.test(id))no('cell');const[x,z]=id.split(',').map(Number);if(!validCell(x,z)||initialFloor(x,z)||key(x,z)!==id)no('dug cell');}s.dug=raw.dug.slice();
  if(!Array.isArray(raw.chips)||raw.chips.length>169||new Set(raw.chips.map(c=>c?.id)).size!==raw.chips.length)no('wall chips');
  s.chips=raw.chips.map(c=>{if(!c||typeof c.id!=='string'||!/^(-?\d+),(-?\d+)$/.test(c.id))no('chip');const[x,z]=c.id.split(',').map(Number);if(!validCell(x,z)||key(x,z)!==c.id||initialFloor(x,z)||s.dug.includes(c.id)||!Number.isInteger(c.hp)||c.hp<1||c.hp>=wallHP(x,z))no('chip hp');return{id:c.id,hp:c.hp};});
- if(!Array.isArray(raw.defeated)||raw.defeated.length>ENEMIES.length+ROAD.ENEMIES.length+CROSS.ENEMIES.length||new Set(raw.defeated).size!==raw.defeated.length||raw.defeated.some(id=>![...ENEMIES,...ROAD.ENEMIES,...CROSS.ENEMIES].some(e=>e.id===id)))no('defeated');s.defeated=raw.defeated.slice();
- if(!Array.isArray(raw.drops)||raw.drops.length>ENEMIES.length+ROAD.ENEMIES.length+CROSS.ENEMIES.length||new Set(raw.drops).size!==raw.drops.length||raw.drops.some(id=>!s.defeated.includes(id)))no('drops');s.drops=raw.drops.slice();
+ if(!Array.isArray(raw.defeated)||raw.defeated.length>ENEMIES.length+ROAD.ENEMIES.length+CROSS.ENEMIES.length+Q.ENEMIES.length||new Set(raw.defeated).size!==raw.defeated.length||raw.defeated.some(id=>![...ENEMIES,...ROAD.ENEMIES,...CROSS.ENEMIES,...Q.ENEMIES].some(e=>e.id===id)))no('defeated');s.defeated=raw.defeated.slice();
+ if(!Array.isArray(raw.drops)||raw.drops.length>ENEMIES.length+ROAD.ENEMIES.length+CROSS.ENEMIES.length+Q.ENEMIES.length||new Set(raw.drops).size!==raw.drops.length||raw.drops.some(id=>!s.defeated.includes(id)))no('drops');s.drops=raw.drops.slice();
  if(!Array.isArray(raw.owned)||raw.owned.length>Object.keys(GEAR).length||new Set(raw.owned).size!==raw.owned.length||raw.owned.some(id=>!Object.hasOwn(GEAR,id)))no('gear');s.owned=raw.owned.slice();
  if(!raw.equipment||typeof raw.equipment!=='object')no('equipment');for(const slot of['weapon','armor','charm']){const id=raw.equipment[slot];if(id!==null&&(!s.owned.includes(id)||GEAR[id].slot!==slot))no('equipped slot');s.equipment[slot]=id;}
  const c=raw.companion;if(!c||typeof c.bonded!=='boolean'||typeof c.name!=='string'||!c.name.trim()||c.name.length>24||!['follow','stay'].includes(c.mode))no('companion');s.companion={bonded:c.bonded,name:c.name,mode:c.mode};
  if(raw.reward!==null&&!['dawn_edge','warden_stone'].includes(raw.reward))no('reward');s.reward=raw.reward;
  if(s.relic&&!s.defeated.includes('hart')||s.angelSeen&&!s.relic||s.reward&&(!s.angelSeen||!s.owned.includes(s.reward)))no('story prerequisites');
  if(!s.started&&(s.defeated.length||s.dug.length||s.companion.bonded||s.relic||s.owned.length))no('unstarted progression');
+ s.starter=Q.validate(raw.starter,s);
  s.arsenal=AR.validate(raw.arsenal,s);
  if(s.stamina>100||s.hp>stats(s).maxHP||s.tonics>3)no('vitals');
  if(!Array.isArray(raw.receipts)||raw.receipts.length>100||new Set(raw.receipts.map(r=>r?.id)).size!==raw.receipts.length)no('receipts');
  s.receipts=raw.receipts.map(r=>{if(!r||typeof r.id!=='string'||!r.id||r.id.length>100||typeof r.fp!=='string'||r.fp.length>500||typeof r.ok!=='boolean')no('receipt');return{id:r.id,fp:r.fp,ok:r.ok};});s.road=ROAD.validate(raw.road,s);s.beacon=B.validate(raw.beacon,s);s.crossing=CROSS.validate(raw.crossing,s);return s;
 }
-function combatScene(sim){return sim.room==='mine'||sim.room==='road'||sim.room==='range'||sim.room==='crossing';}
-function roster(sim){return sim.room==='crossing'?CROSS.ENEMIES:sim.room==='range'?AR.RANGE.targets.map(d=>({...d,hp:100,maxHP:100})):sim.room==='road'?ROAD.ENEMIES:sim.room==='mine'?ENEMIES:[];}
-function visible(sim,a,b){return sim.room==='crossing'?CROSS.line(a,b):sim.room==='range'?AR.aimClear(sim,a,b):sim.room==='road'?ROAD.line(a,b):sim.room==='mine'?line(sim.state.adventure,a,b):G.RealmCore.segment(a,b,sim.navRoom);}
-function ground(sim,x,z,r=.31){return sim.room==='crossing'?CROSS.walkable(x,z,r):sim.room==='range'?AR.rangeWalkable(x,z,r):sim.room==='road'?ROAD.walkable(x,z,r):sim.room==='mine'?walkable(sim.state.adventure,x,z,r):G.RealmCore.walkable(x,z,sim.navRoom,r);}
+function combatScene(sim){return sim.room===Q.ROOM||sim.room==='mine'||sim.room==='road'||sim.room==='range'||sim.room==='crossing';}
+function roster(sim){return sim.room===Q.ROOM?[Q.PRACTICE,...(sim.state.adventure.starter.accepted?Q.ENEMIES:[])]:sim.room==='crossing'?CROSS.ENEMIES:sim.room==='range'?AR.RANGE.targets.map(d=>({...d,hp:100,maxHP:100})):sim.room==='road'?ROAD.ENEMIES:sim.room==='mine'?ENEMIES:[];}
+function visible(sim,a,b){return sim.room===Q.ROOM?Q.line(a,b):sim.room==='crossing'?CROSS.line(a,b):sim.room==='range'?AR.aimClear(sim,a,b):sim.room==='road'?ROAD.line(a,b):sim.room==='mine'?line(sim.state.adventure,a,b):G.RealmCore.segment(a,b,sim.navRoom);}
+function ground(sim,x,z,r=.31){return sim.room===Q.ROOM?Q.walkable(x,z,r):sim.room==='crossing'?CROSS.walkable(x,z,r):sim.room==='range'?AR.rangeWalkable(x,z,r):sim.room==='road'?ROAD.walkable(x,z,r):sim.room==='mine'?walkable(sim.state.adventure,x,z,r):G.RealmCore.walkable(x,z,sim.navRoom,r);}
 function safeNear(sim,p,radius=.7){const options=[{x:p.x,z:p.z},...Array.from({length:12},(_,i)=>({x:p.x+Math.sin(i*Math.PI/6)*radius,z:p.z+Math.cos(i*Math.PI/6)*radius}))];return options.find(q=>ground(sim,q.x,q.z))||{x:p.x,z:p.z};}
 function newFox(sim){const q=safeNear(sim,sim.state.player);return{room:sim.room,...q,yaw:sim.state.player.yaw,path:[],nextPath:0,nextHit:0,seek:null,status:'Beside you'};}
 function followPath(sim,actor,target,dt,speed){
@@ -759,7 +854,7 @@ function notify(sim,text){let r=runtime(sim);r.notices.push(text);if(r.notices.l
 function syncScene(sim){let r=runtime(sim);if(r.room===sim.room)return;r.room=sim.room;r.enemies=combatScene(sim)?roster(sim).filter(e=>!sim.state.adventure.defeated.includes(e.id)).map(e=>({...e,maxHP:e.hp,mode:'idle',timer:0,yaw:0,aim:null,flash:0,path:[],nextPath:0,awareness:0,home:{x:e.x,z:e.z}})):[];r.fx=[];r.arrows=[];r.range={active:false,start:0,hits:{},shots:0,message:'A calm place to learn a different rhythm.'};if(!sim.state.adventure.companion.bonded||sim.state.adventure.companion.mode==='follow')r.companion=newFox(sim);r.invincible=sim.state.adventure.elapsed+1;}
 function fx(sim,kind,x,z,color=0xf2c891){let r=runtime(sim);r.fx.push({kind,x,z,color,at:sim.state.adventure.elapsed});if(r.fx.length>48)r.fx.shift();}
 function awardXP(sim,n){let s=sim.state.adventure,l=level(s);s.xp=Math.min(9999,s.xp+n);if(level(s)>l){s.hp=Math.min(stats(s).maxHP,s.hp+10*(level(s)-l));notify(sim,'Level '+level(s)+' · Your journey is changing you.');sim.event('adventure','You reached level '+level(s)+'.');}}
-function damageEnemy(sim,e,n){let s=sim.state.adventure;if(!e||e.hp<=0||e.hidden)return;if(e.kind==='practice'){AR.practiceHit(sim,e);return;}if(e.exposedUntil>s.elapsed)n=Math.round(n*1.2);T.hit(sim,e,n);if(B.damage(sim,e,n))return;e.hp=Math.max(0,e.hp-n);e.flash=s.elapsed+.16;fx(sim,'hit',e.x,e.z);if(e.hp===0&&!s.defeated.includes(e.id)){s.defeated.push(e.id);s.drops.push(e.id);s.revision++;awardXP(sim,e.xp);sim.event('adventure',e.name+' defeated. A cache remains at its original position.');notify(sim,e.kind==='boss'?'The Hollow Hart is free. The feather is waiting.':e.name+' defeated · +'+e.xp+' experience');}}
+function damageEnemy(sim,e,n){let s=sim.state.adventure;if(!e||e.hp<=0||e.hidden)return;if(e.kind==='practice'){if(sim.room===Q.ROOM)Q.practiceHit(sim,e,n);else AR.practiceHit(sim,e);return;}if(e.exposedUntil>s.elapsed)n=Math.round(n*1.2);T.hit(sim,e,n);if(B.damage(sim,e,n))return;e.hp=Math.max(0,e.hp-n);e.flash=s.elapsed+.16;fx(sim,'hit',e.x,e.z);if(e.hp===0&&!s.defeated.includes(e.id)){s.defeated.push(e.id);s.drops.push(e.id);s.revision++;awardXP(sim,e.xp);sim.event('adventure',e.name+' defeated. A cache remains at its original position.');notify(sim,e.kind==='boss'?'The Hollow Hart is free. The feather is waiting.':e.name+' defeated · +'+e.xp+' experience');}}
 function takeDamage(sim,n){let s=sim.state.adventure,r=runtime(sim);if(s.hp<=0||s.elapsed<r.invincible)return false;s.hp=Math.max(0,s.hp-T.mitigate(sim,Math.max(1,n-stats(s).defense)));r.invincible=s.elapsed+.28;fx(sim,'hurt',sim.state.player.x,sim.state.player.z,0xd57f88);if(s.hp===0){sim.playerPath=[];s.deaths=Math.min(9999,s.deaths+1);sim.event('adventure','You fell on an expedition. Your home and belongings are safe.');notify(sim,'You have fallen. Return to the spring to try again.');}return true;}
 function diggableFrom(s,p,gx,gz){return validCell(gx,gz)&&!isFloor(s,gx,gz)&&dist(p,cellPoint(gx,gz))<=REACH&&[[1,0],[-1,0],[0,1],[0,-1]].some(([dx,dz])=>isFloor(s,gx+dx,gz+dz)&&dist(p,cellPoint(gx+dx,gz+dz))<2.2);}
 function nearbyWall(s,p){let best=null,c=cellAt(p.x,p.z);for(let x=c.gx-2;x<=c.gx+2;x++)for(let z=c.gz-2;z<=c.gz+2;z++)if(diggableFrom(s,p,x,z)){let q=cellPoint(x,z),d=dist(p,q);if(!best||d<best.d)best={gx:x,gz:z,d,...q};}return best;}
@@ -837,7 +932,7 @@ function command(sim,id,type,payload={}){
   if(sim.room!=='road'||dist(p,ROAD.BEACON)>3||s.road.beaconLit||!ROAD.ENEMIES.every(e=>s.defeated.includes(e.id)))return fail('Clear the three road encounters and approach the northern beacon.');s.road.beaconLit=true;awardXP(sim,20);sim.event('quest','The Sunward Beacon is alight. Return home after helping Tessa.');result=yes('The beacon answers. A light is visible through the trees.');break;
  case'road-report':
   if(!surfaceNear(sim,{x:0,z:3},4)||!s.road.beaconLit||!s.road.cartRepaired||s.road.reported)return fail('Repair the cart, light the beacon, then return to the envoy at the spring.');s.road.reported=true;if(!s.owned.includes('wayfarer_band'))s.owned.push('wayfarer_band');awardXP(sim,20);sim.event('quest','You brought the road’s light home. The envoy gave you the Band of the returning light.');result=yes('Chapter II complete · A wayfarer’s band and a light at the Commons.');break;
- default:result=CROSS.handle(sim,type,payload)||T.handle(sim,type,payload)||B.handle(sim,type,payload)||AR.handle(sim,type,payload);if(!result)return fail('Unknown adventure command.');if(!result.ok)return result;
+ default:result=Q.handle(sim,type,payload)||CROSS.handle(sim,type,payload)||T.handle(sim,type,payload)||B.handle(sim,type,payload)||AR.handle(sim,type,payload);if(!result)return fail('Unknown adventure command.');if(!result.ok)return result;
  }
  s.revision++;s.receipts.push({id,fp,ok:true});if(s.receipts.length>100)s.receipts.shift();return result;
 }
@@ -869,17 +964,17 @@ function tick(sim,dt){
   if(e.mode==='windup'){
    if(e.timer<=0){
     if(e.kind==='charger'){e.mode='charge';e.chargeLeft=9;e.chargeHit=false;fx(sim,'dodge',e.x,e.z,0xd8ad87);}
-    else{const radius=e.kind==='boss'?2.4:e.kind==='sentinel'?1.2:1.05;fx(sim,'impact',e.aim.x,e.aim.z,e.kind==='boss'?0xc68fbd:0xc5ac83);if(dist(p,e.aim)<radius+.24&&visible(sim,e,p))takeDamage(sim,e.damage);e.mode='recover';e.timer=e.kind==='boss'?(e.hp<e.maxHP/2?1:1.8):1.1;}
+    else{const radius=e.telegraphRadius??(e.kind==='boss'?2.4:e.kind==='sentinel'?1.2:1.05);fx(sim,'impact',e.aim.x,e.aim.z,e.kind==='boss'?0xc68fbd:0xc5ac83);if(dist(p,e.aim)<radius+.24&&visible(sim,e,p))takeDamage(sim,e.damage);e.mode='recover';e.timer=e.recovery??(e.kind==='boss'?(e.hp<e.maxHP/2?1:1.8):1.1);}
    }continue;
   }
   if(e.mode==='recover'){if(e.timer<=0)e.mode='idle';continue;}
-  if(sim.room==='crossing'&&p.z> -1){e.mode='return';if(dist(e,e.home)>.4)followPath(sim,e,e.home,dt,1.65);continue;}
+  if((sim.room==='crossing'&&p.z> -1)||(sim.room===Q.ROOM&&p.z>7)){e.mode='return';if(dist(e,e.home)>.4)followPath(sim,e,e.home,dt,1.65);continue;}
   const aggro=e.kind==='charger'?10:e.kind==='boss'?7:8.5;
   if(d<aggro&&canSee){e.awareness=s.elapsed+3;e.lastKnown={x:p.x,z:p.z};}
   const home=e.home||{x:e.x,z:e.z};if(dist(e,home)>15||d>18)e.awareness=0;
   if((e.awareness||0)<s.elapsed){if(dist(e,home)>.6){e.mode='return';followPath(sim,e,home,dt,1.65);}else e.mode='idle';continue;}
   const reach=e.kind==='charger'?9:e.kind==='sentinel'?6.5:e.kind==='boss'?4:1.9;
-  if(canSee&&d<=reach){e.mode='windup';e.timer=e.kind==='charger'?1.2:e.kind==='skitter'?.75:1.05;e.aim={x:p.x,z:p.z};e.yaw=Math.atan2(p.x-e.x,p.z-e.z);e.path=[];if(e.kind==='charger')e.chargeDir={x:Math.sin(e.yaw),z:Math.cos(e.yaw)};continue;}
+  if(canSee&&d<=reach){e.mode='windup';e.timer=e.windup??(e.kind==='charger'?1.2:e.kind==='skitter'?.75:1.05);e.aim={x:p.x,z:p.z};e.yaw=Math.atan2(p.x-e.x,p.z-e.z);e.path=[];if(e.kind==='charger')e.chargeDir={x:Math.sin(e.yaw),z:Math.cos(e.yaw)};continue;}
   e.mode='pursue';const q=canSee?p:e.lastKnown;if(q)followPath(sim,e,q,dt,e.kind==='boss'?1.25:1.6);
  }
  const c=r.companion;
@@ -909,7 +1004,7 @@ function objectives(s){return[
  {title:'A feather beneath Wildwood',detail:'Recover the feather at the guardian’s dais.',done:s.relic},
  {title:'The envoy at the spring',detail:'Return to the Commons. Hear the warning and choose one gift.',done:!!s.reward}
 ];}
-const api={ROAD,combatScene,roster,visible,ground,followPath,VERSION,CELL,LIMIT,REACH,MINE,ENTRANCE,FOX,RELIC,GEAR,ENEMIES,STORY,key,cellAt,cellPoint,validCell,initialFloor,isFloor,mineral,wallHP,walkable,line,fresh,validate,stats,level,runtime,syncScene,command,tick,nearbyWall,diggableFrom,objectives,damageEnemy,takeDamage,notify,fx};G.RealmAdventure=api;if(typeof module!=='undefined')module.exports=api;
+const api={ROAD,awardXP,combatScene,roster,visible,ground,followPath,VERSION,CELL,LIMIT,REACH,MINE,ENTRANCE,FOX,RELIC,GEAR,ENEMIES,STORY,key,cellAt,cellPoint,validCell,initialFloor,isFloor,mineral,wallHP,walkable,line,fresh,validate,stats,level,runtime,syncScene,command,tick,nearbyWall,diggableFrom,objectives,damageEnemy,takeDamage,notify,fx};G.RealmAdventure=api;if(typeof module!=='undefined')module.exports=api;
 })(globalThis);
 </script><script>/* Firstlight 05 — bounded, offline gathering/crafting/building domain.
  * Quantities are local game state, never authority for an online economy.
@@ -1357,6 +1452,7 @@ function landRadius(x,z){let a=Math.atan2(z,x);return 23.4+Math.sin(3*a+.3)*1.25
 function solid(x,z,o,r){return o.r!==undefined?Math.hypot(x-o.x,z-o.z)<o.r+r:Math.abs(x-o.x)<o.w/2+r&&Math.abs(z-o.z)<o.d/2+r;}
 function walkable(x,z,room=null,r=.31){
  if(!finite(x)||!finite(z))return false;
+ if(room&&typeof room==='object'&&room.id==='riverbank')return G.RealmStarter.walkable(x,z,r);
  if(room&&typeof room==='object'&&room.id==='crossing')return G.RealmCrossing.walkable(x,z,r);
  if(room&&typeof room==='object'&&room.id==='range')return G.RealmArsenal.rangeWalkable(x,z,r);
  if(room&&typeof room==='object'&&room.id==='road')return G.RealmRoad.walkable(x,z,r);
@@ -1389,7 +1485,7 @@ function validate(raw){if(raw&&raw.version===2)raw={...clone(raw),version:3,scor
 function load(storage){try{let data=storage.getItem(KEY),legacy=false;if(!data){data=storage.getItem(LEGACY_KEY);legacy=!!data;}if(!data){data=storage.getItem('eternities.realm08.save.v7');legacy=!!data;}if(!data){data=storage.getItem('eternities.realm07.save.v6');legacy=!!data;}if(!data){data=storage.getItem('eternities.realm06.save.v5');legacy=!!data;}if(!data){data=storage.getItem('eternities.realm05.save.v4');legacy=!!data;}if(!data){data=storage.getItem('eternities.realm03.save.v3');legacy=!!data;}if(!data){data=storage.getItem('eternities.realm02.save.v2');legacy=!!data;}if(!data)return{state:fresh(),status:'new'};return{state:validate(JSON.parse(data)),status:legacy?'migrated':'loaded'};}catch(e){return{state:fresh(),status:'unavailable-or-corrupt',preserveExisting:true,error:String(e.message)};}}
 class Simulation{
  constructor(state=fresh()){this.state=validate(state);this.room=null;this.returnPos=null;this.playerPath=[];this.runs=new Map();this.elapsed=0;this.paused=false;this.gathering=null;this.homeUndo=[];this.homeRedo=[];this.commands=new Map();for(let r of this.state.residents)this.runs.set(r.id,{goal:schedule(r.id,this.state.hour),path:[],walking:false,inside:false});}
- get navRoom(){if(this.room==='crossing')return{id:'crossing'};if(this.room==='range')return{id:'range'};if(this.room==='road')return{id:'road',adventure:this.state.adventure};if(this.room==='mine')return{id:'mine',adventure:this.state.adventure};return this.room==='retreat'?{id:'retreat',layout:this.state.retreat}:this.room||{id:'outdoors',sandbox:this.state.sandbox};}
+ get navRoom(){if(this.room==='riverbank')return{id:'riverbank'};if(this.room==='crossing')return{id:'crossing'};if(this.room==='range')return{id:'range'};if(this.room==='road')return{id:'road',adventure:this.state.adventure};if(this.room==='mine')return{id:'mine',adventure:this.state.adventure};return this.room==='retreat'?{id:'retreat',layout:this.state.retreat}:this.room||{id:'outdoors',sandbox:this.state.sandbox};}
  event(kind,text){let s=this.state;if(s.nextEvent>=Number.MAX_SAFE_INTEGER-1)return;s.journal.push({seq:s.nextEvent++,day:s.day,hour:s.hour,kind,text:text.slice(0,350)});if(s.journal.length>200)s.journal.shift();}
  snapshot(){let s=clone(this.state);if(this.room&&this.returnPos)s.player={...this.returnPos};return validate(s);}
  moveTo(x,z){if(this.state.adventure.hp<=0)return{ok:false,error:'Return to the spring first.'};let p=pathfind(this.state.player,{x,z},this.navRoom);if(!p)return{ok:false,error:'There is no walkable path to that point.'};this.playerPath=p;return{ok:true,waypoints:p.length};}
@@ -1544,6 +1640,7 @@ class WorldArt{
  if(this.room==='retreat'&&sim.presentation?.selectedSlot){let slot=X.SLOTS.find(s=>s.id===sim.presentation.selectedSlot);if(slot){for(let i=0;i<4;i++){let a=i*Math.PI/2;out.box.push({p:[slot.x+Math.sin(a)*.95,1.6,slot.z+Math.cos(a)*.95],s:i%2?[.035,.035,1.95]:[1.95,.035,.035],c:0xe4c487,em:.5});}}}
  if(G.RealmRoadArt)G.RealmRoadArt.draw(out,sim,t,this);
  if(G.RealmAdventureArt)G.RealmAdventureArt.draw(out,sim,t);
+ if(G.RealmStarterArt)G.RealmStarterArt.draw(out,sim,t);
  if(G.RealmArsenalArt)G.RealmArsenalArt.draw(out,sim,t);
  if(this.room==='mine')this.e.torch=[p.x,2.6,p.z];
  if(G.RealmSandboxArt)G.RealmSandboxArt.draw(out,sim,t);
@@ -1731,16 +1828,20 @@ function draw(out,sim,t){let s=sim.state.adventure;if(!s)return;let r=A.runtime(
   for(let gx=-6;gx<=6;gx++)for(let gz=-6;gz<=6;gz++){if(A.isFloor(s,gx,gz))continue;const pos=A.cellPoint(gx,gz),ore=A.mineral(gx,gz),chip=s.chips.find(c=>c.id===A.key(gx,gz)),h=chip?.hp===1?1.05:1.6;box(pos.x,1.49+h/2,pos.z,1.92,h,1.92,ore?0x696b68:0x495b60,{rough:.9});add('octa',pos.x+.19,1.55+h,pos.z-.04,1.83,.51,1.85,ore?0xa18162:0x6b7f7b);if(ore)for(let j=0;j<3;j++)add('octa',pos.x+Math.sin(j*2.3)*.57,2+h*.22,pos.z+Math.cos(j*2.3)*.91,.34,.39,.22,0xe1ae7b,{em:.20});}
  }
  if(A.combatScene(sim)){
-  for(const e of r.enemies){if(e.hp<=0||e.kind==='practice'||e.eventEnemy||e.custom==='bell')continue;const starts=Object.fromEntries(Object.entries(out).map(([k,v])=>[k,v.length]));let flash=e.flash>s.elapsed,body=flash?0xf8e4b9:e.kind==='boss'?0x688f83:e.kind==='sentinel'?0x9e92b8:0x7e8670;
+  for(const e of r.enemies){if(e.hp<=0||e.kind==='practice'||e.eventEnemy||e.custom==='bell')continue;const starts=Object.fromEntries(Object.entries(out).map(([k,v])=>[k,v.length]));let flash=e.flash>s.elapsed,body=flash?0xf8e4b9:e.kind==='boss'?0x688f83:e.kind==='sentinel'?0x9e92b8:e.custom==='river-bristle'?0x866747:0x7e8670;
    if(e.kind==='skitter'){add('octa',e.x,2.1,e.z,.95,.76,1.22,body);add('octa',e.x,2.22,e.z+.48,.55,.40,.5,0xbb987b);for(let i=0;i<6;i++){let a=i*TAU/6;box(e.x+Math.sin(a)*.55,1.74,e.z+Math.cos(a)*.45,.12,.53,.15,0x938670,{r:[.4,a,.3]});}for(const dx of[-.18,.18])add('round',e.x+dx,2.29,e.z+.71,.095,.095,.08,0xf9bf9a,{em:1});}
    else if(e.kind==='sentinel'){add('octa',e.x,2.7+Math.sin(t*1.8)*.14,e.z,1.2,1.9,1.2,body,{r:[0,t*.25,0],rough:.25});for(let i=0;i<4;i++){let a=i*1.57+t*.65;add('octa',e.x+Math.sin(a)*.9,2.6,e.z+Math.cos(a)*.9,.20,.65,.20,0xddc59b,{em:.9});}}
    else if(e.kind==='charger'){add('round',e.x,2.55,e.z,2.2,1.8,2.8,body);add('octa',e.x,2.8,e.z+1.15,1.3,1.1,1.2,0xb6a480);for(const sign of[-1,1]){add('round',e.x+sign*.9,3.2,e.z+.9,.55,.83,.78,0xd8c8a0);box(e.x+sign*.65,1.95,e.z+.65,.32,1,.37,0x68634e);box(e.x+sign*.65,1.95,e.z-.85,.32,1,.37,0x68634e);add('round',e.x+sign*.30,3.03,e.z+1.67,.10,.10,.08,0xf5c188,{em:1});}for(let i=0;i<5;i++)add('octa',e.x,3.1,e.z-.9+i*.35,.42,.7,.42,0xc79874,{em:.22});}
    else{add('round',e.x,2.75,e.z,1.85,1.7,2.7,body);add('octa',e.x,3.48,e.z+1.05,.91,1.4,.85,body);for(const dx of[-.64,.64])for(const dz of[-.72,.75])box(e.x+dx,2,e.z+dz,.26,1.3,.3,0x55796e,{r:[Math.sin(t*2+dx+dz)*.08,0,0]});for(const sign of[-1,1]){box(e.x+sign*.48,4.35,e.z+.98,.15,1.7,.15,0xccbf96,{r:[0,0,-sign*.40]});for(let j=0;j<3;j++)box(e.x+sign*(.56+j*.18),4.12+j*.43,e.z+1,.56,.11,.12,0xe0cda1,{r:[0,0,sign*.2]});}for(let i=0;i<5;i++)add('octa',e.x+Math.sin(i*2.1)*.6,3.25,e.z-.8+i*.35,.36,.75,.36,e.hp<e.maxHP/2?0xc392bc:0xabc5bb,{em:.45});for(const dx of[-.26,.26])add('round',e.x+dx,3.6,e.z+1.48,.13,.13,.13,0xf2dab0,{em:1});}
+   // Confirmed-hit recoil and the named beast silhouette affect art only.
+   const named=e.custom==='river-bristle',scale=named?1.32:1,recoil=sim.state.settings.reducedMotion?0:Math.max(0,1-(s.elapsed-(e.hitAt??-9))/.18)*.12,rd=e.hitFrom?Math.hypot(e.x-e.hitFrom.x,e.z-e.hitFrom.z)||1:1;
+   if(named)for(let i=0;i<5;i++)add('octa',e.x,2.52,e.z-.45+i*.19,.18,.40,.2,0xcbb47e);
+   for(const[k,items]of Object.entries(out))for(let j=starts[k];j<items.length;j++){const item=items[j];item.p[0]=e.x+(item.p[0]-e.x)*scale;item.p[1]=1.58+(item.p[1]-1.58)*scale;item.p[2]=e.z+(item.p[2]-e.z)*scale;item.s=item.s.map(v=>v*scale);}
    // Rotate body parts around the actual yaw, not warnings or health bars.
-   for(const[k,items]of Object.entries(out))for(let j=starts[k];j<items.length;j++){const item=items[j],dx=item.p[0]-e.x,dz=item.p[2]-e.z;item.p[0]=e.x+dx*Math.cos(e.yaw)+dz*Math.sin(e.yaw);item.p[2]=e.z-dx*Math.sin(e.yaw)+dz*Math.cos(e.yaw);item.r=[item.r?.[0]||0,(item.r?.[1]||0)+e.yaw,item.r?.[2]||0];}
+   for(const[k,items]of Object.entries(out))for(let j=starts[k];j<items.length;j++){const item=items[j],dx=item.p[0]-e.x,dz=item.p[2]-e.z;item.p[0]=e.x+dx*Math.cos(e.yaw)+dz*Math.sin(e.yaw);item.p[2]=e.z-dx*Math.sin(e.yaw)+dz*Math.cos(e.yaw);if(e.hitFrom){item.p[0]+=(e.x-e.hitFrom.x)/rd*recoil;item.p[2]+=(e.z-e.hitFrom.z)/rd*recoil;}item.r=[item.r?.[0]||0,(item.r?.[1]||0)+e.yaw,item.r?.[2]||0];}
    if(sim.presentation?.attackTarget===e.id)ring(e.x,e.z,e.kind==='charger'?1.35:.8,0xf1d29a);
    if(e.kind==='charger'&&e.mode==='windup'){for(let j=0;j<18;j++)for(const sign of[-1,1]){let u=j*.5,dx=e.chargeDir.x,dz=e.chargeDir.z;box(e.x+dx*u+dz*.9*sign,1.63,e.z+dz*u-dx*.9*sign,.10,.045,.25,0xe5a5b7,{r:[0,e.yaw,0],em:.7});}ring(e.x+e.chargeDir.x*9,e.z+e.chargeDir.z*9,.85,0xf0bfd1);}
-   if(e.kind!=='charger'&&e.mode==='windup'){let rad=e.kind==='boss'?2.4:e.kind==='sentinel'?1.2:1.05;ring(e.aim.x,e.aim.z,rad,0xd098c8);ring(e.aim.x,e.aim.z,rad*Math.max(.15,e.timer),0xe0bad4,1.6);}
+   if(e.kind!=='charger'&&e.mode==='windup'){let rad=e.telegraphRadius??(e.kind==='boss'?2.4:e.kind==='sentinel'?1.2:1.05);ring(e.aim.x,e.aim.z,rad,0xd098c8);if(!sim.state.settings.reducedMotion)ring(e.aim.x,e.aim.z,rad*Math.min(1,Math.max(.15,e.timer/(e.windup??1))),0xe0bad4,1.6);}
    let w=e.kind==='boss'?2.1:1.15,y=e.kind==='boss'?5.35:3.9;box(e.x,y,e.z,w,.10,.09,0x273743);box(e.x-w/2+w*e.hp/e.maxHP/2,y+.008,e.z+.035,w*e.hp/e.maxHP,.072,.07,e.kind==='boss'?0xcf9ba4:0xd1ba8d,{em:.4});
   }
   for(const id of s.drops){let e=A.roster(sim).find(e=>e.id===id);if(!e)continue;box(e.x,1.88,e.z,.60,.47,.5,0x947856);box(e.x,2.11,e.z,.68,.13,.58,0xc9b489);add('octa',e.x,2.56+Math.sin(t*2)*.1,e.z,.19,.38,.19,0xf2d299,{em:1.2});}
@@ -1749,7 +1850,7 @@ function draw(out,sim,t){let s=sim.state.adventure;if(!s)return;let r=A.runtime(
  }
  const fox=(x,z,yaw,bonded)=>{const at=(kind,dx,y,dz,w,h,d,c,opt={})=>add(kind,x+dx*Math.cos(yaw)+dz*Math.sin(yaw),base+y,z-dx*Math.sin(yaw)+dz*Math.cos(yaw),w,h,d,c,{...opt,r:[0,yaw,0]});at('round',0,.48,0,.58,.5,.95,0xcba271);at('octa',0,.77,.42,.5,.51,.55,0xe0c093);at('octa',0,.69,.70,.25,.19,.35,0xeee0ba);for(const sign of[-1,1]){at('octa',sign*.18,1.02,.35,.17,.47,.18,0xcb976d);at('round',sign*.17,.79,.62,.065,.065,.04,0x343d3b);for(const z of[-.25,.25])at('box',sign*.2,.17,z,.11,.30,.13,0x716556);}at('octa',0,.56,-.67,.31,.48,.9,0xe4cb99);at('octa',0,.65,-.96,.29,.29,.38,0xf0e2bb);if(bonded)at('box',0,.61,.29,.50,.10,.13,0x648e89);else add('octa',x,base+1.5,z,.17,.30,.17,0xf1d3a3,{em:.8});};
  if(s.companion.bonded){if(r.companion.room===sim.room)fox(r.companion.x,r.companion.z,r.companion.yaw,true);}else if(sim.room==='mine')fox(A.FOX.x,A.FOX.z,Math.PI*.4,false);
- if(s.started&&A.combatScene(sim)&&G.RealmArsenal.weapon(s).style!=='bow'){let angle=p.yaw,swing=Math.max(0,(r.cooldowns.attack-s.elapsed)/.52),x=p.x+Math.cos(angle)*.42,z=p.z-Math.sin(angle)*.42;box(x,base+.95,z,.085,.83,.085,0xe4cc95,{r:[swing*1.5,angle,-.25]});box(x,base+1.08,z,.34,.065,.13,0xa38f65,{r:[0,angle,0]});add('octa',p.x-Math.cos(angle)*.40,base+.75,p.z+Math.sin(angle)*.4,.23,.32,.23,0xf7d49e,{em:1.5});}
+ if(s.started&&A.combatScene(sim)&&G.RealmArsenal.weapon(s).style!=='bow'){const pose=G.RealmCombat.pose(sim),id=s.equipment.weapon,col=parseInt((A.GEAR[id]?.color||'#e4cc95').slice(1),16),motion=sim.state.settings.reducedMotion?0:pose.phase==='anticipate'?-.7*pose.progress:pose.phase==='recover'?(1-pose.progress)*1.5:Math.max(0,(r.cooldowns.attack-s.elapsed)/.52)*1.5;let angle=p.yaw,x=p.x+Math.cos(angle)*.42,z=p.z-Math.sin(angle)*.42;box(x,base+.95,z,.10,.92,.10,col,{r:[motion,angle,-.25]});box(x,base+1.08,z,.36,.08,.14,id==='oren_sunblade'?0x528a78:0xa38f65,{r:[0,angle,0]});if(G.RealmStarter.bonus(s,id))box(x,base+.71,z,.19,.10,.17,0x82beb0,{r:[0,angle,0],em:.35});const gem=G.RealmArsenal.activeGem(s);if(gem)add('octa',x,base+.61,z,.15,.20,.15,gem.color,{em:.65});add('octa',p.x-Math.cos(angle)*.40,base+.75,p.z+Math.sin(angle)*.4,.23,.32,.23,0xf7d49e,{em:1.5});}
  if(!sim.room&&s.road.reported){box(2.2,1.8,3,.55,1,.55,0x959a85);add('octa',2.2,2.65,3,.42,.85,.42,0xffd59e,{em:1.4});}
  if(!sim.room&&s.angelSeen){let x=-2.3,z=4.7;add('round',x,2.6,z,.57,1.8,.51,0xebe3c8);box(x,3.55,z,.35,.40,.34,0xe4c7a4);box(x,3.77,z-.02,.40,.16,.37,0xe9cf94);for(const sign of[-1,1])for(let j=0;j<7;j++)box(x+sign*(.4+j*.15),3.22+j*.11,z-.18-j*.025,.23,1.1-j*.065,.12,0xf4ecda,{r:[0,.1,-sign*(.4+j*.09)]});for(let i=0;i<22;i++){let a=i/22*TAU;box(x+Math.cos(a)*.39,4.15,z+Math.sin(a)*.39,.13,.045,.05,0xf3d8a2,{r:[0,-a,0],em:1});}for(let i=0;i<10;i++){let a=t*.45+i*2.4;add('octa',x+Math.cos(a)*1.15,1.7+(t*.25+i*.23)%2.6,z+Math.sin(a)*1.15,.065,.12,.065,i%2?0xf1dba8:0xe4c3d3,{em:1});}}
  for(const f of r.fx){let u=(s.elapsed-f.at)/.65;if(u<0||u>1)continue;if(['pulse','impact','dodge','heal'].includes(f.kind))ring(f.x,f.z,.3+u*(f.kind==='pulse'?3.6:1.6),f.color,base+.05);else for(let i=0;i<6;i++){let a=i*2.4;add('octa',f.x+Math.sin(a)*u*.85,base+.3+Math.sin(u*Math.PI)*.7,f.z+Math.cos(a)*u*.85,.12*(1-u),.18*(1-u),.11*(1-u),f.color,{em:.4});}}
@@ -1767,7 +1868,7 @@ class AdventureUI{
  get sim(){return this.api.sim();}get state(){return this.sim.state.adventure;}
  reset(){this.intent=null;this.labelCache='';$('#fallen-dialog').close();if($('#story-dialog').open)$('#story-dialog').close();}
  run(type,payload={},quiet=false){const result=this.sim.adventureCommand('adv-'+Date.now()+'-'+(++this.sequence),type,payload);if(result.ok&&!result.duplicate){this.api.save();this.api.changed();if(!quiet&&result.text)this.api.toast(result.text);this.sound(type);}else if(!quiet&&result.error)this.api.toast(result.error);if(!quiet&&this.api.panel()==='adventure')this.api.renderPanel();return result;}
- sound(type){let au=this.api.audio();if(!au?.enabled||!au.ctx)return;let f={attack:195,pulse:440,heal:660,dodge:330,dig:145,rescue:523,loot:880,relic:784,guard:245,insight:590,spirit:392,'beacon-answer':784,'beacon-repair':523}[type];if(f)au.note(f,au.ctx.currentTime,.15,.035);}
+ sound(type){let au=this.api.audio();if(!au?.enabled||!au.ctx)return;let f={'confirmed-hit':295,heal:660,dodge:330,dig:145,rescue:523,loot:880,relic:784,guard:245,insight:590,spirit:392,'beacon-answer':784,'beacon-repair':523}[type];if(f)au.note(f,au.ctx.currentTime,.15,.035);}
  stopAuto(){this.intent=null;}
  go(id){this.intent=null;this.api.endBuild();if(A.combatScene(this.sim)){this.api.toast('Use this expedition’s southern exit before taking an outdoor route.');return false;}if(id==='mine'){if(!this.sim.state.sandbox.bridge){this.api.toast('Repair the northern crossing first. The Field guide shows the materials.');return false;}this.api.closePanel();return this.api.walk(A.MINE.x,A.MINE.z);}if(id==='road')return this.api.navigate('lookout');if(id==='workshop')return this.api.navigate('market');if(id==='spring')return this.api.navigate('commons');return false;}
  approach(q,kind,id){let sim=this.sim,best=null;const ranged=kind==='attack'&&AR.weapon(this.state).style==='bow';if(ranged&&Math.hypot(q.x-sim.state.player.x,q.z-sim.state.player.z)<10.7&&AR.aimClear(sim,sim.state.player,q)){sim.playerPath=[];this.api.closePanel();this.intent={kind,id,q};return true;}const candidates=kind==='dig'?[[1,0],[-1,0],[0,1],[0,-1]].map(([dx,dz])=>({x:q.x+dx*1.7,z:q.z+dz*1.7})):Array.from({length:12},(_,i)=>({x:q.x+Math.sin(i*Math.PI/6)*(ranged?7:1.75),z:q.z+Math.cos(i*Math.PI/6)*(ranged?7:1.75)}));
@@ -1775,9 +1876,9 @@ class AdventureUI{
   if(!best){this.api.toast('There is no open route yet. Chip an exposed wall to make a passage.');return false;}this.api.walkLocal(best.x,best.z);this.api.closePanel();this.intent={kind,id,q};return true;
  }
  worldClick(p){if(!A.combatScene(this.sim))return false;const s=this.state,r=A.runtime(this.sim),enemy=r.enemies.filter(e=>e.hp>0&&!e.hidden&&Math.hypot(e.x-p.x,e.z-p.z)<1.5).sort((a,b)=>Math.hypot(a.x-p.x,a.z-p.z)-Math.hypot(b.x-p.x,b.z-p.z))[0];
-  if(enemy){if(this.run('target-select',{id:enemy.id},true).ok){this.approach(enemy,'attack',enemy.id);const t=G.RealmCombat.runtime(this.sim);t.auto=true;}return true;}if(this.sim.room==='mine'&&!s.companion.bonded&&Math.hypot(p.x-A.FOX.x,p.z-A.FOX.z)<1.1){this.approach(A.FOX,'rescue');return true;}
+  if(enemy){if(this.run('target-select',{id:enemy.id},true).ok){this.intent=null;this.sim.playerPath=[];const t=G.RealmCombat.runtime(this.sim);t.auto=true;}return true;}if(this.sim.room==='mine'&&!s.companion.bonded&&Math.hypot(p.x-A.FOX.x,p.z-A.FOX.z)<1.1){this.approach(A.FOX,'rescue');return true;}
   const drop=s.drops.map(id=>A.roster(this.sim).find(e=>e.id===id)).filter(Boolean).find(e=>Math.hypot(e.x-p.x,e.z-p.z)<.8);if(drop){this.approach(drop,'loot',drop.id);return true;}
-  if(this.sim.room==='range'||this.sim.room==='crossing'){this.intent=null;return false;}if(this.sim.room==='road'){const q=R.CACHES.find(c=>s.road.revealed.includes(c.id)&&!s.road.claimed.includes(c.id)&&Math.hypot(p.x-c.x,p.z-c.z)<1.1);if(q){this.approach(q,'road-cache',q.id);return true;}this.intent=null;return false;}
+  if(this.sim.room==='riverbank'||this.sim.room==='range'||this.sim.room==='crossing'){this.intent=null;return false;}if(this.sim.room==='road'){const q=R.CACHES.find(c=>s.road.revealed.includes(c.id)&&!s.road.claimed.includes(c.id)&&Math.hypot(p.x-c.x,p.z-c.z)<1.1);if(q){this.approach(q,'road-cache',q.id);return true;}this.intent=null;return false;}
   let cell=A.cellAt(p.x,p.z);if(A.validCell(cell.gx,cell.gz)&&!A.isFloor(s,cell.gx,cell.gz)){this.approach({...A.cellPoint(cell.gx,cell.gz),...cell},'dig');return true;}this.intent=null;return false;
  }
  context(){let sim=this.sim,s=this.state,p=sim.state.player;if(s.hp<=0)return'Return to the spring';if(sim.room==='range')return Math.hypot(p.x,p.z-9)<3.2?'Leave the archery court':'Tab selects · 1 autoattack · 2 Piercing Light';if(sim.room==='road')return G.RealmBeacon.near(sim)&&s.road.beaconLit?(G.RealmBeacon.runtime(sim).phase==='assault'?'Repair the ward · 20 stamina':'Speak with the envoy at the beacon'):this.roadContext();if(!sim.room&&s.reward&&Math.hypot(p.x-R.GATE.x,p.z-R.GATE.z)<3.5)return'Take the Sunward Road';if(!sim.room&&s.road.beaconLit&&s.road.cartRepaired&&!s.road.reported&&Math.hypot(p.x,p.z-3)<4)return'Tell the envoy: the beacon is alight';
@@ -1789,7 +1890,7 @@ class AdventureUI{
    const drop=s.drops.find(id=>{let e=A.ENEMIES.find(e=>e.id===id);return !!e&&Math.hypot(p.x-e.x,p.z-e.z)<3;});if(drop){this.run('loot',{id:drop});return true;}const wall=A.nearbyWall(s,p);if(wall){this.run('dig',{gx:wall.gx,gz:wall.gz});return true;}this.api.toast('Click a stone face to mine, or click an enemy to approach and strike.');return true;}
   if(sim.room)return false;if(s.started&&Math.hypot(p.x-11,p.z-9)<3.5){this.api.openPanel('armory');return true;}if(Math.hypot(p.x-A.MINE.x,p.z-A.MINE.z)<3.3&&sim.state.sandbox.bridge){this.run('enter');return true;}if(Math.hypot(p.x-11,p.z-9)<3.5&&!s.started){this.run('start');return true;}if(Math.hypot(p.x,p.z-3)<4&&s.started){if(s.relic){if(this.run('reveal').ok)this.openStory();}else this.run('rest');return true;}return false;
  }
- key(k){if($('#story-dialog').open||$('#fallen-dialog').open)return true;if(k==='8'||k==='u'){this.api.openPanel('adventure');return true;}if(A.combatScene(this.sim)&&['f','q',' ','g'].includes(k)){this.intent=null;this.run(({f:'attack',q:'pulse',' ':'dodge',g:'heal'})[k],k===' '?this.api.direction():{});return true;}if(k==='l'&&this.sim.room==='road'){this.run('seek');return true;}if(k==='escape'&&A.combatScene(this.sim)&&!this.api.panel()){this.run(this.sim.room==='range'?'range-leave':this.sim.room==='road'?'road-leave':'leave');return true;}return false;}
+ key(k){if($('#story-dialog').open||$('#fallen-dialog').open)return true;if(k==='8'||k==='u'){this.api.openPanel('adventure');return true;}if(A.combatScene(this.sim)&&['f','q',' ','g'].includes(k)){this.intent=null;this.run(({f:'attack',q:'pulse',' ':'dodge',g:'heal'})[k],k===' '?this.api.direction():{});return true;}if(k==='l'&&this.sim.room==='road'){this.run('seek');return true;}if(k==='escape'&&A.combatScene(this.sim)&&!this.api.panel()){this.run(this.sim.room==='riverbank'?'starter-leave':this.sim.room==='range'?'range-leave':this.sim.room==='road'?'road-leave':'leave');return true;}return false;}
  action(b){let act=b.dataset.action;if(!act?.startsWith('adv-'))return false;act=act.slice(4);const id=b.dataset.id;
   if(act==='trade')this.run('trade',{offer:b.dataset.offer});else if(act==='road-route')this.roadRoute(id);else if(act==='go')this.go(id);else if(act==='mode')this.run('companion-mode',{mode:id});else if(act==='rename')this.run('rename',{name:$('#companion-name').value});else if(act==='equip')this.run('equip',{id});
   else if(act==='seek'){if(this.sim.room==='road'){this.run('seek');return true;}if(this.sim.room!=='mine'){this.api.toast('Enter the mine first.');return true;}if(id==='fox')this.approach(A.FOX,'rescue');else if(id==='relic')this.approach(A.RELIC,'relic');else if(id==='exit')this.approach(A.ENTRANCE,'leave');else{let e=A.runtime(this.sim).enemies.find(e=>e.id===id&&e.hp>0);if(e)this.approach(e,'attack',id);else if(this.state.drops.includes(id)){const item=A.ENEMIES.find(e=>e.id===id);if(item)this.approach(item,'loot',id);}}}
@@ -1874,8 +1975,9 @@ function draw(out,sim,t){const A=G.RealmAdventure,s=sim.state.adventure,r=AR.run
  function ring(x,y,z,rad,col,yaw=0){for(let i=0;i<26;i++){const q=i*TAU/26;const xx=Math.sin(q)*rad,yy=Math.cos(q)*rad;box(x+xx*Math.cos(yaw),y+yy,z-xx*Math.sin(yaw),.12,.19,.07,col,{r:[0,yaw,-q],em:.15});}}
  if(sim.room==='range')for(const e of r.enemies){const col=e.id==='range-west'?0xc99165:e.id==='range-mid'?0x9acbd8:0xe2c875;for(const x of[-.42,.42])box(e.x+x,2.0,e.z,.12,1,.15,0x796953,{r:[0,0,x*.35]});box(e.x,2.5,e.z,.12,1.8,.16,0x8c785c);ring(e.x,2.9,e.z,.78,e.flash>s.elapsed?0xffeed1:col);ring(e.x,2.9,e.z+.04,.46,0xe5dbc0);ring(e.x,2.9,e.z+.08,.18,col);add('disc',e.x,2.9,e.z-.02,1.44,.08,1.44,0x7c6c55,{r:[Math.PI/2,0,0]});for(let j=0;j<(r.range.hits[e.id]||0);j++)add('octa',e.x-.17+j*.34,4.0,e.z,.18,.3,.14,0xf6d38a,{em:.8});if(e.id==='range-east')box(6,1.63,-5,5,.12,.18,0x90877a);}
  if(s.started&&AR.weapon(s).style==='bow'&&A.combatScene(sim)){
-  const yaw=p.yaw,hand={x:p.x+Math.cos(yaw)*.28+Math.sin(yaw)*.22,z:p.z-Math.sin(yaw)*.28+Math.cos(yaw)*.22};const pull=Math.max(0,1-(s.elapsed-(r.lastShot??-9))/.32);
-  for(let i=0;i<10;i++){const q=-1.1+i*.244,dx=Math.cos(q)*.3,dz=Math.sin(q)*.66;box(hand.x+Math.sin(yaw)*dx,base+1.12+dz,hand.z+Math.cos(yaw)*dx,.09,.18,.09,s.equipment.weapon==='copper_bow'?0xd1a471:0xbca477,{r:[0,yaw,q]});}
+  const yaw=p.yaw,hand={x:p.x+Math.cos(yaw)*.28+Math.sin(yaw)*.22,z:p.z-Math.sin(yaw)*.28+Math.cos(yaw)*.22};const pose=G.RealmCombat.pose(sim),pull=sim.state.settings.reducedMotion?0:pose.phase==='anticipate'?pose.progress:Math.max(0,1-(s.elapsed-(r.lastShot??-9))/.32),col=parseInt((A.GEAR[s.equipment.weapon]?.color||'#bca477').slice(1),16);
+  for(let i=0;i<10;i++){const q=-1.1+i*.244,dx=Math.cos(q)*.3,dz=Math.sin(q)*.66;box(hand.x+Math.sin(yaw)*dx,base+1.12+dz,hand.z+Math.cos(yaw)*dx,.09,.18,.09,col,{r:[0,yaw,q]});}
+  if(G.RealmStarter.bonus(s,s.equipment.weapon))box(hand.x,base+.9,hand.z,.18,.12,.18,0x82beb0,{em:.35});
   box(hand.x-Math.sin(yaw)*pull*.16,base+1.12,hand.z-Math.cos(yaw)*pull*.16,.025,1.22,.025,0xe6d5af);const gem=AR.activeGem(s);if(gem)add('octa',hand.x,base+1.12,hand.z,.14,.22,.14,gem.color,{em:.8});
  }
  for(const shot of r.arrows){const yaw=Math.atan2(shot.dx,shot.dz),y=base+1.25;box(shot.x,y,shot.z,.045,.045,.8,0xdac6a0,{r:[0,yaw,0],em:.2});add('octa',shot.x+shot.dx*.40,y,shot.z+shot.dz*.40,.13,.09,.24,shot.color,{r:[0,yaw,0],em:.7});for(let i=1;i<5;i++)box(shot.x-shot.dx*i*.23,y,shot.z-shot.dz*i*.23,.045,.045,.15,shot.special?0xaedbdf:0xf1d295,{r:[0,yaw,0],em:1-i*.1});}
@@ -2020,7 +2122,7 @@ class RPGUI{
   d.addEventListener('input',e=>{if(e.target.id==='bag-search'){this.search=e.target.value;this.paintBag();}});
   $('#tracked-open').onclick=()=>this.open('journal');$('#beacon-menu').onclick=()=>{if(B.runtime(this.sim).phase==='assault')this.run('beacon-repair');else this.open('beacon');};$('#target-clear').onclick=()=>this.run('target-clear');$('#health-orb').onclick=()=>this.open('equipment');
   for(const el of hud.querySelectorAll('[data-skill]'))el.onclick=()=>this.skill(el.dataset.skill);
-  this.crossing=new G.RealmCrossingUI.CrossingUI(this);
+  this.crossing=new G.RealmCrossingUI.CrossingUI(this);this.starter=new G.RealmStarterUI.StarterUI(this);if(this.state.starter.accepted&&!this.state.starter.reward)this.quest='starter';
  }
  get sim(){return this.api.sim();} get state(){return this.sim.state.adventure;}
  run(t,p={},quiet=false){const paused=this.sim.paused;try{if(this.dialog.open)this.sim.paused=false;const r=this.api.adventure().run(t,p,quiet);if(r.ok&&this.dialog.open)this.paint();return r;}finally{this.sim.paused=paused;}}
@@ -2031,7 +2133,7 @@ class RPGUI{
  close(){if(!this.dialog.open)return;this.dialog.close();this.sim.paused=this.wasPaused;this.api.clearKeys();this.api.focusWorld();}
  cameraPaint(mode){for(const el of document.querySelectorAll('[data-rpg="camera"]'))el.setAttribute('aria-pressed',String(el.dataset.id===mode));}
  reset(){if(this.dialog.open)this.close();this.item=null;this.seenPhase='';}
- action(el){if(this.crossing.action(el))return;const act=el.dataset.rpg,id=el.dataset.id,a=this.state;
+ action(el){if(this.starter.action(el))return;if(this.crossing.action(el))return;const act=el.dataset.rpg,id=el.dataset.id,a=this.state;
   if(act==='open'){this.open(id);return;}
   if(act==='track'){this.quest=id;if(this.dialog.open)this.paint();this.tick();return;}
   if(act==='camera'){this.api.camera(id);return;}
@@ -2100,6 +2202,7 @@ class RPGUI{
  }
  intercept(name){const map={armory:'craft',craft:'craft',pack:'bag',adventure:'journal',journey:'journal'};if(map[name]){if(name==='journey')this.quest='homestead';this.open(map[name]);return true;}return false;}
  interact(){
+  if(this.starter.interact())return true;
   if(this.crossing.interact())return true;
   if(this.sim.room==='road'&&this.state.road.cartRepaired&&Math.hypot(this.sim.state.player.x+10,this.sim.state.player.z-12)<3){this.open('merchant');return true;}
   if(!B.near(this.sim)||!this.state.road.beaconLit||!this.state.road.cartRepaired)return false;
@@ -2109,7 +2212,7 @@ class RPGUI{
   this.open('beacon');return true;
  }
  paint(){
-  const extra=this.crossing.page(this.tab);
+  const extra=this.starter.page(this.tab)||this.crossing.page(this.tab);
   const titles={equipment:'Your character',bag:'Your belongings',companion:'Your companion',soul:'The paths within',craft:'The workbench',journal:'Your journal',beacon:'The Beacon Answers',more:'Life in Firstlight',merchant:'Tessa’s road shop'};
   $('#rpg-heading').textContent=extra?.title||titles[this.tab]||'Firstlight';
   $('#rpg-tabs').innerHTML=[['equipment','Equipment'],['bag','Inventory'],['companion','Companion'],['soul','Soul'],['craft','Crafting'],['journal','Journal'],['atlas','Map']].map(([id,n])=>button(n,'open',id,false,'aria-current="'+(this.tab===id?'page':'false')+'"')).join('');
@@ -2124,6 +2227,7 @@ class RPGUI{
   else if(this.tab==='beacon')body.innerHTML=this.beacon();
   else if(this.tab==='merchant')body.innerHTML=this.merchant();
   else body.innerHTML=this.more();
+  if(this.tab==='journal')body.insertAdjacentHTML('afterbegin',this.starter.journal());
  }
  inventory(){
   const a=this.state,st=A.stats(a),slots=['weapon','armor','charm'];
@@ -2213,6 +2317,7 @@ class RPGUI{
   G.RealmArt.WorldArt.prototype.person(out,0,0,yaw,A.GEAR[a.equipment.armor]?.color||G.RealmCreative.CLOAKS[x.cloak],0,false,'visitor',true,0,x);
   const col=A.GEAR[a.equipment.weapon]?.color||'#bcb590';
   if(a.equipment.weapon){const add=(xx,y,z,sx,sy,sz,c)=>out.box.push({p:[xx*Math.cos(yaw)+z*Math.sin(yaw),y,-xx*Math.sin(yaw)+z*Math.cos(yaw)],s:[sx,sy,sz],c,r:[0,yaw,0]});
+   if(G.RealmStarter.bonus(a,a.equipment.weapon))add(.52,.52,.08,.20,.1,.17,'#82beb0');
    if(AR.weapon(a).style==='bow'){for(let i=0;i<11;i++){let u=i/10*Math.PI;add(.52+Math.sin(u)*.24,.24+i*.112,.12,.065,.14,.07,col);}add(.52,.8,.12,.022,1.1,.022,'#ddd5b8');}else{add(.52,.84,.08,.10,1.1,.10,col);add(.52,.58,.08,.4,.07,.13,'#c4a66f');}
   }
   out.disc.push({p:[0,-.08,0],s:[2.0,.12,2.0],c:0x566864});
@@ -2237,9 +2342,10 @@ class RPGUI{
   $('#beacon-tracker').hidden=!(sim.room==='road'&&a.beacon.introduced);if(!$('#beacon-tracker').hidden){$('#beacon-phase').textContent=({arrival:'A road believed dead',ready:'Prepare the defense',assault:'Breach '+b.wave+' / 3',intermission:'Regroup · '+Math.max(0,Math.ceil(b.nextWave-b.time))+'s',failed:'The ward has fallen',won:'The light held'})[b.phase]||'The envoy awaits';$('#ward-fill').style.width=b.ward+'%';$('#beacon-status').textContent='Ward '+Math.ceil(b.ward)+' / 100 · '+(b.phase==='assault'?'E repairs near the light':'Your community stands beside you.');}
   const bm=$('#beacon-menu');bm.textContent=b.phase==='assault'?'Repair ward · E · 20 stamina':'Speak with the envoy · E';bm.disabled=b.phase==='assault'&&(!B.near(sim)||b.ward>=100||b.time<b.playerRepairAt||a.stamina<20);
   sim.presentation=sim.presentation||{};sim.presentation.attackTarget=t.target||(this.api.adventure().intent?.kind==='attack'?this.api.adventure().intent.id:null);
-  this.numbers();this.crossing.tick();
+  const lastHit=t.hits.at(-1);if(lastHit&&this.soundedHit!==lastHit){this.soundedHit=lastHit;if(a.elapsed-lastHit.at<.25)this.api.adventure().sound('confirmed-hit');}
+  this.numbers();this.crossing.tick();this.starter.tick();
  }
- numbers(){const t=T.runtime(this.sim),now=this.state.elapsed,root=$('#combat-numbers');root.replaceChildren();for(const h of t.hits){const pos=this.api.project(h.x,3.3+(now-h.at),h.z);if(!pos?.visible)continue;const el=document.createElement('span');el.textContent=h.n;el.style.left=pos.x+'px';el.style.top=pos.y+'px';el.style.opacity=String(Math.max(0,1-(now-h.at)/.9));root.append(el);}}
+ numbers(){const t=T.runtime(this.sim),now=this.state.elapsed,root=$('#combat-numbers');root.replaceChildren();for(const h of t.hits){const pos=this.api.project(h.x,3.3+(this.sim.state.settings.reducedMotion?0:now-h.at),h.z);if(!pos?.visible)continue;const el=document.createElement('span');el.textContent=h.n;el.style.left=pos.x+'px';el.style.top=pos.y+'px';el.style.opacity=String(Math.max(0,1-(now-h.at)/.9));root.append(el);}}
 }
 G.RealmRPGUI={RPGUI,icon};
 })(globalThis);
@@ -2329,7 +2435,7 @@ const btn=(text,act,id='',off=false,cls='')=>'<button data-rpg="'+act+'" data-id
 const distance=(a,b)=>Math.hypot(a.x-b.x,a.z-b.z);
 function points(sim){if(sim.room==='crossing'){let q=X.PLACES.filter(p=>p.id!=='thicket'||sim.state.adventure.crossing.met).map(p=>({...p}));const s=sim.state.adventure.crossing;if(s.clapperRevealed&&!s.clapper)q.push({id:'clapper',name:'The lost clapper',...X.CLAPPER,kind:'clue'});if(s.repaired)q.push(...X.BELLS.map(b=>({...b,id:'bell-'+b.id,kind:'bell'})));return q;}
  if(sim.room==='road')return[{id:'road-exit',name:'Firstlight Valley',x:0,z:17,kind:'gate'},{id:'road-trader',name:'Tessa’s cart',x:-10,z:12,kind:'shop'},{id:'road-bridge',name:'River bridge',x:2,z:0,kind:'gate'},{id:'sunward',name:'Sunward Beacon',x:0,z:-24,kind:'waystone'},...(sim.state.adventure.beacon.complete?[{id:'cross-enter',name:'To Bellweather Crossing',...X.GATE,kind:'gate'}]:[])];
- if(!sim.room)return C.LANDMARKS.map(p=>({...p,kind:p.id==='commons'?'waystone':'place'}));
+ if(!sim.room)return [...C.LANDMARKS.map(p=>({...p,kind:p.id==='commons'?'waystone':'place'})),...(sim.state.adventure.started?G.RealmStarter.points(sim):[])];
  return[];
 }
 function projection(sim,w,h){return sim.room==='crossing'?{scale:Math.min(w,h)/68,ox:w/2,oy:h/2+Math.min(w,h)/68}:sim.room==='road'?{scale:Math.min(w,h)/62,ox:w/2,oy:h/2+3*Math.min(w,h)/62}:{scale:Math.min(w/90,h/95),ox:w*.30,oy:h*.63};}
@@ -2405,6 +2511,103 @@ class CrossingUI{
  }
 }
 G.RealmCrossingUI={CrossingUI,mapCanvas,mapSVG,points,projection};})(globalThis);
+</script><script>/* Read-only riverbank scenery. Enemy outcomes and positions come from shared rules. */
+(function(G){'use strict';const Q=G.RealmStarter;
+function make(a){a.begin(Q.ROOM);a.e.theme='riverbank';a.e.isInterior=false;a.e.ambientOverride=.58;const rng=G.RealmCore.rng(1212);
+ a.box(-1,.30,-2.5,22,2.4,35,0x687e60);
+ for(let z=-23;z<21;z+=2.5){a.add('octa',-13,.2,z,5,2.5,4,0x768c70);a.add('octa',10.7,.25,z,2.2,1.6,3.3,0x8d9980);}
+ for(let x=-11;x<10;x+=2)for(let z=-19;z<15;z+=2)a.box(x,1.47,z,2.02,.08,2.02,[0x819875,0x78916d,0x84986e][Math.floor(rng()*3)],{rough:1});
+ const route=[Q.ENTRY,...Q.BUNDLES,Q.ENEMIES[2]];for(let j=1;j<route.length;j++){const p=route[j-1],q=route[j],d=Math.hypot(q.x-p.x,q.z-p.z);for(let t=0;t<=d;t+=.8)a.add('disc',p.x+(q.x-p.x)*t/d,1.525,p.z+(q.z-p.z)*t/d,2,.018,2,0xb5ac85,{rough:1});}
+ // Eastern shore is outside the movement bounds; the engine supplies the surrounding water.
+ for(let z=-19;z<16;z+=1.8){a.add('octa',10.15,1.1,z,.8,.65,1.7,0xa8a98a);for(let i=0;i<3;i++)a.box(9.7+Math.sin(z+i)*.15,1.7,z+i*.28,.05,.55,.05,0xb3b17c,{r:[.1,0,.13]});}
+ for(const o of Q.OBSTACLES)a.add('octa',o.x,1.8,o.z,o.r*2,1.5,o.r*2,0x8c9987,{rough:1});
+ for(const [x,z,scale,kind]of Q.TREES)a.tree(x,z,scale,kind,1.5);
+ for(let i=0;i<16;i++){const z=-23+i*2.8;a.tree(-16-rng()*3,z,.75+rng()*.6,i%3,.5);}
+ a.box(-1.9,2.3,13.5,.17,1.7,.17,0x857557);a.box(-1.9,2.85,13.5,1.6,.4,.10,0xd0bb91);a.lamp(1.7,13,2.6,1.5);
+ // Unrecovered bundles are dynamic so saving/collecting cannot leave stale scenery.
+ a.commit();
+}
+function draw(out,sim,t){const a=sim.state.adventure,q=a.starter;
+ const add=(k,x,y,z,w,h,d,c,o={})=>out[k].push({p:[x,y,z],s:[w,h,d],c,...o}),box=(...p)=>add('box',...p);
+ function bundle(x,z,i){box(x,1.83,z,.8,.55,.7,0x967551);box(x,2.12,z,.92,.08,.79,0xd5bc89);box(x,1.86,z,.08,.67,.81,0x608e82);box(x,1.87,z,.93,.66,.07,0x608e82);if(i===1){box(x,2.24,z,.62,.12,.16,0xbbc0af);box(x+.23,2.20,z,.12,.14,.58,0x84704f);}if(i===2)box(x,2.28,z,.70,.22,.6,0xb8c3a1);}
+ if(sim.room===Q.ROOM){for(let i=0;i<Q.BUNDLES.length;i++){const b=Q.BUNDLES[i];if(!q.bundles.includes(b.id))bundle(b.x,b.z,i);}
+  const p=Q.PRACTICE;box(p.x,2.12,p.z,.18,1.3,.20,0x796346);add('round',p.x,2.75,p.z,1.1,1.1,.55,0xb4a779);box(p.x,2.75,p.z+.28,.17,.95,.04,0x75988b);box(p.x,2.75,p.z+.29,.9,.17,.04,0x75988b);
+ }else if(!sim.room){
+  box(Q.GATE.x,1.85,Q.GATE.z,.13,1.1,.13,0x807250);box(Q.GATE.x,2.4,Q.GATE.z,1.25,.36,.09,0xc1b18d);add('octa',Q.GATE.x+.6,2.4,Q.GATE.z,.38,.36,.1,0xc1b18d);
+  if(q.reward)for(let i=0;i<3;i++)bundle(12.2+(i%2)*.9,7.1+Math.floor(i/2)*.9,i);
+ }
+}
+G.RealmStarterArt={make,draw};})(globalThis);
+</script><script>/* Oren's optional outing: projections and accepted commands in the existing workspace. */
+(function(G){'use strict';
+const Q=G.RealmStarter,A=G.RealmAdventure,AR=G.RealmArsenal,T=G.RealmCombat,$=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const button=(text,action,id='',disabled=false)=>'<button data-rpg="'+action+'" data-id="'+esc(id)+'" '+(disabled?'disabled':'')+'>'+text+'</button>';
+function projection(w,h){return{scale:Math.min(w/28,h/39),x:w/2,y:h/2+2.5*Math.min(w/28,h/39)};}
+function mapCanvas(canvas,sim){const g=canvas.getContext('2d'),w=canvas.width,h=canvas.height,{scale:s,x:ox,y:oy}=projection(w,h);if(!g)return;
+ const at=p=>[ox+p.x*s,oy+p.z*s];g.fillStyle='#122e32';g.fillRect(0,0,w,h);g.fillStyle='#506e54';g.fillRect(ox-12*s,oy-20*s,22*s,35*s);g.fillStyle='#659199';g.fillRect(ox+10*s,0,4*s,h);
+ g.strokeStyle='#c4b28b';g.lineWidth=2*s;g.beginPath();[[0,12],[-7,3],[5,-3],[-5,-11],[-4,-15]].forEach(([x,z],i)=>i?g.lineTo(ox+x*s,oy+z*s):g.moveTo(ox+x*s,oy+z*s));g.stroke();
+ for(const q of Q.OBSTACLES){g.fillStyle='#949b8b';g.beginPath();g.arc(...at(q),q.r*s,0,Math.PI*2);g.fill();}
+ for(const q of Q.points(sim)){g.fillStyle=q.kind==='supplies'?'#eed5a1':'#8cbcaf';g.fillRect(at(q)[0]-2,at(q)[1]-2,4,4);}
+ for(const e of A.runtime(sim).enemies.filter(e=>e.hp>0&&e.kind!=='practice')){g.fillStyle='#e0988c';g.beginPath();g.arc(...at(e),3,0,Math.PI*2);g.fill();}
+ g.fillStyle='#fff3cf';g.beginPath();g.arc(...at(sim.state.player),4,0,Math.PI*2);g.fill();
+}
+function mapSVG(sim){const {scale:s,x:ox,y:oy}=projection(420,450),at=p=>({x:ox+p.x*s,y:oy+p.z*s}),points=Q.points(sim);let html='<rect width="420" height="450" rx="14" fill="#14353a"/><rect x="'+(ox-12*s)+'" y="'+(oy-20*s)+'" width="'+22*s+'" height="'+35*s+'" rx="20" fill="#4d6c54"/><path d="M '+(ox+11*s)+' 0 V450" stroke="#69979e" stroke-width="'+2*s+'"/>';
+ const route=[[0,12],[-7,3],[5,-3],[-5,-11],[-4,-15]].map(([x,z])=>(ox+x*s)+','+(oy+z*s)).join(' ');html+='<polyline points="'+route+'" fill="none" stroke="#bbad8b" stroke-width="12" stroke-linejoin="round"/>';
+ for(const o of Q.OBSTACLES){const p=at(o);html+='<circle cx="'+p.x+'" cy="'+p.y+'" r="'+o.r*s+'" fill="#879688"/>';}
+ points.forEach((q,i)=>{const p=at(q);html+='<g role="button" tabindex="0" class="atlas-pin" data-rpg="starter-walk" data-id="'+q.id+'" aria-label="Walk to '+esc(q.name)+'"><circle cx="'+p.x+'" cy="'+p.y+'" r="11" fill="#243f39" stroke="#efd49e"/><text x="'+p.x+'" y="'+(p.y+4)+'" text-anchor="middle" fill="#fff0ca">'+(i+1)+'</text></g>';});
+ const p=at(sim.state.player);return '<svg id="starter-map" viewBox="0 0 420 450" role="img" aria-label="Riverbank route map">'+html+'<circle cx="'+p.x+'" cy="'+p.y+'" r="5" fill="#fff8db"/><text x="210" y="20" text-anchor="middle" fill="#d7d4b9">NORTH · RIVERBANK WORKSITE</text></svg>';
+}
+class StarterUI{
+ constructor(rpg){this.rpg=rpg;this.temper=null;this.destination=null;this.lastSound=0;this.lastSoundScene=null;
+  const track=document.createElement('button');track.dataset.rpg='track';track.dataset.id='starter';track.textContent='Riverbank';$('.tracker-switch').append(track);
+  const labels=document.createElement('div');labels.id='starter-labels';labels.setAttribute('aria-hidden','true');$('#hud').append(labels);
+  rpg.dialog.addEventListener('change',e=>{if(e.target.id==='starter-temper-weapon'){this.temper=e.target.value;rpg.paint();}});
+  rpg.dialog.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.matches('[data-rpg="starter-walk"]')){e.preventDefault();this.action(e.target);}});
+ }
+ get sim(){return this.rpg.sim;}get a(){return this.rpg.state;}get q(){return this.a.starter;}
+ run(type,p={}){return this.rpg.run(type,p);}
+ context(){if(!this.a.started||this.a.hp<=0)return null;const sim=this.sim;
+  if(sim.room===Q.ROOM){if(Q.near(sim,Q.ENTRY,2.8))return'E · Return to Oren’s workshop';const b=Q.BUNDLES.find(b=>this.q.accepted&&!this.q.bundles.includes(b.id)&&Q.near(sim,b,2.4));if(b)return'E · Recover '+b.name.toLowerCase();const e=A.roster(sim).find(e=>this.a.drops.includes(e.id)&&Q.near(sim,e));if(e)return'E · Collect '+e.name+' cache';return'M · Riverbank route';}
+  if(sim.room)return null;if(Q.near(sim,Q.GATE,2.5))return'E · Take the riverbank path';if(Q.near(sim,Q.OREN))return'E · Oren: supplies, rewards & workbench';return null;
+ }
+ interact(){if(!this.context())return false;const sim=this.sim;
+  if(sim.room===Q.ROOM){if(Q.near(sim,Q.ENTRY,2.8)){this.run('starter-leave');return true;}const b=Q.BUNDLES.find(b=>this.q.accepted&&!this.q.bundles.includes(b.id)&&Q.near(sim,b,2.4));if(b){this.run('starter-pickup',{id:b.id});return true;}const e=A.roster(sim).find(e=>this.a.drops.includes(e.id)&&Q.near(sim,e));if(e){this.run('loot',{id:e.id});return true;}this.rpg.open('atlas');return true;}
+  if(Q.near(sim,Q.GATE,2.5)){this.run('starter-enter');return true;}this.rpg.open('starter');return true;
+ }
+ action(el){const action=el.dataset.rpg,id=el.dataset.id;
+  if(action==='starter-accept'){if(this.run('starter-accept').ok)this.rpg.quest='starter';this.rpg.paint();return true;}
+  if(action==='starter-claim'){const payload=id==='temper'?{choice:id,weapon:this.temper||this.a.equipment.weapon}:{choice:id};this.run('starter-claim',payload);return true;}
+  if(action==='starter-walk'){const p=Q.points(this.sim).find(p=>p.id===id);if(p){this.rpg.close();this.destination={...p,room:this.sim.room};this.rpg.api.walkLocal(p.x,p.z);}return true;}
+  if(action==='starter-enter'||action==='starter-leave'){if(this.run(action).ok)this.rpg.close();return true;}
+  if(action==='starter-practice'){this.rpg.close();const p=this.sim.room===Q.ROOM?Q.PRACTICE:Q.GATE;this.rpg.api.walkLocal(p.x,p.z);return true;}
+  return false;
+ }
+ compare(choice,weapon){const a=this.a,current=A.stats(a),copy=JSON.parse(JSON.stringify(a));copy.equipment.weapon=weapon;const next=A.stats(copy);if(choice==='temper')next.attack+=2;const before=AR.weapon(a),after=AR.weapon(copy),socket=a.arsenal.sockets[weapon];
+  const row=(name,old,n)=>'<tr><th>'+name+'</th><td>'+old+'</td><td>'+n+'</td></tr>';
+  return '<table class="starter-compare"><caption>Currently equipped → reward equipped</caption><tbody>'+row('Attack',current.attack,next.attack)+row('Guard',current.defense,next.defense)+row('Maximum health',current.maxHP,next.maxHP)+row('Cooldown (seconds)',before.cooldown,after.cooldown)+row('Reach',before.reach,after.reach)+row('Stamina / strike',before.stamina,after.stamina)+row('Socket',esc(AR.activeGem(a)?.name||'Empty'),esc(socket?AR.GEMS[socket].name:'Empty'))+'</tbody></table>';
+ }
+ rewardCards(){const a=this.a,ready=Q.complete(a)&&!this.sim.room&&Q.near(this.sim,Q.OREN),owned=a.owned.filter(id=>A.GEAR[id].slot==='weapon');if(!owned.includes(this.temper))this.temper=a.equipment.weapon||owned[0];
+  return '<div class="starter-rewards">'+['oren_sunblade','oren_reedbow','temper'].map(choice=>{const weapon=choice==='temper'?this.temper:choice,g=A.GEAR[weapon];if(!g)return'';const title=choice==='temper'?'One careful temper':g.name;
+   return '<article class="starter-reward"><small>'+ (choice==='temper'?'ONE OWNED WEAPON · +2 ATTACK':'FIXED EARLY '+g.style.toUpperCase())+'</small><h3>'+esc(title)+'</h3>'+(choice==='temper'?'<label for="starter-temper-weapon">Weapon to improve</label><select id="starter-temper-weapon">'+owned.map(id=>'<option value="'+id+'" '+(id===weapon?'selected':'')+'>'+esc(A.GEAR[id].name)+'</option>').join('')+'</select><p>One +2 attack improvement, once for this outing. Identity, socket, range and cadence stay intact. An equipped selection changes immediately on confirmation.</p>':'<p>'+esc(g.desc)+' Equip it yourself; your old gear is kept. This does not move your current gem.</p>')+this.compare(choice,weapon)+button(ready?'Confirm '+(choice==='temper'?'temper':'this reward'):'Preview · return with both objectives','starter-claim',choice,!ready||(choice!=='temper'&&a.owned.includes(choice)))+'</article>';}).join('')+'</div>';
+ }
+ journal(){const a=this.a,q=this.q;return '<section class="starter-journal"><small>OPTIONAL · CLOSE TO HOME</small><h3>Oren’s riverbank supplies</h3><p>Recover three distinct bundles and drive away Old Bristle. The objectives share one route and can be done in either order after acceptance.</p><ol>'+Q.BUNDLES.map(b=>'<li class="'+(q.bundles.includes(b.id)?'done':'')+'">'+esc(b.name)+(q.bundles.includes(b.id)?' · secured':' · riverbank path')+'</li>').join('')+'<li class="'+(a.defeated.includes('river-old-bristle')?'done':'')+'">Old Bristle'+(a.defeated.includes('river-old-bristle')?' · driven away':' · the far canvas clearing')+'</li></ol>'+button(q.reward?'See Oren’s thanks':'Review outing and rewards','open','starter')+button('Track riverbank outing','track','starter')+'</section>';}
+ page(tab){const a=this.a,q=this.q,sim=this.sim;
+  if(tab==='atlas'&&sim.room===Q.ROOM)return{title:'Riverbank · the way out and home',html:'<div class="cross-atlas-layout"><section>'+mapSVG(sim)+'<p>Two goals along one riverbank. Numbered routes walk through the actual terrain.</p></section><section class="cross-atlas-list">'+Q.points(sim).map((p,i)=>button('<b>'+String(i+1).padStart(2,'0')+'</b><span><strong>'+esc(p.name)+'</strong><small>'+Math.round(Math.hypot(sim.state.player.x-p.x,sim.state.player.z-p.z))+' paces</small></span>','starter-walk',p.id)).join('')+this.journal()+'</section></div>'};
+  if(tab!=='starter')return null;
+  const reward=q.reward,near=!sim.room&&Q.near(sim,Q.OREN),intro=reward?'You brought the bundles home. Oren has stacked the supplies beside his workshop, ready for tomorrow’s repairs.':'“The rope, hand tools and canvas slipped from our load. Old Bristle has claimed the bank. Bring our supplies home, and I can put a better tool in your hands.”';
+  return{title:'Oren · work worth coming home to',html:'<div class="starter-service"><small>THE NEARBY RIVERBANK · OPTIONAL OUTING</small><h2>'+ (reward?'A small job, properly finished.':'A familiar path. Useful work.')+'</h2><p class="starter-intro">'+intro+'</p><p><strong>Route:</strong> the sign east of this workshop leads to the riverbank. Follow the rope, hand tools and canvas north; return by the southern path. <strong>Danger:</strong> two ordinary skitters and one stronger beast. Old Bristle marks where it will strike: Brace or move clear, then use its recovery.</p>'+(!q.accepted?button('Accept: recover three bundles and drive away Old Bristle','starter-accept','',!a.started||!near):this.journal())+(reward?'<article class="starter-thanks"><h3>'+esc(A.GEAR[reward.weapon].name)+(reward.choice==='temper'?' · tempered once':' · yours to equip')+'</h3><p>Six sunmarks and 25 XP were awarded once. Your other belongings and choices remain your own.</p>'+button('Inspect equipment','open','equipment')+(a.equipment.weapon!==reward.weapon?button('Equip '+esc(A.GEAR[reward.weapon].name),'equip',reward.weapon):'<p><strong>This weapon is equipped.</strong></p>')+button('Try it at the riverbank practice bundle','starter-practice')+'</article>':'<h3>Choose one reward when you return</h3><p>Six sunmarks and 25 XP accompany your choice. Existing copper weapons and Dawn’s edge remain stronger than the fixed early weapons. Compare every field; tempering offers a finite improvement for a weapon you already value.</p>'+this.rewardCards())+'<div class="starter-links">'+button('Workbench · bows, crafting and gems','open','craft')+button('Existing archery court','range')+button('Open map','open','atlas')+'</div></div>'};
+ }
+ tick(){const a=this.a,q=this.q,sim=this.sim;$('.tracker-switch [data-id="starter"]').hidden=!a.started;
+  if(this.rpg.quest==='starter'){const next=!q.accepted?'Speak to Oren at the workshop':q.reward?'Try your reward, then choose another outing':Q.complete(a)?'Return to Oren and choose your reward':q.bundles.length<3?'Recover the riverbank supplies':'Drive away Old Bristle';$('#tracked-chapter').textContent='CLOSE TO HOME · OPTIONAL';$('#tracked-title').textContent=next;$('#tracked-detail').textContent=q.reward?'Your old equipment is kept. Character shows the real changes.':'M maps the route · J keeps all objectives';$('#tracked-progress').textContent=q.bundles.length+'/3 bundles · '+(a.defeated.includes('river-old-bristle')?'beast cleared':'beast remains');}
+  const e=T.selected(sim);if(e?.custom==='river-bristle')$('#target-state').textContent=(e.mode==='windup'?'Marked strike · Brace or move clear ('+e.timer.toFixed(1)+'s)':e.mode==='recover'?'Recovery opening · strike now':Math.ceil(e.hp)+' / '+e.maxHP)+' · '+T.readiness(sim);
+  if(e?.id===Q.PRACTICE.id&&A.runtime(sim).training)$('#target-state').textContent='Last confirmed impact: '+A.runtime(sim).training.lastDamage+' · no XP or loot';
+  const root=$('#starter-labels');root.replaceChildren();if(sim.room!==Q.ROOM)return;
+  for(const p of Q.points(sim)){const pos=this.rpg.api.project(p.x,p.kind==='practice'?3.5:2.5,p.z);if(!pos?.visible)continue;const label=document.createElement('span');label.textContent=p.name;label.style.left=pos.x+'px';label.style.top=pos.y+'px';root.append(label);}
+ }
+}
+G.RealmStarterUI={StarterUI,mapCanvas,mapSVG,projection};
+})(globalThis);
 </script><script>/* Interface, camera and local persistence. Nothing in this file calls a server.
  * Residents use explicit routines and authored dialogue, not a hidden AI API. */
 (function(){'use strict';const C=RealmCore,X=RealmCreative,$=s=>document.querySelector(s),esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -2413,15 +2616,15 @@ function error(e){errors.push(String(e.message||e));console.error(e);}window.add
 function toast(text){ui.toast.textContent=text;ui.toast.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>ui.toast.classList.remove('show'),4200);}
 function fallback(reason){engine=null;art=null;ui.canvas.style.display='none';ui.map.style.display='block';$('#fallback-banner').style.display='block';$('#fallback-banner').textContent=reason||'3D is unavailable. Explore the same local world using this map.';document.getElementById('labels').replaceChildren();resize();}
 try{engine=new RealmEngine.Engine(ui.canvas);engine.quality=sim.state.settings.quality;art=new RealmArt.WorldArt(engine);}catch(e){errors.push('Handled graphics fallback: '+e.message);fallback();}
-function resize(){let w=innerWidth,h=innerHeight;if(engine)engine.resize(w,h,devicePixelRatio||1);ui.map.width=Math.round(w*(devicePixelRatio||1));ui.map.height=Math.round(h*(devicePixelRatio||1));if(camera.overview)camera.half=sim.room==='range'?Math.max(19,17/Math.max(.35,innerWidth/innerHeight)):sim.room==='crossing'?33:sim.room==='road'?30:sim.room==='mine'?17:sim.room?7:Math.max(36,39/Math.max(.55,w/h));updateCamera(1);}
-function updateCamera(dt){if(!engine)return;let desired;if(camera.tour&&!sim.room){camera.tourTime=(camera.tourTime||0)+dt;let spots=[[0,1.7,2,23,.72],[14,1.8,3,19,.87],[33,2,1,17,1.05],[37,2,-1,14,1.23],[23,2,3,23,.85],[0,1.7,2,23,.72]],f=(camera.tourTime%60)/12,i=Math.min(4,Math.floor(f)),u=f-i;u=u*u*(3-2*u);let a=spots[i],b=spots[i+1];desired=a.slice(0,3).map((v,j)=>v+(b[j]-v)*u);camera.half=a[3]+(b[3]-a[3])*u;camera.yaw=a[4]+(b[4]-a[4])*u;}else if(sim.room==='range')desired=camera.overview?[0,2,0]:[sim.state.player.x,2,sim.state.player.z];else if(sim.room==='crossing')desired=camera.overview?[0,2,-1]:[sim.state.player.x,2,sim.state.player.z];else if(sim.room==='road')desired=camera.overview?[0,1.7,-3]:[sim.state.player.x,2,sim.state.player.z];else if(sim.room==='mine')desired=camera.overview?[0,2,-1]:[sim.state.player.x,2,sim.state.player.z];else if(sim.room)desired=[0,2,0];else if(camera.overview)desired=[10,1.7,-10];else{let p=follow?sim.state.residents.find(r=>r.id===follow):sim.state.player;desired=[p.x,1.9,p.z];}let factor=1-Math.exp(-Math.max(dt,.001)*2.6);for(let i=0;i<3;i++)camera.center[i]+=(desired[i]-camera.center[i])*factor;let d=75,ce=Math.cos(camera.elevation),eye=[camera.center[0]+Math.sin(camera.yaw)*ce*d,camera.center[1]+Math.sin(camera.elevation)*d,camera.center[2]+Math.cos(camera.yaw)*ce*d];engine.setCamera({eye,target:camera.center.slice(),half:camera.half,aspect:innerWidth/innerHeight});}
+function resize(){let w=innerWidth,h=innerHeight;if(engine)engine.resize(w,h,devicePixelRatio||1);ui.map.width=Math.round(w*(devicePixelRatio||1));ui.map.height=Math.round(h*(devicePixelRatio||1));if(camera.overview)camera.half=sim.room==='riverbank'?23:sim.room==='range'?Math.max(19,17/Math.max(.35,innerWidth/innerHeight)):sim.room==='crossing'?33:sim.room==='road'?30:sim.room==='mine'?17:sim.room?7:Math.max(36,39/Math.max(.55,w/h));updateCamera(1);}
+function updateCamera(dt){if(!engine)return;let desired;if(camera.tour&&!sim.room){camera.tourTime=(camera.tourTime||0)+dt;let spots=[[0,1.7,2,23,.72],[14,1.8,3,19,.87],[33,2,1,17,1.05],[37,2,-1,14,1.23],[23,2,3,23,.85],[0,1.7,2,23,.72]],f=(camera.tourTime%60)/12,i=Math.min(4,Math.floor(f)),u=f-i;u=u*u*(3-2*u);let a=spots[i],b=spots[i+1];desired=a.slice(0,3).map((v,j)=>v+(b[j]-v)*u);camera.half=a[3]+(b[3]-a[3])*u;camera.yaw=a[4]+(b[4]-a[4])*u;}else if(sim.room==='riverbank')desired=camera.overview?[0,2,-2.5]:[sim.state.player.x,2,sim.state.player.z];else if(sim.room==='range')desired=camera.overview?[0,2,0]:[sim.state.player.x,2,sim.state.player.z];else if(sim.room==='crossing')desired=camera.overview?[0,2,-1]:[sim.state.player.x,2,sim.state.player.z];else if(sim.room==='road')desired=camera.overview?[0,1.7,-3]:[sim.state.player.x,2,sim.state.player.z];else if(sim.room==='mine')desired=camera.overview?[0,2,-1]:[sim.state.player.x,2,sim.state.player.z];else if(sim.room)desired=[0,2,0];else if(camera.overview)desired=[10,1.7,-10];else{let p=follow?sim.state.residents.find(r=>r.id===follow):sim.state.player;desired=[p.x,1.9,p.z];}let factor=1-Math.exp(-Math.max(dt,.001)*2.6);for(let i=0;i<3;i++)camera.center[i]+=(desired[i]-camera.center[i])*factor;let d=75,ce=Math.cos(camera.elevation),eye=[camera.center[0]+Math.sin(camera.yaw)*ce*d,camera.center[1]+Math.sin(camera.elevation)*d,camera.center[2]+Math.cos(camera.yaw)*ce*d];engine.setCamera({eye,target:camera.center.slice(),half:camera.half,aspect:innerWidth/innerHeight});}
 function cameraPreset(mode='follow'){
  camera.tour=false;follow=null;camera.preset=mode;camera.overview=mode==='wide';
- if(mode==='follow'){camera.yaw=.76;camera.elevation=.88;camera.half=sim.room==='mine'?12:sim.room==='range'?14:sim.room&&sim.room!=='road'&&sim.room!=='crossing'?7:17;}
- if(mode==='tactical'){camera.elevation=1.08;camera.half=sim.room==='mine'?16:sim.room==='range'?17:sim.room&&sim.room!=='road'&&sim.room!=='crossing'?8:21;}
+ if(mode==='follow'){camera.yaw=.76;camera.elevation=.88;camera.half=sim.room==='mine'?12:sim.room==='range'?14:sim.room&&sim.room!=='riverbank'&&sim.room!=='road'&&sim.room!=='crossing'?7:17;}
+ if(mode==='tactical'){camera.elevation=1.08;camera.half=sim.room==='mine'?16:sim.room==='range'?17:sim.room&&sim.room!=='riverbank'&&sim.room!=='road'&&sim.room!=='crossing'?8:21;}
  if(mode==='wide')resize();updateCamera(1);rpg?.cameraPaint(mode);
 }
-function switchScene(){if(scene===sim.room)return;scene=sim.room;camera.tour=false;if(engine){if(scene==='crossing')RealmCrossingArt.make(art,sim);else if(scene==='range')RealmArsenalArt.court(art);else if(scene==='road')RealmRoadArt.make(art,sim);else if(scene==='mine')RealmAdventureArt.cave(art,sim);else if(scene)art.makeInterior(scene,sim.state.retreat);else art.makeExterior();}cameraPreset('follow');camera.center=[sim.state.player.x,2,sim.state.player.z];target=null;follow=null;labelsRebuild();resize();}
+function switchScene(){if(scene===sim.room)return;scene=sim.room;camera.tour=false;if(engine){if(scene==='riverbank')RealmStarterArt.make(art,sim);else if(scene==='crossing')RealmCrossingArt.make(art,sim);else if(scene==='range')RealmArsenalArt.court(art);else if(scene==='road')RealmRoadArt.make(art,sim);else if(scene==='mine')RealmAdventureArt.cave(art,sim);else if(scene)art.makeInterior(scene,sim.state.retreat);else art.makeExterior();}cameraPreset('follow');camera.center=[sim.state.player.x,2,sim.state.player.z];target=null;follow=null;labelsRebuild();resize();}
 function save(){if(preserveExisting){saveState='preserved';renderStatus();return{ok:false,error:'Existing storage could not be read. Export a JSON backup; it has not been overwritten.'};}let r=sim.save({setItem:(k,v)=>localStorage.setItem(k,v)});saveState=r.ok?'saved':'unavailable';renderStatus();return r;}
 function renderStatus(){$('#save-status').innerHTML=saveState==='saved'?'<i class="dot"></i>SAVED ON THIS DEVICE':saveState==='new'?'<i class="dot"></i>LOCAL WORLD':'MEMORY ONLY · EXPORT TO KEEP';}
 function command(type,payload){let r=sim.act('ui-'+Date.now()+'-'+(++commandCount),type,payload);if(r.ok)save();if(r.text)toast(r.text);else if(r.error)toast(r.error);return r;}
@@ -2490,7 +2693,7 @@ for(let el of document.querySelectorAll('[data-panel]'))el.addEventListener('cli
 function formatHour(h){let m=Math.floor(h*60);return String(Math.floor(m/60)%24).padStart(2,'0')+':'+String(m%60).padStart(2,'0');}
 let labelNodes=[];function labelsRebuild(){let c=$('#labels');c.replaceChildren();labelNodes=[];if(!engine)return;if(!sim.room){for(let l of C.LANDMARKS){let e=document.createElement('span');e.className='world-label';e.textContent=l.short;c.appendChild(e);labelNodes.push({e,l});}}for(let p of C.PROFILES){let e=document.createElement('span');e.className='world-label resident';e.textContent=p.name;c.appendChild(e);labelNodes.push({e,id:p.id});}}
 function updateLabels(){if(!engine)return;$('#labels').style.display=sim.state.settings.labels?'block':'none';for(let n of labelNodes){let p,show=true;if(n.l)p=engine.project(n.l.x,n.l.kind==='interior'?5.8:2.4,n.l.z-1);else{let r=sim.state.residents.find(r=>r.id===n.id),run=sim.runs.get(n.id);if(sim.room){let i=C.PROFILES.findIndex(p=>p.id===n.id),pos=[[-3.1,1.1],[3.2,1.1],[2,3.2]][i];if(sim.room==='home'&&run.inside)p=engine.project(pos[0],3.45,pos[1]);else if((sim.room==='atelier'&&n.id==='ilan'&&run.goal==='atelier')||(sim.room==='observatory'&&n.id==='mara'&&run.goal==='observatory'))p=engine.project(2.5,3.45,1.1);else show=false;}else{p=engine.project(r.x,3.25,r.z);show=!run.inside;}}if(!p||!show||!p.visible){n.e.style.display='none';continue;}n.e.style.display='flex';n.e.style.left=p.x+'px';n.e.style.top=p.y+'px';}}
-function mapDraw(canvas,full=false){if(sim.room==='crossing')return RealmCrossingUI.mapCanvas(canvas,sim,full);if(sim.room==='range')return mapRange(canvas,full);if(sim.room==='road'){mapRoad(canvas,full);return;}if(sim.room==='mine'){mapMine(canvas,full);return;}let g=canvas.getContext('2d');if(!g)return;let w=canvas.width,h=canvas.height,scale=sim.room?(full?Math.min(w,h)/17:w/16):(full?Math.min(w,h)/108:w/108),centerX=sim.room?w/2:w/2-10*scale,centerY=full?h*.53:h*.48;g.clearRect(0,0,w,h);g.fillStyle=full?'#233f49':'#19363c';g.fillRect(0,0,w,h);let tx=x=>centerX+x*scale,tz=z=>centerY+(z+(sim.room?0:10))*scale;g.fillStyle='#647e66';g.beginPath();if(sim.room){g.rect(tx(-5.5),tz(-4.5),11*scale,9*scale);}else{for(let i=0;i<=100;i++){let a=i/100*Math.PI*2,r=C.landRadius(Math.cos(a),Math.sin(a));let x=tx(Math.cos(a)*r),z=tz(Math.sin(a)*r);i?g.lineTo(x,z):g.moveTo(x,z);} }g.fill();if(!sim.room){g.beginPath();g.ellipse(tx(37),tz(2),12.1*scale,11.6*scale,0,0,Math.PI*2);g.fill();g.fillRect(tx(20),tz(.3),9*scale,3.4*scale);g.beginPath();g.ellipse(tx(0),tz(-40),11.4*scale,12.4*scale,0,0,Math.PI*2);g.fill();if(sim.state.sandbox.bridge)g.fillRect(tx(-1.4),tz(-30.6),2.8*scale,8*scale);}if(sim.room){g.fillStyle='#9c875e';g.fillRect(tx(-5.3),tz(-4.2),10.6*scale,8.4*scale);g.fillStyle='#665545';if(sim.room==='retreat'){for(let i of sim.state.retreat.items){let o=X.obstacles({...sim.state.retreat,items:[i]})[0];if(o)g.fillRect(tx(o.x-o.w/2),tz(o.z-o.d/2),o.w*scale,o.d*scale);}}else g.fillRect(tx(-1.4),tz(-2.45),2.8*scale,1.9*scale);}else{g.strokeStyle='#b3b69a80';g.lineWidth=full?6:2;for(let l of C.LANDMARKS){g.beginPath();g.moveTo(tx(l.x>25?28:0),tz(l.x>25?2:3));g.lineTo(tx(l.x),tz(l.z));g.stroke();}g.fillStyle='#ad9d77';g.fillRect(tx(-1.5),tz(20),3*scale,9*scale);g.fillStyle='#3b594c';for(let o of C.OBSTACLES){if(o.r){g.beginPath();g.arc(tx(o.x),tz(o.z),o.r*scale,0,Math.PI*2);g.fill();}else g.fillRect(tx(o.x-o.w/2),tz(o.z-o.d/2),o.w*scale,o.d*scale);}for(let l of C.LANDMARKS){g.fillStyle=sim.state.visited.includes(l.id)?'#ddc489':'#a9bba4';g.beginPath();g.arc(tx(l.x),tz(l.z),full?5:2.8,0,Math.PI*2);g.fill();if(full){g.fillStyle='#e9e9cf';g.font=Math.max(11,w/95)+'px system-ui';g.textAlign='center';g.fillText(l.short,tx(l.x),tz(l.z)-12);}}}
+function mapDraw(canvas,full=false){if(sim.room==='riverbank'){RealmStarterUI.mapCanvas(canvas,sim);return;}if(sim.room==='crossing')return RealmCrossingUI.mapCanvas(canvas,sim,full);if(sim.room==='range')return mapRange(canvas,full);if(sim.room==='road'){mapRoad(canvas,full);return;}if(sim.room==='mine'){mapMine(canvas,full);return;}let g=canvas.getContext('2d');if(!g)return;let w=canvas.width,h=canvas.height,scale=sim.room?(full?Math.min(w,h)/17:w/16):(full?Math.min(w,h)/108:w/108),centerX=sim.room?w/2:w/2-10*scale,centerY=full?h*.53:h*.48;g.clearRect(0,0,w,h);g.fillStyle=full?'#233f49':'#19363c';g.fillRect(0,0,w,h);let tx=x=>centerX+x*scale,tz=z=>centerY+(z+(sim.room?0:10))*scale;g.fillStyle='#647e66';g.beginPath();if(sim.room){g.rect(tx(-5.5),tz(-4.5),11*scale,9*scale);}else{for(let i=0;i<=100;i++){let a=i/100*Math.PI*2,r=C.landRadius(Math.cos(a),Math.sin(a));let x=tx(Math.cos(a)*r),z=tz(Math.sin(a)*r);i?g.lineTo(x,z):g.moveTo(x,z);} }g.fill();if(!sim.room){g.beginPath();g.ellipse(tx(37),tz(2),12.1*scale,11.6*scale,0,0,Math.PI*2);g.fill();g.fillRect(tx(20),tz(.3),9*scale,3.4*scale);g.beginPath();g.ellipse(tx(0),tz(-40),11.4*scale,12.4*scale,0,0,Math.PI*2);g.fill();if(sim.state.sandbox.bridge)g.fillRect(tx(-1.4),tz(-30.6),2.8*scale,8*scale);}if(sim.room){g.fillStyle='#9c875e';g.fillRect(tx(-5.3),tz(-4.2),10.6*scale,8.4*scale);g.fillStyle='#665545';if(sim.room==='retreat'){for(let i of sim.state.retreat.items){let o=X.obstacles({...sim.state.retreat,items:[i]})[0];if(o)g.fillRect(tx(o.x-o.w/2),tz(o.z-o.d/2),o.w*scale,o.d*scale);}}else g.fillRect(tx(-1.4),tz(-2.45),2.8*scale,1.9*scale);}else{g.strokeStyle='#b3b69a80';g.lineWidth=full?6:2;for(let l of C.LANDMARKS){g.beginPath();g.moveTo(tx(l.x>25?28:0),tz(l.x>25?2:3));g.lineTo(tx(l.x),tz(l.z));g.stroke();}g.fillStyle='#ad9d77';g.fillRect(tx(-1.5),tz(20),3*scale,9*scale);g.fillStyle='#3b594c';for(let o of C.OBSTACLES){if(o.r){g.beginPath();g.arc(tx(o.x),tz(o.z),o.r*scale,0,Math.PI*2);g.fill();}else g.fillRect(tx(o.x-o.w/2),tz(o.z-o.d/2),o.w*scale,o.d*scale);}for(let l of C.LANDMARKS){g.fillStyle=sim.state.visited.includes(l.id)?'#ddc489':'#a9bba4';g.beginPath();g.arc(tx(l.x),tz(l.z),full?5:2.8,0,Math.PI*2);g.fill();if(full){g.fillStyle='#e9e9cf';g.font=Math.max(11,w/95)+'px system-ui';g.textAlign='center';g.fillText(l.short,tx(l.x),tz(l.z)-12);}}}
  if(!sim.room){for(let n of RealmSandbox.NODES){g.fillStyle=RealmSandbox.ITEMS[n.kind].color;g.fillRect(tx(n.x)-2,tz(n.z)-2,4,4);}for(let p of sim.state.sandbox.placed){let w=RealmSandbox.worldCell(p.gx,p.gz);g.fillStyle=RealmSandbox.ITEMS[p.kind].color;g.fillRect(tx(w.x)-2,tz(w.z)-2,4,4);}}
  if(!sim.room)for(let r of sim.state.residents){g.fillStyle=C.PROFILES.find(p=>p.id===r.id).color;g.beginPath();g.arc(tx(r.x),tz(r.z),full?6:3.5,0,Math.PI*2);g.fill();}let p=sim.state.player;g.fillStyle='#f9df9b';g.beginPath();g.arc(tx(p.x),tz(p.z),full?7:4.5,0,Math.PI*2);g.fill();g.strokeStyle='#faf1c6';g.lineWidth=1;g.beginPath();g.arc(tx(p.x),tz(p.z),full?11:7,0,Math.PI*2);g.stroke();}
 function mapRange(canvas,full){const g=canvas.getContext('2d');if(!g)return;const w=canvas.width,h=canvas.height,sc=(full?Math.min(w,h):w)/36,tx=x=>w/2+x*sc,tz=z=>h/2+z*sc;g.fillStyle='#28483e';g.fillRect(0,0,w,h);g.fillStyle='#b4b493';g.fillRect(tx(-14),tz(-13),28*sc,26*sc);for(const o of RealmArsenal.RANGE.pillars){g.fillStyle='#6d765e';g.beginPath();g.arc(tx(o.x),tz(o.z),o.r*sc,0,Math.PI*2);g.fill();}for(const e of RealmAdventure.runtime(sim).enemies){g.fillStyle='#c68764';g.beginPath();g.arc(tx(e.x),tz(e.z),.7*sc,0,Math.PI*2);g.fill();if(full){g.fillStyle='#24382e';g.font='13px sans-serif';g.textAlign='center';g.fillText(e.name,tx(e.x),tz(e.z)-12);}}for(const q of RealmArsenal.runtime(sim).arrows){g.strokeStyle='#d4857e';g.beginPath();g.moveTo(tx(q.x),tz(q.z));g.lineTo(tx(q.x-q.dx*.7),tz(q.z-q.dz*.7));g.stroke();}const p=sim.state.player;g.fillStyle='#fff8d2';g.beginPath();g.arc(tx(p.x),tz(p.z),5,0,Math.PI*2);g.fill();}
@@ -2500,9 +2703,9 @@ function mapRoad(canvas,full){
  const dot=(p,color,size)=>{g.fillStyle=color;g.beginPath();g.arc(tx(p.x),tz(p.z),size,0,Math.PI*2);g.fill();};for(const p of[RealmRoad.ENTRY,RealmRoad.MERCHANT,RealmRoad.BEACON])dot(p,'#e8cca0',4);for(const e of RealmAdventure.runtime(sim).enemies)if(e.hp>0&&!e.hidden)dot(e,'#d69b9b',4);for(const c of RealmRoad.CACHES)if(sim.state.adventure.road.revealed.includes(c.id)&&!sim.state.adventure.road.claimed.includes(c.id))dot(c,'#dfdba8',4);const f=RealmAdventure.runtime(sim).companion;if(sim.state.adventure.companion.bonded&&f.room===sim.room)dot(f,'#d6a677',3);dot(sim.state.player,'#fff0bd',5);
 }
 function mapMine(canvas,full){let g=canvas.getContext('2d');if(!g)return;let w=canvas.width,h=canvas.height,scale=(full?Math.min(w,h):w)/36,ox=w/2,oy=h/2;g.fillStyle='#162d37';g.fillRect(0,0,w,h);let a=sim.state.adventure;for(let x=-7;x<=7;x++)for(let z=-7;z<=7;z++){g.fillStyle=RealmAdventure.isFloor(a,x,z)?'#788b79':RealmAdventure.mineral(x,z)?'#9a8068':'#334e57';g.fillRect(ox+(x*2-1)*scale,oy+(z*2-1)*scale,2*scale-1,2*scale-1);}for(let e of RealmAdventure.runtime(sim).enemies){if(e.hp<=0)continue;g.fillStyle='#dba59e';g.beginPath();g.arc(ox+e.x*scale,oy+e.z*scale,full?5:3,0,Math.PI*2);g.fill();}g.fillStyle='#f4d9a3';g.beginPath();g.arc(ox+sim.state.player.x*scale,oy+sim.state.player.z*scale,full?6:4,0,Math.PI*2);g.fill();}
-function mapToWorld(x,y){if(sim.room==='crossing'){let sc=Math.min(innerWidth,innerHeight)/68;return{x:(x-innerWidth/2)/sc,z:(y-innerHeight/2)/sc-1};}if(sim.room==='range'){let sc=Math.min(innerWidth,innerHeight)/36;return{x:(x-innerWidth/2)/sc,z:(y-innerHeight/2)/sc};}if(sim.room==='road'){let sc=Math.min(innerWidth,innerHeight)/65;return{x:(x-innerWidth/2)/sc,z:(y-innerHeight/2)/sc-3};}if(sim.room==='mine'){let sc=Math.min(innerWidth,innerHeight)/36;return{x:(x-innerWidth/2)/sc,z:(y-innerHeight/2)/sc};}let w=innerWidth,h=innerHeight,sc=Math.min(w,h)/(sim.room?17:108);return{x:(x-w/2)/sc+(sim.room?0:10),z:(y-h*.53)/sc-(sim.room?0:10)};}$('#minimap').onclick=()=>rpg.open('atlas');
+function mapToWorld(x,y){if(sim.room==='riverbank'){const p=RealmStarterUI.projection(innerWidth,innerHeight);return{x:(x-p.x)/p.scale,z:(y-p.y)/p.scale};}if(sim.room==='crossing'){let sc=Math.min(innerWidth,innerHeight)/68;return{x:(x-innerWidth/2)/sc,z:(y-innerHeight/2)/sc-1};}if(sim.room==='range'){let sc=Math.min(innerWidth,innerHeight)/36;return{x:(x-innerWidth/2)/sc,z:(y-innerHeight/2)/sc};}if(sim.room==='road'){let sc=Math.min(innerWidth,innerHeight)/65;return{x:(x-innerWidth/2)/sc,z:(y-innerHeight/2)/sc-3};}if(sim.room==='mine'){let sc=Math.min(innerWidth,innerHeight)/36;return{x:(x-innerWidth/2)/sc,z:(y-innerHeight/2)/sc};}let w=innerWidth,h=innerHeight,sc=Math.min(w,h)/(sim.room?17:108);return{x:(x-w/2)/sc+(sim.room?0:10),z:(y-h*.53)/sc-(sim.room?0:10)};}$('#minimap').onclick=()=>rpg.open('atlas');
 
-function refreshUI(){let s=sim.state;$('#tour').setAttribute('aria-pressed',String(!!camera.tour));$('#time-display').textContent=formatHour(s.hour);$('#day-display').textContent='DAY '+String(s.day).padStart(2,'0')+' · '+(sim.paused?'PAUSED':s.weather==='rain'?'RAIN':s.hour>20||s.hour<6?'NIGHT':s.hour>16?'GOLDEN HOUR':'DAYLIGHT');$('#fps').textContent=engine?Math.round(fps)+' FPS · '+s.settings.quality.toUpperCase():'MAP VIEW';$('#discovery').textContent=s.visited.length+' / '+C.LANDMARKS.length+' PLACES DISCOVERED';let l=sim.room==='crossing'?{short:'Bellweather Crossing',description:'A village to meet. A silence to break. A road home.'}:sim.room==='range'?{short:'The Archery Court',description:'Take a breath. Find your distance. Let the arrow travel.'}:sim.room==='road'?{short:'The Sunward Road',description:'A traveller to help. A trail to follow. A light to bring home.'}:sim.room==='mine'?{short:'The Rootbound Underways',description:'Copper in the walls. A heartbeat beneath the roots.'}:sim.room?C.LANDMARKS.find(l=>l.id===sim.room):closest(),sbContext=rpg?.crossing.context()||(RealmBeacon.near(sim)&&sim.state.adventure.road.beaconLit?(RealmBeacon.runtime(sim).phase==='assault'?'Repair ward · E · 20 stamina':'The envoy at the beacon · E'):null)||adventure?.context()||sandbox?.context();$('#place-name').textContent=sim.room?l.short:sim.state.player.z<-29?'Wildwood Reach':'Firstlight Valley';$('#place-kicker').textContent=sim.room==='crossing'?'THE BELL ROAD · CHAPTER IV':sim.room==='range'?'THE PRACTICE COURT · A NEW DISCIPLINE':sim.room==='road'?(s.adventure.beacon.introduced?'THE BEACON ANSWERS · CHAPTER III':'BEYOND THE VALLEY · CHAPTER II'):sim.room==='mine'?'BENEATH WILDWOOD · CHAPTER I':sim.room?'A PRIVATE PLACE · LOCAL INTERIOR':'THE REALM · FIRST INHABITED DISTRICT';$('#place-description').textContent=sim.room?l.description:'Gather. Make. Grow. A new shore to call your own.';$('#context').style.display=(l||sbContext)&&!sandbox?.build?'flex':'none';let contextKey=sbContext?.match(/^([A-Z0-9]+) · /)?.[1]||'E';$('#context kbd').textContent=contextKey;$('#context-text').textContent=RealmAdventure.combatScene(sim)?sbContext?.replace(/^([A-Z0-9]+) · /,''):sim.room?'Return to the valley':sbContext|| (l?l.action:'');mapDraw($('#minimap'));renderStatus();}
+function refreshUI(){let s=sim.state;$('#tour').setAttribute('aria-pressed',String(!!camera.tour));$('#time-display').textContent=formatHour(s.hour);$('#day-display').textContent='DAY '+String(s.day).padStart(2,'0')+' · '+(sim.paused?'PAUSED':s.weather==='rain'?'RAIN':s.hour>20||s.hour<6?'NIGHT':s.hour>16?'GOLDEN HOUR':'DAYLIGHT');$('#fps').textContent=engine?Math.round(fps)+' FPS · '+s.settings.quality.toUpperCase():'MAP VIEW';$('#discovery').textContent=s.visited.length+' / '+C.LANDMARKS.length+' PLACES DISCOVERED';let l=sim.room==='riverbank'?{short:'Oren’s riverbank worksite',description:'A nearby path. Useful supplies. A reason to come home.'}:sim.room==='crossing'?{short:'Bellweather Crossing',description:'A village to meet. A silence to break. A road home.'}:sim.room==='range'?{short:'The Archery Court',description:'Take a breath. Find your distance. Let the arrow travel.'}:sim.room==='road'?{short:'The Sunward Road',description:'A traveller to help. A trail to follow. A light to bring home.'}:sim.room==='mine'?{short:'The Rootbound Underways',description:'Copper in the walls. A heartbeat beneath the roots.'}:sim.room?C.LANDMARKS.find(l=>l.id===sim.room):closest(),sbContext=rpg?.starter.context()||rpg?.crossing.context()||(RealmBeacon.near(sim)&&sim.state.adventure.road.beaconLit?(RealmBeacon.runtime(sim).phase==='assault'?'Repair ward · E · 20 stamina':'The envoy at the beacon · E'):null)||adventure?.context()||sandbox?.context();$('#place-name').textContent=sim.room?l.short:sim.state.player.z<-29?'Wildwood Reach':'Firstlight Valley';$('#place-kicker').textContent=sim.room==='riverbank'?'CLOSE TO HOME · THE RIVERBANK':sim.room==='crossing'?'THE BELL ROAD · CHAPTER IV':sim.room==='range'?'THE PRACTICE COURT · A NEW DISCIPLINE':sim.room==='road'?(s.adventure.beacon.introduced?'THE BEACON ANSWERS · CHAPTER III':'BEYOND THE VALLEY · CHAPTER II'):sim.room==='mine'?'BENEATH WILDWOOD · CHAPTER I':sim.room?'A PRIVATE PLACE · LOCAL INTERIOR':'THE REALM · FIRST INHABITED DISTRICT';$('#place-description').textContent=sim.room?l.description:'Gather. Make. Grow. A new shore to call your own.';$('#context').style.display=(l||sbContext)&&!sandbox?.build?'flex':'none';let contextKey=sbContext?.match(/^([A-Z0-9]+) · /)?.[1]||'E';$('#context kbd').textContent=contextKey;$('#context-text').textContent=RealmAdventure.combatScene(sim)?sbContext?.replace(/^([A-Z0-9]+) · /,''):sim.room?'Return to the valley':sbContext|| (l?l.action:'');mapDraw($('#minimap'));renderStatus();}
 function frame(now){let dt=lastFrame?Math.min((now-lastFrame)/1000,.1):.016;lastFrame=now;frames++;if(now-fpsStart>1500){fps=frames*1000/(now-fpsStart);frames=0;fpsStart=now;}if(!document.hidden){let dx=(keys.has('d')||keys.has('arrowright')?1:0)-(keys.has('a')||keys.has('arrowleft')?1:0),dz=(keys.has('s')||keys.has('arrowdown')?1:0)-(keys.has('w')||keys.has('arrowup')?1:0);if((dx||dz)&&!sim.paused){sandbox?.stopAuto();adventure?.stopAuto();camera.tour=false;sim.manual(dx*Math.cos(camera.yaw)+dz*Math.sin(camera.yaw),-dx*Math.sin(camera.yaw)+dz*Math.cos(camera.yaw),dt);camera.overview=false;follow=null;target=null;sim.walking=true;}sim.tick(dt);if((dx||dz)&&!sim.paused)sim.walking=true;elapsed+=sim.paused?0:dt;if(!sim.playerPath.length)target=null;switchScene();updateCamera(dt);experience?.tick();sandbox?.tick();adventure?.tick();arsenal?.tick();rpg?.tick();if(engine){if(sim.room==='retreat'&&art.layoutRevision!==sim.state.retreat.revision)art.makeRetreat(sim.state.retreat);engine.reducedMotion=sim.state.settings.reducedMotion;art.update(sim,elapsed,target);engine.render(elapsed,sim.state.hour,sim.state.weather==='rain');updateLabels();}else mapDraw(ui.map,true);audio.tick(elapsed);if(now-lastUi>350){refreshUI();lastUi=now;}if(elapsed-lastSave>6){save();lastSave=elapsed;}}if(!G_CAPTURE)requestAnimationFrame(frame);}
 // Keep a read-only-ish diagnostics surface for inspection; this local prototype is not a security boundary.
 const G_CAPTURE=!!window.__ETERNITIES_CAPTURE_MODE;

@@ -43,11 +43,12 @@ function validate(raw,a){const bad=m=>{throw Error('Invalid arsenal: '+m);};if(!
  if(a&&!a.started&&(s.rangeMedal||Object.values(s.gems).some(Boolean)||Object.keys(s.sockets).length))bad('unstarted');return s;
 }
 function activeGem(a){const id=a.arsenal?.sockets[a.equipment.weapon];return has(GEMS,id)?GEMS[id]:null;}
-function weapon(a){const bow=has(GEAR,a.equipment.weapon);return{style:bow?'bow':'blade',reach:bow?11:2.65,cooldown:bow?.75:.52,stamina:bow?6:0,primary:bow?'Loose arrow':'Sunstrike',special:bow?'Piercing light':'Dawn sweep'};}
+function weapon(a){const gear=G.RealmAdventure?.GEAR||GEAR;const id=a.equipment.weapon;const bow=has(gear,id)&&gear[id].slot==='weapon'&&gear[id].style==='bow';return{style:bow?'bow':'blade',reach:bow?11:2.65,cooldown:bow?.75:.52,stamina:bow?6:0,primary:bow?'Loose arrow':'Sunstrike',special:bow?'Piercing light':'Dawn sweep'};}
 function rangeWalkable(x,z,r=.31){return Number.isFinite(x)&&Number.isFinite(z)&&Math.abs(x)<14-r&&Math.abs(z)<13-r&&![...RANGE.pillars,...RANGE.scenery].some(p=>p.r!==undefined?Math.hypot(x-p.x,z-p.z)<p.r+r:Math.abs(x-p.x)<p.w/2+r&&Math.abs(z-p.z)<p.d/2+r);}
 function targetPose(def,t){return{...def,x:def.x+(def.id==='range-east'?Math.sin(t*.7)*1.8:0),z:def.z};}
 function projectileGround(sim,x,z){
  const A=G.RealmAdventure,R=G.RealmRoad;
+ if(sim.room==='riverbank')return G.RealmStarter.walkable(x,z,.035);
  if(sim.room==='crossing')return G.RealmCrossing.projectileGround(x,z,.035);
  if(sim.room==='mine')return A.walkable(sim.state.adventure,x,z,.035);
  if(sim.room==='range')return rangeWalkable(x,z,.035);
@@ -92,7 +93,7 @@ function update(sim,dt){const A=G.RealmAdventure,a=sim.state.adventure,r=runtime
  }
  const keep=[];
  for(const shot of r.arrows){if(shot.room!==sim.room||a.hp<=0)continue;const step=Math.min(shot.left,dt*22),end={x:shot.x+shot.dx*step,z:shot.z+shot.dz*step},hit=trace(shot,end,r.enemies,(x,z)=>projectileGround(sim,x,z),shot.hit);let stopped=false;
-  for(const {e,u}of hit.hits){shot.hit.push(e.id);shot.pierce--;if(e.kind==='practice')practiceHit(sim,e);else{A.damageEnemy(sim,e,shot.damage);e.awareness=a.elapsed+3;e.lastKnown={x:sim.state.player.x,z:sim.state.player.z};}
+  for(const {e,u}of hit.hits){shot.hit.push(e.id);shot.pierce--;if(e.kind==='practice'&&sim.room!=='riverbank')practiceHit(sim,e);else{A.damageEnemy(sim,e,shot.damage);e.awareness=a.elapsed+3;e.lastKnown={x:sim.state.player.x,z:sim.state.player.z};}
    A.fx(sim,'arrow-hit',shot.x+(end.x-shot.x)*u,shot.z+(end.z-shot.z)*u,shot.color);
    if(shot.pierce<=0){stopped=true;break;}}
   if(!stopped&&hit.wall!==null){A.fx(sim,'arrow-wall',shot.x+(end.x-shot.x)*hit.wall,shot.z+(end.z-shot.z)*hit.wall,0xb4bab0);stopped=true;}

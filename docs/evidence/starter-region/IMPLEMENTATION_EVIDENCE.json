@@ -1,0 +1,28 @@
+{
+  "source_commit": "6c23d4730b265df0bc008e472f02d868aae3c5fb",
+  "base": "aa4e21056219768b24b3f36d2f60671a6a831fb6",
+  "html_bytes": 520868,
+  "html_sha256": "f7bb18dd5f3bd80f3d033af14a782c826129721755c0bd37048620cc6c900656",
+  "schema": {
+    "world": 9,
+    "adventure": 6,
+    "starter": 1
+  },
+  "rules": 432,
+  "syntax_modules": 27,
+  "python_helpers": {
+    "passed": 19,
+    "skipped": 1,
+    "reason": "Windows symlink privilege"
+  },
+  "browser_checks": {
+    "crossing": 115,
+    "prior_gameplay": 106,
+    "cutaway": 6,
+    "reflection": 8,
+    "native_origin": 11,
+    "starter": 147
+  },
+  "human_playtest": "pending Dom",
+  "clean_remote_clone": "recorded at final head in PR receipt after push"
+}

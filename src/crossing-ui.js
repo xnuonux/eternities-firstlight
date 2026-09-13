@@ -5,7 +5,7 @@ const btn=(text,act,id='',off=false,cls='')=>'<button data-rpg="'+act+'" data-id
 const distance=(a,b)=>Math.hypot(a.x-b.x,a.z-b.z);
 function points(sim){if(sim.room==='crossing'){let q=X.PLACES.filter(p=>p.id!=='thicket'||sim.state.adventure.crossing.met).map(p=>({...p}));const s=sim.state.adventure.crossing;if(s.clapperRevealed&&!s.clapper)q.push({id:'clapper',name:'The lost clapper',...X.CLAPPER,kind:'clue'});if(s.repaired)q.push(...X.BELLS.map(b=>({...b,id:'bell-'+b.id,kind:'bell'})));return q;}
  if(sim.room==='road')return[{id:'road-exit',name:'Firstlight Valley',x:0,z:17,kind:'gate'},{id:'road-trader',name:'Tessa’s cart',x:-10,z:12,kind:'shop'},{id:'road-bridge',name:'River bridge',x:2,z:0,kind:'gate'},{id:'sunward',name:'Sunward Beacon',x:0,z:-24,kind:'waystone'},...(sim.state.adventure.beacon.complete?[{id:'cross-enter',name:'To Bellweather Crossing',...X.GATE,kind:'gate'}]:[])];
- if(!sim.room)return C.LANDMARKS.map(p=>({...p,kind:p.id==='commons'?'waystone':'place'}));
+ if(!sim.room)return [...C.LANDMARKS.map(p=>({...p,kind:p.id==='commons'?'waystone':'place'})),...(sim.state.adventure.started?G.RealmStarter.points(sim):[])];
  return[];
 }
 function projection(sim,w,h){return sim.room==='crossing'?{scale:Math.min(w,h)/68,ox:w/2,oy:h/2+Math.min(w,h)/68}:sim.room==='road'?{scale:Math.min(w,h)/62,ox:w/2,oy:h/2+3*Math.min(w,h)/62}:{scale:Math.min(w/90,h/95),ox:w*.30,oy:h*.63};}

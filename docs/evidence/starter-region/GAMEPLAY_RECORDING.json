@@ -1,0 +1,236 @@
+{
+  "origin": "http://127.0.0.1:59855/FIRSTLIGHT_VALLEY.html",
+  "html_sha256": "f7bb18dd5f3bd80f3d033af14a782c826129721755c0bd37048620cc6c900656",
+  "performance_claim": false,
+  "browser_version": "153.0.8010.36",
+  "fixture": "evidence10\\starter\\fresh-blade\\01_KIT_EARNED.json",
+  "fixture_sha256": "2bb8fc5c20e692a7528cb8dd336592308eda3048fab7349e0ad4ea9ec2da9a9f",
+  "method": "Automated accepted commands and UI on normal real-time RAF; command-earned checkpoint, no gameplay state grants; video is not an FPS measurement.",
+  "actions": [
+    {
+      "fight": "river-skitter-west",
+      "defeated": true,
+      "seconds": 0.6885,
+      "guards": 1
+    },
+    {
+      "fight": "river-skitter-east",
+      "defeated": true,
+      "seconds": 0.6891999999880791,
+      "guards": 0
+    },
+    {
+      "fight": "river-old-bristle",
+      "defeated": true,
+      "seconds": 2.818,
+      "guards": 1
+    },
+    {
+      "action": {
+        "evaluate": "Realm.test.adventure('video-practice','target-select',{id:'river-practice'})"
+      },
+      "result": {
+        "ok": true,
+        "text": "Target: Oren\u2019s practice bundle"
+      }
+    }
+  ],
+  "browser_errors": [],
+  "final_diagnostics": {
+    "version": "10.0.0",
+    "mode": "webgl2",
+    "scene": "riverbank",
+    "networkDependencies": 0,
+    "liveAI": false,
+    "multiplayer": false,
+    "adventure": {
+      "tactics": {
+        "scene": "riverbank",
+        "target": "river-practice",
+        "auto": false,
+        "nextAttack": 0,
+        "guardUntil": 23.70560000000049,
+        "shield": 0,
+        "shieldUntil": 0,
+        "cooldowns": {
+          "guard": 28.70560000000049,
+          "insight": 0,
+          "spirit": 0
+        },
+        "hits": [
+          {
+            "x": -5,
+            "z": 10,
+            "n": 22,
+            "at": 38.434700000001115,
+            "id": 28
+          }
+        ],
+        "serial": 28,
+        "windup": null,
+        "motion": {
+          "style": "blade",
+          "at": 38.434700000001115
+        }
+      },
+      "beacon": {
+        "phase": "idle",
+        "time": 0,
+        "wave": 0,
+        "ward": 100,
+        "actors": [],
+        "serial": 0,
+        "notice": "",
+        "repairAt": 0,
+        "maraAt": 0,
+        "ilanAt": 0,
+        "playerRepairAt": 0,
+        "defeats": 0
+      },
+      "crossing": {
+        "room": "riverbank",
+        "tones": [],
+        "seek": false,
+        "rangAt": -10,
+        "tone": null,
+        "toneSerial": 0
+      },
+      "player": {
+        "x": -5,
+        "z": 11.5,
+        "yaw": 3.141592653589793
+      },
+      "paused": false,
+      "intent": null,
+      "stats": {
+        "level": 2,
+        "attack": 22,
+        "defense": 1,
+        "maxHP": 110
+      },
+      "weapon": {
+        "style": "blade",
+        "reach": 2.65,
+        "cooldown": 0.52,
+        "stamina": 0,
+        "primary": "Sunstrike",
+        "special": "Dawn sweep"
+      },
+      "arrows": [],
+      "range": {
+        "active": false,
+        "start": 0,
+        "hits": {},
+        "shots": 0,
+        "message": "A calm place to learn a different rhythm."
+      },
+      "enemies": [
+        {
+          "id": "river-practice",
+          "x": -5,
+          "z": 10,
+          "hp": 100,
+          "maxHP": 100,
+          "hidden": false,
+          "eventEnemy": false,
+          "kind": "practice",
+          "ringMode": null,
+          "custom": null,
+          "mode": "idle",
+          "timer": 0,
+          "aim": null
+        }
+      ],
+      "companion": {
+        "room": "riverbank",
+        "x": 0,
+        "z": 12,
+        "yaw": 3.141592653589793,
+        "path": [],
+        "nextPath": 0,
+        "nextHit": 0,
+        "seek": null,
+        "status": "Beside you"
+      }
+    },
+    "sandbox": {
+      "bridge": false,
+      "objects": 0,
+      "elapsed": 39.23330000000105,
+      "autoGather": null,
+      "buildMode": null
+    },
+    "saveState": "saved",
+    "fps": 143.9946914399469,
+    "errors": [],
+    "camera": {
+      "yaw": 0.76,
+      "elevation": 0.88,
+      "half": 17,
+      "center": [
+        -4.998471611964398,
+        2,
+        11.500152838803563
+      ],
+      "overview": false,
+      "preset": "follow",
+      "tour": false
+    },
+    "metrics": {
+      "drawCalls": 21,
+      "instances": 614,
+      "triangles": 14556
+    },
+    "reflection": {
+      "method": "world-plane P*V*H",
+      "height": 0.01,
+      "horizontalFlip": false
+    },
+    "cutaway": {
+      "enabled": true,
+      "focus": [
+        -5,
+        2.45,
+        11.5
+      ]
+    },
+    "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3080 (0x00002216) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "music": {
+      "playing": false,
+      "scoreRevision": 0,
+      "playingRevision": -1,
+      "step": -1
+    },
+    "gathering": null,
+    "layoutRevision": 0,
+    "audio": {
+      "enabled": false,
+      "state": "not-created"
+    }
+  },
+  "final_quest": {
+    "version": 1,
+    "accepted": true,
+    "bundles": [
+      "river-rope",
+      "river-tools",
+      "river-canvas"
+    ],
+    "reward": {
+      "choice": "oren_sunblade",
+      "weapon": "oren_sunblade"
+    }
+  },
+  "video_path": "starter-outing.webm",
+  "encoded_duration_seconds": 46.8,
+  "video_stream": {
+    "codec": "VP8",
+    "width": 1280,
+    "height": 720,
+    "capture_fps": 25,
+    "audio": false
+  },
+  "video_sha256": "d4501c6c942aaac47b47b9d4db980e3522315e5f4a8fb53bc2603957ad4f97a7",
+  "source_commit": "6c23d4730b265df0bc008e472f02d868aae3c5fb",
+  "duration_provenance": "Encoded stream duration inspected with bundled Playwright FFmpeg. This replaces the recorder default --seconds label, which was not the action sequence duration."
+}

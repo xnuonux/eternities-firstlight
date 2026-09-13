@@ -130,6 +130,7 @@ class WorldArt{
  if(this.room==='retreat'&&sim.presentation?.selectedSlot){let slot=X.SLOTS.find(s=>s.id===sim.presentation.selectedSlot);if(slot){for(let i=0;i<4;i++){let a=i*Math.PI/2;out.box.push({p:[slot.x+Math.sin(a)*.95,1.6,slot.z+Math.cos(a)*.95],s:i%2?[.035,.035,1.95]:[1.95,.035,.035],c:0xe4c487,em:.5});}}}
  if(G.RealmRoadArt)G.RealmRoadArt.draw(out,sim,t,this);
  if(G.RealmAdventureArt)G.RealmAdventureArt.draw(out,sim,t);
+ if(G.RealmStarterArt)G.RealmStarterArt.draw(out,sim,t);
  if(G.RealmArsenalArt)G.RealmArsenalArt.draw(out,sim,t);
  if(this.room==='mine')this.e.torch=[p.x,2.6,p.z];
  if(G.RealmSandboxArt)G.RealmSandboxArt.draw(out,sim,t);
