@@ -79,7 +79,7 @@ try:
   key('c');check('Menu stops autoattack and pauses',not diag()['adventure']['tactics']['auto'] and diag()['adventure']['paused']);close();check('Closing resumes world',not diag()['adventure']['paused'])
   key('p');key('c');close();check('Closing preserves previous manual pause',diag()['adventure']['paused']);key('p')
   action('camera','tactical');check('Tactical camera is elevated',diag()['camera']['elevation']>1);yaw=diag()['camera']['yaw'];key(']');check('Fixed orbit key rotates',abs(diag()['camera']['yaw']-yaw-.7854)<.001)
-  key('r');check('R restores third person behind visitor',diag()['camera']['preset']=='adventure' and abs(diag()['camera']['yaw']-diag()['adventure']['player']['yaw']-3.141592653589793)<.001)
+  key('r');check('R resets the selected tactical view',diag()['camera']['preset']=='tactical' and diag()['camera']['elevation']>1);key('v');check('V returns to third person during an expedition',diag()['camera']['preset']=='adventure' and diag()['camera']['projection']=='perspective')
   key('Escape');key('Escape');check('Escape no-target opens menu instead of exiting expedition',diag()['scene']=='range' and p.locator('#rpg-window').evaluate('(e)=>e.open'))
   close();walk(0,9);key('e');check('Actual range exit preserves bow',diag()['scene']=='valley' and diag()['adventure']['weapon']['style']=='bow')
   complete=json.loads((ROOT/'examples/REALM09_ARMORY_COMPLETE_EARNED.json').read_text());ev('(s)=>Realm.test.replace(s)',complete);render();key('c');action('filter','all');action('item','gear:copper_bow')
