@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "files": [
+    {
+      "path": "ASTRA_TO_CODEX_LIVING_CANTICLE_RELAY.md",
+      "bytes": 8391,
+      "sha256": "7ae2d9ca88b4cbdc30281fd2d3e2a0a36399c0a63f7ce802852d07d6fdb3549c"
+    },
+    {
+      "path": "BRANCH_INDEX.json",
+      "bytes": 21292,
+      "sha256": "06b07ba196023202d679c937f1c1be57984a9e27b2288f48ae2af8c63d8baa59"
+    },
+    {
+      "path": "FIRSTLIGHT_LIVING_CANTICLE_DRAFT_C.md",
+      "bytes": 66875,
+      "sha256": "45b37370d885ca87977fc9790af9079adbfe932f43a97978af4b0fbaf10e3cf1"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2484,
+      "sha256": "cd283151ac27163c0312a8841d3dcb47168b6b4c6948652b12323566c4d978e6"
+    },
+    {
+      "path": "SOURCE_REVIEW.json",
+      "bytes": 1678,
+      "sha256": "b5dba22d0ca9d14fd7474e394d598cd4e2bc1b971b2e54c90144cb1e0468685a"
+    }
+  ]
+}
