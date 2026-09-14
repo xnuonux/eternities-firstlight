@@ -59,18 +59,18 @@ class RPGUI{
   d.addEventListener('input',e=>{if(e.target.id==='bag-search'){this.search=e.target.value;this.paintBag();}});
   $('#tracked-open').onclick=()=>this.open(this.quest==='project'?'pursuit':'journal');$('#beacon-menu').onclick=()=>{if(B.runtime(this.sim).phase==='assault')this.run('beacon-repair');else this.open('beacon');};$('#target-clear').onclick=()=>this.run('target-clear');$('#health-orb').onclick=()=>this.open('equipment');
   for(const el of hud.querySelectorAll('[data-skill]'))el.onclick=()=>this.skill(el.dataset.skill);
-  this.crossing=new G.RealmCrossingUI.CrossingUI(this);this.starter=new G.RealmStarterUI.StarterUI(this);this.pursuit=new G.RealmPursuitUI.PursuitUI(this);if(this.state.starter.accepted&&!this.state.starter.reward)this.quest='starter';
+  this.crossing=new G.RealmCrossingUI.CrossingUI(this);this.starter=new G.RealmStarterUI.StarterUI(this);this.pursuit=new G.RealmPursuitUI.PursuitUI(this);this.characters=new G.RealmCharactersUI.CharactersUI(this);if(this.state.starter.accepted&&!this.state.starter.reward)this.quest='starter';
  }
  get sim(){return this.api.sim();} get state(){return this.sim.state.adventure;}
  run(t,p={},quiet=false){const paused=this.sim.paused;try{if(this.dialog.open)this.sim.paused=false;const r=this.api.adventure().run(t,p,quiet);if(r.ok&&this.dialog.open)this.paint();return r;}finally{this.sim.paused=paused;}}
  open(tab='equipment'){
   if(!this.dialog.open){this.api.closePanel();this.api.endBuild();this.api.clearKeys();this.api.adventure().stopAuto();if(document.querySelector('#studio-dialog[open]'))document.querySelector('#studio-close').click();T.stop(this.sim);this.wasPaused=this.sim.paused;this.sim.paused=true;this.dialog.showModal();}
-  this.tab=tab;this.paint();$('#rpg-close').focus();
+  this.tab=tab;this.paint();$('#rpg-content').scrollTop=0;$('#rpg-close').focus();
  }
  close(){if(!this.dialog.open)return;this.dialog.close();this.sim.paused=this.wasPaused;this.api.clearKeys();this.api.focusWorld();}
  cameraPaint(mode){for(const el of document.querySelectorAll('[data-rpg="camera"]'))el.setAttribute('aria-pressed',String(el.dataset.id===mode));}
- reset(){if(this.dialog.open)this.close();this.item=null;this.seenPhase='';}
- action(el){if(this.starter.action(el))return;if(this.crossing.action(el))return;if(this.pursuit.action(el))return;const act=el.dataset.rpg,id=el.dataset.id,a=this.state;
+ reset(){if(this.dialog.open)this.close();this.item=null;this.seenPhase='';this.filter='all';this.search='';this.recipe='trail_bow';this.craftFilter='weapons';this.avatarDrag=null;this.lastPreview=-1;this.pursuit.selected=null;this.starter.temper=null;this.starter.destination=null;this.starter.lastSound=0;this.starter.lastSoundScene=null;this.crossing.destination=null;this.crossing.uiRoom=null;this.characters.reset();}
+ action(el){if(this.characters.action(el))return;if(this.starter.action(el))return;if(this.crossing.action(el))return;if(this.pursuit.action(el))return;const act=el.dataset.rpg,id=el.dataset.id,a=this.state;
   if(act==='open'){this.open(id);return;}
   if(act==='track'){this.quest=id;if(this.dialog.open)this.paint();this.tick();return;}
   if(act==='camera'){this.api.camera(id);return;}
@@ -149,10 +149,10 @@ class RPGUI{
   this.open('beacon');return true;
  }
  paint(){
-  const extra=this.pursuit.page(this.tab)||this.starter.page(this.tab)||this.crossing.page(this.tab);
+  const extra=this.characters.page(this.tab)||this.pursuit.page(this.tab)||this.starter.page(this.tab)||this.crossing.page(this.tab);
   const titles={equipment:'Your character',bag:'Your belongings',companion:'Your companion',soul:'The paths within',craft:'The workbench',journal:'Your journal',beacon:'The Beacon Answers',more:'Life in Firstlight',merchant:'Tessa’s road shop',pursuit:'Field guide'};
   $('#rpg-heading').textContent=extra?.title||titles[this.tab]||'Firstlight';
-  $('#rpg-tabs').innerHTML=[['equipment','Equipment'],['bag','Inventory'],['companion','Companion'],['soul','Soul'],['craft','Crafting'],['pursuit','Field guide'],['journal','Journal'],['atlas','Map']].map(([id,n])=>button(n,'open',id,false,'aria-current="'+(this.tab===id?'page':'false')+'"')).join('');
+  $('#rpg-tabs').innerHTML=[['equipment','Equipment'],['bag','Inventory'],['companion','Companion'],['soul','Soul'],['craft','Crafting'],['pursuit','Field guide'],['journal','Journal'],['atlas','Map'],['characters','Characters']].map(([id,n])=>button(n,'open',id,false,'aria-current="'+(this.tab===id?'page':'false')+'"')).join('');
   const nav=$('#rpg-tabs'),active=nav.querySelector('[aria-current="page"]');if(active){const nr=nav.getBoundingClientRect(),ar=active.getBoundingClientRect();if(ar.right>nr.right-8)nav.scrollLeft+=ar.right-nr.right+12;else if(ar.left<nr.left+8)nav.scrollLeft-=nr.left+12-ar.left;}
   const body=$('#rpg-content');
   if(extra){body.innerHTML=extra.html;}
@@ -165,7 +165,7 @@ class RPGUI{
   else if(this.tab==='beacon')body.innerHTML=this.beacon();
   else if(this.tab==='merchant')body.innerHTML=this.merchant();
   else body.innerHTML=this.more();
-  if(this.tab==='journal')body.insertAdjacentHTML('afterbegin',this.starter.journal());
+  if(this.tab==='journal')body.insertAdjacentHTML('afterbegin',this.starter.journal());if(this.tab==='characters')this.characters.attach();
  }
  inventory(){
   const a=this.state,st=A.stats(a),slots=['weapon','armor','charm'];
@@ -241,7 +241,7 @@ class RPGUI{
  }
  merchant(){const a=this.state,near=this.sim.room==='road'&&Math.hypot(this.sim.state.player.x+10,this.sim.state.player.z-12)<3,offers=[['mantle','Courier’s storm mantle','armor','18 sunmarks · +7 guard, +20 max health',a.coins<18||a.owned.includes('courier_mantle')],['tonic','Trail tonic','tonic','2 sunmarks · carry up to 3',a.coins<2||a.tonics>=3],['sell-copper','Sell two copper','stone','Receive 3 sunmarks',a.ore<2],['sell-berries','Sell two sunberries','seed','Receive 1 sunmark',this.sim.state.sandbox.inventory.berry<2]];return '<div class="notice">'+(near?'Tessa is ready to trade.':'Travel to Tessa’s camp on the Sunward Road to trade.')+' · '+a.coins+' sunmarks</div><div class="more-grid">'+offers.map(([id,name,ic,desc,disabled])=>button(icon(ic)+'<b>'+name+'</b><span>'+desc+'</span>','trade',id,!near||disabled||!a.road.cartRepaired)).join('')+'</div>'+button('Walk to Tessa’s camp','road-route','cart',this.sim.room!=='road')+'<p class="fineprint">Trades use your real local inventory. Online player trading is not part of this build.</p>';}
  more(){return '<div class="more-grid">'+[
- ['Explore','Choose a named route through the valley.','map','panel','explore'],['Build','Your homestead, crops and construction.','house','panel','build'],['Music desk','Compose; export real WAV, MIDI and scores.','light','music',''],['People','Ilan, Mara and Oren’s lives and projects.','paw','panel','inhabitants'],['Your retreat','Arrange a private room and its colors.','house','panel','retreat'],['Appearance','Change your visitor’s name and palette.','charm','panel','visitor'],['Chronicle','Notes, local history and world backups.','book','panel','chronicle'],['Settings','Graphics, camera, sound and accessibility.','grid','panel','settings']
+ ['Characters','Create, switch or export your separate local worlds.','charm','open','characters'],['Explore','Choose a named route through the valley.','map','panel','explore'],['Build','Your homestead, crops and construction.','house','panel','build'],['Music desk','Compose; export real WAV, MIDI and scores.','light','music',''],['People','Ilan, Mara and Oren’s lives and projects.','paw','panel','inhabitants'],['Your retreat','Arrange a private room and its colors.','house','panel','retreat'],['Appearance','Change your visitor’s name and palette.','charm','panel','visitor'],['Chronicle','Notes, local history and world backups.','book','panel','chronicle'],['Settings','Graphics, camera, sound and accessibility.','grid','panel','settings']
  ].map(([n,desc,ic,act,id])=>button(icon(ic)+'<b>'+n+'</b><span>'+desc+'</span>',act,id)).join('')+'</div><div class="button-row">'+button('Export world JSON','export')+button('Import a saved world','import')+'</div><p class="fineprint">Offline prototype · no accounts, online players or connected AI. Keep a JSON backup before changing versions.</p>';}
  attachPreview(){
   if(!$('#avatar-mount'))return;

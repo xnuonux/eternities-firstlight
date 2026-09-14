@@ -1,0 +1,109 @@
+[
+  {
+    "evaluate": "(()=>{const r=Realm.test.act('film-iris','appearance',{visitor:{name:'Iris',skin:2,cloak:3,hair:4}});if(!r.ok)throw Error(r.error);Realm.test.save();return r})()",
+    "wait_ms": 1000
+  },
+  {
+    "key": "c"
+  },
+  {
+    "click": "#rpg-tabs [data-id=\"characters\"]",
+    "wait_ms": 1800
+  },
+  {
+    "fill": {
+      "selector": "#chars-name",
+      "value": "Rowan"
+    }
+  },
+  {
+    "click": "[data-rpg=\"chars-palette\"][data-id=\"1\"]",
+    "wait_ms": 1100
+  },
+  {
+    "click": "#chars-create-submit",
+    "wait_ms": 1800
+  },
+  {
+    "walk": [
+      11,
+      9
+    ]
+  },
+  {
+    "key": "e",
+    "wait_ms": 1000
+  },
+  {
+    "key": "Escape"
+  },
+  {
+    "walk": [
+      15,
+      7
+    ]
+  },
+  {
+    "key": "e",
+    "wait_ms": 1000
+  },
+  {
+    "walk": [
+      -5,
+      11.5
+    ]
+  },
+  {
+    "evaluate": "(()=>{const r=Realm.test.adventure('film-practice','target-select',{id:'river-practice'});if(!r.ok)throw Error(r.error);return r})()"
+  },
+  {
+    "key": "1",
+    "wait_ms": 2300
+  },
+  {
+    "key": "1"
+  },
+  {
+    "key": "v",
+    "wait_ms": 1500
+  },
+  {
+    "key": "c"
+  },
+  {
+    "click": "#rpg-tabs [data-id=\"characters\"]",
+    "wait_ms": 2000
+  },
+  {
+    "click": "[data-rpg=\"chars-switch\"][data-id=\"character-1\"]",
+    "wait_ms": 1400
+  },
+  {
+    "key": "c"
+  },
+  {
+    "click": "#rpg-tabs [data-id=\"pursuit\"]",
+    "wait_ms": 1800
+  },
+  {
+    "key": "Escape"
+  },
+  {
+    "walk": [
+      15,
+      7
+    ]
+  },
+  {
+    "key": "e",
+    "wait_ms": 1200
+  },
+  {
+    "key": "v",
+    "wait_ms": 1400
+  },
+  {
+    "evaluate": "(()=>{const r=JSON.parse(localStorage.getItem(RealmCharacters.KEY));return r.slots.map(s=>({id:s.id,name:s.world.visitor.name,weapon:s.world.adventure.equipment.weapon,claimed:s.world.adventure.pursuit.claimed,activeRun:s.world.adventure.pursuit.active?.id||null}))})()",
+    "wait_ms": 1000
+  }
+]

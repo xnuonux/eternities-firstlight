@@ -56,3 +56,11 @@ Dom accepted the PR #9 Draft D assignment and requested implementation. The thre
 - Names, repetition, costs and pacing are prototype implementation choices for founder playtest. Two fittings are not a universal or endless upgrade economy. All actions are local, and the original game systems remain authoritative.
 
 Roster/classes, rare collecting and real two-client play/trading are separate later milestones. Paid power, offline-loss severity, rare-pet allocation and construction scale remain unresolved founder decisions. No Unreal rewrite, live Luna, extracted proprietary assets, cash store, main merge or deployment was included.
+
+## Independent local characters, 2026-09-14
+
+Dom's timed autonomous request authorizes continued implementation through 07:00 Central. Draft D places independent roster/explicit classes after the equipment loop; this branch implements the roster as a bounded coherent milestone, leaving classes unassigned. Each of three slots owns an entire local world; there is no shared town/inventory fiction. New characters start empty. Three slots are a revisable prototype choice.
+
+One version-1 character envelope atomically commits outgoing state and active selection. Existing world9/key9/adventure6/pursuit1/XP/story rules stay authoritative. The legacy key is retained, new IDs are monotonic, imports add rather than replace, and only an inactive exact-name-confirmed character can be removed. Browser Web Locks coordinate managed writes; exact source comparisons reject stale views. Corrupt/failed storage stays untouched and can be copied for repair. A source-byte check also protects legacy migration from an older open tab.
+
+Async music imports/exports belong to the simulation that started them. Switching cancels a pending operation rather than transferring it to another character. Inactive worlds do not advance. Classes, paid power, offline-loss severity, rare-pet allocation, and construction scale remain unsettled or separate. No automatic main merge or public deployment.
