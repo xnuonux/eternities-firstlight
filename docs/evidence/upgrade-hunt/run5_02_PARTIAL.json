@@ -1,0 +1,1401 @@
+{
+  "adventure": {
+    "version": 6,
+    "pursuit": {
+      "version": 1,
+      "pinned": "copper_blade",
+      "claimed": 4,
+      "active": {
+        "id": "riverbank-survey/5",
+        "terms": 1,
+        "defeated": [
+          "west"
+        ],
+        "samples": [
+          "west-sample"
+        ]
+      },
+      "fittings": {}
+    },
+    "starter": {
+      "version": 1,
+      "accepted": false,
+      "bundles": [],
+      "reward": null
+    },
+    "crossing": {
+      "version": 1,
+      "entered": false,
+      "met": false,
+      "inscription": false,
+      "clapperRevealed": false,
+      "clapper": false,
+      "repaired": false,
+      "complete": false,
+      "reward": false,
+      "attuned": false,
+      "projects": []
+    },
+    "beacon": {
+      "version": 1,
+      "introduced": false,
+      "complete": false,
+      "status": "dormant",
+      "attempts": 0,
+      "failures": 0,
+      "reward": false,
+      "relic": "undecided",
+      "route": null,
+      "soul": {
+        "grace": false,
+        "equipped": null,
+        "radiance": 0,
+        "corruption": 0,
+        "scars": []
+      }
+    },
+    "arsenal": {
+      "version": 1,
+      "gems": {
+        "ruby": 0,
+        "moonstone": 0,
+        "amber": 0
+      },
+      "sockets": {},
+      "rangeMedal": false,
+      "bestTime": null
+    },
+    "road": {
+      "version": 1,
+      "entered": false,
+      "revealed": [],
+      "claimed": [],
+      "cartRepaired": false,
+      "beaconLit": false,
+      "reported": false
+    },
+    "elapsed": 157.45000000000155,
+    "revision": 116,
+    "started": true,
+    "dug": [],
+    "chips": [],
+    "defeated": [],
+    "drops": [],
+    "ore": 12,
+    "coins": 16,
+    "xp": 0,
+    "hp": 96,
+    "stamina": 100,
+    "tonics": 3,
+    "equipment": {
+      "weapon": "trail_blade",
+      "armor": "travel_coat",
+      "charm": null
+    },
+    "owned": [
+      "trail_blade",
+      "travel_coat"
+    ],
+    "companion": {
+      "bonded": false,
+      "name": "Briar",
+      "mode": "follow"
+    },
+    "relic": false,
+    "angelSeen": false,
+    "reward": null,
+    "deaths": 0,
+    "receipts": [
+      {
+        "id": "auto-5-7",
+        "fp": "[\"attack\",{\"target\":\"river-practice\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-6",
+        "fp": "[\"target-clear\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-7",
+        "fp": "[\"starter-leave\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-8",
+        "fp": "[\"rest\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-9",
+        "fp": "[\"pursuit-start\",{\"after\":0}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-10",
+        "fp": "[\"starter-enter\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-11",
+        "fp": "[\"target-select\",{\"id\":\"riverbank-survey/1:west\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-12",
+        "fp": "[\"auto-toggle\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-13",
+        "fp": "[\"guard\",{}]",
+        "ok": true
+      },
+      {
+        "id": "auto-7-16",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/1:west\"}]",
+        "ok": true
+      },
+      {
+        "id": "auto-9-17",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/1:west\"}]",
+        "ok": true
+      },
+      {
+        "id": "auto-11-18",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/1:west\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-14",
+        "fp": "[\"target-clear\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-15",
+        "fp": "[\"pursuit-sample\",{\"run\":\"riverbank-survey/1\",\"id\":\"west-sample\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-16",
+        "fp": "[\"starter-enter\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-17",
+        "fp": "[\"target-select\",{\"id\":\"riverbank-survey/1:east\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-18",
+        "fp": "[\"auto-toggle\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-19",
+        "fp": "[\"guard\",{}]",
+        "ok": true
+      },
+      {
+        "id": "auto-1-26",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/1:east\"}]",
+        "ok": true
+      },
+      {
+        "id": "auto-3-27",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/1:east\"}]",
+        "ok": true
+      },
+      {
+        "id": "auto-5-28",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/1:east\"}]",
+        "ok": true
+      },
+      {
+        "id": "auto-7-29",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/1:east\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-20",
+        "fp": "[\"target-clear\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-21",
+        "fp": "[\"pursuit-sample\",{\"run\":\"riverbank-survey/1\",\"id\":\"east-sample\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-22",
+        "fp": "[\"starter-leave\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-23",
+        "fp": "[\"pursuit-claim\",{\"run\":\"riverbank-survey/1\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-24",
+        "fp": "[\"rest\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-25",
+        "fp": "[\"pursuit-start\",{\"after\":1}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-26",
+        "fp": "[\"starter-enter\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-27",
+        "fp": "[\"target-select\",{\"id\":\"riverbank-survey/2:west\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-28",
+        "fp": "[\"auto-toggle\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-29",
+        "fp": "[\"guard\",{}]",
+        "ok": true
+      },
+      {
+        "id": "auto-1-41",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/2:west\"}]",
+        "ok": true
+      },
+      {
+        "id": "auto-3-42",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/2:west\"}]",
+        "ok": true
+      },
+      {
+        "id": "auto-5-43",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/2:west\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-30",
+        "fp": "[\"target-clear\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-31",
+        "fp": "[\"pursuit-sample\",{\"run\":\"riverbank-survey/2\",\"id\":\"west-sample\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-32",
+        "fp": "[\"target-select\",{\"id\":\"riverbank-survey/2:east\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-33",
+        "fp": "[\"auto-toggle\",{}]",
+        "ok": true
+      },
+      {
+        "id": "auto-7-49",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/2:east\"}]",
+        "ok": true
+      },
+      {
+        "id": "auto-9-50",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/2:east\"}]",
+        "ok": true
+      },
+      {
+        "id": "auto-11-51",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/2:east\"}]",
+        "ok": true
+      },
+      {
+        "id": "auto-13-52",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/2:east\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-34",
+        "fp": "[\"target-clear\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-35",
+        "fp": "[\"pursuit-sample\",{\"run\":\"riverbank-survey/2\",\"id\":\"east-sample\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-36",
+        "fp": "[\"starter-leave\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-37",
+        "fp": "[\"pursuit-claim\",{\"run\":\"riverbank-survey/2\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-38",
+        "fp": "[\"rest\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-39",
+        "fp": "[\"pursuit-start\",{\"after\":2}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-40",
+        "fp": "[\"starter-enter\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-41",
+        "fp": "[\"target-select\",{\"id\":\"riverbank-survey/3:west\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-42",
+        "fp": "[\"auto-toggle\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-43",
+        "fp": "[\"guard\",{}]",
+        "ok": true
+      },
+      {
+        "id": "auto-1-64",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/3:west\"}]",
+        "ok": true
+      },
+      {
+        "id": "auto-3-65",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/3:west\"}]",
+        "ok": true
+      },
+      {
+        "id": "auto-5-66",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/3:west\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-44",
+        "fp": "[\"target-clear\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-45",
+        "fp": "[\"pursuit-sample\",{\"run\":\"riverbank-survey/3\",\"id\":\"west-sample\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-46",
+        "fp": "[\"target-select\",{\"id\":\"riverbank-survey/3:east\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-47",
+        "fp": "[\"auto-toggle\",{}]",
+        "ok": true
+      },
+      {
+        "id": "auto-7-72",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/3:east\"}]",
+        "ok": true
+      },
+      {
+        "id": "auto-9-73",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/3:east\"}]",
+        "ok": true
+      },
+      {
+        "id": "auto-11-74",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/3:east\"}]",
+        "ok": true
+      },
+      {
+        "id": "auto-13-75",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/3:east\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-48",
+        "fp": "[\"target-clear\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-49",
+        "fp": "[\"pursuit-sample\",{\"run\":\"riverbank-survey/3\",\"id\":\"east-sample\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-50",
+        "fp": "[\"starter-leave\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-51",
+        "fp": "[\"pursuit-claim\",{\"run\":\"riverbank-survey/3\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-52",
+        "fp": "[\"rest\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-53",
+        "fp": "[\"pursuit-start\",{\"after\":3}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-54",
+        "fp": "[\"starter-enter\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-55",
+        "fp": "[\"target-select\",{\"id\":\"riverbank-survey/4:west\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-56",
+        "fp": "[\"auto-toggle\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-57",
+        "fp": "[\"guard\",{}]",
+        "ok": true
+      },
+      {
+        "id": "auto-1-87",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/4:west\"}]",
+        "ok": true
+      },
+      {
+        "id": "auto-3-88",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/4:west\"}]",
+        "ok": true
+      },
+      {
+        "id": "auto-5-89",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/4:west\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-58",
+        "fp": "[\"target-clear\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-59",
+        "fp": "[\"pursuit-sample\",{\"run\":\"riverbank-survey/4\",\"id\":\"west-sample\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-60",
+        "fp": "[\"target-select\",{\"id\":\"riverbank-survey/4:east\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-61",
+        "fp": "[\"auto-toggle\",{}]",
+        "ok": true
+      },
+      {
+        "id": "auto-7-95",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/4:east\"}]",
+        "ok": true
+      },
+      {
+        "id": "auto-9-96",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/4:east\"}]",
+        "ok": true
+      },
+      {
+        "id": "auto-11-97",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/4:east\"}]",
+        "ok": true
+      },
+      {
+        "id": "auto-13-98",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/4:east\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-62",
+        "fp": "[\"target-clear\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-63",
+        "fp": "[\"pursuit-sample\",{\"run\":\"riverbank-survey/4\",\"id\":\"east-sample\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-64",
+        "fp": "[\"starter-leave\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-65",
+        "fp": "[\"pursuit-claim\",{\"run\":\"riverbank-survey/4\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-66",
+        "fp": "[\"rest\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-67",
+        "fp": "[\"pursuit-start\",{\"after\":4}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-68",
+        "fp": "[\"starter-enter\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-69",
+        "fp": "[\"target-select\",{\"id\":\"riverbank-survey/5:west\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-70",
+        "fp": "[\"auto-toggle\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-71",
+        "fp": "[\"guard\",{}]",
+        "ok": true
+      },
+      {
+        "id": "auto-1-110",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/5:west\"}]",
+        "ok": true
+      },
+      {
+        "id": "auto-3-111",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/5:west\"}]",
+        "ok": true
+      },
+      {
+        "id": "auto-5-112",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/5:west\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-72",
+        "fp": "[\"target-clear\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-blade-73",
+        "fp": "[\"pursuit-sample\",{\"run\":\"riverbank-survey/5\",\"id\":\"west-sample\"}]",
+        "ok": true
+      }
+    ]
+  },
+  "sandbox": {
+    "version": 1,
+    "elapsed": 157.45000000000155,
+    "revision": 0,
+    "inventory": {
+      "wood": 0,
+      "stone": 0,
+      "fiber": 8,
+      "crystal": 0,
+      "plank": 0,
+      "block": 0,
+      "seeds": 4,
+      "berry": 0,
+      "axe": 0,
+      "pick": 0,
+      "floor": 0,
+      "wall": 0,
+      "masonry": 0,
+      "lantern": 0,
+      "bench": 0,
+      "bed": 0,
+      "fire": 0,
+      "workbench": 0
+    },
+    "nodes": [
+      {
+        "id": "timber-1",
+        "hp": 4,
+        "readyAt": 0
+      },
+      {
+        "id": "timber-2",
+        "hp": 4,
+        "readyAt": 0
+      },
+      {
+        "id": "timber-3",
+        "hp": 4,
+        "readyAt": 0
+      },
+      {
+        "id": "timber-4",
+        "hp": 4,
+        "readyAt": 0
+      },
+      {
+        "id": "stone-1",
+        "hp": 4,
+        "readyAt": 0
+      },
+      {
+        "id": "stone-2",
+        "hp": 4,
+        "readyAt": 0
+      },
+      {
+        "id": "stone-3",
+        "hp": 4,
+        "readyAt": 0
+      },
+      {
+        "id": "fibre-1",
+        "hp": 1,
+        "readyAt": 0
+      },
+      {
+        "id": "fibre-2",
+        "hp": 1,
+        "readyAt": 0
+      },
+      {
+        "id": "fibre-3",
+        "hp": 1,
+        "readyAt": 0
+      },
+      {
+        "id": "wild-timber-1",
+        "hp": 4,
+        "readyAt": 0
+      },
+      {
+        "id": "wild-timber-2",
+        "hp": 4,
+        "readyAt": 0
+      },
+      {
+        "id": "wild-timber-3",
+        "hp": 4,
+        "readyAt": 0
+      },
+      {
+        "id": "wild-stone-1",
+        "hp": 4,
+        "readyAt": 0
+      },
+      {
+        "id": "wild-stone-2",
+        "hp": 4,
+        "readyAt": 0
+      },
+      {
+        "id": "wild-fibre",
+        "hp": 1,
+        "readyAt": 0
+      },
+      {
+        "id": "crystal-1",
+        "hp": 4,
+        "readyAt": 0
+      },
+      {
+        "id": "crystal-2",
+        "hp": 4,
+        "readyAt": 0
+      }
+    ],
+    "bridge": false,
+    "placed": [],
+    "nextId": 1,
+    "stats": {
+      "gathered": 0,
+      "crafted": 0,
+      "harvested": 0
+    },
+    "milestones": [],
+    "recentCommands": [],
+    "cooldownUntil": 0
+  },
+  "score": {
+    "format": "eternities.score.v1",
+    "title": "A Window Left Open",
+    "bpm": 88,
+    "voice": "felt",
+    "melody": [
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0
+      ]
+    ],
+    "bass": [
+      1,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0
+    ],
+    "drums": [
+      [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0
+      ]
+    ]
+  },
+  "scoreRevision": 0,
+  "retreat": {
+    "version": 1,
+    "revision": 0,
+    "wall": "moss",
+    "floor": "oak",
+    "items": [
+      {
+        "slot": "nw",
+        "kind": "shelf",
+        "rotation": 0
+      },
+      {
+        "slot": "ne",
+        "kind": "piano",
+        "rotation": 0
+      },
+      {
+        "slot": "w",
+        "kind": "sofa",
+        "rotation": 1
+      },
+      {
+        "slot": "e",
+        "kind": "plant",
+        "rotation": 0
+      },
+      {
+        "slot": "c",
+        "kind": "rug",
+        "rotation": 0
+      }
+    ]
+  },
+  "visitor": {
+    "name": "Visitor",
+    "skin": 0,
+    "cloak": 0,
+    "hair": 0
+  },
+  "version": 9,
+  "seed": 2317,
+  "day": 1,
+  "hour": 17.908525000001145,
+  "weather": "clear",
+  "player": {
+    "x": 15,
+    "z": 7,
+    "yaw": 3.141592653589793
+  },
+  "visited": [
+    "market",
+    "commons"
+  ],
+  "flowers": [],
+  "notes": [],
+  "journal": [
+    {
+      "seq": 1,
+      "day": 1,
+      "hour": 17.200225,
+      "kind": "routine",
+      "text": "Ilan is heading to amphitheatre."
+    },
+    {
+      "seq": 2,
+      "day": 1,
+      "hour": 17.200225,
+      "kind": "routine",
+      "text": "Mara is heading to observatory."
+    },
+    {
+      "seq": 3,
+      "day": 1,
+      "hour": 17.200225,
+      "kind": "routine",
+      "text": "Oren is heading to workshop."
+    },
+    {
+      "seq": 4,
+      "day": 1,
+      "hour": 17.209000000000014,
+      "kind": "discovery",
+      "text": "You found The makers’ exchange."
+    },
+    {
+      "seq": 5,
+      "day": 1,
+      "hour": 17.21305000000002,
+      "kind": "quest",
+      "text": "Oren supplied a trail blade, a lantern, three tonics and a salve for an injured animal. Find the northern mine."
+    },
+    {
+      "seq": 6,
+      "day": 1,
+      "hour": 17.263675000000102,
+      "kind": "discovery",
+      "text": "You found The Firstlight Commons."
+    },
+    {
+      "seq": 7,
+      "day": 1,
+      "hour": 17.28617500000014,
+      "kind": "survey",
+      "text": "Accepted riverbank-survey/1: two skitters and two samples for 3 copper, 4 sunmarks and 2 fibre. Oren’s once-only quest is paused, not reset."
+    },
+    {
+      "seq": 8,
+      "day": 1,
+      "hour": 17.316100000000187,
+      "kind": "survey",
+      "text": "Bankroot skitter cleared for riverbank-survey/1. The declared materials are paid once when this survey is returned."
+    },
+    {
+      "seq": 9,
+      "day": 1,
+      "hour": 17.316325000000187,
+      "kind": "survey",
+      "text": "Copper gravel sample recorded for riverbank-survey/1. 1/2 samples."
+    },
+    {
+      "seq": 10,
+      "day": 1,
+      "hour": 17.316550000000188,
+      "kind": "routine",
+      "text": "Ilan is heading to amphitheatre."
+    },
+    {
+      "seq": 11,
+      "day": 1,
+      "hour": 17.316550000000188,
+      "kind": "routine",
+      "text": "Mara is heading to observatory."
+    },
+    {
+      "seq": 12,
+      "day": 1,
+      "hour": 17.316550000000188,
+      "kind": "routine",
+      "text": "Oren is heading to workshop."
+    },
+    {
+      "seq": 13,
+      "day": 1,
+      "hour": 17.347375000000238,
+      "kind": "survey",
+      "text": "Reedback skitter cleared for riverbank-survey/1. The declared materials are paid once when this survey is returned."
+    },
+    {
+      "seq": 14,
+      "day": 1,
+      "hour": 17.358625000000256,
+      "kind": "survey",
+      "text": "Reed-fibre sample recorded for riverbank-survey/1. 2/2 samples."
+    },
+    {
+      "seq": 15,
+      "day": 1,
+      "hour": 17.39912500000032,
+      "kind": "survey",
+      "text": "riverbank-survey/1 paid: 3 copper, 4 sunmarks, 2 fibre. All surveys through 1 are claimed."
+    },
+    {
+      "seq": 16,
+      "day": 1,
+      "hour": 17.39935000000032,
+      "kind": "routine",
+      "text": "Ilan is heading to amphitheatre."
+    },
+    {
+      "seq": 17,
+      "day": 1,
+      "hour": 17.39935000000032,
+      "kind": "routine",
+      "text": "Mara is heading to observatory."
+    },
+    {
+      "seq": 18,
+      "day": 1,
+      "hour": 17.39935000000032,
+      "kind": "routine",
+      "text": "Oren is heading to workshop."
+    },
+    {
+      "seq": 19,
+      "day": 1,
+      "hour": 17.43602500000038,
+      "kind": "survey",
+      "text": "Accepted riverbank-survey/2: two skitters and two samples for 3 copper, 4 sunmarks and 2 fibre. Oren’s once-only quest is paused, not reset."
+    },
+    {
+      "seq": 20,
+      "day": 1,
+      "hour": 17.46640000000043,
+      "kind": "survey",
+      "text": "Bankroot skitter cleared for riverbank-survey/2. The declared materials are paid once when this survey is returned."
+    },
+    {
+      "seq": 21,
+      "day": 1,
+      "hour": 17.46662500000043,
+      "kind": "survey",
+      "text": "Copper gravel sample recorded for riverbank-survey/2. 1/2 samples."
+    },
+    {
+      "seq": 22,
+      "day": 1,
+      "hour": 17.494975000000476,
+      "kind": "survey",
+      "text": "Reedback skitter cleared for riverbank-survey/2. The declared materials are paid once when this survey is returned."
+    },
+    {
+      "seq": 23,
+      "day": 1,
+      "hour": 17.506225000000494,
+      "kind": "survey",
+      "text": "Reed-fibre sample recorded for riverbank-survey/2. 2/2 samples."
+    },
+    {
+      "seq": 24,
+      "day": 1,
+      "hour": 17.54672500000056,
+      "kind": "survey",
+      "text": "riverbank-survey/2 paid: 3 copper, 4 sunmarks, 2 fibre. All surveys through 2 are claimed."
+    },
+    {
+      "seq": 25,
+      "day": 1,
+      "hour": 17.54695000000056,
+      "kind": "routine",
+      "text": "Ilan is heading to amphitheatre."
+    },
+    {
+      "seq": 26,
+      "day": 1,
+      "hour": 17.54695000000056,
+      "kind": "routine",
+      "text": "Mara is heading to observatory."
+    },
+    {
+      "seq": 27,
+      "day": 1,
+      "hour": 17.54695000000056,
+      "kind": "routine",
+      "text": "Oren is heading to workshop."
+    },
+    {
+      "seq": 28,
+      "day": 1,
+      "hour": 17.58362500000062,
+      "kind": "survey",
+      "text": "Accepted riverbank-survey/3: two skitters and two samples for 3 copper, 4 sunmarks and 2 fibre. Oren’s once-only quest is paused, not reset."
+    },
+    {
+      "seq": 29,
+      "day": 1,
+      "hour": 17.61400000000067,
+      "kind": "survey",
+      "text": "Bankroot skitter cleared for riverbank-survey/3. The declared materials are paid once when this survey is returned."
+    },
+    {
+      "seq": 30,
+      "day": 1,
+      "hour": 17.61422500000067,
+      "kind": "survey",
+      "text": "Copper gravel sample recorded for riverbank-survey/3. 1/2 samples."
+    },
+    {
+      "seq": 31,
+      "day": 1,
+      "hour": 17.642575000000715,
+      "kind": "survey",
+      "text": "Reedback skitter cleared for riverbank-survey/3. The declared materials are paid once when this survey is returned."
+    },
+    {
+      "seq": 32,
+      "day": 1,
+      "hour": 17.653825000000733,
+      "kind": "survey",
+      "text": "Reed-fibre sample recorded for riverbank-survey/3. 2/2 samples."
+    },
+    {
+      "seq": 33,
+      "day": 1,
+      "hour": 17.6943250000008,
+      "kind": "survey",
+      "text": "riverbank-survey/3 paid: 3 copper, 4 sunmarks, 2 fibre. All surveys through 3 are claimed."
+    },
+    {
+      "seq": 34,
+      "day": 1,
+      "hour": 17.6945500000008,
+      "kind": "routine",
+      "text": "Ilan is heading to amphitheatre."
+    },
+    {
+      "seq": 35,
+      "day": 1,
+      "hour": 17.6945500000008,
+      "kind": "routine",
+      "text": "Mara is heading to observatory."
+    },
+    {
+      "seq": 36,
+      "day": 1,
+      "hour": 17.6945500000008,
+      "kind": "routine",
+      "text": "Oren is heading to workshop."
+    },
+    {
+      "seq": 37,
+      "day": 1,
+      "hour": 17.731225000000858,
+      "kind": "survey",
+      "text": "Accepted riverbank-survey/4: two skitters and two samples for 3 copper, 4 sunmarks and 2 fibre. Oren’s once-only quest is paused, not reset."
+    },
+    {
+      "seq": 38,
+      "day": 1,
+      "hour": 17.761600000000907,
+      "kind": "survey",
+      "text": "Bankroot skitter cleared for riverbank-survey/4. The declared materials are paid once when this survey is returned."
+    },
+    {
+      "seq": 39,
+      "day": 1,
+      "hour": 17.761825000000908,
+      "kind": "survey",
+      "text": "Copper gravel sample recorded for riverbank-survey/4. 1/2 samples."
+    },
+    {
+      "seq": 40,
+      "day": 1,
+      "hour": 17.789500000000952,
+      "kind": "survey",
+      "text": "Reedback skitter cleared for riverbank-survey/4. The declared materials are paid once when this survey is returned."
+    },
+    {
+      "seq": 41,
+      "day": 1,
+      "hour": 17.80097500000097,
+      "kind": "survey",
+      "text": "Reed-fibre sample recorded for riverbank-survey/4. 2/2 samples."
+    },
+    {
+      "seq": 42,
+      "day": 1,
+      "hour": 17.841475000001036,
+      "kind": "survey",
+      "text": "riverbank-survey/4 paid: 3 copper, 4 sunmarks, 2 fibre. All surveys through 4 are claimed."
+    },
+    {
+      "seq": 43,
+      "day": 1,
+      "hour": 17.841700000001037,
+      "kind": "routine",
+      "text": "Ilan is heading to amphitheatre."
+    },
+    {
+      "seq": 44,
+      "day": 1,
+      "hour": 17.841700000001037,
+      "kind": "routine",
+      "text": "Mara is heading to observatory."
+    },
+    {
+      "seq": 45,
+      "day": 1,
+      "hour": 17.841700000001037,
+      "kind": "routine",
+      "text": "Oren is heading to workshop."
+    },
+    {
+      "seq": 46,
+      "day": 1,
+      "hour": 17.878375000001096,
+      "kind": "survey",
+      "text": "Accepted riverbank-survey/5: two skitters and two samples for 3 copper, 4 sunmarks and 2 fibre. Oren’s once-only quest is paused, not reset."
+    },
+    {
+      "seq": 47,
+      "day": 1,
+      "hour": 17.908300000001145,
+      "kind": "survey",
+      "text": "Bankroot skitter cleared for riverbank-survey/5. The declared materials are paid once when this survey is returned."
+    },
+    {
+      "seq": 48,
+      "day": 1,
+      "hour": 17.908525000001145,
+      "kind": "survey",
+      "text": "Copper gravel sample recorded for riverbank-survey/5. 1/2 samples."
+    }
+  ],
+  "nextEvent": 49,
+  "residents": [
+    {
+      "id": "ilan",
+      "x": 0,
+      "z": -11.6,
+      "yaw": 1.5707963267948966,
+      "progress": 0.07825999999999432,
+      "conversations": 0
+    },
+    {
+      "id": "mara",
+      "x": 9,
+      "z": -5.8,
+      "yaw": 0,
+      "progress": 0.07834099999999428,
+      "conversations": 0
+    },
+    {
+      "id": "oren",
+      "x": 11,
+      "z": 9,
+      "yaw": -1.5707963267948966,
+      "progress": 0.07825999999999432,
+      "conversations": 0
+    }
+  ],
+  "settings": {
+    "quality": "balanced",
+    "cameraMode": "adventure",
+    "cameraFov": 60,
+    "cameraViews": {
+      "version": 1,
+      "lastDiorama": "follow",
+      "profiles": {}
+    },
+    "cameraCutaway": true,
+    "reducedMotion": false,
+    "labels": true,
+    "timeFlow": true,
+    "sound": false
+  }
+}

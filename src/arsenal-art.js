@@ -22,6 +22,7 @@ function draw(out,sim,t){const A=G.RealmAdventure,s=sim.state.adventure,r=AR.run
  if(s.started&&AR.weapon(s).style==='bow'&&A.combatScene(sim)){
   const yaw=p.yaw,hand={x:p.x+Math.cos(yaw)*.28+Math.sin(yaw)*.22,z:p.z-Math.sin(yaw)*.28+Math.cos(yaw)*.22};const pose=G.RealmCombat.pose(sim),pull=sim.state.settings.reducedMotion?0:pose.phase==='anticipate'?pose.progress:Math.max(0,1-(s.elapsed-(r.lastShot??-9))/.32),col=parseInt((A.GEAR[s.equipment.weapon]?.color||'#bca477').slice(1),16);
   for(let i=0;i<10;i++){const q=-1.1+i*.244,dx=Math.cos(q)*.3,dz=Math.sin(q)*.66;box(hand.x+Math.sin(yaw)*dx,base+1.12+dz,hand.z+Math.cos(yaw)*dx,.09,.18,.09,col,{r:[0,yaw,q]});}
+  for(let i=0;i<G.RealmPursuit.stage(s,s.equipment.weapon);i++)box(hand.x,base+1.04+i*.14,hand.z,.18,.065,.18,i?0xece0b6:0xd39366,{em:.18});
   if(G.RealmStarter.bonus(s,s.equipment.weapon))box(hand.x,base+.9,hand.z,.18,.12,.18,0x82beb0,{em:.35});
   box(hand.x-Math.sin(yaw)*pull*.16,base+1.12,hand.z-Math.cos(yaw)*pull*.16,.025,1.22,.025,0xe6d5af);const gem=AR.activeGem(s);if(gem)add('octa',hand.x,base+1.12,hand.z,.14,.22,.14,gem.color,{em:.8});
  }

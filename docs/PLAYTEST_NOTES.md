@@ -42,3 +42,16 @@ Automated real input covers camera-relative walking, right-drag orbit, wheel dis
 ## Founder response and camera choice
 
 Dom's direct response: "looks great, honestly, continue development". He then explicitly said he likes both the 2.5D diorama and third-person camera styles and wants them interchangeable for this prototype. Preserve both as first-class player choices. This confirms the visual direction; he has not yet supplied the fresh/returning route, combat, reward or pacing observations requested above.
+
+## Equipment pursuit implementation, 2026-09-14
+
+Dom explicitly accepted Astra's Draft D implementation prompt. No new human playtest result was supplied. The field guide, repeat materials survey and two finite fittings are now playable; [results](development/UPGRADE_HUNT_RESULTS_2026-09-14.md) separate automated evidence from founder acceptance.
+
+Command-earned cases show fresh blade 16→27, fresh bow 13→25, and returning tempered Dawn's edge 44→48 confirmed practice damage. These comparisons include base crafting for the fresh cases and preserve other loadout effects. Surveys pay no XP and do not advance chapters. Browser tests use accelerated setup; the separately recorded clip uses normal real-time RAF on an isolated origin. Neither proves enjoyable repetition or a completion-time target.
+
+| Case | Clear equipment goal and material route? | Fights and upgrade felt good? | Wanted another outing? |
+|---|---|---|---|
+| Fresh kit, blade or bow | Pending Dom | Pending Dom | Pending Dom |
+| Returning strongest equipment | Pending Dom | Pending Dom | Pending Dom |
+
+Watch whether five visits for a newly crafted, twice-fitted copper weapon feels excessive, whether one pinned project is legible, and whether returning through the same geography becomes dull. The prototype offers two fitting steps per owned weapon; it does not claim a finished endgame or long-term reward economy. Existing camera taste approval remains valid and distinct from these unanswered questions.

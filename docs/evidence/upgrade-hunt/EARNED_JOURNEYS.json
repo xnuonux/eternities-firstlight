@@ -1,0 +1,164 @@
+[
+  {
+    "status": "passed",
+    "variant": "fresh-blade",
+    "commands": 88,
+    "positionEdits": 0,
+    "inventoryGrants": 0,
+    "plantedDefeats": 0,
+    "acceleratedTick": true,
+    "source": null,
+    "claimed": 5,
+    "beforeDamage": 16,
+    "afterDamage": 27,
+    "equipped": "copper_blade",
+    "stats": {
+      "level": 1,
+      "attack": 27,
+      "defense": 1,
+      "maxHP": 100
+    },
+    "xp": 0,
+    "economy": {
+      "initial": {
+        "ore": 0,
+        "coins": 0,
+        "fiber": 0,
+        "wood": 0,
+        "stone": 0,
+        "plank": 0
+      },
+      "end": {
+        "ore": 2,
+        "coins": 4,
+        "fiber": 4,
+        "wood": 0,
+        "stone": 0,
+        "plank": 0
+      },
+      "net": {
+        "ore": 2,
+        "coins": 4,
+        "fiber": 4,
+        "wood": 0,
+        "stone": 0,
+        "plank": 0
+      },
+      "surveys": {
+        "count": 5,
+        "ore": 15,
+        "coins": 20,
+        "fiber": 10
+      }
+    }
+  },
+  {
+    "status": "passed",
+    "variant": "fresh-bow",
+    "commands": 113,
+    "positionEdits": 0,
+    "inventoryGrants": 0,
+    "plantedDefeats": 0,
+    "acceleratedTick": true,
+    "source": null,
+    "claimed": 5,
+    "beforeDamage": 13,
+    "afterDamage": 25,
+    "equipped": "copper_bow",
+    "stats": {
+      "level": 1,
+      "attack": 25,
+      "defense": 1,
+      "maxHP": 100
+    },
+    "xp": 0,
+    "economy": {
+      "initial": {
+        "ore": 0,
+        "coins": 0,
+        "fiber": 0,
+        "wood": 0,
+        "stone": 0,
+        "plank": 0
+      },
+      "end": {
+        "ore": 2,
+        "coins": 2,
+        "fiber": 6,
+        "wood": 2,
+        "stone": 8,
+        "plank": 2
+      },
+      "net": {
+        "ore": 2,
+        "coins": 2,
+        "fiber": 6,
+        "wood": 2,
+        "stone": 8,
+        "plank": 2
+      },
+      "surveys": {
+        "count": 5,
+        "ore": 15,
+        "coins": 20,
+        "fiber": 10
+      }
+    }
+  },
+  {
+    "status": "passed",
+    "variant": "veteran",
+    "commands": 58,
+    "positionEdits": 0,
+    "inventoryGrants": 0,
+    "plantedDefeats": 0,
+    "acceleratedTick": true,
+    "source": {
+      "path": "C:\\dev\\firstlight-artifacts\\third-person-2026-09-13\\gameplay\\evidence10\\starter\\veteran\\03_TEMPER_EQUIPPED_RELOADED.json",
+      "sha256": "890ba73152dd8f1492045714266797bd56fd149f2d0d0180cdbec8710cfa48ad"
+    },
+    "claimed": 3,
+    "beforeDamage": 44,
+    "afterDamage": 48,
+    "equipped": "dawn_edge",
+    "stats": {
+      "level": 5,
+      "attack": 48,
+      "defense": 13,
+      "maxHP": 200
+    },
+    "xp": 563,
+    "economy": {
+      "initial": {
+        "ore": 17,
+        "coins": 92,
+        "fiber": 0,
+        "wood": 2,
+        "stone": 0,
+        "plank": 0
+      },
+      "end": {
+        "ore": 17,
+        "coins": 92,
+        "fiber": 0,
+        "wood": 2,
+        "stone": 0,
+        "plank": 0
+      },
+      "net": {
+        "ore": 0,
+        "coins": 0,
+        "fiber": 0,
+        "wood": 0,
+        "stone": 0,
+        "plank": 0
+      },
+      "surveys": {
+        "count": 3,
+        "ore": 9,
+        "coins": 12,
+        "fiber": 6
+      }
+    }
+  }
+]

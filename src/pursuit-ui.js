@@ -1,0 +1,61 @@
+/* A field guide projected from real recipes, equipment and accepted survey events. */
+(function(G){'use strict';
+const H=G.RealmPursuit,A=G.RealmAdventure,Q=G.RealmStarter,AR=G.RealmArsenal,S=G.RealmSandbox,$=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const btn=(label,action,id='',disabled=false,extra='')=>'<button data-rpg="'+action+'" data-id="'+esc(id)+'" '+(disabled?'disabled ':'')+extra+'>'+label+'</button>';
+const material=k=>S.ITEMS[k]?.name||({ore:'Copper ore',coins:'Sunmarks'})[k]||k;
+class PursuitUI{
+ constructor(rpg){this.rpg=rpg;this.selected=null;const b=document.createElement('button');b.dataset.rpg='track';b.dataset.id='project';b.textContent='Project';$('.tracker-switch').append(b);}
+ get sim(){return this.rpg.sim;}get a(){return this.rpg.state;}get p(){return this.a.pursuit;}
+ have(k){return k==='ore'||k==='coins'?this.a[k]:this.sim.state.sandbox.inventory[k]||0;}
+ costs(q){return q?Object.entries({...q.materials,ore:q.ore,coins:q.coins}).filter(([,n])=>n>0):[];}
+ missing(q){return this.costs(q).filter(([k,n])=>this.have(k)<n);}
+ atOren(){return !this.sim.room&&Q.near(this.sim,Q.OREN);}
+ capacity(){return this.a.ore<=9996&&this.a.coins<=9995&&this.have('fiber')<=997;}
+ route(kind){const room=this.sim.room;if(room&&room!==Q.ROOM)return null;
+  if(kind==='practice')return room?{x:-5,z:AR.weapon(this.a).style==='bow'?6:11.5,label:'Walk to the practice bundle · select it to attack'}:{...Q.GATE,label:'Walk to the riverbank sign · E to enter, then choose Practice'};
+  if(kind==='oren')return room?{...Q.ENTRY,label:'Walk to the southern exit · E to return to Oren'}:{...Q.OREN,label:'Walk to Oren’s workbench'};
+  if(kind==='riverbank'){if(!room)return{...Q.GATE,label:'Walk to the riverbank sign · E to enter'};const sample=H.points(this.sim)[0],enemy=H.enemies(this.a)[0],next=sample||enemy;if(next)return{...next,label:'Walk to '+next.name+(sample?' · E to record':' · select it to fight')};return{...Q.ENTRY,label:'Walk to the southern exit · E to return to Oren'};}return null;
+ }
+ routeButton(kind){const q=this.route(kind);return q?btn(esc(q.label),'pursuit-route',kind):'<p class="fineprint">Return through this area’s exit to use the local workshop route.</p>';}
+ next(){const a=this.a,p=this.p,q=H.recipe(a,p.pinned),run=p.active;
+  if(!a.started)return{title:'Collect Oren’s initial kit',detail:'E beside the workshop. No campaign chapter is required.'};
+  if(run)return{title:H.complete(a)?'Return the survey to Oren':this.sim.room===Q.ROOM?'Clear two skitters and record two samples':'Enter the nearby riverbank',detail:run.defeated.length+'/2 threats · '+run.samples.length+'/2 samples · M shows the route'};
+  if(!p.pinned)return{title:'Choose an equipment project',detail:'Inspect a weapon’s real source, costs and effects in the field guide.'};
+  if(!q)return{title:'Two fittings complete · try your weapon',detail:'Equip it deliberately, then select Oren’s practice bundle to confirm its impact.'};
+  const missing=this.missing(q);if(missing.length)return{title:'Gather for '+q.name,detail:missing.map(([k,n])=>material(k)+' '+this.have(k)+'/'+n).join(' · ')};
+  return{title:'Ready for '+q.name,detail:AR.atBench(this.sim)?'Open the field guide to review and confirm the cost.':'Return to an outdoor workbench. Materials stay yours until you confirm.'};
+ }
+ action(el){const act=el.dataset.rpg,id=el.dataset.id;
+  if(act==='pursuit-select'){this.selected=id;this.rpg.paint();return true;}
+  if(act==='pursuit-route'){const q=this.route(id);if(q){this.rpg.close();this.rpg.api.walkLocal(q.x,q.z);this.rpg.api.toast(q.label);}return true;}
+  if(act==='pursuit-gather'){if(!this.sim.room){this.rpg.close();this.rpg.api.gather(id);}return true;}
+  if(act==='pursuit-component'){this.rpg.recipe=id;this.rpg.craftFilter='components';this.rpg.open('craft');return true;}
+  if(act==='pursuit-recipe'){const q=H.recipe(this.a,id);if(q&&q.id===el.dataset.recipe)this.rpg.run(q.type,q.payload);return true;}
+  if(act==='pursuit-pin'){const r=this.rpg.run(act,{weapon:id||null});if(r.ok){this.rpg.quest=id||this.p.active?'project':'story';this.rpg.paint();this.tick();}return true;}
+  if(act==='pursuit-start'){const r=this.rpg.run(act,{after:Number(el.dataset.after)});if(r.ok){this.rpg.quest='project';this.rpg.paint();}return true;}
+  if(act==='pursuit-claim'){this.rpg.run(act,{run:id});return true;}return false;
+ }
+ comparison(id){const c=H.compare(this.a,id),q=H.recipe(this.a,id),gem=g=>g?AR.GEMS[g].name:'Empty';
+  const row=(label,v,w,x)=>'<tr><th>'+label+'</th><td>'+esc(v)+'</td><td>'+esc(w)+'</td><td>'+esc(x)+'</td></tr>';
+  return '<table class="guide-comparison"><caption>Effects with this weapon equipped</caption><thead><tr><th>Build</th><th>Equipped now</th><th>Selected now</th><th>'+(!this.a.owned.includes(id)?(q?'After crafting':'If acquired'):q?'After fitting':'Finished')+'</th></tr></thead><tbody>'+row('Attack',c.current.attack,c.selected.attack,c.next.attack)+row('Guard',c.current.defense,c.selected.defense,c.next.defense)+row('Max health',c.current.maxHP,c.selected.maxHP,c.next.maxHP)+row('Strike cooldown',c.beforeWeapon.cooldown+'s',c.afterWeapon.cooldown+'s',c.afterWeapon.cooldown+'s')+row('Reach',c.beforeWeapon.reach,c.afterWeapon.reach,c.afterWeapon.reach)+row('Stamina / strike',c.beforeWeapon.stamina,c.afterWeapon.stamina,c.afterWeapon.stamina)+row('Socket',gem(this.a.arsenal.sockets[this.a.equipment.weapon]),gem(c.socket),gem(c.socket))+'</tbody></table>';
+ }
+ item(id){const a=this.a,x=H.catalogue(a).find(x=>x.id===id);if(!x)return'';const q=H.recipe(a,id),c=H.compare(a,id),missing=this.missing(q),atBench=AR.atBench(this.sim),pinned=this.p.pinned===id;
+  const mats=q?'<div class="guide-costs">'+this.costs(q).map(([k,n])=>'<div class="'+(this.have(k)>=n?'enough':'missing')+'"><span>'+esc(material(k))+'</span><b>'+this.have(k)+' / '+n+'</b></div>').join('')+'</div>':'';
+  let acquire='';for(const [k]of missing){if(['wood','stone','fiber','crystal'].includes(k))acquire+=btn('Find '+esc(material(k)),'pursuit-gather',k,!!this.sim.room);if(k==='plank')acquire+=btn('Cut planks · 2 timber makes 4','pursuit-component','plank');}
+  if(missing.some(([k])=>['ore','coins','fiber'].includes(k)))acquire+='<p>Use the materials survey below for copper, sunmarks and fibre.</p>';
+  return '<article class="guide-detail" data-weapon="'+id+'"><small>'+x.style.toUpperCase()+' · '+(x.owned?'OWNED':'SOURCE GUIDE')+'</small><h3>'+esc(x.name)+'</h3><p>'+esc(A.GEAR[id].desc)+'</p><p class="guide-source">'+esc(x.source.label)+(x.source.requires?' · first craft '+esc(A.GEAR[x.source.requires].name):'')+'</p>'+this.comparison(id)+(c.next.attack<c.current.attack?'<p class="guide-caution">This weapon has less attack than your current loadout. You can fit your stronger owned weapon instead; enemies and rewards do not scale to it.</p>':'')+'<p class="fineprint">Two fittings per weapon, +2 attack each. Cadence, range, stamina, health and socket stay intact. Oren’s separate temper on this weapon: '+(Q.bonus(a,id)?'+2 attack retained':'none')+'.</p><div class="guide-actions">'+(x.pinnable?btn(pinned?'Unpin project':'Pin this project','pursuit-pin',pinned?'':id):'<p>This source is once-only. Inspect its existing quest in the journal; it is not repeat survey loot.</p>')+(x.owned&&a.equipment.weapon!==id?btn('Equip '+esc(x.name),'equip',id):x.owned?'<span class="guide-equipped">Equipped</span>':'')+'</div>'+(q?'<section class="guide-recipe"><small>NEXT REAL STEP</small><h4>'+esc(q.name)+'</h4>'+mats+btn(q.type==='pursuit-fit'?'Confirm '+esc(q.name)+' · +2 attack':'Craft '+esc(q.name),'pursuit-recipe',id,!a.started||missing.length>0||!atBench,'data-recipe="'+esc(q.id)+'" class="primary"')+'<p class="fineprint">'+(!atBench?'A workbench is required. ':missing.length?'Gather the missing materials below. ':'Ready to make. ')+'Costs are spent together only on success. Existing weapons are kept. New equipment is never auto-equipped.</p>'+acquire+(!atBench?this.routeButton('oren'):'')+'</section>':'<p class="guide-finished">'+(x.owned?'Both fittings are complete. This weapon keeps its identity and socket.':'No repeatable local recipe exists for this story gift.')+'</p>')+(x.owned?this.routeButton('practice'):'')+'</article>';
+ }
+ survey(){const p=this.p,run=p.active,done=H.complete(this.a),near=this.atOren(),space=this.capacity();
+  return '<section class="guide-survey"><div><small>REPEATABLE · INITIAL KIT ONLY</small><h3>Riverbank materials survey</h3><p>Clear the Bankroot and Reedback skitters, and record the copper gravel and reed-fibre samples. Start at the sign east of Oren. Return to the workshop to collect your materials.</p></div><div class="guide-pay"><b>3 copper · 4 sunmarks · 2 fibre</b><span>Every completed survey · 0 XP · no individual caches</span></div><p><strong>Danger:</strong> two ordinary skitters. Reedback marks its strike for 1.1 seconds, then recovers for 1.6. Brace or move clear; retreat south to practice or leave.</p>'+(run?'<p class="guide-active"><strong>Survey '+esc(run.id.split('/')[1])+'</strong> · '+run.defeated.length+'/2 threats cleared · '+run.samples.length+'/2 samples recorded</p><p>Your cleared threats and samples resume after reload. Undefeated skitters recover. Oren’s original supply outing is paused until this survey is claimed, with its history retained.</p><div class="guide-actions">'+this.routeButton(done?'oren':'riverbank')+btn('Review route map','open','atlas')+btn('Claim survey materials','pursuit-claim',run.id,!done||!near||!space,'class="primary"')+'</div><p class="fineprint">'+(!done?'Finish both threats and both samples.':!near?'Return to Oren to claim.':!space?'Make room for the full payout. Your completed survey remains safe.':'Ready to claim once.')+'</p>':'<div class="guide-actions">'+btn('Accept next materials survey','pursuit-start','',!this.a.started||!near,'data-after="'+p.claimed+'" class="primary"')+(!near?this.routeButton('oren'):'')+'</div><p class="fineprint">'+p.claimed+' paid survey'+(p.claimed===1?'':'s')+'. A new run starts only when you accept it. Oren’s supply quest and unique rewards stay once-only.</p>')+'</section>';
+ }
+ page(tab){if(tab!=='pursuit')return null;const cat=H.catalogue(this.a);if(!cat.some(x=>x.id===this.selected))this.selected=this.p.pinned||this.a.equipment.weapon||'trail_blade';const next=this.next();
+  return{title:'Field guide',html:'<div class="pursuit-guide"><header class="guide-intro"><small>AN UPGRADE WORTH HUNTING</small><h2>A project of your own.</h2><p>Gather, make and improve without advancing the main campaign.</p></header><section class="guide-project"><small>'+(this.p.pinned?'PINNED · '+esc(A.GEAR[this.p.pinned].name):'CHOOSE ONE PROJECT')+'</small><h3>'+esc(next.title)+'</h3><p>'+esc(next.detail)+'</p></section><div class="guide-layout"><nav class="guide-catalogue" aria-label="Weapon field guide">'+cat.map(x=>btn('<strong>'+esc(x.name)+'</strong><span>'+(x.owned?'Owned · '+x.tier+'/2 fittings':x.source.kind==='craft'?'Local recipe':'Once-only source')+(this.p.pinned===x.id?' · pinned':'')+'</span>','pursuit-select',x.id,false,'aria-pressed="'+(this.selected===x.id)+'"')).join('')+'</nav>'+this.item(this.selected)+'</div>'+this.survey()+'</div>'};
+ }
+ tick(){const p=this.p,b=$('.tracker-switch [data-id="project"]');b.hidden=!this.a.started;
+  if(this.lastPin!==p.pinned||this.lastRun!==p.active?.id){if(p.pinned||p.active)this.rpg.quest='project';this.lastPin=p.pinned;this.lastRun=p.active?.id;}
+  if(this.rpg.quest!=='project')return;const next=this.next();$('#tracked-chapter').textContent='EQUIPMENT PROJECT';$('#tracked-title').textContent=(p.pinned?A.GEAR[p.pinned].name+' · ':'')+next.title;$('#tracked-detail').textContent=next.detail;$('#tracked-progress').textContent=p.active?p.active.defeated.length+'/2 threats · '+p.active.samples.length+'/2 samples':p.pinned?H.stage(this.a,p.pinned)+'/2 fittings · '+p.claimed+' surveys paid':'Open the field guide to pin a local project';
+ }
+}
+G.RealmPursuitUI={PursuitUI};
+})(globalThis);

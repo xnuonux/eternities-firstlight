@@ -64,8 +64,11 @@ def main():
     run('starter-blade', ['node', 'tests/starter_journey.cjs'])
     run('starter-bow', ['node', 'tests/starter_journey.cjs', '--bow'])
     run('starter-veteran', ['node', 'tests/starter_veteran.cjs'])
+    run('pursuit-blade', ['node', 'tests/pursuit_journey.cjs'])
+    run('pursuit-bow', ['node', 'tests/pursuit_journey.cjs', '--bow'])
+    run('pursuit-veteran', ['node', 'tests/pursuit_journey.cjs', '--veteran'])
     if args.browser:
-        for suite in ['crossing_browser', 'regression09_browser', 'cutaway_browser', 'reflection_browser', 'native_origin_browser', 'starter_browser', 'camera_browser']:
+        for suite in ['crossing_browser', 'regression09_browser', 'cutaway_browser', 'reflection_browser', 'native_origin_browser', 'starter_browser', 'camera_browser', 'pursuit_browser']:
             run(suite, [sys.executable, f'tests/{suite}.py'], timeout=600)
     print('Verification passed. Automated checks do not qualify human pacing or device performance.', flush=True)
 

@@ -42,6 +42,7 @@ function walkable(x,z,r=.31){return land(x,z,r)&&!OBSTACLES.some(o=>Math.hypot(x
 function line(a,b){if(!a||!b||!Number.isFinite(distance(a,b))||distance(a,b)>100)return false;const n=Math.max(1,Math.ceil(distance(a,b)/.1));for(let i=0;i<=n;i++)if(!walkable(a.x+(b.x-a.x)*i/n,a.z+(b.z-a.z)*i/n,.04))return false;return true;}
 function near(sim,p,r=3){return distance(sim.state.player,p)<r;}
 function points(sim){const a=sim.state.adventure;
+ if(sim.room===ROOM&&a.pursuit?.active)return[{id:'river-exit',name:'Return survey to Oren',...ENTRY,kind:'gate'},{...PRACTICE,kind:'practice'},...G.RealmPursuit.points(sim),...G.RealmPursuit.enemies(a).map(e=>({...e,kind:'threat'}))];
  if(sim.room===ROOM)return[{id:'river-exit',name:'Return to the workshop',...ENTRY,kind:'gate'},{...PRACTICE,kind:'practice'},...(a.starter.accepted?BUNDLES.filter(q=>!a.starter.bundles.includes(q.id)).map(q=>({...q,kind:'supplies'})):[]),...(a.starter.accepted&&!a.defeated.includes('river-old-bristle')?[{...ENEMIES[2],kind:'threat'}]:[])];
  if(!sim.room)return[{id:'oren-outing',name:'Oren · riverbank supplies',...OREN,kind:'quest'},{id:'river-gate',name:'Nearby riverbank worksite',...GATE,kind:'gate'}];return[];
 }
@@ -56,13 +57,13 @@ function handle(sim,type,p={}){
   q.accepted=true;sim.event('quest','You agreed to recover Oren’s three supply bundles and drive away Old Bristle at the nearby riverbank. Choose a blade, bow or one weapon temper when you return.');return yes('Riverbank outing accepted. The path sign is just east of Oren’s workshop.');
  case'starter-enter':
   if(!a.started||sim.room||!near(sim,GATE))return fail('With your initial kit, approach the riverbank sign beside Oren’s workshop.');
-  sim.returnPos={...sim.state.player};sim.room=ROOM;sim.state.player={...ENTRY};sim.playerPath=[];A.syncScene(sim);G.RealmCombat.stop(sim,true);return yes('The nearby riverbank · bundles and Old Bristle share one short route.');
+  sim.returnPos={...sim.state.player};sim.room=ROOM;sim.state.player={...ENTRY};sim.playerPath=[];A.syncScene(sim);G.RealmCombat.stop(sim,true);return yes(a.pursuit?.active?'Riverbank survey · clear two skitters, record two samples, return to Oren.':'The nearby riverbank · bundles and Old Bristle share one short route.');
  case'starter-leave':
   if(sim.room!==ROOM||!near(sim,ENTRY))return fail('Return to the southern workshop path.');
   sim.leave();A.syncScene(sim);G.RealmCombat.stop(sim,true);return yes('Back beside Oren’s workshop.');
  case'starter-pickup':{
   const bundle=BUNDLES.find(b=>b.id===p.id);
-  if(sim.room!==ROOM||!q.accepted||q.reward||!bundle||q.bundles.includes(p.id)||!near(sim,bundle,2.4)||!A.visible(sim,sim.state.player,bundle))return fail('Accept Oren’s outing, then approach a visible, unrecovered supply bundle.');
+  if(sim.room!==ROOM||a.pursuit?.active||!q.accepted||q.reward||!bundle||q.bundles.includes(p.id)||!near(sim,bundle,2.4)||!A.visible(sim,sim.state.player,bundle))return fail('Accept Oren’s outing, then approach a visible, unrecovered supply bundle.');
   q.bundles.push(p.id);sim.event('quest',bundle.name+' recovered ('+q.bundles.length+'/3). Your normal inventory is unchanged.');return yes(bundle.name+' secured · '+q.bundles.length+'/3 supplies');}
  case'starter-claim':{
   if(sim.room||!near(sim,OREN)||!complete(a)||q.reward)return fail('Return to Oren with three bundles and Old Bristle driven away. The reward is claimed once.');
