@@ -1,0 +1,94 @@
+{
+  "format_version": 1,
+  "prepared": "2026-09-13",
+  "repository": "xnuonux/eternities-firstlight",
+  "base_commit": "1aae2f14f2b2ab0ba54a5bf8571bd45bbf32ab46",
+  "purpose": "Preserve the two requested design expansions and their original handoff contents, with separately serialized visible dialogue. Documentation only.",
+  "source_archives": [
+    {
+      "filename": "FIRSTLIGHT_STORY_WORLD_AND_PRODUCTION_2026-09-13.zip",
+      "sha256": "d310dc00856c310d53982f7992ee61055fbed951fcf271831fa3a2b109ec34d9"
+    },
+    {
+      "filename": "FIRSTLIGHT_LIVING_CANTICLE_DRAFT_C_2026-09-13.zip",
+      "sha256": "8eb3bd89db8b0def8c496091e0674e12355c4250d636a87594c1e7cf6c046092"
+    }
+  ],
+  "original_files": [
+    {
+      "path": "draft-b/ASTRA_TO_CODEX_STORY_AND_PRODUCTION_RELAY.md",
+      "bytes": 6984,
+      "sha256": "35b0439b12400dbf3f634f825f62aeeaa6abb4d2ef4ef361b4c00df9cd44dc4c",
+      "git_blob_sha": "681bfc6d20e9f954cee83255385bc472277c3ce1"
+    },
+    {
+      "path": "draft-b/FIRSTLIGHT_STORY_WORLD_AND_PRODUCTION_BIBLE.md",
+      "bytes": 61355,
+      "sha256": "e7a4b52bdd9c8c8b701d34a534d76d91010ae44d19a254fe6b36d208084ecf8e",
+      "git_blob_sha": "7fd438b804e8ff49bcfa54b8e57999acead25327"
+    },
+    {
+      "path": "draft-b/REVIEW_RECEIPT.json",
+      "bytes": 2161,
+      "sha256": "437d2f72523c7aace0d36162bc5373ed60e4e96bb829d3ae18eac79b97dcbf51",
+      "git_blob_sha": "8a8a95a445730634d3f29d59af8af9cf6886464e"
+    },
+    {
+      "path": "draft-c/ASTRA_TO_CODEX_LIVING_CANTICLE_RELAY.md",
+      "bytes": 8391,
+      "sha256": "7ae2d9ca88b4cbdc30281fd2d3e2a0a36399c0a63f7ce802852d07d6fdb3549c",
+      "git_blob_sha": "802d4ed577ff7a38eb77ac29ffafbfd788540688"
+    },
+    {
+      "path": "draft-c/BRANCH_INDEX.json",
+      "bytes": 21292,
+      "sha256": "06b07ba196023202d679c937f1c1be57984a9e27b2288f48ae2af8c63d8baa59",
+      "git_blob_sha": "993b8e32a02081061dfaf2cf47658373c7a561eb"
+    },
+    {
+      "path": "draft-c/FIRSTLIGHT_LIVING_CANTICLE_DRAFT_C.md",
+      "bytes": 66875,
+      "sha256": "45b37370d885ca87977fc9790af9079adbfe932f43a97978af4b0fbaf10e3cf1",
+      "git_blob_sha": "77477b31ad64e51f2b7f74331fe2d9db347b1617"
+    },
+    {
+      "path": "draft-c/MANIFEST.json",
+      "bytes": 833,
+      "sha256": "53b3384521d86ee7ef8ffe09988c693f81997f3b56b77c9b4f79a1c2ee55ad05",
+      "git_blob_sha": "54d44423aebb8b190a955de85e3c7cb22371c65e"
+    },
+    {
+      "path": "draft-c/README.md",
+      "bytes": 2484,
+      "sha256": "cd283151ac27163c0312a8841d3dcb47168b6b4c6948652b12323566c4d978e6",
+      "git_blob_sha": "a8c0ae0ea9b726c16f9f69f87f02cd069a693e50"
+    },
+    {
+      "path": "draft-c/SOURCE_REVIEW.json",
+      "bytes": 1678,
+      "sha256": "b5dba22d0ca9d14fd7474e394d598cd4e2bc1b971b2e54c90144cb1e0468685a",
+      "git_blob_sha": "050a6e5bf0dd5d3c509ec9d55a9aa271b7efec12"
+    }
+  ],
+  "new_archive_files": {
+    "README.md": "a6292d73c011c899ad1e4d7b4467fa9e70b9ac52",
+    "VISION_QUESTIONS.md": "d6e330d69f96c5c1651805d9ad265ede26bd371b",
+    "dialogues/README.md": "beb51d6f8eefeba8eb2ecc79f700a4351334aa8b",
+    "dialogues/01-story-production-exchange.md": "f20cccee81c1af50cc3910ed707b705c00c3d553",
+    "dialogues/02-living-canticle-exchange.md": "139278fa63307801097e89f97756e14ddb6039de"
+  },
+  "verification_scope": {
+    "source_documents": "All nine source files have identical original and remote-created Git blob IDs; SHA-256 values refer to original bytes.",
+    "dialogue": "The two visible user/assistant exchanges are manually serialized with archival headers. This is not a platform conversation export or an archive of hidden reasoning/tool messages.",
+    "historical_citations": "Citation tokens and attachment links in the dialogue are preserved historically. The source ledgers in the complete design files provide durable source references.",
+    "new_questions": "Exactly five unanswered founder questions; illustrative possibilities are not adopted design decisions.",
+    "outside_scope": [
+      "gameplay edits",
+      "save migrations",
+      "main merge",
+      "public deployment",
+      "Heaven repository",
+      "private Luna history"
+    ]
+  }
+}

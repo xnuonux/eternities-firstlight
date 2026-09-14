@@ -1,0 +1,71 @@
+{
+  "prepared_date": "2026-09-13",
+  "kind": "source-grounded design draft and targeted review",
+  "repository": "xnuonux/eternities-firstlight",
+  "reviewed_branch": "gameplay/interchangeable-views",
+  "reviewed_head": "932db44ebfd85bf52e8e165d899c7db48dec5ebd",
+  "reviewed_pull_requests": [
+    5,
+    6,
+    7
+  ],
+  "pr_state_observed": "draft/open/unmerged",
+  "hosted_ci": {
+    "run_id": 34777787694,
+    "head_matches": true,
+    "status_observed": "completed",
+    "conclusion_observed": "success",
+    "successful_jobs_observed": 9
+  },
+  "direct_code_scope": [
+    "src/starter.js"
+  ],
+  "record_scope": [
+    "README.md",
+    "docs/CURRENT_STATE.md",
+    "docs/DECISIONS.md",
+    "docs/NEXT_TASK.md",
+    "docs/SUNWARD_ROAD.md",
+    "docs/BEACON_AND_RPG_UI.md",
+    "docs/development/STARTER_REGION_TASK_2026-09-12.md"
+  ],
+  "recovered_library_sources": [
+    {
+      "filename": "FIRSTLIGHT_MYTHOLOGY_BRIDGE.md",
+      "version": 1,
+      "full_document_read": true,
+      "original_2023_manuscript": false
+    },
+    {
+      "filename": "ASTRA_PR4_REVIEW_AND_NEXT_MILESTONE_2026-09-12.md",
+      "relevant_sections_read": true
+    }
+  ],
+  "external_sources": "Primary Unreal/Blender documentation and cited biblical passages; complete ledger in the bible.",
+  "work_performed": {
+    "repo_read": true,
+    "game_execution": false,
+    "test_rerun": false,
+    "video_playback": false,
+    "github_write": false,
+    "merge": false,
+    "deployment": false,
+    "private_save_access": false,
+    "new_design_documents": true
+  },
+  "design_status": "All new antagonist/place names, campaign structure, level bands, dimensions, and production milestones are proposals, not implemented or founder-approved changes.",
+  "files": [
+    {
+      "filename": "FIRSTLIGHT_STORY_WORLD_AND_PRODUCTION_BIBLE.md",
+      "bytes": 61355,
+      "words": 8630,
+      "sha256": "e7a4b52bdd9c8c8b701d34a534d76d91010ae44d19a254fe6b36d208084ecf8e"
+    },
+    {
+      "filename": "ASTRA_TO_CODEX_STORY_AND_PRODUCTION_RELAY.md",
+      "bytes": 6984,
+      "words": 977,
+      "sha256": "35b0439b12400dbf3f634f825f62aeeaa6abb4d2ef4ef361b4c00df9cd44dc4c"
+    }
+  ]
+}

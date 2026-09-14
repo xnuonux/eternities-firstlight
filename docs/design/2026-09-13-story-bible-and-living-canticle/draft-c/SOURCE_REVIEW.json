@@ -1,0 +1,45 @@
+{
+  "status": "design_only",
+  "prepared": "2026-09-13",
+  "source_scope": {
+    "attached_draft_b": "read completely",
+    "editorial_concordance": "Library version 1, read completely; not the original novel",
+    "mythology_bridge": "Library version 1, read completely; game adaptation",
+    "original_2023_archive": "not reread, not revised",
+    "eternities_canon": {
+      "snapshot": "cfd7ee84098d400b655bcedd9ccaa09ae16eb663",
+      "path": "canon/lunari-one-architecture.md",
+      "read": "lines 1–200 plus indexed canonical-seven/Perseus passage"
+    },
+    "lunari_scheduler": {
+      "snapshot": "e33a8e8359b4f667bad5163462afab912b22c46c",
+      "paths": [
+        "services/agent_systems_tg.js",
+        "services/agent_souls/raven.js",
+        "services/agent_souls/echo.js",
+        "services/agent_souls/nova.js"
+      ],
+      "caveat": "The three richer soul files identify themselves as staged candidate variant B, not wired live."
+    }
+  },
+  "external_reference_scope": [
+    "Tolkien official letter: interconnected mythology and ordinary lives",
+    "Tolkien Gateway: future Second Music, secondary account citing Ainulindale",
+    "Blizzard basic movement/combat guide: spirit recovery comparison, no current penalty claim",
+    "Revelation 21–22 and Isaiah 6: selected scriptural images, not asserted game doctrine"
+  ],
+  "operations": {
+    "github_writes": 0,
+    "runtime_edits": 0,
+    "private_conversation_reads": 0,
+    "database_reads": 0,
+    "save_migrations": 0,
+    "game_test_runs": 0,
+    "deployments": 0
+  },
+  "artifact_checks": {
+    "branch_ids_unique": true,
+    "recurring_paths_resolve": true,
+    "branch_entries": 37
+  }
+}
