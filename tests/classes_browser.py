@@ -64,7 +64,7 @@ try:
         page.locator('[data-rpg="class-preview"][data-id="magician"]').click()
         check('No-kit character can compare but cannot confirm',page.locator('[data-rpg="class-confirm"]').is_disabled())
         close();walk(11,9);cmd('start')
-        before=state()['adventure'];path_ui();text=page.locator('#rpg-content').inner_text()
+        before=state()['adventure'];page.keyboard.press('e');render();check('Oren offers a direct optional class path',page.locator('.starter-path [data-id="classes"]').count()==1);page.locator('.starter-path [data-id="classes"]').click();text=page.locator('#rpg-content').inner_text()
         check('Choice screen shows exact initial blade spell and mark values',all(t in text for t in ['20 damage','+8 damage','15 stamina','25 stamina','8s','10s']))
         page.locator('[data-rpg="class-preview"][data-id="magician"]').click()
         check('Preview alone leaves identity and story unchosen',state()['adventure']['classPath']['choice'] is None)
@@ -76,8 +76,9 @@ try:
         a=state()['adventure']
         check('Explicit confirmation chooses Magician',a['classPath']['choice']=='magician')
         check('Choice retains gear, XP, soul, companion and project history',all(a[k]==before[k] for k in ['owned','equipment','xp','beacon','companion','pursuit','starter','arsenal']))
+        check('Chosen path offers the existing practice route and equipment guide',page.locator('[data-rpg="pursuit-route"][data-id="practice"]').count()==1 and page.locator('#rpg-content [data-rpg="open"][data-id="pursuit"]').count()==1)
         check('Chosen view names actual technique and has no second choice', 'Arcane flare' in page.locator('#rpg-content').inner_text() and page.locator('[data-rpg="class-confirm"]').count()==0)
-        close();walk(15,7);cmd('starter-enter');walk(-5,11.5);cmd('target-select',{'id':'river-practice'})
+        page.locator('[data-rpg="pursuit-route"][data-id="practice"]').click();ev('() => {for(let i=0;i<7000&&Realm.test.path.length;i++)Realm.test.step(.05);Realm.test.render()}');check('Practice link walks to the real sign without teleporting',ev('() => Realm.diagnostics.scene')=='valley' and ev('() => Math.hypot(Realm.diagnostics.adventure.player.x-15,Realm.diagnostics.adventure.player.z-7)<.3'));page.keyboard.press('e');render();check('E enters riverbank after the practice walk',ev('() => Realm.diagnostics.scene')=='riverbank');path_ui();page.locator('[data-rpg="pursuit-route"][data-id="practice"]').click();ev('() => {for(let i=0;i<7000&&Realm.test.path.length;i++)Realm.test.step(.05);Realm.test.render()}');check('Practice link inside the scene follows the actual route',ev('() => Math.hypot(Realm.diagnostics.adventure.player.x+5,Realm.diagnostics.adventure.player.z-11.5)<.3'));cmd('target-select',{'id':'river-practice'})
         check('New technique has its own visible X button',page.locator('#skill-class').is_visible() and 'X' in page.locator('#skill-class').inner_text())
         before=state()['adventure'];page.keyboard.press('x');render()
         check('X invokes actual spell damage on practice',ev('() => Realm.diagnostics.adventure.tactics.hits.at(-1)?.n')==20)
@@ -98,6 +99,7 @@ try:
         check('New roster character stays unassigned',state()['adventure']['classPath']['choice'] is None)
         close();page.keyboard.press('c');page.locator('#rpg-tabs [data-id="characters"]').click();page.locator('[data-rpg="chars-switch"][data-id="character-1"]').click();page.wait_for_function('() => Realm.diagnostics.characters.active==="character-1"');render()
         check('Switching restores original Magician identity',state()['adventure']['classPath']['choice']=='magician')
+        close();page.keyboard.press('c');render();check('Equipment identifies the chosen class independently of weapon', 'MAGICIAN' in page.locator('.character-name').inner_text());page.locator('#rpg-tabs [data-id="characters"]').click();check('Roster shows each saved life with its own class',page.locator('[data-slot="character-1"] .chars-path').inner_text()=='Magician' and page.locator('[data-slot="character-2"] .chars-path').inner_text()=='Unassigned path');page.screenshot(path=str(OUT/'CLASS_ROSTER.png'))
         context.close();context=None
         # Separate earned bow fixture: no browser-profile access or inventory grant.
         with tempfile.TemporaryDirectory(prefix='firstlight-hunter-') as hunter_profile:
@@ -111,7 +113,7 @@ try:
             page.goto(url,wait_until='load');page.wait_for_function('() => !!window.Realm');ev('() => {Realm.test.quality("low");Realm.test.render()}')
             walk(11,9);path_ui();page.locator('[data-rpg="class-preview"][data-id="hunter"]').click();page.locator('[data-rpg="class-confirm"]').click();close()
             check('Earned bow character chooses Hunter without weapon substitution',state()['adventure']['classPath']['choice']=='hunter' and state()['adventure']['equipment']==seed['adventure']['equipment'])
-            walk(15,7);cmd('starter-enter');walk(-5,6);cmd('target-select',{'id':'river-practice'});page.keyboard.press('x');render()
+            cmd('pursuit-start',{'after':seed['adventure']['pursuit']['claimed']});check('Active survey counts appear once with useful route guidance',page.locator('#quest-tracker').inner_text().count('0/2 threats')==1 and 'sign' in page.locator('#tracked-detail').inner_text());walk(15,7);cmd('starter-enter');check('Inside survey HUD keeps one objective tally and map guidance',page.locator('#quest-tracker').inner_text().count('0/2 threats')==1 and 'M shows' in page.locator('#tracked-detail').inner_text());walk(-5,6);cmd('target-select',{'id':'river-practice'});page.keyboard.press('x');render()
             check('Hunter mark appears before any new impact', 'Quarry marked' in page.locator('#combat-help').inner_text())
             cmd('attack',{'target':'river-practice'});ev('() => {Realm.test.step(.3);Realm.test.render()}')
             attack=ev('() => RealmAdventure.stats(Realm.state.adventure).attack');expected=attack+min(24,int(attack*.5+.5))

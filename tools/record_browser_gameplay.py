@@ -17,7 +17,8 @@ def main():
             if fixture: p.evaluate('(s)=>Realm.test.replace(s)',fixture)
             p.evaluate('Realm.test.render()'); report['fixture']=str(a.fixture) if a.fixture else None;report['fixture_sha256']=hashlib.sha256(a.fixture.read_bytes()).hexdigest() if a.fixture else None;report['method']='Automated accepted commands and UI on normal real-time RAF; command-earned checkpoint, no gameplay state grants; video is not an FPS measurement.';report['actions']=[];report['browser_errors']=[];p.on('pageerror',lambda e:report['browser_errors'].append(str(e)));p.evaluate('''()=>{const e=document.createElement('div');e.textContent='ENGINEERING PLAYTHROUGH · REAL-TIME CHROME · RTX 3080';e.style='position:fixed;bottom:3px;right:8px;font:10px sans-serif;color:#fff;background:#183335;padding:5px;z-index:100000;pointer-events:none';document.body.append(e)}''')
             actions=json.loads(a.actions.read_text(encoding='utf-8')) if a.actions else [{'key':'m','wait_ms':int(a.seconds*1000)},{'key':'Escape','wait_ms':0}]
-            for action in actions:
+            for action_index, action in enumerate(actions):
+                print(f'Action {action_index + 1}/{len(actions)}: '+next(iter(action)), flush=True)
                 if 'key' in action: p.keyboard.press(action['key'])
                 elif 'click' in action: p.locator(action['click']).click()
                 elif 'fill' in action: p.locator(action['fill']['selector']).fill(action['fill']['value'])
@@ -29,6 +30,9 @@ def main():
                     result=p.evaluate('''async(id)=>{const cmd=(t,p={})=>Realm.test.adventure('video-'+t+'-'+performance.now(),t,p);const first=cmd('target-select',{id});if(!first.ok)throw Error(first.error);cmd('auto-toggle');const start=performance.now();let guards=0;
                     while(performance.now()-start<45000){const d=Realm.diagnostics.adventure,a=Realm.state.adventure,e=d.enemies.find(e=>e.id===id);if(!e||e.hp<=0){cmd('target-clear');return{defeated:true,seconds:(performance.now()-start)/1000,guards};}if(a.hp<=0)throw Error('Player died');if(e.mode==='windup'&&a.stamina>=20&&a.elapsed>=d.tactics.cooldowns.guard){if(cmd('guard').ok)guards++;}if(a.hp<48&&a.tonics&&a.elapsed>=0)cmd('heal');if(!Realm.test.path.length&&(Math.hypot(d.player.x-e.x,d.player.z-e.z)>=d.weapon.reach-.2||!RealmStarter.line(d.player,e))){const rad=d.weapon.style==='bow'?5:1.6;for(let i=0;i<16;i++){const x=e.x+Math.sin(i*Math.PI/8)*rad,z=e.z+Math.cos(i*Math.PI/8)*rad;if(RealmStarter.walkable(x,z)&&RealmStarter.line({x,z},e)&&Realm.test.move(x,z).ok)break;}}await new Promise(r=>setTimeout(r,60));}throw Error('Fight timed out: '+id);}''',action['fight']);report['actions'].append({'fight':action['fight'],**result})
                 p.wait_for_timeout(int(action.get('wait_ms',0)))
+                report['completed_actions']=action_index+1
+                report['last_checkpoint']=p.evaluate('()=>({world:Realm.state,diagnostics:Realm.diagnostics,practiceText:document.querySelector("#target-state")?.textContent})')
+                (a.output/'PROGRESS.json').write_text(json.dumps(report,indent=2),encoding='utf-8')
             report['final_diagnostics']=p.evaluate('Realm.diagnostics');report['final_quest']=p.evaluate('Realm.state.adventure.starter');report['final_pursuit']=p.evaluate('Realm.state.adventure.pursuit');c.close();report['video_path']=str(p.video.path())
             b.close()
     finally: server.shutdown()

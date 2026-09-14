@@ -1,0 +1,92 @@
+{
+  "base_commit": "447f49b2d06962c23f992befe043d679711892c9",
+  "html_bytes": 611694,
+  "html_sha256": "643107c97521ebfc336d8bb41e03bb041bd9ab3be46622df1074b595b9bcff80",
+  "source_syntax": 33,
+  "rules_passed": 489,
+  "rules_failed": 0,
+  "python_passed": 26,
+  "python_skipped": 1,
+  "skip_reason": "Windows symlink privilege is unavailable; retained explicit unittest skip",
+  "command_journeys": 10,
+  "browser_suites": [
+    {
+      "report": "evidence10/browser/CROSSING_BROWSER_REPORT.json",
+      "checks": 115,
+      "sha256": "732e0a81ceccf0b3f8f6a33e3f833e31b0ced4a88217fc0b24aa3c1ebd2e8079"
+    },
+    {
+      "report": "evidence10/regression09/RPG_BROWSER_REPORT.json",
+      "checks": 107,
+      "sha256": "3be7866a7f7b4674bf6814dc44e292fd7f38315baf3105036a122fcc6a1a1c55"
+    },
+    {
+      "report": "evidence10/CUTAWAY_BROWSER_REPORT.json",
+      "checks": 6,
+      "sha256": "393383ef661df4026bccca03e878c872d6b294242e7cd8ffa2bee7a5f04c9512"
+    },
+    {
+      "report": "evidence07/regression/REFLECTION_TEST_REPORT.json",
+      "checks": 8,
+      "sha256": "ded2ac56aa4d2500cdd821642aa6077cf104d61b03231cc22f4e82551933b570"
+    },
+    {
+      "report": "evidence10/native/NATIVE_ORIGIN_REPORT.json",
+      "checks": 11,
+      "sha256": "9d5c88123e48c6e430f691998d5f821fa2d2d89480b563065c482b2900be8171"
+    },
+    {
+      "report": "evidence10/starter-browser/STARTER_BROWSER_REPORT.json",
+      "checks": 147,
+      "sha256": "875eecabcc88f0084d491d9bbe83406d07ad9dabf493b81cb60cf9c0f7f16f0a"
+    },
+    {
+      "report": "evidence10/camera-browser/REPORT.json",
+      "checks": 51,
+      "sha256": "c04d27421519974f34f3cfe30694cb823b124cba470641e66f936c428a6fcadb"
+    },
+    {
+      "report": "evidence10/pursuit-browser/PURSUIT_BROWSER_REPORT.json",
+      "checks": 145,
+      "sha256": "66db68e8dbf3b62781ad6ccacdb543bafbe014bb1529c0a28b577e904497a206"
+    },
+    {
+      "report": "evidence10/characters-browser/CHARACTERS_BROWSER_REPORT.json",
+      "checks": 67,
+      "sha256": "0cca59aefa2408e23cafc1bac29b9a1cca994e4f5d015f67be1414dc43f82226"
+    },
+    {
+      "report": "evidence10/classes-browser/CLASSES_BROWSER_REPORT.json",
+      "checks": 45,
+      "sha256": "3c906147cbe4abce179ba73f52534eb83b93ddf17305459aee52c9927afe8116"
+    }
+  ],
+  "browser_assertions": 702,
+  "command": "python tools/verify.py --browser",
+  "logs": "C:\\dev\\firstlight-artifacts\\outing-readability-2026-09-14\\release-verification",
+  "method": "Complete local software-WebGL browser gate; then complete source gate after adding the launcher, at the unchanged HTML hash. The PR records the separate exact-head fresh remote-clone full run.",
+  "source_command": "python tools/verify.py --output ../final-source-with-launcher",
+  "source_logs": "C:/dev/firstlight-artifacts/outing-readability-2026-09-14/final-source-with-launcher",
+  "launcher_smoke": {
+    "command": "PLAY_FIRSTLIGHT_WINDOWS.cmd --port 18782 --no-browser",
+    "served_bytes": 611694,
+    "served_sha256": "643107c97521ebfc336d8bb41e03bb041bd9ab3be46622df1074b595b9bcff80",
+    "repeat_invocation": "Matching existing build reused, exit 0",
+    "isolated_server_stopped": true
+  },
+  "report_hash_method": "browser_suites hashes identify the original external reports. repository_reports below identify the LF-normalized copies retained in Git.",
+  "repository_reports": [
+    {
+      "file": "CHARACTERS_BROWSER_REPORT.json",
+      "sha256": "e6e475d3df72e1cda24f88e2a8bddf48790d4b3404da8e000e17801aff5e61e7"
+    },
+    {
+      "file": "CLASSES_BROWSER_REPORT.json",
+      "sha256": "31d47875d1c3adf87272b4f5b5ee14396e731b0c647f70fc725eb0287119cc59"
+    },
+    {
+      "file": "PURSUIT_BROWSER_REPORT.json",
+      "sha256": "2940fa37b2c10b2386d5e11a0a888fc43a33dceaf94abedf1bb4a2795dfb3d05"
+    }
+  ]
+}

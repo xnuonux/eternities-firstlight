@@ -56,3 +56,11 @@ Switch only after persistence succeeds, through the full app restore path. Clear
 Read the dated class task/results. `classes.js` owns explicit choice and technique rules; adventure schema7 requires classPathv1 and migrates earlier worlds to unassigned without changing XP or history. `damageEnemy` accepts an explicit source label; only player blade attacks and actual arrow collisions may consume Hunter's transient mark. Companion/soul/spell/default damage must retain their source distinction. Class cooldown persists, mark does not. Do not turn class choice into gear replacement, profession, morality or an implicit respec rule.
 
 `classes-ui.js` uses canonical definitions/stats and production commands. X adds one optional technique; all prior controls and modal input boundaries remain. Timed archery medals exclude class techniques. The verifier adds the complete class survey journey and `classes_browser.py` to the previous gates. Report exact-head fresh source/browser evidence and actual footage separately from founder enjoyment.
+
+## Connected outing and import ownership
+
+Read the dated outing readability results. Practice links reuse accepted navigation and the existing riverbank entry; HUD directions reflect the current scene and claim proximity. Presentation never grants a class, equipment or survey reward. Keep class badges tied to the complete world in each roster slot.
+
+World-file reads must retain their starting simulation, active identity, saved revision, import mode and latest request token. A character switch or superseding selection invalidates the old read before preview; older cleanup must not clear newer input. Keep delayed-file regressions alongside score/export ownership tests. World9/adventure7 and existing nested versions remain unchanged. Frame-interval reports identify actual renderer, driver, drawing-buffer resolution, source hash, scene setup and measurement limits.
+
+`tools/play_local.py` and `PLAY_FIRSTLIGHT_WINDOWS.cmd` serve only the identical generated game on a stable loopback origin. Preserve the default 8780 port, exact-build reuse, conflicting-server refusal and Windows exclusive binding. Never stop another server or select a different save origin automatically. Launcher tests belong in the existing Python source gate.

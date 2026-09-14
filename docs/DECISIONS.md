@@ -1,5 +1,11 @@
 # Firstlight decisions
 
+## 2026-09-14: connect the implemented loop before adding another system
+
+The final refinement in the timed window connects Oren, explicit class choice, real practice walking, equipment comparison and return guidance. Class names and rewards stay canonical; no new progression state or payout is introduced. Both camera styles remain first-class choices.
+
+A read-only integration review exposed a delayed character-file preview crossing an active-character switch. A production-browser regression reproduced it. File completion now requires the original simulation/identity/revision and the latest selection token; superseded reads cannot clear a newer request. This extends the existing asynchronous-operation ownership rule to world imports without changing their explicit confirmation, storage locking or atomic write contract.
+
 | Date | Status | Decision and reason | Source |
 |---|---|---|---|
 | 2026-09-11 | Accepted founder direction | Preserve Heaven's white/gold/ruby/dawn identity, Earth's ordinary living world and Hell's oppressive darkness. Cosmic/oceanic directions remain available. Detailed numeric/system recommendations remain proposals. | `design/FIRSTLIGHT_REALM_CHARTER_2026-09-11.md` |

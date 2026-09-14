@@ -153,6 +153,15 @@ try:
         page.wait_for_timeout(100)
         check('A pending score import cannot write into a newly selected character', state()['score'] == original['score'])
         ev('() => {File.prototype.text=window.originalFileText}')
+        # The ordinary character file picker crosses the same asynchronous boundary.
+        library();page.locator('[data-rpg="chars-import"]').click()
+        ev('() => {window.originalCharacterText=File.prototype.text;File.prototype.text=function(){const file=this;return new Promise(resolve=>{window.finishCharacterRead=()=>originalCharacterText.call(file).then(resolve)})}}')
+        page.locator('#import-file').set_input_files({'name':'slow-character.json','mimeType':'application/json','buffer':fixture_path.read_bytes()})
+        page.wait_for_function('() => !!window.finishCharacterRead');switch('character-2')
+        after_switch=state();after_switch_bytes=raw();ev('() => window.finishCharacterRead()');page.wait_for_timeout(100)
+        check('A pending character import cannot open a preview after switching lives',page.locator('.chars-import-preview').count()==0 and 'Import refused' in page.locator('#toast').inner_text())
+        check('Refused delayed character import retains the selected world and saved bytes',state()==after_switch and raw()==after_switch_bytes and diag()['characters']['active']=='character-2')
+        ev('() => {File.prototype.text=window.originalCharacterText}');switch('character-1')
         check('Switch restores original partial survey and owned equipment exactly', state()['adventure'] == original['adventure'])
         check('Original notebook and score remain separate', state()['notes'] == original['notes'] and state()['score'] == original['score'])
         check('Original camera returns to tactical diorama', diag()['camera']['preset'] == 'tactical')
@@ -178,6 +187,17 @@ try:
         page.wait_for_function('() => document.querySelector("#toast").textContent.includes("quota fixture")')
         check('Quota-blocked UI switch keeps the active world and all persisted bytes', state() == before and raw() == saved and diag()['characters']['active'] == active)
         ev('() => {Storage.prototype.setItem=window.originalSetItem}')
+        # A slower earlier file must not replace a later explicit preview.
+        ev('() => {window.originalCharacterText=File.prototype.text;File.prototype.text=function(){if(this.name!=="first-slow.json")return originalCharacterText.call(this);const file=this;return new Promise(resolve=>{window.finishFirstCharacterRead=()=>originalCharacterText.call(file).then(resolve)})}}')
+        first_import=json.loads(fixture_path.read_text(encoding='utf8'));first_import['visitor']['name']='Earlier file'
+        latest_import=json.loads(fixture_path.read_text(encoding='utf8'));latest_import['visitor']['name']='Latest file'
+        page.locator('[data-rpg="chars-import"]').click();page.locator('#import-file').set_input_files({'name':'first-slow.json','mimeType':'application/json','buffer':json.dumps(first_import).encode()})
+        page.wait_for_function('() => !!window.finishFirstCharacterRead')
+        page.locator('[data-rpg="chars-import"]').click();page.locator('#import-file').set_input_files({'name':'second-fast.json','mimeType':'application/json','buffer':json.dumps(latest_import).encode()})
+        page.wait_for_selector('.chars-import-preview');ev('() => window.finishFirstCharacterRead()');page.wait_for_timeout(100)
+        check('An earlier delayed file cannot replace the newer import preview',page.locator('.chars-import-preview h3').inner_text()=='Latest file')
+        check('Overlapping file previews leave both existing worlds untouched',raw()==saved and state()==before)
+        ev('() => {File.prototype.text=window.originalCharacterText}');page.locator('[data-rpg="chars-cancel-import"]').click()
         # Malformed import is refused before any preview or mutation.
         page.locator('[data-rpg="chars-import"]').click()
         page.locator('#import-file').set_input_files({'name': 'invalid.json', 'mimeType': 'application/json', 'buffer': b'{"version":999}'})

@@ -1,0 +1,26 @@
+[
+  {
+    "name": "village-third-person",
+    "expression": "async()=>{window.measureWalk=async(x,z)=>{const r=Realm.test.move(x,z);if(!r.ok)throw Error(r.error);const t=performance.now();while(Realm.test.path.length){if(performance.now()-t>45000)throw Error('Walk timeout');await new Promise(r=>setTimeout(r,50));}return {...Realm.diagnostics.adventure.player};};window.measureCommand=(type,payload={})=>{const r=Realm.test.adventure('frame-sample-'+type+'-'+performance.now(),type,payload);if(!r.ok)throw Error(r.error);return r;};await measureWalk(11,9);measureCommand('class-choose',{id:'hunter',confirm:true});document.querySelector('[data-rpg=\"camera\"][data-id=\"adventure\"]').click();return {class:Realm.state.adventure.classPath.choice,player:Realm.diagnostics.adventure.player};}"
+  },
+  {
+    "name": "village-diorama",
+    "expression": "()=>{document.querySelector('[data-rpg=\"camera\"][data-id=\"follow\"]').click();return Realm.diagnostics.camera.preset;}"
+  },
+  {
+    "name": "riverbank-third-person",
+    "expression": "async()=>{measureCommand('pursuit-start',{after:Realm.state.adventure.pursuit.claimed});await measureWalk(15,7);measureCommand('starter-enter');document.querySelector('[data-rpg=\"camera\"][data-id=\"adventure\"]').click();return {run:Realm.state.adventure.pursuit.active.id,player:Realm.diagnostics.adventure.player};}"
+  },
+  {
+    "name": "riverbank-diorama",
+    "expression": "()=>{document.querySelector('[data-rpg=\"camera\"][data-id=\"follow\"]').click();return Realm.diagnostics.camera.preset;}"
+  },
+  {
+    "name": "bow-practice-third-person",
+    "expression": "async()=>{await measureWalk(-5,6);measureCommand('target-select',{id:'river-practice'});measureCommand('class-technique');measureCommand('auto-toggle');document.querySelector('[data-rpg=\"camera\"][data-id=\"adventure\"]').click();return {weapon:Realm.diagnostics.adventure.weapon,stamina:Realm.state.adventure.stamina};}"
+  },
+  {
+    "name": "bow-practice-diorama",
+    "expression": "()=>{document.querySelector('[data-rpg=\"camera\"][data-id=\"follow\"]').click();measureCommand('class-technique');return {target:Realm.diagnostics.adventure.tactics.target,stamina:Realm.state.adventure.stamina};}"
+  }
+]

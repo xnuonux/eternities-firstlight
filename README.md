@@ -2,21 +2,23 @@
 
 Continuous development starts at [docs/CURRENT_STATE.md](docs/CURRENT_STATE.md). Run `python tools/verify.py` for portable source verification. The original edition description below is retained; its delivery-time validation and publication statements are historical. See [the bootstrap record](docs/development/BOOTSTRAP_RESULTS_2026-09-12.md) for this import's actual results and limits.
 
-A complete, local isometric action/sandbox RPG prototype for Dom / Eternities. **This extends the full Firstlight09 game, not the separate Shared Commons networking experiment.** Four small chapters, creative tools, construction, a companion, bows, sockets, an equipment workspace, and the new village are integrated in one offline application.
+A complete local action/sandbox RPG prototype for Dom / Eternities, with interchangeable third-person and diorama cameras. Four small chapters, creative tools, construction, a companion, bows, sockets, an equipment workspace, and the village are integrated in one offline application.
 
 ## Play the current prototype
 
-From this checkout run `python -m http.server 8780 --bind 127.0.0.1`, then open **http://127.0.0.1:8780/**. This local HTTP origin is the tested path for the character library. No account, CDN, paid service, API key or external asset request is needed. The offline `FIRSTLIGHT_VALLEY.html` and `index.html` still have identical bytes, but file-origin storage is browser-dependent.
+On Windows, open **PLAY_FIRSTLIGHT_WINDOWS.cmd**. On any supported desktop with Python 3, run `python tools/play_local.py`. The launcher serves the checked build at **http://127.0.0.1:8780/** and opens your browser. Keep its window open while playing. It reuses an existing server only when that server returns the same build; a different version produces an explicit refusal instead of changing the save origin. `--no-browser` starts it without opening a tab.
+
+This local HTTP origin is the tested path for the character library. The server exposes only the generated game, binds only to this computer, and needs no account, CDN, paid service, API key or external asset request. The offline `FIRSTLIGHT_VALLEY.html` and `index.html` still have identical bytes, but file-origin storage is browser-dependent.
 
 Keep the same browser profile and origin to resume your local worlds. **More → Characters** offers up to three separate lives, portable per-character JSON exports and previewed imports into a new slot. Creating another character is deliberate; merely opening the page does not reset your current world. In the older single-world mode, the explicit legacy import still replaces that single world after confirmation; export it first if you intend to keep it. Personal saves do not belong in Git.
 
 For an ordinary outing, collect the expedition kit beside Oren's workshop. **Field guide** shows real equipment recipes and one pinned project; the nearby riverbank materials survey can be deliberately repeated for declared materials. Oren's original once-only supplies quest remains separate. These local loops do not require campaign advancement.
 
-**More → Class path** lets a character compare Hunter and Magician, then choose explicitly beside Oren after the kit. The choice is once per character in this prototype and adds one technique on **X**. Existing characters remain unassigned; neither path replaces weapons, companions, profession or soul choices. **V** swaps third person and diorama; both remain available.
+Oren's services and **More → Class path** let a character compare Hunter and Magician, then choose explicitly after the kit. The choice is once per character in this prototype and adds one technique on **X**. Existing characters remain unassigned. The chosen path links to the practice area and equipment projects. Hunter marks with X, then lands a weapon hit; Magician casts directly. **1** starts/stops weapon attacks and **V** swaps third person and diorama.
 
 The four existing chapters remain playable in their original optional order. For a Chapter IV preview, `examples/REALM10_CROSSING_READY_EARNED.json` is a command-earned Chapter III completion with no Chapter IV rewards. Import it into a free character slot, use M to travel to Sunward, then approach the northern arch. Its earlier test character's explicit soul history belongs only to that imported world.
 
-See [current state and compatibility](docs/CURRENT_STATE.md), [class results](docs/development/CHOSEN_CLASS_RESULTS_2026-09-14.md) and [actual gameplay](docs/evidence/classes/README.md). The edition-10 chapter description below is retained as historical context.
+See [current state and compatibility](docs/CURRENT_STATE.md), [latest refinement results](docs/development/OUTING_READABILITY_RESULTS_2026-09-14.md), [latest gameplay and hardware evidence](docs/evidence/outing-readability/README.md), and [the earlier class combat recording](docs/evidence/classes/README.md). The edition-10 chapter description below is retained as historical context.
 
 ## What's new
 
@@ -33,7 +35,7 @@ See [current state and compatibility](docs/CURRENT_STATE.md), [class results](do
 |---|---|
 | WASD / arrows / click ground | Move. Tab or clicking a visible enemy selects a target without forced chasing. |
 | Drag / wheel | Orbit / zoom. |
-| R / [ / ] | Follow-camera reset / stepped rotation. |
+| R / [ / ] | Reset the current camera style / stepped rotation. |
 | Tab / Shift+Tab | Cycle visible targets. Selection does not attack. |
 | 1 | Toggle stationary weapon autoattack. |
 | 2 | Weapon skill: sweep or piercing arrow. |
