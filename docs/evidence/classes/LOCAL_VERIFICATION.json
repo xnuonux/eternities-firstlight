@@ -1,0 +1,15 @@
+{
+  "scope": "final local complete verifier",
+  "html_sha256": "e5d203dc6912388c5c2a962aaf08a90638f9a164dbcd6c2bd6c0af3e69253b76",
+  "html_bytes": 608460,
+  "syntax": 33,
+  "node_rules": 489,
+  "python_pass": 19,
+  "python_skip": 1,
+  "skip_reason": "Windows symlink creation privilege",
+  "command_journeys": 10,
+  "browser_assertions": 688,
+  "browser_suites": 10,
+  "failures": 0,
+  "logs": "C:/dev/firstlight-artifacts/chosen-class-2026-09-14/full-verification-3"
+}

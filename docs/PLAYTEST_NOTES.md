@@ -61,3 +61,9 @@ Watch whether five visits for a newly crafted, twice-fitted copper weapon feels 
 Dom is away during the timed development window. No new human playtest has occurred. Engineering checks exercise actual character creation/switching/import/export/deletion, isolated native storage, combat cleanup, per-character camera/music, delayed-file ownership, and failure refusal. These are not enjoyment or pacing observations.
 
 Pending human check: keep the original character, create a fresh one, play an equipment outing, then return. Did the correct world, project, loadout, home, music, and view come back? Was it clear that deleting an inactive character removes that complete local world? The earlier fresh/returning reward questions remain unanswered.
+
+## 2026-09-14: class experiment, founder away
+
+No new human observation was collected during Dom's autonomous window. The actual browser UI now exposes optional Hunter/Magician previews and explicit confirmation; the real riverbank practice and survey exercise their distinct techniques with both cameras. Automated command journeys and recordings use labelled fresh or previously command-earned worlds, never Dom's personal saves.
+
+Pending questions for Dom: did you understand which choice you were making and that it was once per character; did marking an arrow hit or casting a spell make ordinary combat more engaging; could you resume the other character without worrying about lost progress? The two paths still share the same starter kit and weapon models. One technique is an experiment in chosen identity, not evidence of a complete class fantasy. Enjoyment, balance, camera comfort and pacing remain unverified by a human.

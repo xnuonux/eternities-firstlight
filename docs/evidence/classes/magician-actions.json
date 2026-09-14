@@ -1,0 +1,89 @@
+[
+  {
+    "walk": [
+      11,
+      9
+    ]
+  },
+  {
+    "evaluate": "(()=>{const r=Realm.test.adventure('class-film-start-'+performance.now(),\"start\",{});if(!r.ok)throw Error(r.error);return r})()"
+  },
+  {
+    "key": "c"
+  },
+  {
+    "click": "#rpg-tabs [data-id=\"classes\"]",
+    "wait_ms": 1800
+  },
+  {
+    "click": "[data-rpg=\"class-preview\"][data-id=\"magician\"]",
+    "wait_ms": 1700
+  },
+  {
+    "click": "[data-rpg=\"class-confirm\"]",
+    "wait_ms": 1000
+  },
+  {
+    "key": "Escape"
+  },
+  {
+    "evaluate": "(()=>{const r=Realm.test.adventure('class-film-pursuit-start-'+performance.now(),\"pursuit-start\",{\"after\": 0});if(!r.ok)throw Error(r.error);return r})()"
+  },
+  {
+    "walk": [
+      15,
+      7
+    ]
+  },
+  {
+    "key": "e",
+    "wait_ms": 600
+  },
+  {
+    "walk": [
+      -5,
+      11.5
+    ]
+  },
+  {
+    "evaluate": "(()=>{const r=Realm.test.adventure('class-film-target-select-'+performance.now(),\"target-select\",{\"id\": \"river-practice\"});if(!r.ok)throw Error(r.error);return r})()"
+  },
+  {
+    "key": "x",
+    "wait_ms": 1000
+  },
+  {
+    "evaluate": "(()=>{const r=Realm.test.adventure('class-film-target-clear-'+performance.now(),\"target-clear\",{});if(!r.ok)throw Error(r.error);return r})()"
+  },
+  {
+    "walk": [
+      -7,
+      3
+    ]
+  },
+  {
+    "evaluate": "(()=>{const a=Realm.state.adventure;return {class:a.classPath,run:a.pursuit.active.id}})()"
+  },
+  {
+    "evaluate": "(()=>{const r=Realm.test.adventure('class-film-target-select-'+performance.now(),\"target-select\",{\"id\": \"riverbank-survey/1:west\"});if(!r.ok)throw Error(r.error);return r})()"
+  },
+  {
+    "evaluate": "async()=>{while(Realm.state.adventure.elapsed<Realm.state.adventure.classPath.readyAt)await new Promise(r=>setTimeout(r,80));return Realm.state.adventure.classPath}"
+  },
+  {
+    "key": "x",
+    "wait_ms": 300
+  },
+  {
+    "fight": "riverbank-survey/1:west",
+    "wait_ms": 1000
+  },
+  {
+    "key": "v",
+    "wait_ms": 1500
+  },
+  {
+    "evaluate": "(()=>{const a=Realm.state.adventure;return {class:a.classPath,weapon:a.equipment.weapon,defeated:a.pursuit.active.defeated,xp:a.xp}})()",
+    "wait_ms": 900
+  }
+]

@@ -1,0 +1,1745 @@
+{
+  "adventure": {
+    "version": 7,
+    "classPath": {
+      "version": 1,
+      "choice": null,
+      "readyAt": 0
+    },
+    "pursuit": {
+      "version": 1,
+      "pinned": "copper_bow",
+      "claimed": 5,
+      "active": null,
+      "fittings": {
+        "copper_bow": 2
+      }
+    },
+    "starter": {
+      "version": 1,
+      "accepted": false,
+      "bundles": [],
+      "reward": null
+    },
+    "crossing": {
+      "version": 1,
+      "entered": false,
+      "met": false,
+      "inscription": false,
+      "clapperRevealed": false,
+      "clapper": false,
+      "repaired": false,
+      "complete": false,
+      "reward": false,
+      "attuned": false,
+      "projects": []
+    },
+    "beacon": {
+      "version": 1,
+      "introduced": false,
+      "complete": false,
+      "status": "dormant",
+      "attempts": 0,
+      "failures": 0,
+      "reward": false,
+      "relic": "undecided",
+      "route": null,
+      "soul": {
+        "grace": false,
+        "equipped": null,
+        "radiance": 0,
+        "corruption": 0,
+        "scars": []
+      }
+    },
+    "arsenal": {
+      "version": 1,
+      "gems": {
+        "ruby": 0,
+        "moonstone": 0,
+        "amber": 0
+      },
+      "sockets": {},
+      "rangeMedal": false,
+      "bestTime": null
+    },
+    "road": {
+      "version": 1,
+      "entered": false,
+      "revealed": [],
+      "claimed": [],
+      "cartRepaired": false,
+      "beaconLit": false,
+      "reported": false
+    },
+    "elapsed": 258.9000000000246,
+    "revision": 148,
+    "started": true,
+    "dug": [],
+    "chips": [],
+    "defeated": [],
+    "drops": [],
+    "ore": 2,
+    "coins": 2,
+    "xp": 0,
+    "hp": 90,
+    "stamina": 100,
+    "tonics": 3,
+    "equipment": {
+      "weapon": "copper_bow",
+      "armor": "travel_coat",
+      "charm": null
+    },
+    "owned": [
+      "trail_blade",
+      "travel_coat",
+      "trail_bow",
+      "copper_bow"
+    ],
+    "companion": {
+      "bonded": false,
+      "name": "Briar",
+      "mode": "follow"
+    },
+    "relic": false,
+    "angelSeen": false,
+    "reward": null,
+    "deaths": 0,
+    "receipts": [
+      {
+        "id": "earned-pursuit-fresh-bow-48",
+        "fp": "[\"target-select\",{\"id\":\"riverbank-survey/2:west\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-49",
+        "fp": "[\"auto-toggle\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-50",
+        "fp": "[\"guard\",{}]",
+        "ok": true
+      },
+      {
+        "id": "auto-1-43",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/2:west\"}]",
+        "ok": true
+      },
+      {
+        "id": "auto-3-44",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/2:west\"}]",
+        "ok": true
+      },
+      {
+        "id": "auto-5-45",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/2:west\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-51",
+        "fp": "[\"target-clear\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-52",
+        "fp": "[\"pursuit-sample\",{\"run\":\"riverbank-survey/2\",\"id\":\"west-sample\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-53",
+        "fp": "[\"target-select\",{\"id\":\"riverbank-survey/2:east\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-54",
+        "fp": "[\"auto-toggle\",{}]",
+        "ok": true
+      },
+      {
+        "id": "auto-7-51",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/2:east\"}]",
+        "ok": true
+      },
+      {
+        "id": "auto-9-52",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/2:east\"}]",
+        "ok": true
+      },
+      {
+        "id": "auto-11-53",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/2:east\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-55",
+        "fp": "[\"guard\",{}]",
+        "ok": true
+      },
+      {
+        "id": "auto-13-55",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/2:east\"}]",
+        "ok": true
+      },
+      {
+        "id": "auto-15-56",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/2:east\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-56",
+        "fp": "[\"target-clear\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-57",
+        "fp": "[\"pursuit-sample\",{\"run\":\"riverbank-survey/2\",\"id\":\"east-sample\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-58",
+        "fp": "[\"starter-leave\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-59",
+        "fp": "[\"pursuit-claim\",{\"run\":\"riverbank-survey/2\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-60",
+        "fp": "[\"rest\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-61",
+        "fp": "[\"pursuit-start\",{\"after\":2}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-62",
+        "fp": "[\"starter-enter\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-63",
+        "fp": "[\"target-select\",{\"id\":\"riverbank-survey/3:west\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-64",
+        "fp": "[\"auto-toggle\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-65",
+        "fp": "[\"guard\",{}]",
+        "ok": true
+      },
+      {
+        "id": "auto-1-68",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/3:west\"}]",
+        "ok": true
+      },
+      {
+        "id": "auto-3-69",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/3:west\"}]",
+        "ok": true
+      },
+      {
+        "id": "auto-5-70",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/3:west\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-66",
+        "fp": "[\"target-clear\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-67",
+        "fp": "[\"pursuit-sample\",{\"run\":\"riverbank-survey/3\",\"id\":\"west-sample\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-68",
+        "fp": "[\"target-select\",{\"id\":\"riverbank-survey/3:east\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-69",
+        "fp": "[\"auto-toggle\",{}]",
+        "ok": true
+      },
+      {
+        "id": "auto-7-76",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/3:east\"}]",
+        "ok": true
+      },
+      {
+        "id": "auto-9-77",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/3:east\"}]",
+        "ok": true
+      },
+      {
+        "id": "auto-11-78",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/3:east\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-70",
+        "fp": "[\"guard\",{}]",
+        "ok": true
+      },
+      {
+        "id": "auto-13-80",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/3:east\"}]",
+        "ok": true
+      },
+      {
+        "id": "auto-15-81",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/3:east\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-71",
+        "fp": "[\"target-clear\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-72",
+        "fp": "[\"pursuit-sample\",{\"run\":\"riverbank-survey/3\",\"id\":\"east-sample\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-73",
+        "fp": "[\"starter-leave\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-74",
+        "fp": "[\"pursuit-claim\",{\"run\":\"riverbank-survey/3\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-75",
+        "fp": "[\"rest\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-76",
+        "fp": "[\"pursuit-start\",{\"after\":3}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-77",
+        "fp": "[\"starter-enter\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-78",
+        "fp": "[\"target-select\",{\"id\":\"riverbank-survey/4:west\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-79",
+        "fp": "[\"auto-toggle\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-80",
+        "fp": "[\"guard\",{}]",
+        "ok": true
+      },
+      {
+        "id": "auto-1-93",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/4:west\"}]",
+        "ok": true
+      },
+      {
+        "id": "auto-3-94",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/4:west\"}]",
+        "ok": true
+      },
+      {
+        "id": "auto-5-95",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/4:west\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-81",
+        "fp": "[\"target-clear\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-82",
+        "fp": "[\"pursuit-sample\",{\"run\":\"riverbank-survey/4\",\"id\":\"west-sample\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-83",
+        "fp": "[\"target-select\",{\"id\":\"riverbank-survey/4:east\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-84",
+        "fp": "[\"auto-toggle\",{}]",
+        "ok": true
+      },
+      {
+        "id": "auto-7-101",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/4:east\"}]",
+        "ok": true
+      },
+      {
+        "id": "auto-9-102",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/4:east\"}]",
+        "ok": true
+      },
+      {
+        "id": "auto-11-103",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/4:east\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-85",
+        "fp": "[\"guard\",{}]",
+        "ok": true
+      },
+      {
+        "id": "auto-13-105",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/4:east\"}]",
+        "ok": true
+      },
+      {
+        "id": "auto-15-106",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/4:east\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-86",
+        "fp": "[\"target-clear\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-87",
+        "fp": "[\"pursuit-sample\",{\"run\":\"riverbank-survey/4\",\"id\":\"east-sample\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-88",
+        "fp": "[\"starter-leave\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-89",
+        "fp": "[\"pursuit-claim\",{\"run\":\"riverbank-survey/4\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-90",
+        "fp": "[\"rest\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-91",
+        "fp": "[\"pursuit-start\",{\"after\":4}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-92",
+        "fp": "[\"starter-enter\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-93",
+        "fp": "[\"target-select\",{\"id\":\"riverbank-survey/5:west\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-94",
+        "fp": "[\"auto-toggle\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-95",
+        "fp": "[\"guard\",{}]",
+        "ok": true
+      },
+      {
+        "id": "auto-1-118",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/5:west\"}]",
+        "ok": true
+      },
+      {
+        "id": "auto-3-119",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/5:west\"}]",
+        "ok": true
+      },
+      {
+        "id": "auto-5-120",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/5:west\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-96",
+        "fp": "[\"target-clear\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-97",
+        "fp": "[\"pursuit-sample\",{\"run\":\"riverbank-survey/5\",\"id\":\"west-sample\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-98",
+        "fp": "[\"target-select\",{\"id\":\"riverbank-survey/5:east\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-99",
+        "fp": "[\"auto-toggle\",{}]",
+        "ok": true
+      },
+      {
+        "id": "auto-7-126",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/5:east\"}]",
+        "ok": true
+      },
+      {
+        "id": "auto-9-127",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/5:east\"}]",
+        "ok": true
+      },
+      {
+        "id": "auto-11-128",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/5:east\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-100",
+        "fp": "[\"guard\",{}]",
+        "ok": true
+      },
+      {
+        "id": "auto-13-130",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/5:east\"}]",
+        "ok": true
+      },
+      {
+        "id": "auto-15-131",
+        "fp": "[\"attack\",{\"target\":\"riverbank-survey/5:east\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-101",
+        "fp": "[\"target-clear\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-102",
+        "fp": "[\"pursuit-sample\",{\"run\":\"riverbank-survey/5\",\"id\":\"east-sample\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-103",
+        "fp": "[\"starter-leave\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-104",
+        "fp": "[\"pursuit-claim\",{\"run\":\"riverbank-survey/5\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-105",
+        "fp": "[\"arsenal-craft\",{\"id\":\"copper_bow\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-106",
+        "fp": "[\"pursuit-fit\",{\"weapon\":\"copper_bow\",\"step\":1}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-107",
+        "fp": "[\"pursuit-fit\",{\"weapon\":\"copper_bow\",\"step\":2}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-108",
+        "fp": "[\"equip\",{\"id\":\"copper_bow\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-109",
+        "fp": "[\"starter-enter\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-110",
+        "fp": "[\"target-select\",{\"id\":\"river-practice\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-111",
+        "fp": "[\"auto-toggle\",{}]",
+        "ok": true
+      },
+      {
+        "id": "auto-1-144",
+        "fp": "[\"attack\",{\"target\":\"river-practice\"}]",
+        "ok": true
+      },
+      {
+        "id": "auto-3-145",
+        "fp": "[\"attack\",{\"target\":\"river-practice\"}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-112",
+        "fp": "[\"target-clear\",{}]",
+        "ok": true
+      },
+      {
+        "id": "earned-pursuit-fresh-bow-113",
+        "fp": "[\"starter-leave\",{}]",
+        "ok": true
+      }
+    ]
+  },
+  "sandbox": {
+    "version": 1,
+    "elapsed": 258.9000000000246,
+    "revision": 25,
+    "inventory": {
+      "wood": 2,
+      "stone": 8,
+      "fiber": 6,
+      "crystal": 0,
+      "plank": 2,
+      "block": 0,
+      "seeds": 6,
+      "berry": 0,
+      "axe": 0,
+      "pick": 0,
+      "floor": 0,
+      "wall": 0,
+      "masonry": 0,
+      "lantern": 0,
+      "bench": 0,
+      "bed": 0,
+      "fire": 0,
+      "workbench": 0
+    },
+    "nodes": [
+      {
+        "id": "timber-1",
+        "hp": 4,
+        "readyAt": 0
+      },
+      {
+        "id": "timber-2",
+        "hp": 4,
+        "readyAt": 0
+      },
+      {
+        "id": "timber-3",
+        "hp": 4,
+        "readyAt": 0
+      },
+      {
+        "id": "timber-4",
+        "hp": 4,
+        "readyAt": 0
+      },
+      {
+        "id": "stone-1",
+        "hp": 4,
+        "readyAt": 0
+      },
+      {
+        "id": "stone-2",
+        "hp": 4,
+        "readyAt": 0
+      },
+      {
+        "id": "stone-3",
+        "hp": 4,
+        "readyAt": 0
+      },
+      {
+        "id": "fibre-1",
+        "hp": 1,
+        "readyAt": 0
+      },
+      {
+        "id": "fibre-2",
+        "hp": 1,
+        "readyAt": 0
+      },
+      {
+        "id": "fibre-3",
+        "hp": 1,
+        "readyAt": 0
+      },
+      {
+        "id": "wild-timber-1",
+        "hp": 4,
+        "readyAt": 0
+      },
+      {
+        "id": "wild-timber-2",
+        "hp": 4,
+        "readyAt": 0
+      },
+      {
+        "id": "wild-timber-3",
+        "hp": 4,
+        "readyAt": 0
+      },
+      {
+        "id": "wild-stone-1",
+        "hp": 4,
+        "readyAt": 0
+      },
+      {
+        "id": "wild-stone-2",
+        "hp": 4,
+        "readyAt": 0
+      },
+      {
+        "id": "wild-fibre",
+        "hp": 1,
+        "readyAt": 0
+      },
+      {
+        "id": "crystal-1",
+        "hp": 4,
+        "readyAt": 0
+      },
+      {
+        "id": "crystal-2",
+        "hp": 4,
+        "readyAt": 0
+      }
+    ],
+    "bridge": false,
+    "placed": [],
+    "nextId": 1,
+    "stats": {
+      "gathered": 26,
+      "crafted": 1,
+      "harvested": 0
+    },
+    "milestones": [
+      "gather"
+    ],
+    "recentCommands": [
+      {
+        "id": "earned-gather-fresh-bow-3",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"timber-1\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Chop · 3 strength remaining"
+        }
+      },
+      {
+        "id": "earned-gather-fresh-bow-4",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"timber-1\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Chop · 2 strength remaining"
+        }
+      },
+      {
+        "id": "earned-gather-fresh-bow-5",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"timber-1\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Chop · 1 strength remaining"
+        }
+      },
+      {
+        "id": "earned-gather-fresh-bow-6",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"timber-1\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "+5 Timber"
+        }
+      },
+      {
+        "id": "earned-gather-fresh-bow-7",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"timber-2\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Chop · 3 strength remaining"
+        }
+      },
+      {
+        "id": "earned-gather-fresh-bow-8",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"timber-2\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Chop · 2 strength remaining"
+        }
+      },
+      {
+        "id": "earned-gather-fresh-bow-9",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"timber-2\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Chop · 1 strength remaining"
+        }
+      },
+      {
+        "id": "earned-gather-fresh-bow-10",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"timber-2\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "+5 Timber"
+        }
+      },
+      {
+        "id": "earned-gather-fresh-bow-11",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"fibre-1\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "+3 Meadow fibre · +1 seed"
+        }
+      },
+      {
+        "id": "earned-gather-fresh-bow-12",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"fibre-2\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "+3 Meadow fibre · +1 seed"
+        }
+      },
+      {
+        "id": "earned-gather-fresh-bow-13",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"stone-1\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Mine · 3 strength remaining"
+        }
+      },
+      {
+        "id": "earned-gather-fresh-bow-14",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"stone-1\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Mine · 2 strength remaining"
+        }
+      },
+      {
+        "id": "earned-gather-fresh-bow-15",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"stone-1\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Mine · 1 strength remaining"
+        }
+      },
+      {
+        "id": "earned-gather-fresh-bow-16",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"stone-1\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "+5 Stone"
+        }
+      },
+      {
+        "id": "earned-gather-fresh-bow-17",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"stone-2\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Mine · 3 strength remaining"
+        }
+      },
+      {
+        "id": "earned-gather-fresh-bow-18",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"stone-2\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Mine · 2 strength remaining"
+        }
+      },
+      {
+        "id": "earned-gather-fresh-bow-19",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"stone-2\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Mine · 1 strength remaining"
+        }
+      },
+      {
+        "id": "earned-gather-fresh-bow-20",
+        "fingerprint": "{\"type\":\"gather\",\"node\":\"stone-2\",\"recipe\":null,\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "+5 Stone"
+        }
+      },
+      {
+        "id": "earned-gather-fresh-bow-23",
+        "fingerprint": "{\"type\":\"craft\",\"node\":null,\"recipe\":\"plank\",\"kind\":null,\"gx\":null,\"gz\":null,\"rotation\":null,\"object\":null}",
+        "result": {
+          "ok": true,
+          "text": "Crafted 4 × Planks"
+        }
+      }
+    ],
+    "cooldownUntil": 59.69999999999877
+  },
+  "score": {
+    "format": "eternities.score.v1",
+    "title": "A Window Left Open",
+    "bpm": 88,
+    "voice": "felt",
+    "melody": [
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0
+      ]
+    ],
+    "bass": [
+      1,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0
+    ],
+    "drums": [
+      [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0
+      ]
+    ]
+  },
+  "scoreRevision": 0,
+  "retreat": {
+    "version": 1,
+    "revision": 0,
+    "wall": "moss",
+    "floor": "oak",
+    "items": [
+      {
+        "slot": "nw",
+        "kind": "shelf",
+        "rotation": 0
+      },
+      {
+        "slot": "ne",
+        "kind": "piano",
+        "rotation": 0
+      },
+      {
+        "slot": "w",
+        "kind": "sofa",
+        "rotation": 1
+      },
+      {
+        "slot": "e",
+        "kind": "plant",
+        "rotation": 0
+      },
+      {
+        "slot": "c",
+        "kind": "rug",
+        "rotation": 0
+      }
+    ]
+  },
+  "visitor": {
+    "name": "Visitor",
+    "skin": 0,
+    "cloak": 0,
+    "hair": 0
+  },
+  "version": 9,
+  "seed": 2317,
+  "day": 1,
+  "hour": 18.365050000001883,
+  "weather": "clear",
+  "player": {
+    "x": 11,
+    "z": 9,
+    "yaw": -1.396124127786667
+  },
+  "visited": [
+    "market",
+    "commons"
+  ],
+  "flowers": [],
+  "notes": [],
+  "journal": [
+    {
+      "seq": 1,
+      "day": 1,
+      "hour": 17.200225,
+      "kind": "routine",
+      "text": "Ilan is heading to amphitheatre."
+    },
+    {
+      "seq": 2,
+      "day": 1,
+      "hour": 17.200225,
+      "kind": "routine",
+      "text": "Mara is heading to observatory."
+    },
+    {
+      "seq": 3,
+      "day": 1,
+      "hour": 17.200225,
+      "kind": "routine",
+      "text": "Oren is heading to workshop."
+    },
+    {
+      "seq": 4,
+      "day": 1,
+      "hour": 17.209000000000014,
+      "kind": "discovery",
+      "text": "You found The makers’ exchange."
+    },
+    {
+      "seq": 5,
+      "day": 1,
+      "hour": 17.21305000000002,
+      "kind": "quest",
+      "text": "Oren supplied a trail blade, a lantern, three tonics and a salve for an injured animal. Find the northern mine."
+    },
+    {
+      "seq": 6,
+      "day": 1,
+      "hour": 17.25647500000009,
+      "kind": "sandbox",
+      "text": "Chop · 3 strength remaining"
+    },
+    {
+      "seq": 7,
+      "day": 1,
+      "hour": 17.260975000000098,
+      "kind": "sandbox",
+      "text": "Chop · 2 strength remaining"
+    },
+    {
+      "seq": 8,
+      "day": 1,
+      "hour": 17.265475000000105,
+      "kind": "sandbox",
+      "text": "Chop · 1 strength remaining"
+    },
+    {
+      "seq": 9,
+      "day": 1,
+      "hour": 17.269975000000112,
+      "kind": "sandbox",
+      "text": "+5 Timber"
+    },
+    {
+      "seq": 10,
+      "day": 1,
+      "hour": 17.283475000000134,
+      "kind": "sandbox",
+      "text": "Chop · 3 strength remaining"
+    },
+    {
+      "seq": 11,
+      "day": 1,
+      "hour": 17.28797500000014,
+      "kind": "sandbox",
+      "text": "Chop · 2 strength remaining"
+    },
+    {
+      "seq": 12,
+      "day": 1,
+      "hour": 17.29247500000015,
+      "kind": "sandbox",
+      "text": "Chop · 1 strength remaining"
+    },
+    {
+      "seq": 13,
+      "day": 1,
+      "hour": 17.296975000000156,
+      "kind": "sandbox",
+      "text": "+5 Timber"
+    },
+    {
+      "seq": 14,
+      "day": 1,
+      "hour": 17.328925000000208,
+      "kind": "discovery",
+      "text": "You found The Firstlight Commons."
+    },
+    {
+      "seq": 15,
+      "day": 1,
+      "hour": 17.344900000000234,
+      "kind": "sandbox",
+      "text": "+3 Meadow fibre · +1 seed"
+    },
+    {
+      "seq": 16,
+      "day": 1,
+      "hour": 17.382250000000294,
+      "kind": "sandbox",
+      "text": "+3 Meadow fibre · +1 seed"
+    },
+    {
+      "seq": 17,
+      "day": 1,
+      "hour": 17.42320000000036,
+      "kind": "sandbox",
+      "text": "Mine · 3 strength remaining"
+    },
+    {
+      "seq": 18,
+      "day": 1,
+      "hour": 17.427700000000367,
+      "kind": "sandbox",
+      "text": "Mine · 2 strength remaining"
+    },
+    {
+      "seq": 19,
+      "day": 1,
+      "hour": 17.432200000000375,
+      "kind": "sandbox",
+      "text": "Mine · 1 strength remaining"
+    },
+    {
+      "seq": 20,
+      "day": 1,
+      "hour": 17.436700000000382,
+      "kind": "sandbox",
+      "text": "+5 Stone"
+    },
+    {
+      "seq": 21,
+      "day": 1,
+      "hour": 17.45335000000041,
+      "kind": "sandbox",
+      "text": "Mine · 3 strength remaining"
+    },
+    {
+      "seq": 22,
+      "day": 1,
+      "hour": 17.457850000000416,
+      "kind": "sandbox",
+      "text": "Mine · 2 strength remaining"
+    },
+    {
+      "seq": 23,
+      "day": 1,
+      "hour": 17.462350000000423,
+      "kind": "sandbox",
+      "text": "Mine · 1 strength remaining"
+    },
+    {
+      "seq": 24,
+      "day": 1,
+      "hour": 17.46685000000043,
+      "kind": "sandbox",
+      "text": "+5 Stone"
+    },
+    {
+      "seq": 25,
+      "day": 1,
+      "hour": 17.49115000000047,
+      "kind": "sandbox",
+      "text": "Crafted 4 × Planks"
+    },
+    {
+      "seq": 26,
+      "day": 1,
+      "hour": 17.5719250000006,
+      "kind": "survey",
+      "text": "Accepted riverbank-survey/1: two skitters and two samples for 3 copper, 4 sunmarks and 2 fibre. Oren’s once-only quest is paused, not reset."
+    },
+    {
+      "seq": 27,
+      "day": 1,
+      "hour": 17.604325000000653,
+      "kind": "survey",
+      "text": "Bankroot skitter cleared for riverbank-survey/1. The declared materials are paid once when this survey is returned."
+    },
+    {
+      "seq": 28,
+      "day": 1,
+      "hour": 17.604775000000654,
+      "kind": "survey",
+      "text": "Copper gravel sample recorded for riverbank-survey/1. 1/2 samples."
+    },
+    {
+      "seq": 29,
+      "day": 1,
+      "hour": 17.605000000000654,
+      "kind": "routine",
+      "text": "Ilan is heading to amphitheatre."
+    },
+    {
+      "seq": 30,
+      "day": 1,
+      "hour": 17.605000000000654,
+      "kind": "routine",
+      "text": "Mara is heading to observatory."
+    },
+    {
+      "seq": 31,
+      "day": 1,
+      "hour": 17.605000000000654,
+      "kind": "routine",
+      "text": "Oren is heading to workshop."
+    },
+    {
+      "seq": 32,
+      "day": 1,
+      "hour": 17.642800000000715,
+      "kind": "survey",
+      "text": "Reedback skitter cleared for riverbank-survey/1. The declared materials are paid once when this survey is returned."
+    },
+    {
+      "seq": 33,
+      "day": 1,
+      "hour": 17.654275000000734,
+      "kind": "survey",
+      "text": "Reed-fibre sample recorded for riverbank-survey/1. 2/2 samples."
+    },
+    {
+      "seq": 34,
+      "day": 1,
+      "hour": 17.6947750000008,
+      "kind": "survey",
+      "text": "riverbank-survey/1 paid: 3 copper, 4 sunmarks, 2 fibre. All surveys through 1 are claimed."
+    },
+    {
+      "seq": 35,
+      "day": 1,
+      "hour": 17.6950000000008,
+      "kind": "routine",
+      "text": "Ilan is heading to amphitheatre."
+    },
+    {
+      "seq": 36,
+      "day": 1,
+      "hour": 17.6950000000008,
+      "kind": "routine",
+      "text": "Mara is heading to observatory."
+    },
+    {
+      "seq": 37,
+      "day": 1,
+      "hour": 17.6950000000008,
+      "kind": "routine",
+      "text": "Oren is heading to workshop."
+    },
+    {
+      "seq": 38,
+      "day": 1,
+      "hour": 17.73167500000086,
+      "kind": "survey",
+      "text": "Accepted riverbank-survey/2: two skitters and two samples for 3 copper, 4 sunmarks and 2 fibre. Oren’s once-only quest is paused, not reset."
+    },
+    {
+      "seq": 39,
+      "day": 1,
+      "hour": 17.76407500000091,
+      "kind": "survey",
+      "text": "Bankroot skitter cleared for riverbank-survey/2. The declared materials are paid once when this survey is returned."
+    },
+    {
+      "seq": 40,
+      "day": 1,
+      "hour": 17.764525000000912,
+      "kind": "survey",
+      "text": "Copper gravel sample recorded for riverbank-survey/2. 1/2 samples."
+    },
+    {
+      "seq": 41,
+      "day": 1,
+      "hour": 17.79962500000097,
+      "kind": "survey",
+      "text": "Reedback skitter cleared for riverbank-survey/2. The declared materials are paid once when this survey is returned."
+    },
+    {
+      "seq": 42,
+      "day": 1,
+      "hour": 17.810875000000987,
+      "kind": "survey",
+      "text": "Reed-fibre sample recorded for riverbank-survey/2. 2/2 samples."
+    },
+    {
+      "seq": 43,
+      "day": 1,
+      "hour": 17.851375000001052,
+      "kind": "survey",
+      "text": "riverbank-survey/2 paid: 3 copper, 4 sunmarks, 2 fibre. All surveys through 2 are claimed."
+    },
+    {
+      "seq": 44,
+      "day": 1,
+      "hour": 17.851600000001053,
+      "kind": "routine",
+      "text": "Ilan is heading to amphitheatre."
+    },
+    {
+      "seq": 45,
+      "day": 1,
+      "hour": 17.851600000001053,
+      "kind": "routine",
+      "text": "Mara is heading to observatory."
+    },
+    {
+      "seq": 46,
+      "day": 1,
+      "hour": 17.851600000001053,
+      "kind": "routine",
+      "text": "Oren is heading to workshop."
+    },
+    {
+      "seq": 47,
+      "day": 1,
+      "hour": 17.888275000001112,
+      "kind": "survey",
+      "text": "Accepted riverbank-survey/3: two skitters and two samples for 3 copper, 4 sunmarks and 2 fibre. Oren’s once-only quest is paused, not reset."
+    },
+    {
+      "seq": 48,
+      "day": 1,
+      "hour": 17.920675000001165,
+      "kind": "survey",
+      "text": "Bankroot skitter cleared for riverbank-survey/3. The declared materials are paid once when this survey is returned."
+    },
+    {
+      "seq": 49,
+      "day": 1,
+      "hour": 17.921125000001165,
+      "kind": "survey",
+      "text": "Copper gravel sample recorded for riverbank-survey/3. 1/2 samples."
+    },
+    {
+      "seq": 50,
+      "day": 1,
+      "hour": 17.956225000001222,
+      "kind": "survey",
+      "text": "Reedback skitter cleared for riverbank-survey/3. The declared materials are paid once when this survey is returned."
+    },
+    {
+      "seq": 51,
+      "day": 1,
+      "hour": 17.96747500000124,
+      "kind": "survey",
+      "text": "Reed-fibre sample recorded for riverbank-survey/3. 2/2 samples."
+    },
+    {
+      "seq": 52,
+      "day": 1,
+      "hour": 18.007975000001306,
+      "kind": "survey",
+      "text": "riverbank-survey/3 paid: 3 copper, 4 sunmarks, 2 fibre. All surveys through 3 are claimed."
+    },
+    {
+      "seq": 53,
+      "day": 1,
+      "hour": 18.008200000001306,
+      "kind": "routine",
+      "text": "Ilan is heading to amphitheatre."
+    },
+    {
+      "seq": 54,
+      "day": 1,
+      "hour": 18.008200000001306,
+      "kind": "routine",
+      "text": "Mara is heading to observatory."
+    },
+    {
+      "seq": 55,
+      "day": 1,
+      "hour": 18.008200000001306,
+      "kind": "routine",
+      "text": "Oren is heading to workshop."
+    },
+    {
+      "seq": 56,
+      "day": 1,
+      "hour": 18.044875000001365,
+      "kind": "survey",
+      "text": "Accepted riverbank-survey/4: two skitters and two samples for 3 copper, 4 sunmarks and 2 fibre. Oren’s once-only quest is paused, not reset."
+    },
+    {
+      "seq": 57,
+      "day": 1,
+      "hour": 18.077275000001418,
+      "kind": "survey",
+      "text": "Bankroot skitter cleared for riverbank-survey/4. The declared materials are paid once when this survey is returned."
+    },
+    {
+      "seq": 58,
+      "day": 1,
+      "hour": 18.07772500000142,
+      "kind": "survey",
+      "text": "Copper gravel sample recorded for riverbank-survey/4. 1/2 samples."
+    },
+    {
+      "seq": 59,
+      "day": 1,
+      "hour": 18.112825000001475,
+      "kind": "survey",
+      "text": "Reedback skitter cleared for riverbank-survey/4. The declared materials are paid once when this survey is returned."
+    },
+    {
+      "seq": 60,
+      "day": 1,
+      "hour": 18.124075000001493,
+      "kind": "survey",
+      "text": "Reed-fibre sample recorded for riverbank-survey/4. 2/2 samples."
+    },
+    {
+      "seq": 61,
+      "day": 1,
+      "hour": 18.16457500000156,
+      "kind": "survey",
+      "text": "riverbank-survey/4 paid: 3 copper, 4 sunmarks, 2 fibre. All surveys through 4 are claimed."
+    },
+    {
+      "seq": 62,
+      "day": 1,
+      "hour": 18.16480000000156,
+      "kind": "routine",
+      "text": "Ilan is heading to amphitheatre."
+    },
+    {
+      "seq": 63,
+      "day": 1,
+      "hour": 18.16480000000156,
+      "kind": "routine",
+      "text": "Mara is heading to observatory."
+    },
+    {
+      "seq": 64,
+      "day": 1,
+      "hour": 18.16480000000156,
+      "kind": "routine",
+      "text": "Oren is heading to workshop."
+    },
+    {
+      "seq": 65,
+      "day": 1,
+      "hour": 18.20147500000162,
+      "kind": "survey",
+      "text": "Accepted riverbank-survey/5: two skitters and two samples for 3 copper, 4 sunmarks and 2 fibre. Oren’s once-only quest is paused, not reset."
+    },
+    {
+      "seq": 66,
+      "day": 1,
+      "hour": 18.23387500000167,
+      "kind": "survey",
+      "text": "Bankroot skitter cleared for riverbank-survey/5. The declared materials are paid once when this survey is returned."
+    },
+    {
+      "seq": 67,
+      "day": 1,
+      "hour": 18.23432500000167,
+      "kind": "survey",
+      "text": "Copper gravel sample recorded for riverbank-survey/5. 1/2 samples."
+    },
+    {
+      "seq": 68,
+      "day": 1,
+      "hour": 18.26942500000173,
+      "kind": "survey",
+      "text": "Reedback skitter cleared for riverbank-survey/5. The declared materials are paid once when this survey is returned."
+    },
+    {
+      "seq": 69,
+      "day": 1,
+      "hour": 18.280675000001747,
+      "kind": "survey",
+      "text": "Reed-fibre sample recorded for riverbank-survey/5. 2/2 samples."
+    },
+    {
+      "seq": 70,
+      "day": 1,
+      "hour": 18.321175000001812,
+      "kind": "survey",
+      "text": "riverbank-survey/5 paid: 3 copper, 4 sunmarks, 2 fibre. All surveys through 5 are claimed."
+    },
+    {
+      "seq": 71,
+      "day": 1,
+      "hour": 18.321175000001812,
+      "kind": "craft",
+      "text": "River fitting I fitted to Copper-limbed longbow for 3 copper, 4 sunmarks and 2 fibre. Identity and socket retained."
+    },
+    {
+      "seq": 72,
+      "day": 1,
+      "hour": 18.321175000001812,
+      "kind": "craft",
+      "text": "River fitting II fitted to Copper-limbed longbow for 6 copper, 8 sunmarks and 4 fibre. Identity and socket retained."
+    },
+    {
+      "seq": 73,
+      "day": 1,
+      "hour": 18.321400000001812,
+      "kind": "routine",
+      "text": "Ilan is heading to amphitheatre."
+    },
+    {
+      "seq": 74,
+      "day": 1,
+      "hour": 18.321400000001812,
+      "kind": "routine",
+      "text": "Mara is heading to observatory."
+    },
+    {
+      "seq": 75,
+      "day": 1,
+      "hour": 18.321400000001812,
+      "kind": "routine",
+      "text": "Oren is heading to workshop."
+    }
+  ],
+  "nextEvent": 76,
+  "residents": [
+    {
+      "id": "ilan",
+      "x": 0,
+      "z": -11.6,
+      "yaw": 1.5707963267948966,
+      "progress": 0.09652099999998442,
+      "conversations": 0
+    },
+    {
+      "id": "mara",
+      "x": 9,
+      "z": -5.8,
+      "yaw": 0,
+      "progress": 0.09660199999998438,
+      "conversations": 0
+    },
+    {
+      "id": "oren",
+      "x": 11,
+      "z": 9,
+      "yaw": -1.5707963267948966,
+      "progress": 0.09652099999998442,
+      "conversations": 0
+    }
+  ],
+  "settings": {
+    "quality": "balanced",
+    "cameraMode": "adventure",
+    "cameraFov": 60,
+    "cameraViews": {
+      "version": 1,
+      "lastDiorama": "follow",
+      "profiles": {}
+    },
+    "cameraCutaway": true,
+    "reducedMotion": false,
+    "labels": true,
+    "timeFlow": true,
+    "sound": false
+  }
+}

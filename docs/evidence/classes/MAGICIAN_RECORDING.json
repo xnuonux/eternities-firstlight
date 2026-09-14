@@ -1,0 +1,348 @@
+{
+  "origin": "http://127.0.0.1:57379/FIRSTLIGHT_VALLEY.html",
+  "html_sha256": "e5d203dc6912388c5c2a962aaf08a90638f9a164dbcd6c2bd6c0af3e69253b76",
+  "default_duration_requested_seconds": null,
+  "performance_claim": false,
+  "browser_version": "153.0.8010.36",
+  "fixture": null,
+  "fixture_sha256": null,
+  "method": "Automated accepted commands and UI on normal real-time RAF; command-earned checkpoint, no gameplay state grants; video is not an FPS measurement.",
+  "actions": [
+    {
+      "action": {
+        "evaluate": "(()=>{const r=Realm.test.adventure('class-film-start-'+performance.now(),\"start\",{});if(!r.ok)throw Error(r.error);return r})()"
+      },
+      "result": {
+        "ok": true,
+        "text": "Expedition ready \u00b7 Blade, lantern, tonics and a trail salve."
+      }
+    },
+    {
+      "action": {
+        "evaluate": "(()=>{const r=Realm.test.adventure('class-film-pursuit-start-'+performance.now(),\"pursuit-start\",{\"after\": 0});if(!r.ok)throw Error(r.error);return r})()"
+      },
+      "result": {
+        "ok": true,
+        "text": "Survey accepted. Enter the nearby riverbank; partial objectives will be remembered."
+      }
+    },
+    {
+      "action": {
+        "evaluate": "(()=>{const r=Realm.test.adventure('class-film-target-select-'+performance.now(),\"target-select\",{\"id\": \"river-practice\"});if(!r.ok)throw Error(r.error);return r})()"
+      },
+      "result": {
+        "ok": true,
+        "text": "Target: Oren\u2019s practice bundle"
+      }
+    },
+    {
+      "action": {
+        "evaluate": "(()=>{const r=Realm.test.adventure('class-film-target-clear-'+performance.now(),\"target-clear\",{});if(!r.ok)throw Error(r.error);return r})()"
+      },
+      "result": {
+        "ok": true,
+        "text": "Target cleared."
+      }
+    },
+    {
+      "action": {
+        "evaluate": "(()=>{const a=Realm.state.adventure;return {class:a.classPath,run:a.pursuit.active.id}})()"
+      },
+      "result": {
+        "class": {
+          "version": 1,
+          "choice": "magician",
+          "readyAt": 16.97299999999998
+        },
+        "run": "riverbank-survey/1"
+      }
+    },
+    {
+      "action": {
+        "evaluate": "(()=>{const r=Realm.test.adventure('class-film-target-select-'+performance.now(),\"target-select\",{\"id\": \"riverbank-survey/1:west\"});if(!r.ok)throw Error(r.error);return r})()"
+      },
+      "result": {
+        "ok": true,
+        "text": "Target: Bankroot skitter"
+      }
+    },
+    {
+      "action": {
+        "evaluate": "async()=>{while(Realm.state.adventure.elapsed<Realm.state.adventure.classPath.readyAt)await new Promise(r=>setTimeout(r,80));return Realm.state.adventure.classPath}"
+      },
+      "result": {
+        "version": 1,
+        "choice": "magician",
+        "readyAt": 16.97299999999998
+      }
+    },
+    {
+      "fight": "riverbank-survey/1:west",
+      "defeated": true,
+      "seconds": 0.6908000000119209,
+      "guards": 0
+    },
+    {
+      "action": {
+        "evaluate": "(()=>{const a=Realm.state.adventure;return {class:a.classPath,weapon:a.equipment.weapon,defeated:a.pursuit.active.defeated,xp:a.xp}})()",
+        "wait_ms": 900
+      },
+      "result": {
+        "class": {
+          "version": 1,
+          "choice": "magician",
+          "readyAt": 26.9939000000001
+        },
+        "weapon": "trail_blade",
+        "defeated": [
+          "west"
+        ],
+        "xp": 0
+      }
+    }
+  ],
+  "browser_errors": [],
+  "final_diagnostics": {
+    "version": "10.0.0",
+    "mode": "webgl2",
+    "scene": "riverbank",
+    "networkDependencies": 0,
+    "liveAI": false,
+    "multiplayer": false,
+    "adventure": {
+      "tactics": {
+        "scene": "riverbank",
+        "target": null,
+        "auto": false,
+        "nextAttack": 0,
+        "guardUntil": 0,
+        "shield": 0,
+        "shieldUntil": 0,
+        "cooldowns": {
+          "guard": 0,
+          "insight": 0,
+          "spirit": 0
+        },
+        "hits": [],
+        "serial": 6,
+        "windup": null,
+        "motion": {
+          "style": "blade",
+          "at": 17.966100000000196
+        }
+      },
+      "beacon": {
+        "phase": "idle",
+        "time": 0,
+        "wave": 0,
+        "ward": 100,
+        "actors": [],
+        "serial": 0,
+        "notice": "",
+        "repairAt": 0,
+        "maraAt": 0,
+        "ilanAt": 0,
+        "playerRepairAt": 0,
+        "defeats": 0
+      },
+      "crossing": {
+        "room": "riverbank",
+        "tones": [],
+        "seek": false,
+        "rangAt": -10,
+        "tone": null,
+        "toneSerial": 0
+      },
+      "player": {
+        "x": -7,
+        "z": 3,
+        "yaw": 2.9907172225722
+      },
+      "paused": false,
+      "intent": null,
+      "stats": {
+        "level": 1,
+        "attack": 16,
+        "defense": 1,
+        "maxHP": 100
+      },
+      "weapon": {
+        "style": "blade",
+        "reach": 2.65,
+        "cooldown": 0.52,
+        "stamina": 0,
+        "primary": "Sunstrike",
+        "special": "Dawn sweep"
+      },
+      "arrows": [],
+      "range": {
+        "active": false,
+        "start": 0,
+        "hits": {},
+        "shots": 0,
+        "message": "A calm place to learn a different rhythm."
+      },
+      "enemies": [
+        {
+          "id": "river-practice",
+          "x": -5,
+          "z": 10,
+          "hp": 100,
+          "maxHP": 100,
+          "hidden": false,
+          "eventEnemy": false,
+          "kind": "practice",
+          "ringMode": null,
+          "custom": null,
+          "mode": "idle",
+          "timer": 0,
+          "aim": null
+        },
+        {
+          "id": "riverbank-survey/1:west",
+          "x": -6.805626320671173,
+          "z": 1.7214845608772358,
+          "hp": 0,
+          "maxHP": 38,
+          "hidden": false,
+          "eventEnemy": false,
+          "kind": "skitter",
+          "ringMode": null,
+          "custom": null,
+          "mode": "recover",
+          "timer": 0.0028000000000030847,
+          "aim": {
+            "x": -7,
+            "z": 3
+          }
+        },
+        {
+          "id": "riverbank-survey/1:east",
+          "x": 5,
+          "z": -6,
+          "hp": 56,
+          "maxHP": 56,
+          "hidden": false,
+          "eventEnemy": false,
+          "kind": "skitter",
+          "ringMode": null,
+          "custom": null,
+          "mode": "idle",
+          "timer": -16.694500000000073,
+          "aim": null
+        }
+      ],
+      "companion": {
+        "room": "riverbank",
+        "x": 0,
+        "z": 12,
+        "yaw": 3.141592653589793,
+        "path": [],
+        "nextPath": 0,
+        "nextHit": 0,
+        "seek": null,
+        "status": "Beside you"
+      }
+    },
+    "sandbox": {
+      "bridge": false,
+      "objects": 0,
+      "elapsed": 21.431400000000558,
+      "autoGather": null,
+      "buildMode": null
+    },
+    "saveState": "saved",
+    "characters": {
+      "mode": "legacy",
+      "active": "legacy",
+      "revision": 0,
+      "count": 1,
+      "writer": false,
+      "error": null
+    },
+    "fps": 143.9946914399469,
+    "errors": [],
+    "camera": {
+      "yaw": 0.76,
+      "elevation": 0.88,
+      "half": 17,
+      "distance": 7.5,
+      "actualDistance": 7.499999999999998,
+      "fov": 60,
+      "center": [
+        -6.999999999999999,
+        2.00014573781307,
+        3.0000000000000004
+      ],
+      "overview": false,
+      "preset": "follow",
+      "tour": false,
+      "ready": true,
+      "baseHalf": 17,
+      "zoom": 1,
+      "projection": "orthographic",
+      "eye": [
+        25.921031526134534,
+        59.80556165523577,
+        37.63725701999266
+      ],
+      "target": [
+        -6.999999999999999,
+        2.00014573781307,
+        3.0000000000000004
+      ]
+    },
+    "metrics": {
+      "drawCalls": 23,
+      "instances": 922,
+      "triangles": 82424
+    },
+    "reflection": {
+      "method": "world-plane P*V*H",
+      "height": 0.01,
+      "horizontalFlip": false
+    },
+    "cutaway": {
+      "enabled": true,
+      "focus": [
+        -7,
+        2.45,
+        3
+      ]
+    },
+    "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3080 (0x00002216) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "music": {
+      "playing": false,
+      "scoreRevision": 0,
+      "playingRevision": -1,
+      "step": -1
+    },
+    "gathering": null,
+    "layoutRevision": 0,
+    "audio": {
+      "enabled": false,
+      "state": "not-created"
+    }
+  },
+  "final_quest": {
+    "version": 1,
+    "accepted": false,
+    "bundles": [],
+    "reward": null
+  },
+  "final_pursuit": {
+    "version": 1,
+    "pinned": null,
+    "claimed": 0,
+    "active": {
+      "id": "riverbank-survey/1",
+      "terms": 1,
+      "defeated": [
+        "west"
+      ],
+      "samples": []
+    },
+    "fittings": {}
+  },
+  "video_path": "C:\\dev\\firstlight-artifacts\\chosen-class-2026-09-14\\magician-video\\aeee63c4ca49852b40b0fd6bc832fe7f.webm"
+}
