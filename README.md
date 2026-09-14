@@ -4,15 +4,19 @@ Continuous development starts at [docs/CURRENT_STATE.md](docs/CURRENT_STATE.md).
 
 A complete, local isometric action/sandbox RPG prototype for Dom / Eternities. **This extends the full Firstlight09 game, not the separate Shared Commons networking experiment.** Four small chapters, creative tools, construction, a companion, bows, sockets, an equipment workspace, and the new village are integrated in one offline application.
 
-## Play
+## Play the current prototype
 
-Extract the ZIP and open **FIRSTLIGHT_VALLEY.html** in a modern browser. `index.html` has identical bytes. Use an actual browser, not a text preview. No package installation, CDN, account, paid service, API key or external asset request is required.
+From this checkout run `python -m http.server 8780 --bind 127.0.0.1`, then open **http://127.0.0.1:8780/**. This local HTTP origin is the tested path for the character library. No account, CDN, paid service, API key or external asset request is needed. The offline `FIRSTLIGHT_VALLEY.html` and `index.html` still have identical bytes, but file-origin storage is browser-dependent.
 
-**Before upgrading, export your current world JSON.** In this edition select **More → Import a saved world** and choose that JSON. Keep the unmodified backup. Browser file storage is origin-dependent; JSON export is the portable backup. This edition uses a separate storage key and accepts supported older world schemas 2–8.
+Keep the same browser profile and origin to resume your local worlds. **More → Characters** offers up to three separate lives, portable per-character JSON exports and previewed imports into a new slot. Creating another character is deliberate; merely opening the page does not reset your current world. In the older single-world mode, the explicit legacy import still replaces that single world after confirmation; export it first if you intend to keep it. Personal saves do not belong in Git.
 
-Continue Chapter III until the beacon is defended, then take the **northern arch beside the Sunward Beacon**. Press **M** for named local destinations and known waystones. The new chapter starts in Bellweather Crossing.
+For an ordinary outing, collect the expedition kit beside Oren's workshop. **Field guide** shows real equipment recipes and one pinned project; the nearby riverbank materials survey can be deliberately repeated for declared materials. Oren's original once-only supplies quest remains separate. These local loops do not require campaign advancement.
 
-For a direct preview, `examples/REALM10_CROSSING_READY_EARNED.json` is a command-earned Chapter III completion, standing at the Commons. Import it, open M, travel to Sunward, then walk through its northern arch. It has no Chapter IV equipment, kills, attunement, quest completion or rewards. **Importing an example replaces the loaded world. Back up first.** The fixture includes its earlier test character's explicit Grace/cinder-history choices; it does not apply those choices to an existing save.
+**More → Class path** lets a character compare Hunter and Magician, then choose explicitly beside Oren after the kit. The choice is once per character in this prototype and adds one technique on **X**. Existing characters remain unassigned; neither path replaces weapons, companions, profession or soul choices. **V** swaps third person and diorama; both remain available.
+
+The four existing chapters remain playable in their original optional order. For a Chapter IV preview, `examples/REALM10_CROSSING_READY_EARNED.json` is a command-earned Chapter III completion with no Chapter IV rewards. Import it into a free character slot, use M to travel to Sunward, then approach the northern arch. Its earlier test character's explicit soul history belongs only to that imported world.
+
+See [current state and compatibility](docs/CURRENT_STATE.md), [class results](docs/development/CHOSEN_CLASS_RESULTS_2026-09-14.md) and [actual gameplay](docs/evidence/classes/README.md). The edition-10 chapter description below is retained as historical context.
 
 ## What's new
 
@@ -27,7 +31,7 @@ For a direct preview, `examples/REALM10_CROSSING_READY_EARNED.json` is a command
 
 | Key | Action |
 |---|---|
-| WASD / arrows / click | Move; ordinary click-to-target pursuit remains available. |
+| WASD / arrows / click ground | Move. Tab or clicking a visible enemy selects a target without forced chasing. |
 | Drag / wheel | Orbit / zoom. |
 | R / [ / ] | Follow-camera reset / stepped rotation. |
 | Tab / Shift+Tab | Cycle visible targets. Selection does not attack. |
@@ -37,6 +41,8 @@ For a direct preview, `examples/REALM10_CROSSING_READY_EARNED.json` is a command
 | 4 | Briar: combat insight; outside immediate combat, contextual scent seeking. The map offers explicit clapper search. |
 | 5 | Chosen Aegis or Cinder technique, if learned. |
 | 6 | Tonic. |
+| X | Optional chosen Hunter or Magician technique. |
+| V | Switch between third person and diorama views. |
 | Space | Dodge. |
 | E | Nearby interaction, dialogue, cache, door or resonator. |
 | C / I / K / J / M | Character / Inventory / Crafting / Journal / Map. |

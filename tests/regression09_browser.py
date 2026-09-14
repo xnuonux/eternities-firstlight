@@ -68,7 +68,7 @@ try:
   p.locator('#bag-search').fill('bow');check('Bag search filters by name',p.locator('#bag-items .inventory-item').count()==1)
   p.locator('#bag-search').fill('');action('filter','materials');check('Material filter excludes weapon',p.locator('#bag-items [data-id="gear:trail_bow"]').count()==0)
   tab('craft');action('range');check('Archery court loads its three targets',diag()['scene']=='range' and len(diag()['adventure']['enemies'])==3)
-  check('Seven action slots replace old battle bars',p.locator('#skillbar .skill').count()==7 and not p.locator('#battle-hud').is_visible())
+  check('Unassigned character retains seven visible original action slots',p.locator('#skillbar .skill:visible').count()==7 and p.locator('#skill-class').is_hidden() and not p.locator('#battle-hud').is_visible())
   key('Tab');check('Tab selects target frame',diag()['adventure']['tactics']['target'] is not None and p.locator('#target-frame').is_visible())
   first=diag()['adventure']['tactics']['target'];key('Tab');second=diag()['adventure']['tactics']['target'];key('Shift+Tab');check('Shift Tab reverses cycle',first!=second and diag()['adventure']['tactics']['target']==first)
   check('Selection alone never attacks',not diag()['adventure']['tactics']['auto'])

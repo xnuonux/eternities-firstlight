@@ -1,0 +1,341 @@
+{
+  "origin": "http://127.0.0.1:54689/FIRSTLIGHT_VALLEY.html",
+  "html_sha256": "e5d203dc6912388c5c2a962aaf08a90638f9a164dbcd6c2bd6c0af3e69253b76",
+  "default_duration_requested_seconds": null,
+  "performance_claim": false,
+  "browser_version": "153.0.8010.36",
+  "fixture": "docs\\evidence\\classes\\HUNTER_SOURCE.json",
+  "fixture_sha256": "405247931795051c08a1daaedf47aeda7c13df7c72080ec625b00d42f41989f6",
+  "method": "Automated accepted commands and UI on normal real-time RAF; command-earned checkpoint, no gameplay state grants; video is not an FPS measurement.",
+  "actions": [
+    {
+      "action": {
+        "evaluate": "(()=>{const r=Realm.test.adventure('class-film-pursuit-start-'+performance.now(),\"pursuit-start\",{\"after\": 5});if(!r.ok)throw Error(r.error);return r})()"
+      },
+      "result": {
+        "ok": true,
+        "text": "Survey accepted. Enter the nearby riverbank; partial objectives will be remembered."
+      }
+    },
+    {
+      "action": {
+        "evaluate": "(()=>{const r=Realm.test.adventure('class-film-target-select-'+performance.now(),\"target-select\",{\"id\": \"river-practice\"});if(!r.ok)throw Error(r.error);return r})()"
+      },
+      "result": {
+        "ok": true,
+        "text": "Target: Oren\u2019s practice bundle"
+      }
+    },
+    {
+      "action": {
+        "evaluate": "(()=>{const r=Realm.test.adventure('class-film-target-clear-'+performance.now(),\"target-clear\",{});if(!r.ok)throw Error(r.error);return r})()"
+      },
+      "result": {
+        "ok": true,
+        "text": "Target cleared."
+      }
+    },
+    {
+      "action": {
+        "evaluate": "(()=>{const a=Realm.state.adventure;return {class:a.classPath,run:a.pursuit.active.id}})()"
+      },
+      "result": {
+        "class": {
+          "version": 1,
+          "choice": "hunter",
+          "readyAt": 271.89310000001575
+        },
+        "run": "riverbank-survey/6"
+      }
+    },
+    {
+      "action": {
+        "evaluate": "(()=>{const r=Realm.test.adventure('class-film-target-select-'+performance.now(),\"target-select\",{\"id\": \"riverbank-survey/6:west\"});if(!r.ok)throw Error(r.error);return r})()"
+      },
+      "result": {
+        "ok": true,
+        "text": "Target: Bankroot skitter"
+      }
+    },
+    {
+      "action": {
+        "evaluate": "async()=>{while(Realm.state.adventure.elapsed<Realm.state.adventure.classPath.readyAt)await new Promise(r=>setTimeout(r,80));return Realm.state.adventure.classPath}"
+      },
+      "result": {
+        "version": 1,
+        "choice": "hunter",
+        "readyAt": 271.89310000001575
+      }
+    },
+    {
+      "fight": "riverbank-survey/6:west",
+      "defeated": true,
+      "seconds": 0.2525999999642372,
+      "guards": 1
+    },
+    {
+      "action": {
+        "evaluate": "(()=>{const a=Realm.state.adventure;return {class:a.classPath,weapon:a.equipment.weapon,defeated:a.pursuit.active.defeated,xp:a.xp}})()",
+        "wait_ms": 900
+      },
+      "result": {
+        "class": {
+          "version": 1,
+          "choice": "hunter",
+          "readyAt": 279.94180000000273
+        },
+        "weapon": "copper_bow",
+        "defeated": [
+          "west"
+        ],
+        "xp": 0
+      }
+    }
+  ],
+  "browser_errors": [],
+  "final_diagnostics": {
+    "version": "10.0.0",
+    "mode": "webgl2",
+    "scene": "riverbank",
+    "networkDependencies": 0,
+    "liveAI": false,
+    "multiplayer": false,
+    "adventure": {
+      "tactics": {
+        "scene": "riverbank",
+        "target": null,
+        "auto": false,
+        "nextAttack": 0,
+        "guardUntil": 275.2542000000022,
+        "shield": 0,
+        "shieldUntil": 0,
+        "cooldowns": {
+          "guard": 280.2542000000022,
+          "insight": 0,
+          "spirit": 0
+        },
+        "hits": [],
+        "serial": 3,
+        "windup": null,
+        "motion": {
+          "style": "bow",
+          "at": 272.38620000000196
+        }
+      },
+      "beacon": {
+        "phase": "idle",
+        "time": 0,
+        "wave": 0,
+        "ward": 100,
+        "actors": [],
+        "serial": 0,
+        "notice": "",
+        "repairAt": 0,
+        "maraAt": 0,
+        "ilanAt": 0,
+        "playerRepairAt": 0,
+        "defeats": 0
+      },
+      "crossing": {
+        "room": "riverbank",
+        "tones": [],
+        "seek": false,
+        "rangAt": -10,
+        "tone": null,
+        "toneSerial": 0
+      },
+      "player": {
+        "x": -7,
+        "z": 3,
+        "yaw": 0.8927257283177688
+      },
+      "paused": false,
+      "intent": null,
+      "stats": {
+        "level": 1,
+        "attack": 25,
+        "defense": 1,
+        "maxHP": 100
+      },
+      "weapon": {
+        "style": "bow",
+        "reach": 11,
+        "cooldown": 0.75,
+        "stamina": 6,
+        "primary": "Loose arrow",
+        "special": "Piercing light"
+      },
+      "arrows": [],
+      "range": {
+        "active": false,
+        "start": 0,
+        "hits": {},
+        "shots": 0,
+        "message": "A calm place to learn a different rhythm."
+      },
+      "enemies": [
+        {
+          "id": "river-practice",
+          "x": -5,
+          "z": 10,
+          "hp": 100,
+          "maxHP": 100,
+          "hidden": false,
+          "eventEnemy": false,
+          "kind": "practice",
+          "ringMode": null,
+          "custom": null,
+          "mode": "idle",
+          "timer": 0,
+          "aim": null
+        },
+        {
+          "id": "riverbank-survey/6:west",
+          "x": -5.594770807070664,
+          "z": 4.131877322871882,
+          "hp": 0,
+          "maxHP": 38,
+          "hidden": false,
+          "eventEnemy": false,
+          "kind": "skitter",
+          "ringMode": null,
+          "custom": null,
+          "mode": "windup",
+          "timer": 0.05549999999999984,
+          "aim": {
+            "x": -7,
+            "z": 3
+          }
+        },
+        {
+          "id": "riverbank-survey/6:east",
+          "x": 5,
+          "z": -6,
+          "hp": 56,
+          "maxHP": 56,
+          "hidden": false,
+          "eventEnemy": false,
+          "kind": "skitter",
+          "ringMode": null,
+          "custom": null,
+          "mode": "idle",
+          "timer": -15.159800000000002,
+          "aim": null
+        }
+      ],
+      "companion": {
+        "room": "riverbank",
+        "x": 0,
+        "z": 12,
+        "yaw": 3.141592653589793,
+        "path": [],
+        "nextPath": 0,
+        "nextHit": 0,
+        "seek": null,
+        "status": "Beside you"
+      }
+    },
+    "sandbox": {
+      "bridge": false,
+      "objects": 0,
+      "elapsed": 275.9417999999962,
+      "autoGather": null,
+      "buildMode": null
+    },
+    "saveState": "saved",
+    "characters": {
+      "mode": "legacy",
+      "active": "legacy",
+      "revision": 0,
+      "count": 1,
+      "writer": false,
+      "error": null
+    },
+    "fps": 144.00424712986913,
+    "errors": [],
+    "camera": {
+      "yaw": 0.76,
+      "elevation": 0.88,
+      "half": 17,
+      "distance": 7.5,
+      "actualDistance": 7.5,
+      "fov": 60,
+      "center": [
+        -6.999999999999999,
+        2.0001456999261644,
+        3.0000000000000004
+      ],
+      "overview": false,
+      "preset": "follow",
+      "tour": false,
+      "ready": true,
+      "baseHalf": 17,
+      "zoom": 1,
+      "projection": "orthographic",
+      "eye": [
+        25.921031526134534,
+        59.805561617348864,
+        37.63725701999266
+      ],
+      "target": [
+        -6.999999999999999,
+        2.0001456999261644,
+        3.0000000000000004
+      ]
+    },
+    "metrics": {
+      "drawCalls": 23,
+      "instances": 932,
+      "triangles": 82548
+    },
+    "reflection": {
+      "method": "world-plane P*V*H",
+      "height": 0.01,
+      "horizontalFlip": false
+    },
+    "cutaway": {
+      "enabled": true,
+      "focus": [
+        -7,
+        2.45,
+        3
+      ]
+    },
+    "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3080 (0x00002216) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "music": {
+      "playing": false,
+      "scoreRevision": 0,
+      "playingRevision": -1,
+      "step": -1
+    },
+    "gathering": null,
+    "layoutRevision": 0,
+    "audio": {
+      "enabled": false,
+      "state": "not-created"
+    }
+  },
+  "final_quest": {
+    "version": 1,
+    "accepted": false,
+    "bundles": [],
+    "reward": null
+  },
+  "final_pursuit": {
+    "version": 1,
+    "pinned": "copper_bow",
+    "claimed": 5,
+    "active": {
+      "id": "riverbank-survey/6",
+      "terms": 1,
+      "defeated": [
+        "west"
+      ],
+      "samples": []
+    },
+    "fittings": {
+      "copper_bow": 2
+    }
+  },
+  "video_path": "C:\\dev\\firstlight-artifacts\\chosen-class-2026-09-14\\hunter-video\\e1b6263e9f35957a12411d287dc02da6.webm"
+}
