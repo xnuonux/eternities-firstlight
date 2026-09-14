@@ -43,3 +43,16 @@ Dom explicitly wants both 2.5D diorama and third-person views available in this 
 - Each mode stores bounded orbit/pitch and distance or scene-relative zoom in optional `cameraViews` version 1. Rendering fits interior/viewport limits without changing the stored zoom intent. Unknown or invalid profiles safely fall back independently; save schemas and browser keys remain unchanged.
 - Third-person FOV and diorama zoom remain distinct controls. Switching preserves combat intent and progression, and does not follow a new movement path or reset the quest.
 - The user's visual approval authorizes this continuation. Fresh/returning enjoyment, comfortable framing and pacing still require human observations.
+
+## An Upgrade Worth Hunting, 2026-09-14
+
+Dom accepted the PR #9 Draft D assignment and requested implementation. The three requested archive files were read at `4f225b2ddce3a1fedafb3b97c92d6e58d8f7e952`; the actual gameplay base remains PR #7 at `932db44ebfd85bf52e8e165d899c7db48dec5ebd`. Archives were not overlaid onto gameplay. The [task note](development/UPGRADE_HUNT_TASK_2026-09-14.md) records the reward matrix, IDs, ownership and migration before implementation.
+
+- One equipment project is pinnable; catalogue sources, costs and comparisons come from actual equipment and crafting rules. Existing owned story weapons may be fitted. Their once-only sources remain clearly labelled.
+- The initial kit unlocks an explicitly accepted riverbank materials survey. Two identified skitters and two samples share the existing scene. Fixed reward: 3 ore, 4 sunmarks, 2 fibre, 0 XP. Oren's original supply objectives and rewards stay separate and resume after survey claim.
+- Run identity `riverbank-survey/N`, terms version 1, exact observed prior claim number on acceptance, one outstanding run, and a contiguous paid sequence make repeats intentional while old claims cannot pay again. Completion and all three capacities are validated before mutation. No payout from individual survey enemies. Complete-but-unclaimed runs remain valid saved entitlements.
+- Two fittings per owned weapon: step I costs 3 ore/4 sunmarks/2 fibre for +2 attack; step II costs 6/8/4 for another +2. This finite rule preserves weapon identity, socket and the existing separate Oren temper. Cadence, range, stamina, defense and health remain unchanged. No enemy scaling and no auto-equip.
+- Optional `adventure.pursuit` version 1 is additive to adventure 6. Valid older saves receive an empty pursuit; malformed present records are rejected. World/key 9, starter 1, cameraViews 1, stored XP and the 1–5 curve remain unchanged. Personal saves were not needed for this work.
+- Names, repetition, costs and pacing are prototype implementation choices for founder playtest. Two fittings are not a universal or endless upgrade economy. All actions are local, and the original game systems remain authoritative.
+
+Roster/classes, rare collecting and real two-client play/trading are separate later milestones. Paid power, offline-loss severity, rare-pet allocation and construction scale remain unresolved founder decisions. No Unreal rewrite, live Luna, extracted proprietary assets, cash store, main merge or deployment was included.

@@ -16,7 +16,7 @@ Dom directs taste, names and human playtesting. ChatGPT supplies strategy, desig
 
 Use one bounded task branch from an explicit base commit. Inspect status, fetch origin, compare newer work, and preserve concurrent edits. Separate agents use separate worktrees. Every handoff names base/head, changed files, save migrations, commands actually run, failures and next acceptance condition. Never replace a newer tree wholesale with a chat ZIP. Keep personal save exports outside Git; use only labelled synthetic or command-earned fixtures for automation.
 
-Run `python tools/verify.py` for build identity, syntax, rules, helper cases and both Chapter IV journeys. Use `python tools/verify.py --browser` with the optional development dependencies for the four current browser suites. Record skips separately from passes. A fresh clone of the pushed branch must reproduce the build and tests before reporting a complete source import. Root `VALIDATION.md`, `GITHUB_STATUS.json` and dated provenance describe the original delivery, not fresh runs.
+Run `python tools/verify.py` for build identity, syntax, rules, helper cases and both Chapter IV journeys. Use `python tools/verify.py --browser` with the optional development dependencies for the current browser suites; the latest extension below names the current gates. Record skips separately from passes. A fresh clone of the pushed branch must reproduce the build and tests before reporting a complete source import. Root `VALIDATION.md`, `GITHUB_STATUS.json` and dated provenance describe the original delivery, not fresh runs.
 
 The bootstrap authorizes source import, separate portable tooling/CI, continuity records, pushing a review branch and opening its PR. It does not authorize merging main, tagging a release, deploying publicly or activating `.import/READY.json` / the old `import-source.yml` workflow. Keep that historical workflow dormant. The next gameplay priority is starter-region questing, leveling, loot, visible equipment progression and combat feel. A new realm or Unreal rewrite is outside that milestone.
 
@@ -36,3 +36,11 @@ Static opaque shapes block camera clearance by default; dynamic construction/min
 ## Interchangeable views
 
 Dom wants both diorama and third person retained. V swaps styles; R resets the current mode. Optional `cameraViews` version 1 holds per-mode framing. Keep orthographic user zoom separate from the fitted scene half-width so interior/viewport limits never overwrite outdoor framing. Preserve the internal mode IDs and world9/adventure6/starter1 contracts. Validate older/invalid preferences without discarding game state. The 51-case camera browser gate includes switching/reload, scene clamps, live combat intent and actual notebook/menu input; current rules total 444. Report fresh results, not these counts alone.
+
+## Equipment pursuit extension
+
+Read `docs/development/UPGRADE_HUNT_TASK_2026-09-14.md` and its results. `pursuit.js` owns versioned survey/claim/fitting rules; `pursuit-ui.js` projects real catalogue/recipes. `starter` owns the shared riverbank scene; active surveys temporarily select their own encounter/objective IDs. Art never creates quest or payout state.
+
+Preserve optional pursuit version 1 on adventure 6. A complete unclaimed run is valid durable state. Exact run identity and observed prior claim counter survive request-receipt eviction; individual survey enemies never enter legacy defeated/drop rewards. Capacity/cost refusal must leave all ownership, balances and entitlement unchanged. The two fitting steps retain identity, socket and separate Oren temper. Never auto-equip, assign classes, raise the cap or discard stored XP.
+
+The current verifier has 29 source syntax checks, 462 rules, eight command journeys and eight browser suites, including `pursuit_browser.py`. Historical counts above describe their checkpoints only. Fresh verification and exact pushed-head clone evidence are required for delivery. The new source/browser CI matrix has ten jobs. Preserve both cameras and all creative/campaign checks; gameplay footage and human acceptance remain distinct.

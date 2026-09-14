@@ -1,0 +1,34 @@
+{
+  "command": "python tools/verify.py --browser",
+  "date": "2026-09-14",
+  "environment": "Windows; Python 3.13.15; Node 24.18.0; Playwright software WebGL; isolated profiles",
+  "html_bytes": 564819,
+  "html_sha256": "d5d48c55290cf3e6a5d8fa7f5df135818d38cf97af68f7e7d35b0c72802b2e69",
+  "syntax": 29,
+  "rules": {
+    "passed": 462,
+    "failed": 0,
+    "skipped": 0
+  },
+  "python": {
+    "passed": 19,
+    "failed": 0,
+    "skipped": 1,
+    "skip": "Windows account lacks symlink privilege; Linux CI runs this case"
+  },
+  "journey_commands": 8,
+  "browser_checks": {
+    "camera_browser": 51,
+    "crossing_browser": 115,
+    "cutaway_browser": 6,
+    "native_origin_browser": 11,
+    "pursuit_browser": 142,
+    "reflection_browser": 8,
+    "regression09_browser": 107,
+    "starter_browser": 147
+  },
+  "browser_total": 587,
+  "status": "passed",
+  "fresh_remote_clone": "Recorded at exact pushed head in the implementation PR; this receipt is the local run.",
+  "runtime_commit": "c3292c5943b581751ce1b753fd4040b4d096b551"
+}

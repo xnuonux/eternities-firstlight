@@ -1,0 +1,115 @@
+[
+  {
+    "key": "e",
+    "wait_ms": 1300
+  },
+  {
+    "walk": [
+      5,
+      -3
+    ]
+  },
+  {
+    "fight": "riverbank-survey/5:east",
+    "wait_ms": 700
+  },
+  {
+    "walk": [
+      5,
+      -11
+    ]
+  },
+  {
+    "key": "e",
+    "wait_ms": 1300
+  },
+  {
+    "key": "v",
+    "wait_ms": 1500
+  },
+  {
+    "walk": [
+      0,
+      12
+    ]
+  },
+  {
+    "key": "e",
+    "wait_ms": 900
+  },
+  {
+    "walk": [
+      11,
+      9
+    ]
+  },
+  {
+    "key": "e",
+    "wait_ms": 1000
+  },
+  {
+    "click": "[data-rpg=\"pursuit-claim\"]",
+    "wait_ms": 1400
+  },
+  {
+    "click": "[data-rpg=\"pursuit-select\"][data-id=\"copper_blade\"]"
+  },
+  {
+    "scroll": ".guide-comparison",
+    "wait_ms": 2200
+  },
+  {
+    "click": "[data-rpg=\"pursuit-recipe\"][data-id=\"copper_blade\"]",
+    "wait_ms": 1200
+  },
+  {
+    "click": "[data-rpg=\"pursuit-recipe\"][data-id=\"copper_blade\"]",
+    "wait_ms": 1200
+  },
+  {
+    "click": "[data-rpg=\"pursuit-recipe\"][data-id=\"copper_blade\"]",
+    "wait_ms": 1200
+  },
+  {
+    "click": ".guide-detail [data-rpg=\"equip\"][data-id=\"copper_blade\"]",
+    "wait_ms": 700
+  },
+  {
+    "scroll": ".guide-comparison",
+    "wait_ms": 2500
+  },
+  {
+    "key": "Escape"
+  },
+  {
+    "walk": [
+      15,
+      7
+    ]
+  },
+  {
+    "key": "e",
+    "wait_ms": 800
+  },
+  {
+    "walk": [
+      -5,
+      11.5
+    ]
+  },
+  {
+    "key": "Tab",
+    "wait_ms": 500
+  },
+  {
+    "key": "1",
+    "wait_ms": 1800
+  },
+  {
+    "key": "v",
+    "wait_ms": 1800
+  },
+  {
+    "evaluate": "({pursuit:Realm.state.adventure.pursuit,equipment:Realm.state.adventure.equipment,xp:Realm.state.adventure.xp,hits:Realm.diagnostics.adventure.tactics.hits})"
+  }
+]
