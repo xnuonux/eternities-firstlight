@@ -1,0 +1,57 @@
+{
+  "publication_date": "2026-09-14",
+  "original_package_date": "2026-09-13",
+  "repository": "xnuonux/eternities-firstlight",
+  "archive_directory": "docs/design/2026-09-13-founder-play-vision-draft-d",
+  "base_main_commit": "1aae2f14f2b2ab0ba54a5bf8571bd45bbf32ab46",
+  "reviewed_gameplay_head": "932db44ebfd85bf52e8e165d899c7db48dec5ebd",
+  "reviewed_gameplay_branch": "gameplay/interchangeable-views",
+  "prior_story_archive_pr": 8,
+  "source_package": {
+    "name": "FIRSTLIGHT_FOUNDER_PLAY_VISION_DRAFT_D_2026-09-13.zip",
+    "bytes": 13412,
+    "sha256": "fdf3125fab12ed4886b753b4b2a13754042bda6e9f8c5b57c64246c8180eb210"
+  },
+  "original_files": [
+    {
+      "name": "FIRSTLIGHT_FOUNDER_PLAY_VISION_DRAFT_D.md",
+      "bytes": 29381,
+      "sha256": "81af3441492a0205a31c1bc1bd1ed591d467c6eb6ea919c3cbe3ebbc19442f2a",
+      "git_blob_sha1": "07c774f6c9a1be23b2d2a7bfa396ebdc99699785"
+    },
+    {
+      "name": "MANIFEST.json",
+      "bytes": 458,
+      "sha256": "576d56da6fcf709e9ff710e37d39f8a54166a92ae6af53d389fd6327fd541216",
+      "git_blob_sha1": "2553d2b939b1bed3748d11cc7f14a232574ba5e2"
+    },
+    {
+      "name": "RARE_FOX_PROBABILITY_NOTE.json",
+      "bytes": 962,
+      "sha256": "87bef8c7112a477ba2a11d446f3cf0b992bdb15fad8e1cea3929079c96cf8ec4",
+      "git_blob_sha1": "12c7bf40162f593786ab6add5f43767ad5595b8d"
+    }
+  ],
+  "new_files": [
+    "README.md",
+    "FOUNDER_ANSWERS.md",
+    "CODEX_NEXT_TASK.md",
+    "PUBLICATION_PROVENANCE.json"
+  ],
+  "verification_scope": "Original package bytes checked locally against original manifest; expected Git blob IDs computed. Verify remote tree IDs before reporting preservation. New prose is an archive index, answer excerpt and staged implementation recommendation, not an executed game build.",
+  "repo_review_scope": [
+    "repository metadata and current branches",
+    "main commit and tree",
+    "gameplay AGENTS.md and docs/CURRENT_STATE.md",
+    "PR #7 comments (none returned)"
+  ],
+  "unperformed": [
+    "game execution",
+    "new human playtest",
+    "new benchmark",
+    "code or save migration",
+    "merge",
+    "deployment",
+    "live-account or Luna access"
+  ]
+}
