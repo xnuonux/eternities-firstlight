@@ -55,3 +55,9 @@ Command-earned cases show fresh blade 16→27, fresh bow 13→25, and returning 
 | Returning strongest equipment | Pending Dom | Pending Dom | Pending Dom |
 
 Watch whether five visits for a newly crafted, twice-fitted copper weapon feels excessive, whether one pinned project is legible, and whether returning through the same geography becomes dull. The prototype offers two fitting steps per owned weapon; it does not claim a finished endgame or long-term reward economy. Existing camera taste approval remains valid and distinct from these unanswered questions.
+
+## Separate character lives, 2026-09-14
+
+Dom is away during the timed development window. No new human playtest has occurred. Engineering checks exercise actual character creation/switching/import/export/deletion, isolated native storage, combat cleanup, per-character camera/music, delayed-file ownership, and failure refusal. These are not enjoyment or pacing observations.
+
+Pending human check: keep the original character, create a fresh one, play an equipment outing, then return. Did the correct world, project, loadout, home, music, and view come back? Was it clear that deleting an inactive character removes that complete local world? The earlier fresh/returning reward questions remain unanswered.

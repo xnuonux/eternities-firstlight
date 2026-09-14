@@ -1,19 +1,19 @@
-# Next acceptance: is this upgrade worth hunting?
+# Next acceptance: distinct characters and a worthwhile outing
 
-The requested playable milestone is implemented on `gameplay/upgrade-worth-hunting`, stacked against the unmerged camera branch at `932db44ebfd85bf52e8e165d899c7db48dec5ebd`. Start at [CURRENT_STATE](CURRENT_STATE.md) and [results](development/UPGRADE_HUNT_RESULTS_2026-09-14.md). Fetch current branches and comments before extending this work. PR #9's Draft D is design input, not a replacement gameplay checkout.
+The separate-character milestone is implemented on `gameplay/character-roster`, stacked against PR #10 at `af332a2dcc1affa35aaf0efd7cdcdd5086fc8054`. Start at [CURRENT_STATE](CURRENT_STATE.md) and [character results](development/CHARACTER_ROSTER_RESULTS_2026-09-14.md). Fetch current branches/comments before extending the game. Draft D is documentation, not a replacement gameplay checkout.
 
-Dom should play one fresh-kit case and one returning campaign case. Open the field guide, choose and pin an equipment project, inspect its costs and alternatives, accept a materials survey, then return to claim, craft/fit and deliberately equip. Try the practice bundle and both camera styles. Use a separate profile/origin for synthetic fixtures, preserving any personal character.
+Dom should keep his existing character, create one fresh character in **More → Characters**, and switch back after trying an outing. Check that each character feels distinct and retains its own notes, equipment, project, music, home, and camera. Export one inactive character, inspect the import preview, and cancel a deletion unless he intends to remove that world. Three slots are a bounded prototype implementation choice.
+
+The earlier equipment acceptance remains open. Play one fresh-kit blade or bow case and one returning campaign case. Open Field guide, pin an equipment project, inspect costs, complete a materials survey, return to claim/craft/fit, deliberately equip, and try the practice bundle in both camera styles.
 
 Ask only the useful questions:
 
+- Was creating and returning to a character clear, and did the right world come back?
 - Did you know which upgrade you wanted and where to get its materials?
-- Did the fights and the weapon's before/after difference feel good?
-- Did completing the first upgrade make you want another outing?
+- Did the fights and weapon difference feel good enough to want another outing?
 
-Record observed navigation friction, time, camera comfort and whether repeated visits become dull. The repeat survey currently reuses two skitters and two samples; it proves an equipment loop, not lasting encounter variety. Three surveys fund both fittings on an owned weapon. Base blade/bow crafting needs additional costs; the fully earned fresh tests completed five surveys. Automated timings are not human pacing estimates.
+Record actual navigation friction, camera comfort, and repetition. The survey reuses two skitters/two samples; five-survey fresh automated journeys establish a complete equipment path, not enjoyable pacing. Inactive characters own independent local worlds, with no shared town or online inventory authority.
 
-Astra can inspect the fixed run/claim protocol, finite fitting rules, real recipe/weapon comparisons, migration tests, earned journeys, footage and fresh-clone receipt in the gameplay PR. The returning strongest-gear case earns +4 on its existing weapon while retaining its separate Oren temper and socket. That is an explicit finite path, not a promise that every weapon will be useful forever.
+Draft D's next separate lane is an explicit chosen-class experiment. Keep every existing character unassigned until it deliberately chooses a tested role. Traditional Hunter/Magician should have actual distinct behavior, truthful previews, and migration tests. Preserve current equipment freedom and stored XP; do not infer Hunter from a bow or raise the cap. The future rare fox event and two-real-client trading remain separate milestones with their own acceptance; do not fabricate participants or resolve rare allocation implicitly.
 
-Prioritize the concrete friction revealed by these two playtests before adding another economy layer. A later bounded milestone can address role/roster choice, rare collecting or real two-client play/trading after its own design and technical acceptance are settled. Do not silently assign old characters a class, fabricate participants, change the level curve, or resolve paid power, offline-loss severity, rare-pet allocation or construction scale on the user's behalf.
-
-Keep both cameras, the browser target, existing combat and optional story order, stored XP, companion, creative/home systems and explicit soul choices. No automatic main merge, release tag, public deployment or unattended work follows from this checkpoint.
+Keep both cameras, current combat controls, original optional story order, creative/home systems, companion, and explicit soul history. The user's timed autonomous authorization ends at 07:00 Central on 2026-09-14. It does not authorize continuing after that cutoff, merging main, or deploying publicly.

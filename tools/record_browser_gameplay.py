@@ -20,6 +20,7 @@ def main():
             for action in actions:
                 if 'key' in action: p.keyboard.press(action['key'])
                 elif 'click' in action: p.locator(action['click']).click()
+                elif 'fill' in action: p.locator(action['fill']['selector']).fill(action['fill']['value'])
                 elif 'evaluate' in action: report['actions'].append({'action':action,'result':p.evaluate(action['evaluate'])})
                 elif 'scroll' in action: p.locator(action['scroll']).scroll_into_view_if_needed()
                 elif 'walk' in action:
