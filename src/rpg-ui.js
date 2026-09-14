@@ -57,7 +57,7 @@ class RPGUI{
   $('#rpg-close').onclick=()=>this.close();d.addEventListener('cancel',e=>{e.preventDefault();this.close();});
   const click=e=>{const b=e.target.closest('[data-rpg]');if(b)this.action(b);};d.addEventListener('click',click);hud.addEventListener('click',click);
   d.addEventListener('input',e=>{if(e.target.id==='bag-search'){this.search=e.target.value;this.paintBag();}});
-  $('#tracked-open').onclick=()=>this.open('journal');$('#beacon-menu').onclick=()=>{if(B.runtime(this.sim).phase==='assault')this.run('beacon-repair');else this.open('beacon');};$('#target-clear').onclick=()=>this.run('target-clear');$('#health-orb').onclick=()=>this.open('equipment');
+  $('#tracked-open').onclick=()=>this.open(this.quest==='project'?'pursuit':'journal');$('#beacon-menu').onclick=()=>{if(B.runtime(this.sim).phase==='assault')this.run('beacon-repair');else this.open('beacon');};$('#target-clear').onclick=()=>this.run('target-clear');$('#health-orb').onclick=()=>this.open('equipment');
   for(const el of hud.querySelectorAll('[data-skill]'))el.onclick=()=>this.skill(el.dataset.skill);
   this.crossing=new G.RealmCrossingUI.CrossingUI(this);this.starter=new G.RealmStarterUI.StarterUI(this);this.pursuit=new G.RealmPursuitUI.PursuitUI(this);if(this.state.starter.accepted&&!this.state.starter.reward)this.quest='starter';
  }
@@ -191,6 +191,7 @@ class RPGUI{
    h+='<p>'+esc(it.desc)+'</p><dl class="compare-stats">'+[['attack','Attack'],['defense','Guard'],['maxHP','Max health']].map(([k,n])=>'<div><dt>'+n+'</dt><dd>'+now[k]+' → '+next[k]+' <em class="'+(next[k]<now[k]?'negative':'positive')+'">'+(next[k]===now[k]?'—':(next[k]>now[k]?'+':'')+(next[k]-now[k]))+'</em></dd></div>').join('')+'</dl>'+button(on?'Equipped':'Equip '+it.slot,'equip',it.id,on,'class="primary"');
    if(it.slot==='weapon'){
     const gem=a.arsenal.sockets[it.id],station=AR.atBench(this.sim);
+    h+='<p>River fittings: '+G.RealmPursuit.stage(a,it.id)+'/2 · +'+G.RealmPursuit.bonus(a,it.id)+' attack. Oren temper: +'+G.RealmStarter.bonus(a,it.id)+'.</p>'+button('Inspect equipment project','open','pursuit');
     h+='<div class="socket-detail"><h4>◆ Weapon socket</h4><p>'+(gem?esc(AR.GEMS[gem].name)+' · '+esc(AR.GEMS[gem].desc):'Empty. A fitted gem applies only while this weapon is equipped.')+'</p><label for="rpg-socket">Fit or reclaim</label><select id="rpg-socket"><option value="">Empty · reclaim fitted gem</option>'+Object.entries(AR.GEMS).map(([id,g])=>'<option value="'+id+'" '+(gem===id?'selected':'')+'>'+g.name+' · '+a.arsenal.gems[id]+' loose</option>').join('')+'</select>'+button(station?'Apply socket':'Visit a workbench to socket','socket',it.id,!station)+'</div>';
    }
   }else if(it.category==='gems')h+='<p>'+esc(AR.GEMS[it.id].desc)+'</p><p>Select an owned weapon and fit this at a workbench. Removing it returns the gem intact.</p><b>'+it.n+' in your pouch</b>';
@@ -200,7 +201,7 @@ class RPGUI{
  recipes(){
   return [
    ...Object.entries(AR.RECIPES).map(([id,q])=>({id,name:q.name,desc:q.gear?A.GEAR[q.gear].desc:AR.GEMS[q.gem].desc,category:q.gear?'weapons':'gems',type:'arsenal',station:true,cost:{...q.materials,ore:q.ore||0,coins:q.coins||0},gear:q.gear,requires:q.requires})),
-   {id:'copper_blade',name:'Copper-edged blade',desc:A.GEAR.copper_blade.desc,category:'weapons',type:'forge',station:true,cost:{ore:4,coins:4},gear:'copper_blade'},
+   {id:'copper_blade',name:'Copper-edged blade',desc:A.GEAR.copper_blade.desc,category:'weapons',type:'forge',station:true,cost:{...A.FORGE},gear:'copper_blade'},
    ...S.RECIPES.map(q=>({...q,name:S.ITEMS[q.id].name,type:'sandbox',category:['axe','pick'].includes(q.id)?'tools':['plank','block'].includes(q.id)?'components':'building'}))
   ];
  }
@@ -255,7 +256,8 @@ class RPGUI{
   G.RealmArt.WorldArt.prototype.person(out,0,0,yaw,A.GEAR[a.equipment.armor]?.color||G.RealmCreative.CLOAKS[x.cloak],0,false,'visitor',true,0,x);
   const col=A.GEAR[a.equipment.weapon]?.color||'#bcb590';
   if(a.equipment.weapon){const add=(xx,y,z,sx,sy,sz,c)=>out.box.push({p:[xx*Math.cos(yaw)+z*Math.sin(yaw),y,-xx*Math.sin(yaw)+z*Math.cos(yaw)],s:[sx,sy,sz],c,r:[0,yaw,0]});
-   if((G.RealmPursuit&&G.RealmPursuit.bonus(a,a.equipment.weapon))||G.RealmStarter.bonus(a,a.equipment.weapon))add(.52,.52,.08,.20,.1,.17,'#82beb0');
+   if(G.RealmStarter.bonus(a,a.equipment.weapon))add(.52,.52,.08,.20,.1,.17,'#82beb0');
+   for(let i=0;i<G.RealmPursuit.stage(a,a.equipment.weapon);i++)add(.52,.69+i*.16,.09,.18,.065,.17,i?'#ece0b6':'#d39366');
    if(AR.weapon(a).style==='bow'){for(let i=0;i<11;i++){let u=i/10*Math.PI;add(.52+Math.sin(u)*.24,.24+i*.112,.12,.065,.14,.07,col);}add(.52,.8,.12,.022,1.1,.022,'#ddd5b8');}else{add(.52,.84,.08,.10,1.1,.10,col);add(.52,.58,.08,.4,.07,.13,'#c4a66f');}
   }
   out.disc.push({p:[0,-.08,0],s:[2.0,.12,2.0],c:0x566864});
@@ -281,7 +283,7 @@ class RPGUI{
   const bm=$('#beacon-menu');bm.textContent=b.phase==='assault'?'Repair ward · E · 20 stamina':'Speak with the envoy · E';bm.disabled=b.phase==='assault'&&(!B.near(sim)||b.ward>=100||b.time<b.playerRepairAt||a.stamina<20);
   sim.presentation=sim.presentation||{};sim.presentation.attackTarget=t.target||(this.api.adventure().intent?.kind==='attack'?this.api.adventure().intent.id:null);
   const lastHit=t.hits.at(-1);if(lastHit&&this.soundedHit!==lastHit){this.soundedHit=lastHit;if(a.elapsed-lastHit.at<.25)this.api.adventure().sound('confirmed-hit');}
-  this.numbers();this.worldHealth();this.crossing.tick();this.starter.tick();
+  this.numbers();this.worldHealth();this.crossing.tick();this.starter.tick();this.pursuit.tick();
  }
  worldHealth(){
   const root=$('#enemy-health');root.replaceChildren();if(!this.sim.presentation?.perspective||!A.combatScene(this.sim))return;

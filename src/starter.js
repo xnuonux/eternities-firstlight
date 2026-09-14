@@ -42,7 +42,7 @@ function walkable(x,z,r=.31){return land(x,z,r)&&!OBSTACLES.some(o=>Math.hypot(x
 function line(a,b){if(!a||!b||!Number.isFinite(distance(a,b))||distance(a,b)>100)return false;const n=Math.max(1,Math.ceil(distance(a,b)/.1));for(let i=0;i<=n;i++)if(!walkable(a.x+(b.x-a.x)*i/n,a.z+(b.z-a.z)*i/n,.04))return false;return true;}
 function near(sim,p,r=3){return distance(sim.state.player,p)<r;}
 function points(sim){const a=sim.state.adventure;
- if(sim.room===ROOM&&a.pursuit?.active)return[{id:'river-exit',name:'Return survey to Oren',...ENTRY,kind:'gate'},{...PRACTICE,kind:'practice'},...G.RealmPursuit.points(sim)];
+ if(sim.room===ROOM&&a.pursuit?.active)return[{id:'river-exit',name:'Return survey to Oren',...ENTRY,kind:'gate'},{...PRACTICE,kind:'practice'},...G.RealmPursuit.points(sim),...G.RealmPursuit.enemies(a).map(e=>({...e,kind:'threat'}))];
  if(sim.room===ROOM)return[{id:'river-exit',name:'Return to the workshop',...ENTRY,kind:'gate'},{...PRACTICE,kind:'practice'},...(a.starter.accepted?BUNDLES.filter(q=>!a.starter.bundles.includes(q.id)).map(q=>({...q,kind:'supplies'})):[]),...(a.starter.accepted&&!a.defeated.includes('river-old-bristle')?[{...ENEMIES[2],kind:'threat'}]:[])];
  if(!sim.room)return[{id:'oren-outing',name:'Oren · riverbank supplies',...OREN,kind:'quest'},{id:'river-gate',name:'Nearby riverbank worksite',...GATE,kind:'gate'}];return[];
 }
