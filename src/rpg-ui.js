@@ -50,7 +50,7 @@ class RPGUI{
     <button id="health-orb" title="Character & equipment"><b id="rpg-health">100</b><small>HEALTH</small></button>
     <div class="skill-main"><div class="stamina-track"><i id="rpg-stamina"></i><span id="stamina-label"></span></div><div class="skill-row">
      ${[['auto','1','blade','Autoattack'],['special','2','light','Weapon skill'],['guard','3','shield','Brace'],['insight','4','paw','Briar'],['spirit','5','light','Soul skill'],['heal','6','tonic','Tonic'],['dodge','␣','arrow','Dodge']].map(([id,key,ic,label])=>`<button class="skill" id="skill-${id}" data-skill="${id}"><kbd>${key}</kbd><span class="skill-icon">${icon(ic)}</span><small>${label}</small><b class="skill-cooldown"></b></button>`).join('')}
-    </div><div class="combat-help" id="combat-help">TAB selects · 1 toggles autoattack · 2–6 skills · SPACE dodge</div></div>
+    </div><button class="skill skill-class" id="skill-class" data-skill="class-technique"><kbd>X</kbd><span class="skill-icon">✦</span><small>Path</small><b class="skill-cooldown"></b></button><div class="combat-help" id="combat-help">TAB selects · 1 toggles autoattack · 2–6 skills · X path · SPACE dodge</div></div>
    </section>`;
   $('#hud').append(hud);
   const d=document.createElement('dialog');d.id='rpg-window';d.setAttribute('aria-labelledby','rpg-heading');d.innerHTML='<header><div><small>FIRSTLIGHT · YOUR JOURNEY</small><h2 id="rpg-heading">Character</h2></div><span class="paused-note">World paused while open</span><button id="rpg-close" aria-label="Close character workspace">×</button></header><nav id="rpg-tabs" aria-label="Character sections"></nav><div id="rpg-content"></div>';document.body.append(d);this.dialog=d;
@@ -59,7 +59,7 @@ class RPGUI{
   d.addEventListener('input',e=>{if(e.target.id==='bag-search'){this.search=e.target.value;this.paintBag();}});
   $('#tracked-open').onclick=()=>this.open(this.quest==='project'?'pursuit':'journal');$('#beacon-menu').onclick=()=>{if(B.runtime(this.sim).phase==='assault')this.run('beacon-repair');else this.open('beacon');};$('#target-clear').onclick=()=>this.run('target-clear');$('#health-orb').onclick=()=>this.open('equipment');
   for(const el of hud.querySelectorAll('[data-skill]'))el.onclick=()=>this.skill(el.dataset.skill);
-  this.crossing=new G.RealmCrossingUI.CrossingUI(this);this.starter=new G.RealmStarterUI.StarterUI(this);this.pursuit=new G.RealmPursuitUI.PursuitUI(this);this.characters=new G.RealmCharactersUI.CharactersUI(this);if(this.state.starter.accepted&&!this.state.starter.reward)this.quest='starter';
+  this.crossing=new G.RealmCrossingUI.CrossingUI(this);this.starter=new G.RealmStarterUI.StarterUI(this);this.pursuit=new G.RealmPursuitUI.PursuitUI(this);this.characters=new G.RealmCharactersUI.CharactersUI(this);this.classes=new G.RealmClassesUI.ClassesUI(this);if(this.state.starter.accepted&&!this.state.starter.reward)this.quest='starter';
  }
  get sim(){return this.api.sim();} get state(){return this.sim.state.adventure;}
  run(t,p={},quiet=false){const paused=this.sim.paused;try{if(this.dialog.open)this.sim.paused=false;const r=this.api.adventure().run(t,p,quiet);if(r.ok&&this.dialog.open)this.paint();return r;}finally{this.sim.paused=paused;}}
@@ -69,8 +69,8 @@ class RPGUI{
  }
  close(){if(!this.dialog.open)return;this.dialog.close();this.sim.paused=this.wasPaused;this.api.clearKeys();this.api.focusWorld();}
  cameraPaint(mode){for(const el of document.querySelectorAll('[data-rpg="camera"]'))el.setAttribute('aria-pressed',String(el.dataset.id===mode));}
- reset(){if(this.dialog.open)this.close();this.item=null;this.seenPhase='';this.filter='all';this.search='';this.recipe='trail_bow';this.craftFilter='weapons';this.avatarDrag=null;this.lastPreview=-1;this.pursuit.selected=null;this.starter.temper=null;this.starter.destination=null;this.starter.lastSound=0;this.starter.lastSoundScene=null;this.crossing.destination=null;this.crossing.uiRoom=null;this.characters.reset();}
- action(el){if(this.characters.action(el))return;if(this.starter.action(el))return;if(this.crossing.action(el))return;if(this.pursuit.action(el))return;const act=el.dataset.rpg,id=el.dataset.id,a=this.state;
+ reset(){if(this.dialog.open)this.close();this.item=null;this.seenPhase='';this.filter='all';this.search='';this.recipe='trail_bow';this.craftFilter='weapons';this.avatarDrag=null;this.lastPreview=-1;this.pursuit.selected=null;this.starter.temper=null;this.starter.destination=null;this.starter.lastSound=0;this.starter.lastSoundScene=null;this.crossing.destination=null;this.crossing.uiRoom=null;this.characters.reset();this.classes.reset();}
+ action(el){if(this.classes.action(el))return;if(this.characters.action(el))return;if(this.starter.action(el))return;if(this.crossing.action(el))return;if(this.pursuit.action(el))return;const act=el.dataset.rpg,id=el.dataset.id,a=this.state;
   if(act==='open'){this.open(id);return;}
   if(act==='track'){this.quest=id;if(this.dialog.open)this.paint();this.tick();return;}
   if(act==='camera'){this.api.camera(id);return;}
@@ -117,6 +117,7 @@ class RPGUI{
    if(this.sim.room==='crossing'&&!A.runtime(this.sim).enemies.some(e=>e.hp>0&&Math.hypot(e.x-this.sim.state.player.x,e.z-this.sim.state.player.z)<10)){this.run('cross-seek');return;}
    if(this.sim.room==='road'&&!A.runtime(this.sim).enemies.some(e=>e.hp>0&&e.kind!=='practice'&&Math.hypot(e.x-this.sim.state.player.x,e.z-this.sim.state.player.z)<13)){this.run('seek');return;}
   }
+  if(id==='class-technique'){this.api.classAction?.('class-technique',{});return;}
   this.run(id==='dodge'?'dodge':id==='heal'?'heal':id,id==='dodge'?this.api.direction():{});
  }
  key(e){
@@ -125,7 +126,7 @@ class RPGUI{
   if(k==='m'){this.open('atlas');return true;}
   if(k==='tab'&&A.combatScene(this.sim)&&!this.api.panel()){this.run('target-cycle',{reverse:e.shiftKey},true);return true;}
   if(k==='escape'&&!this.api.panel()&&(T.runtime(this.sim).auto||T.runtime(this.sim).target)){this.run('target-clear',{},true);this.api.adventure().stopAuto();return true;}
-  const slots={1:'auto',2:'special',3:'guard',4:'insight',5:'spirit',6:'heal',' ':'dodge',q:'special',g:'heal'};
+  const slots={1:'auto',2:'special',3:'guard',4:'insight',5:'spirit',6:'heal',' ':'dodge',q:'special',g:'heal',x:'class-technique'};
   if(slots[k]){this.skill(slots[k]);return true;}
   if(k==='f'){if(this.api.panel())return true;const t=T.runtime(this.sim);this.run('attack',t.target?{target:t.target}:{},true);return true;}
   if(k==='escape'&&!this.api.panel()&&A.combatScene(this.sim)){this.open('more');return true;}
@@ -149,10 +150,10 @@ class RPGUI{
   this.open('beacon');return true;
  }
  paint(){
-  const extra=this.characters.page(this.tab)||this.pursuit.page(this.tab)||this.starter.page(this.tab)||this.crossing.page(this.tab);
+  const extra=this.classes.page(this.tab)||this.characters.page(this.tab)||this.pursuit.page(this.tab)||this.starter.page(this.tab)||this.crossing.page(this.tab);
   const titles={equipment:'Your character',bag:'Your belongings',companion:'Your companion',soul:'The paths within',craft:'The workbench',journal:'Your journal',beacon:'The Beacon Answers',more:'Life in Firstlight',merchant:'Tessa’s road shop',pursuit:'Field guide'};
   $('#rpg-heading').textContent=extra?.title||titles[this.tab]||'Firstlight';
-  $('#rpg-tabs').innerHTML=[['equipment','Equipment'],['bag','Inventory'],['companion','Companion'],['soul','Soul'],['craft','Crafting'],['pursuit','Field guide'],['journal','Journal'],['atlas','Map'],['characters','Characters']].map(([id,n])=>button(n,'open',id,false,'aria-current="'+(this.tab===id?'page':'false')+'"')).join('');
+  $('#rpg-tabs').innerHTML=[['equipment','Equipment'],['bag','Inventory'],['companion','Companion'],['soul','Soul'],['craft','Crafting'],['pursuit','Field guide'],['journal','Journal'],['atlas','Map'],['characters','Characters'],['classes','Path']].map(([id,n])=>button(n,'open',id,false,'aria-current="'+(this.tab===id?'page':'false')+'"')).join('');
   const nav=$('#rpg-tabs'),active=nav.querySelector('[aria-current="page"]');if(active){const nr=nav.getBoundingClientRect(),ar=active.getBoundingClientRect();if(ar.right>nr.right-8)nav.scrollLeft+=ar.right-nr.right+12;else if(ar.left<nr.left+8)nav.scrollLeft-=nr.left+12-ar.left;}
   const body=$('#rpg-content');
   if(extra){body.innerHTML=extra.html;}
@@ -165,7 +166,7 @@ class RPGUI{
   else if(this.tab==='beacon')body.innerHTML=this.beacon();
   else if(this.tab==='merchant')body.innerHTML=this.merchant();
   else body.innerHTML=this.more();
-  if(this.tab==='journal')body.insertAdjacentHTML('afterbegin',this.starter.journal());if(this.tab==='characters')this.characters.attach();
+  if(this.tab==='journal')body.insertAdjacentHTML('afterbegin',this.starter.journal());if(this.tab==='characters')this.characters.attach();if(this.tab==='classes')this.classes.attach();
  }
  inventory(){
   const a=this.state,st=A.stats(a),slots=['weapon','armor','charm'];
