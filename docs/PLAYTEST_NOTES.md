@@ -1,5 +1,11 @@
 # Firstlight playtest notes
 
+## 2026-09-14: connected workshop, practice and equipment loop
+
+During the same authorized window, rendered inspection and command-driven UI checks found and addressed discovery gaps: Oren now links directly to class comparison, the chosen path offers an actual practice walk, the roster identifies each class, and completed-survey guidance follows the player's current location. These are engineering observations. Dom remains away; they do not establish a successful human playtest.
+
+Start at Oren with a fresh Magician, then try a returning bow Hunter. Did you know where to go? Did marking/casting and the following weapon impacts feel useful? Did the pinned equipment project make you want another outing? Switch back to the original life and confirm its world feels intact. Actual recordings and a separate RTX frame-interval sample are linked from the dated outing results; neither supplies these answers.
+
 ## Founder report carried by the 2026-09-12 handoff
 
 Source: [Codex bootstrap handoff, sections 4–5](development/CODEX_BOOTSTRAP_2026-09-12.md). These are paraphrased observations carried from Dom through ChatGPT, not a new Codex-observed play session or verbatim transcript.

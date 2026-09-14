@@ -1,0 +1,693 @@
+[
+  {
+    "walk": [
+      11,
+      9
+    ]
+  },
+  {
+    "evaluate": "()=>{const r=Realm.test.adventure('workshop-film-kit','start',{});if(!r.ok)throw Error(r.error);return r;}"
+  },
+  {
+    "key": "e",
+    "wait_ms": 1800
+  },
+  {
+    "click": ".starter-path [data-id=\"classes\"]",
+    "wait_ms": 1000
+  },
+  {
+    "click": "[data-rpg=\"class-preview\"][data-id=\"magician\"]",
+    "wait_ms": 1800
+  },
+  {
+    "click": "[data-rpg=\"class-confirm\"]",
+    "wait_ms": 1800
+  },
+  {
+    "click": "[data-rpg=\"pursuit-route\"][data-id=\"practice\"]"
+  },
+  {
+    "evaluate": "async()=>{const t=performance.now();while(Realm.test.path.length){if(performance.now()-t>45000)throw Error('Walk timeout');await new Promise(r=>setTimeout(r,50));}return Realm.diagnostics.adventure.player;}",
+    "wait_ms": 400
+  },
+  {
+    "key": "e",
+    "wait_ms": 600
+  },
+  {
+    "key": "c"
+  },
+  {
+    "click": "#rpg-tabs [data-id=\"classes\"]",
+    "wait_ms": 700
+  },
+  {
+    "click": "[data-rpg=\"pursuit-route\"][data-id=\"practice\"]"
+  },
+  {
+    "evaluate": "async()=>{const t=performance.now();while(Realm.test.path.length){if(performance.now()-t>45000)throw Error('Walk timeout');await new Promise(r=>setTimeout(r,50));}const r=Realm.test.adventure('workshop-film-practice','target-select',{id:'river-practice'});if(!r.ok)throw Error(r.error);return r;}",
+    "wait_ms": 500
+  },
+  {
+    "key": "x",
+    "wait_ms": 700
+  },
+  {
+    "key": "1",
+    "wait_ms": 2800
+  },
+  {
+    "key": "1"
+  },
+  {
+    "key": "v",
+    "wait_ms": 1500
+  },
+  {
+    "key": "c",
+    "wait_ms": 1200
+  },
+  {
+    "click": "#rpg-tabs [data-id=\"classes\"]",
+    "wait_ms": 500
+  },
+  {
+    "click": "#rpg-content [data-rpg=\"open\"][data-id=\"pursuit\"]",
+    "wait_ms": 1200
+  },
+  {
+    "click": "[data-rpg=\"pursuit-select\"][data-id=\"copper_blade\"]",
+    "wait_ms": 1800
+  },
+  {
+    "click": "[data-rpg=\"pursuit-pin\"][data-id=\"copper_blade\"]",
+    "wait_ms": 1000
+  },
+  {
+    "key": "Escape",
+    "wait_ms": 1200
+  },
+  {
+    "evaluate": "()=>({class:Realm.state.adventure.classPath,project:Realm.state.adventure.pursuit.pinned,weapon:Realm.state.adventure.equipment.weapon,xp:Realm.state.adventure.xp})",
+    "wait_ms": 400
+  },
+  {
+    "walk": [
+      0,
+      12
+    ]
+  },
+  {
+    "key": "e"
+  },
+  {
+    "walk": [
+      11,
+      9
+    ]
+  },
+  {
+    "key": "e"
+  },
+  {
+    "click": "#rpg-content [data-rpg=\"open\"][data-id=\"pursuit\"]"
+  },
+  {
+    "click": "[data-rpg=\"pursuit-start\"]"
+  },
+  {
+    "key": "Escape"
+  },
+  {
+    "walk": [
+      15,
+      7
+    ]
+  },
+  {
+    "key": "e"
+  },
+  {
+    "click": "[data-rpg=\"camera\"][data-id=\"adventure\"]"
+  },
+  {
+    "walk": [
+      -7,
+      3
+    ]
+  },
+  {
+    "key": "e"
+  },
+  {
+    "evaluate": "()=>{const r=Realm.test.adventure('outing-film-'+performance.now(),\"target-select\",{\"id\": \"riverbank-survey/1:west\"});if(!r.ok)throw Error(r.error);return r;}"
+  },
+  {
+    "evaluate": "()=>{const a=Realm.state.adventure;if(a.elapsed<a.classPath.readyAt||a.stamina<25)return {technique:'not ready; continue with weapon'};return Realm.test.adventure('outing-spell-'+performance.now(),'class-technique',{});}"
+  },
+  {
+    "fight": "riverbank-survey/1:west"
+  },
+  {
+    "walk": [
+      5,
+      -3
+    ]
+  },
+  {
+    "evaluate": "()=>{const r=Realm.test.adventure('outing-film-'+performance.now(),\"target-select\",{\"id\": \"riverbank-survey/1:east\"});if(!r.ok)throw Error(r.error);return r;}"
+  },
+  {
+    "evaluate": "()=>{const a=Realm.state.adventure;if(a.elapsed<a.classPath.readyAt||a.stamina<25)return {technique:'not ready; continue with weapon'};return Realm.test.adventure('outing-spell-'+performance.now(),'class-technique',{});}"
+  },
+  {
+    "fight": "riverbank-survey/1:east"
+  },
+  {
+    "walk": [
+      5,
+      -11
+    ]
+  },
+  {
+    "key": "e"
+  },
+  {
+    "walk": [
+      0,
+      12
+    ]
+  },
+  {
+    "key": "e"
+  },
+  {
+    "walk": [
+      11,
+      9
+    ]
+  },
+  {
+    "key": "e"
+  },
+  {
+    "click": "[data-rpg=\"pursuit-claim\"]"
+  },
+  {
+    "evaluate": "()=>({claimed:Realm.state.adventure.pursuit.claimed,ore:Realm.state.adventure.ore,coins:Realm.state.adventure.coins,fiber:Realm.state.sandbox.inventory.fiber,xp:Realm.state.adventure.xp})",
+    "wait_ms": 300
+  },
+  {
+    "key": "Escape"
+  },
+  {
+    "walk": [
+      0,
+      3
+    ]
+  },
+  {
+    "evaluate": "()=>{const r=Realm.test.adventure('outing-film-'+performance.now(),\"rest\",{});if(!r.ok)throw Error(r.error);return r;}"
+  },
+  {
+    "walk": [
+      11,
+      9
+    ]
+  },
+  {
+    "key": "e"
+  },
+  {
+    "click": "#rpg-content [data-rpg=\"open\"][data-id=\"pursuit\"]"
+  },
+  {
+    "click": "[data-rpg=\"pursuit-start\"]"
+  },
+  {
+    "key": "Escape"
+  },
+  {
+    "walk": [
+      15,
+      7
+    ]
+  },
+  {
+    "key": "e"
+  },
+  {
+    "click": "[data-rpg=\"camera\"][data-id=\"follow\"]"
+  },
+  {
+    "walk": [
+      -7,
+      3
+    ]
+  },
+  {
+    "key": "e"
+  },
+  {
+    "evaluate": "()=>{const r=Realm.test.adventure('outing-film-'+performance.now(),\"target-select\",{\"id\": \"riverbank-survey/2:west\"});if(!r.ok)throw Error(r.error);return r;}"
+  },
+  {
+    "evaluate": "()=>{const a=Realm.state.adventure;if(a.elapsed<a.classPath.readyAt||a.stamina<25)return {technique:'not ready; continue with weapon'};return Realm.test.adventure('outing-spell-'+performance.now(),'class-technique',{});}"
+  },
+  {
+    "fight": "riverbank-survey/2:west"
+  },
+  {
+    "walk": [
+      5,
+      -3
+    ]
+  },
+  {
+    "evaluate": "()=>{const r=Realm.test.adventure('outing-film-'+performance.now(),\"target-select\",{\"id\": \"riverbank-survey/2:east\"});if(!r.ok)throw Error(r.error);return r;}"
+  },
+  {
+    "evaluate": "()=>{const a=Realm.state.adventure;if(a.elapsed<a.classPath.readyAt||a.stamina<25)return {technique:'not ready; continue with weapon'};return Realm.test.adventure('outing-spell-'+performance.now(),'class-technique',{});}"
+  },
+  {
+    "fight": "riverbank-survey/2:east"
+  },
+  {
+    "walk": [
+      5,
+      -11
+    ]
+  },
+  {
+    "key": "e"
+  },
+  {
+    "walk": [
+      0,
+      12
+    ]
+  },
+  {
+    "key": "e"
+  },
+  {
+    "walk": [
+      11,
+      9
+    ]
+  },
+  {
+    "key": "e"
+  },
+  {
+    "click": "[data-rpg=\"pursuit-claim\"]"
+  },
+  {
+    "evaluate": "()=>({claimed:Realm.state.adventure.pursuit.claimed,ore:Realm.state.adventure.ore,coins:Realm.state.adventure.coins,fiber:Realm.state.sandbox.inventory.fiber,xp:Realm.state.adventure.xp})",
+    "wait_ms": 300
+  },
+  {
+    "key": "Escape"
+  },
+  {
+    "walk": [
+      0,
+      3
+    ]
+  },
+  {
+    "evaluate": "()=>{const r=Realm.test.adventure('outing-film-'+performance.now(),\"rest\",{});if(!r.ok)throw Error(r.error);return r;}"
+  },
+  {
+    "walk": [
+      11,
+      9
+    ]
+  },
+  {
+    "key": "e"
+  },
+  {
+    "click": "#rpg-content [data-rpg=\"open\"][data-id=\"pursuit\"]"
+  },
+  {
+    "click": "[data-rpg=\"pursuit-start\"]"
+  },
+  {
+    "key": "Escape"
+  },
+  {
+    "walk": [
+      15,
+      7
+    ]
+  },
+  {
+    "key": "e"
+  },
+  {
+    "click": "[data-rpg=\"camera\"][data-id=\"adventure\"]"
+  },
+  {
+    "walk": [
+      -7,
+      3
+    ]
+  },
+  {
+    "key": "e"
+  },
+  {
+    "evaluate": "()=>{const r=Realm.test.adventure('outing-film-'+performance.now(),\"target-select\",{\"id\": \"riverbank-survey/3:west\"});if(!r.ok)throw Error(r.error);return r;}"
+  },
+  {
+    "evaluate": "()=>{const a=Realm.state.adventure;if(a.elapsed<a.classPath.readyAt||a.stamina<25)return {technique:'not ready; continue with weapon'};return Realm.test.adventure('outing-spell-'+performance.now(),'class-technique',{});}"
+  },
+  {
+    "fight": "riverbank-survey/3:west"
+  },
+  {
+    "walk": [
+      5,
+      -3
+    ]
+  },
+  {
+    "evaluate": "()=>{const r=Realm.test.adventure('outing-film-'+performance.now(),\"target-select\",{\"id\": \"riverbank-survey/3:east\"});if(!r.ok)throw Error(r.error);return r;}"
+  },
+  {
+    "evaluate": "()=>{const a=Realm.state.adventure;if(a.elapsed<a.classPath.readyAt||a.stamina<25)return {technique:'not ready; continue with weapon'};return Realm.test.adventure('outing-spell-'+performance.now(),'class-technique',{});}"
+  },
+  {
+    "fight": "riverbank-survey/3:east"
+  },
+  {
+    "walk": [
+      5,
+      -11
+    ]
+  },
+  {
+    "key": "e"
+  },
+  {
+    "walk": [
+      0,
+      12
+    ]
+  },
+  {
+    "key": "e"
+  },
+  {
+    "walk": [
+      11,
+      9
+    ]
+  },
+  {
+    "key": "e"
+  },
+  {
+    "click": "[data-rpg=\"pursuit-claim\"]"
+  },
+  {
+    "evaluate": "()=>({claimed:Realm.state.adventure.pursuit.claimed,ore:Realm.state.adventure.ore,coins:Realm.state.adventure.coins,fiber:Realm.state.sandbox.inventory.fiber,xp:Realm.state.adventure.xp})",
+    "wait_ms": 300
+  },
+  {
+    "key": "Escape"
+  },
+  {
+    "walk": [
+      0,
+      3
+    ]
+  },
+  {
+    "evaluate": "()=>{const r=Realm.test.adventure('outing-film-'+performance.now(),\"rest\",{});if(!r.ok)throw Error(r.error);return r;}"
+  },
+  {
+    "walk": [
+      11,
+      9
+    ]
+  },
+  {
+    "key": "e"
+  },
+  {
+    "click": "#rpg-content [data-rpg=\"open\"][data-id=\"pursuit\"]"
+  },
+  {
+    "click": "[data-rpg=\"pursuit-start\"]"
+  },
+  {
+    "key": "Escape"
+  },
+  {
+    "walk": [
+      15,
+      7
+    ]
+  },
+  {
+    "key": "e"
+  },
+  {
+    "click": "[data-rpg=\"camera\"][data-id=\"follow\"]"
+  },
+  {
+    "walk": [
+      -7,
+      3
+    ]
+  },
+  {
+    "key": "e"
+  },
+  {
+    "evaluate": "()=>{const r=Realm.test.adventure('outing-film-'+performance.now(),\"target-select\",{\"id\": \"riverbank-survey/4:west\"});if(!r.ok)throw Error(r.error);return r;}"
+  },
+  {
+    "evaluate": "()=>{const a=Realm.state.adventure;if(a.elapsed<a.classPath.readyAt||a.stamina<25)return {technique:'not ready; continue with weapon'};return Realm.test.adventure('outing-spell-'+performance.now(),'class-technique',{});}"
+  },
+  {
+    "fight": "riverbank-survey/4:west"
+  },
+  {
+    "walk": [
+      5,
+      -3
+    ]
+  },
+  {
+    "evaluate": "()=>{const r=Realm.test.adventure('outing-film-'+performance.now(),\"target-select\",{\"id\": \"riverbank-survey/4:east\"});if(!r.ok)throw Error(r.error);return r;}"
+  },
+  {
+    "evaluate": "()=>{const a=Realm.state.adventure;if(a.elapsed<a.classPath.readyAt||a.stamina<25)return {technique:'not ready; continue with weapon'};return Realm.test.adventure('outing-spell-'+performance.now(),'class-technique',{});}"
+  },
+  {
+    "fight": "riverbank-survey/4:east"
+  },
+  {
+    "walk": [
+      5,
+      -11
+    ]
+  },
+  {
+    "key": "e"
+  },
+  {
+    "walk": [
+      0,
+      12
+    ]
+  },
+  {
+    "key": "e"
+  },
+  {
+    "walk": [
+      11,
+      9
+    ]
+  },
+  {
+    "key": "e"
+  },
+  {
+    "click": "[data-rpg=\"pursuit-claim\"]"
+  },
+  {
+    "evaluate": "()=>({claimed:Realm.state.adventure.pursuit.claimed,ore:Realm.state.adventure.ore,coins:Realm.state.adventure.coins,fiber:Realm.state.sandbox.inventory.fiber,xp:Realm.state.adventure.xp})",
+    "wait_ms": 300
+  },
+  {
+    "key": "Escape"
+  },
+  {
+    "walk": [
+      0,
+      3
+    ]
+  },
+  {
+    "evaluate": "()=>{const r=Realm.test.adventure('outing-film-'+performance.now(),\"rest\",{});if(!r.ok)throw Error(r.error);return r;}"
+  },
+  {
+    "walk": [
+      11,
+      9
+    ]
+  },
+  {
+    "key": "e"
+  },
+  {
+    "click": "#rpg-content [data-rpg=\"open\"][data-id=\"pursuit\"]"
+  },
+  {
+    "click": "[data-rpg=\"pursuit-start\"]"
+  },
+  {
+    "key": "Escape"
+  },
+  {
+    "walk": [
+      15,
+      7
+    ]
+  },
+  {
+    "key": "e"
+  },
+  {
+    "click": "[data-rpg=\"camera\"][data-id=\"adventure\"]"
+  },
+  {
+    "walk": [
+      -7,
+      3
+    ]
+  },
+  {
+    "key": "e"
+  },
+  {
+    "evaluate": "()=>{const r=Realm.test.adventure('outing-film-'+performance.now(),\"target-select\",{\"id\": \"riverbank-survey/5:west\"});if(!r.ok)throw Error(r.error);return r;}"
+  },
+  {
+    "evaluate": "()=>{const a=Realm.state.adventure;if(a.elapsed<a.classPath.readyAt||a.stamina<25)return {technique:'not ready; continue with weapon'};return Realm.test.adventure('outing-spell-'+performance.now(),'class-technique',{});}"
+  },
+  {
+    "fight": "riverbank-survey/5:west"
+  },
+  {
+    "walk": [
+      5,
+      -3
+    ]
+  },
+  {
+    "evaluate": "()=>{const r=Realm.test.adventure('outing-film-'+performance.now(),\"target-select\",{\"id\": \"riverbank-survey/5:east\"});if(!r.ok)throw Error(r.error);return r;}"
+  },
+  {
+    "evaluate": "()=>{const a=Realm.state.adventure;if(a.elapsed<a.classPath.readyAt||a.stamina<25)return {technique:'not ready; continue with weapon'};return Realm.test.adventure('outing-spell-'+performance.now(),'class-technique',{});}"
+  },
+  {
+    "fight": "riverbank-survey/5:east"
+  },
+  {
+    "walk": [
+      5,
+      -11
+    ]
+  },
+  {
+    "key": "e"
+  },
+  {
+    "walk": [
+      0,
+      12
+    ]
+  },
+  {
+    "key": "e"
+  },
+  {
+    "walk": [
+      11,
+      9
+    ]
+  },
+  {
+    "key": "e"
+  },
+  {
+    "click": "[data-rpg=\"pursuit-claim\"]"
+  },
+  {
+    "evaluate": "()=>({claimed:Realm.state.adventure.pursuit.claimed,ore:Realm.state.adventure.ore,coins:Realm.state.adventure.coins,fiber:Realm.state.sandbox.inventory.fiber,xp:Realm.state.adventure.xp})",
+    "wait_ms": 300
+  },
+  {
+    "click": "[data-rpg=\"pursuit-select\"][data-id=\"copper_blade\"]",
+    "wait_ms": 1000
+  },
+  {
+    "click": "[data-rpg=\"pursuit-recipe\"]",
+    "wait_ms": 700
+  },
+  {
+    "click": "[data-rpg=\"pursuit-recipe\"]",
+    "wait_ms": 700
+  },
+  {
+    "click": "[data-rpg=\"pursuit-recipe\"]",
+    "wait_ms": 800
+  },
+  {
+    "click": ".guide-detail [data-rpg=\"equip\"][data-id=\"copper_blade\"]",
+    "wait_ms": 1300
+  },
+  {
+    "key": "Escape"
+  },
+  {
+    "walk": [
+      15,
+      7
+    ]
+  },
+  {
+    "key": "e"
+  },
+  {
+    "walk": [
+      -5,
+      11.5
+    ]
+  },
+  {
+    "evaluate": "()=>{const r=Realm.test.adventure('outing-film-'+performance.now(),\"target-select\",{\"id\": \"river-practice\"});if(!r.ok)throw Error(r.error);return r;}"
+  },
+  {
+    "key": "1",
+    "wait_ms": 2500
+  },
+  {
+    "key": "1"
+  },
+  {
+    "key": "v",
+    "wait_ms": 1800
+  },
+  {
+    "evaluate": "()=>{const a=Realm.state.adventure,text=document.querySelector('#target-state').textContent,damage=Number(text.match(/Last confirmed impact: (\\d+)/)?.[1]);const summary={claimed:a.pursuit.claimed,fittings:a.pursuit.fittings,weapon:a.equipment.weapon,attack:RealmAdventure.stats(a).attack,confirmedDamage:damage,xp:a.xp,originalOrenQuest:a.starter};if(a.pursuit.claimed!==5||a.pursuit.fittings.copper_blade!==2||a.equipment.weapon!=='copper_blade'||a.xp!==0||a.starter.accepted||damage!==27)throw Error('Final full outing contract: '+JSON.stringify(summary));return summary;}",
+    "wait_ms": 800
+  }
+]

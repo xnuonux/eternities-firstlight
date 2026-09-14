@@ -1,0 +1,2205 @@
+{
+  "origin": "http://127.0.0.1:58400/FIRSTLIGHT_VALLEY.html",
+  "html_sha256": "643107c97521ebfc336d8bb41e03bb041bd9ab3be46622df1074b595b9bcff80",
+  "default_duration_requested_seconds": null,
+  "performance_claim": false,
+  "browser_version": "153.0.8010.36",
+  "fixture": null,
+  "fixture_sha256": null,
+  "method": "Automated accepted commands and UI on normal real-time RAF; command-earned checkpoint, no gameplay state grants; video is not an FPS measurement.",
+  "actions": [
+    {
+      "action": {
+        "evaluate": "()=>{const r=Realm.test.adventure('workshop-film-kit','start',{});if(!r.ok)throw Error(r.error);return r;}"
+      },
+      "result": {
+        "ok": true,
+        "text": "Expedition ready \u00b7 Blade, lantern, tonics and a trail salve."
+      }
+    },
+    {
+      "action": {
+        "evaluate": "async()=>{const t=performance.now();while(Realm.test.path.length){if(performance.now()-t>45000)throw Error('Walk timeout');await new Promise(r=>setTimeout(r,50));}return Realm.diagnostics.adventure.player;}",
+        "wait_ms": 400
+      },
+      "result": {
+        "x": 15,
+        "z": 7.000319999999999,
+        "yaw": 3.141592653589793
+      }
+    },
+    {
+      "action": {
+        "evaluate": "async()=>{const t=performance.now();while(Realm.test.path.length){if(performance.now()-t>45000)throw Error('Walk timeout');await new Promise(r=>setTimeout(r,50));}const r=Realm.test.adventure('workshop-film-practice','target-select',{id:'river-practice'});if(!r.ok)throw Error(r.error);return r;}",
+        "wait_ms": 500
+      },
+      "result": {
+        "ok": true,
+        "text": "Target: Oren\u2019s practice bundle"
+      }
+    },
+    {
+      "action": {
+        "evaluate": "()=>({class:Realm.state.adventure.classPath,project:Realm.state.adventure.pursuit.pinned,weapon:Realm.state.adventure.equipment.weapon,xp:Realm.state.adventure.xp})",
+        "wait_ms": 400
+      },
+      "result": {
+        "class": {
+          "version": 1,
+          "choice": "magician",
+          "readyAt": 17.95229999999998
+        },
+        "project": "copper_blade",
+        "weapon": "trail_blade",
+        "xp": 0
+      }
+    },
+    {
+      "action": {
+        "evaluate": "()=>{const r=Realm.test.adventure('outing-film-'+performance.now(),\"target-select\",{\"id\": \"riverbank-survey/1:west\"});if(!r.ok)throw Error(r.error);return r;}"
+      },
+      "result": {
+        "ok": true,
+        "text": "Target: Bankroot skitter"
+      }
+    },
+    {
+      "action": {
+        "evaluate": "()=>{const a=Realm.state.adventure;if(a.elapsed<a.classPath.readyAt||a.stamina<25)return {technique:'not ready; continue with weapon'};return Realm.test.adventure('outing-spell-'+performance.now(),'class-technique',{});}"
+      },
+      "result": {
+        "ok": true,
+        "text": "Arcane flare \u00b7 20 spell damage."
+      }
+    },
+    {
+      "fight": "riverbank-survey/1:west",
+      "defeated": true,
+      "seconds": 0.6875,
+      "guards": 1
+    },
+    {
+      "action": {
+        "evaluate": "()=>{const r=Realm.test.adventure('outing-film-'+performance.now(),\"target-select\",{\"id\": \"riverbank-survey/1:east\"});if(!r.ok)throw Error(r.error);return r;}"
+      },
+      "result": {
+        "ok": true,
+        "text": "Target: Reedback skitter"
+      }
+    },
+    {
+      "action": {
+        "evaluate": "()=>{const a=Realm.state.adventure;if(a.elapsed<a.classPath.readyAt||a.stamina<25)return {technique:'not ready; continue with weapon'};return Realm.test.adventure('outing-spell-'+performance.now(),'class-technique',{});}"
+      },
+      "result": {
+        "technique": "not ready; continue with weapon"
+      }
+    },
+    {
+      "fight": "riverbank-survey/1:east",
+      "defeated": true,
+      "seconds": 1.7665,
+      "guards": 0
+    },
+    {
+      "action": {
+        "evaluate": "()=>({claimed:Realm.state.adventure.pursuit.claimed,ore:Realm.state.adventure.ore,coins:Realm.state.adventure.coins,fiber:Realm.state.sandbox.inventory.fiber,xp:Realm.state.adventure.xp})",
+        "wait_ms": 300
+      },
+      "result": {
+        "claimed": 1,
+        "ore": 3,
+        "coins": 4,
+        "fiber": 2,
+        "xp": 0
+      }
+    },
+    {
+      "action": {
+        "evaluate": "()=>{const r=Realm.test.adventure('outing-film-'+performance.now(),\"rest\",{});if(!r.ok)throw Error(r.error);return r;}"
+      },
+      "result": {
+        "ok": true,
+        "text": "Rested \u00b7 Health and three trail tonics restored."
+      }
+    },
+    {
+      "action": {
+        "evaluate": "()=>{const r=Realm.test.adventure('outing-film-'+performance.now(),\"target-select\",{\"id\": \"riverbank-survey/2:west\"});if(!r.ok)throw Error(r.error);return r;}"
+      },
+      "result": {
+        "ok": true,
+        "text": "Target: Bankroot skitter"
+      }
+    },
+    {
+      "action": {
+        "evaluate": "()=>{const a=Realm.state.adventure;if(a.elapsed<a.classPath.readyAt||a.stamina<25)return {technique:'not ready; continue with weapon'};return Realm.test.adventure('outing-spell-'+performance.now(),'class-technique',{});}"
+      },
+      "result": {
+        "ok": true,
+        "text": "Arcane flare \u00b7 20 spell damage."
+      }
+    },
+    {
+      "fight": "riverbank-survey/2:west",
+      "defeated": true,
+      "seconds": 0.6946000000238418,
+      "guards": 1
+    },
+    {
+      "action": {
+        "evaluate": "()=>{const r=Realm.test.adventure('outing-film-'+performance.now(),\"target-select\",{\"id\": \"riverbank-survey/2:east\"});if(!r.ok)throw Error(r.error);return r;}"
+      },
+      "result": {
+        "ok": true,
+        "text": "Target: Reedback skitter"
+      }
+    },
+    {
+      "action": {
+        "evaluate": "()=>{const a=Realm.state.adventure;if(a.elapsed<a.classPath.readyAt||a.stamina<25)return {technique:'not ready; continue with weapon'};return Realm.test.adventure('outing-spell-'+performance.now(),'class-technique',{});}"
+      },
+      "result": {
+        "technique": "not ready; continue with weapon"
+      }
+    },
+    {
+      "fight": "riverbank-survey/2:east",
+      "defeated": true,
+      "seconds": 1.754,
+      "guards": 0
+    },
+    {
+      "action": {
+        "evaluate": "()=>({claimed:Realm.state.adventure.pursuit.claimed,ore:Realm.state.adventure.ore,coins:Realm.state.adventure.coins,fiber:Realm.state.sandbox.inventory.fiber,xp:Realm.state.adventure.xp})",
+        "wait_ms": 300
+      },
+      "result": {
+        "claimed": 2,
+        "ore": 6,
+        "coins": 8,
+        "fiber": 4,
+        "xp": 0
+      }
+    },
+    {
+      "action": {
+        "evaluate": "()=>{const r=Realm.test.adventure('outing-film-'+performance.now(),\"rest\",{});if(!r.ok)throw Error(r.error);return r;}"
+      },
+      "result": {
+        "ok": true,
+        "text": "Rested \u00b7 Health and three trail tonics restored."
+      }
+    },
+    {
+      "action": {
+        "evaluate": "()=>{const r=Realm.test.adventure('outing-film-'+performance.now(),\"target-select\",{\"id\": \"riverbank-survey/3:west\"});if(!r.ok)throw Error(r.error);return r;}"
+      },
+      "result": {
+        "ok": true,
+        "text": "Target: Bankroot skitter"
+      }
+    },
+    {
+      "action": {
+        "evaluate": "()=>{const a=Realm.state.adventure;if(a.elapsed<a.classPath.readyAt||a.stamina<25)return {technique:'not ready; continue with weapon'};return Realm.test.adventure('outing-spell-'+performance.now(),'class-technique',{});}"
+      },
+      "result": {
+        "ok": true,
+        "text": "Arcane flare \u00b7 20 spell damage."
+      }
+    },
+    {
+      "fight": "riverbank-survey/3:west",
+      "defeated": true,
+      "seconds": 0.6883000000119209,
+      "guards": 1
+    },
+    {
+      "action": {
+        "evaluate": "()=>{const r=Realm.test.adventure('outing-film-'+performance.now(),\"target-select\",{\"id\": \"riverbank-survey/3:east\"});if(!r.ok)throw Error(r.error);return r;}"
+      },
+      "result": {
+        "ok": true,
+        "text": "Target: Reedback skitter"
+      }
+    },
+    {
+      "action": {
+        "evaluate": "()=>{const a=Realm.state.adventure;if(a.elapsed<a.classPath.readyAt||a.stamina<25)return {technique:'not ready; continue with weapon'};return Realm.test.adventure('outing-spell-'+performance.now(),'class-technique',{});}"
+      },
+      "result": {
+        "technique": "not ready; continue with weapon"
+      }
+    },
+    {
+      "fight": "riverbank-survey/3:east",
+      "defeated": true,
+      "seconds": 1.7583999999761581,
+      "guards": 0
+    },
+    {
+      "action": {
+        "evaluate": "()=>({claimed:Realm.state.adventure.pursuit.claimed,ore:Realm.state.adventure.ore,coins:Realm.state.adventure.coins,fiber:Realm.state.sandbox.inventory.fiber,xp:Realm.state.adventure.xp})",
+        "wait_ms": 300
+      },
+      "result": {
+        "claimed": 3,
+        "ore": 9,
+        "coins": 12,
+        "fiber": 6,
+        "xp": 0
+      }
+    },
+    {
+      "action": {
+        "evaluate": "()=>{const r=Realm.test.adventure('outing-film-'+performance.now(),\"rest\",{});if(!r.ok)throw Error(r.error);return r;}"
+      },
+      "result": {
+        "ok": true,
+        "text": "Rested \u00b7 Health and three trail tonics restored."
+      }
+    },
+    {
+      "action": {
+        "evaluate": "()=>{const r=Realm.test.adventure('outing-film-'+performance.now(),\"target-select\",{\"id\": \"riverbank-survey/4:west\"});if(!r.ok)throw Error(r.error);return r;}"
+      },
+      "result": {
+        "ok": true,
+        "text": "Target: Bankroot skitter"
+      }
+    },
+    {
+      "action": {
+        "evaluate": "()=>{const a=Realm.state.adventure;if(a.elapsed<a.classPath.readyAt||a.stamina<25)return {technique:'not ready; continue with weapon'};return Realm.test.adventure('outing-spell-'+performance.now(),'class-technique',{});}"
+      },
+      "result": {
+        "ok": true,
+        "text": "Arcane flare \u00b7 20 spell damage."
+      }
+    },
+    {
+      "fight": "riverbank-survey/4:west",
+      "defeated": true,
+      "seconds": 0.6913999999761582,
+      "guards": 1
+    },
+    {
+      "action": {
+        "evaluate": "()=>{const r=Realm.test.adventure('outing-film-'+performance.now(),\"target-select\",{\"id\": \"riverbank-survey/4:east\"});if(!r.ok)throw Error(r.error);return r;}"
+      },
+      "result": {
+        "ok": true,
+        "text": "Target: Reedback skitter"
+      }
+    },
+    {
+      "action": {
+        "evaluate": "()=>{const a=Realm.state.adventure;if(a.elapsed<a.classPath.readyAt||a.stamina<25)return {technique:'not ready; continue with weapon'};return Realm.test.adventure('outing-spell-'+performance.now(),'class-technique',{});}"
+      },
+      "result": {
+        "technique": "not ready; continue with weapon"
+      }
+    },
+    {
+      "fight": "riverbank-survey/4:east",
+      "defeated": true,
+      "seconds": 1.7577000000476837,
+      "guards": 0
+    },
+    {
+      "action": {
+        "evaluate": "()=>({claimed:Realm.state.adventure.pursuit.claimed,ore:Realm.state.adventure.ore,coins:Realm.state.adventure.coins,fiber:Realm.state.sandbox.inventory.fiber,xp:Realm.state.adventure.xp})",
+        "wait_ms": 300
+      },
+      "result": {
+        "claimed": 4,
+        "ore": 12,
+        "coins": 16,
+        "fiber": 8,
+        "xp": 0
+      }
+    },
+    {
+      "action": {
+        "evaluate": "()=>{const r=Realm.test.adventure('outing-film-'+performance.now(),\"rest\",{});if(!r.ok)throw Error(r.error);return r;}"
+      },
+      "result": {
+        "ok": true,
+        "text": "Rested \u00b7 Health and three trail tonics restored."
+      }
+    },
+    {
+      "action": {
+        "evaluate": "()=>{const r=Realm.test.adventure('outing-film-'+performance.now(),\"target-select\",{\"id\": \"riverbank-survey/5:west\"});if(!r.ok)throw Error(r.error);return r;}"
+      },
+      "result": {
+        "ok": true,
+        "text": "Target: Bankroot skitter"
+      }
+    },
+    {
+      "action": {
+        "evaluate": "()=>{const a=Realm.state.adventure;if(a.elapsed<a.classPath.readyAt||a.stamina<25)return {technique:'not ready; continue with weapon'};return Realm.test.adventure('outing-spell-'+performance.now(),'class-technique',{});}"
+      },
+      "result": {
+        "ok": true,
+        "text": "Arcane flare \u00b7 20 spell damage."
+      }
+    },
+    {
+      "fight": "riverbank-survey/5:west",
+      "defeated": true,
+      "seconds": 0.6935999999642373,
+      "guards": 1
+    },
+    {
+      "action": {
+        "evaluate": "()=>{const r=Realm.test.adventure('outing-film-'+performance.now(),\"target-select\",{\"id\": \"riverbank-survey/5:east\"});if(!r.ok)throw Error(r.error);return r;}"
+      },
+      "result": {
+        "ok": true,
+        "text": "Target: Reedback skitter"
+      }
+    },
+    {
+      "action": {
+        "evaluate": "()=>{const a=Realm.state.adventure;if(a.elapsed<a.classPath.readyAt||a.stamina<25)return {technique:'not ready; continue with weapon'};return Realm.test.adventure('outing-spell-'+performance.now(),'class-technique',{});}"
+      },
+      "result": {
+        "technique": "not ready; continue with weapon"
+      }
+    },
+    {
+      "fight": "riverbank-survey/5:east",
+      "defeated": true,
+      "seconds": 1.7699000000357628,
+      "guards": 0
+    },
+    {
+      "action": {
+        "evaluate": "()=>({claimed:Realm.state.adventure.pursuit.claimed,ore:Realm.state.adventure.ore,coins:Realm.state.adventure.coins,fiber:Realm.state.sandbox.inventory.fiber,xp:Realm.state.adventure.xp})",
+        "wait_ms": 300
+      },
+      "result": {
+        "claimed": 5,
+        "ore": 15,
+        "coins": 20,
+        "fiber": 10,
+        "xp": 0
+      }
+    },
+    {
+      "action": {
+        "evaluate": "()=>{const r=Realm.test.adventure('outing-film-'+performance.now(),\"target-select\",{\"id\": \"river-practice\"});if(!r.ok)throw Error(r.error);return r;}"
+      },
+      "result": {
+        "ok": true,
+        "text": "Target: Oren\u2019s practice bundle"
+      }
+    },
+    {
+      "action": {
+        "evaluate": "()=>{const a=Realm.state.adventure,text=document.querySelector('#target-state').textContent,damage=Number(text.match(/Last confirmed impact: (\\d+)/)?.[1]);const summary={claimed:a.pursuit.claimed,fittings:a.pursuit.fittings,weapon:a.equipment.weapon,attack:RealmAdventure.stats(a).attack,confirmedDamage:damage,xp:a.xp,originalOrenQuest:a.starter};if(a.pursuit.claimed!==5||a.pursuit.fittings.copper_blade!==2||a.equipment.weapon!=='copper_blade'||a.xp!==0||a.starter.accepted||damage!==27)throw Error('Final full outing contract: '+JSON.stringify(summary));return summary;}",
+        "wait_ms": 800
+      },
+      "result": {
+        "claimed": 5,
+        "fittings": {
+          "copper_blade": 2
+        },
+        "weapon": "copper_blade",
+        "attack": 27,
+        "confirmedDamage": 27,
+        "xp": 0,
+        "originalOrenQuest": {
+          "version": 1,
+          "accepted": false,
+          "bundles": [],
+          "reward": null
+        }
+      }
+    }
+  ],
+  "browser_errors": [],
+  "completed_actions": 177,
+  "last_checkpoint": {
+    "world": {
+      "adventure": {
+        "version": 7,
+        "classPath": {
+          "version": 1,
+          "choice": "magician",
+          "readyAt": 162.13340000000954
+        },
+        "pursuit": {
+          "version": 1,
+          "pinned": "copper_blade",
+          "claimed": 5,
+          "active": null,
+          "fittings": {
+            "copper_blade": 2
+          }
+        },
+        "starter": {
+          "version": 1,
+          "accepted": false,
+          "bundles": [],
+          "reward": null
+        },
+        "crossing": {
+          "version": 1,
+          "entered": false,
+          "met": false,
+          "inscription": false,
+          "clapperRevealed": false,
+          "clapper": false,
+          "repaired": false,
+          "complete": false,
+          "reward": false,
+          "attuned": false,
+          "projects": []
+        },
+        "beacon": {
+          "version": 1,
+          "introduced": false,
+          "complete": false,
+          "status": "dormant",
+          "attempts": 0,
+          "failures": 0,
+          "reward": false,
+          "relic": "undecided",
+          "route": null,
+          "soul": {
+            "grace": false,
+            "equipped": null,
+            "radiance": 0,
+            "corruption": 0,
+            "scars": []
+          }
+        },
+        "arsenal": {
+          "version": 1,
+          "gems": {
+            "ruby": 0,
+            "moonstone": 0,
+            "amber": 0
+          },
+          "sockets": {},
+          "rangeMedal": false,
+          "bestTime": null
+        },
+        "road": {
+          "version": 1,
+          "entered": false,
+          "revealed": [],
+          "claimed": [],
+          "cartRepaired": false,
+          "beaconLit": false,
+          "reported": false
+        },
+        "elapsed": 179.25850000003243,
+        "revision": 152,
+        "started": true,
+        "dug": [],
+        "chips": [],
+        "defeated": [],
+        "drops": [],
+        "ore": 2,
+        "coins": 4,
+        "xp": 0,
+        "hp": 96,
+        "stamina": 100,
+        "tonics": 3,
+        "equipment": {
+          "weapon": "copper_blade",
+          "armor": "travel_coat",
+          "charm": null
+        },
+        "owned": [
+          "trail_blade",
+          "travel_coat",
+          "copper_blade"
+        ],
+        "companion": {
+          "bonded": false,
+          "name": "Briar",
+          "mode": "follow"
+        },
+        "relic": false,
+        "angelSeen": false,
+        "reward": null,
+        "deaths": 0,
+        "receipts": [
+          {
+            "id": "outing-spell-69892.59999996424",
+            "fp": "[\"class-technique\",{}]",
+            "ok": true
+          },
+          {
+            "id": "video-target-select-69907.89999997616",
+            "fp": "[\"target-select\",{\"id\":\"riverbank-survey/2:west\"}]",
+            "ok": true
+          },
+          {
+            "id": "video-auto-toggle-69907.89999997616",
+            "fp": "[\"auto-toggle\",{}]",
+            "ok": true
+          },
+          {
+            "id": "video-guard-69909.59999996424",
+            "fp": "[\"guard\",{}]",
+            "ok": true
+          },
+          {
+            "id": "auto-28-48",
+            "fp": "[\"attack\",{\"target\":\"riverbank-survey/2:west\"}]",
+            "ok": true
+          },
+          {
+            "id": "auto-30-49",
+            "fp": "[\"attack\",{\"target\":\"riverbank-survey/2:west\"}]",
+            "ok": true
+          },
+          {
+            "id": "video-target-clear-70602.5",
+            "fp": "[\"target-clear\",{}]",
+            "ok": true
+          },
+          {
+            "id": "outing-film-74907.69999998808",
+            "fp": "[\"target-select\",{\"id\":\"riverbank-survey/2:east\"}]",
+            "ok": true
+          },
+          {
+            "id": "video-target-select-74952.09999996424",
+            "fp": "[\"target-select\",{\"id\":\"riverbank-survey/2:east\"}]",
+            "ok": true
+          },
+          {
+            "id": "video-auto-toggle-74952.09999996424",
+            "fp": "[\"auto-toggle\",{}]",
+            "ok": true
+          },
+          {
+            "id": "auto-32-55",
+            "fp": "[\"attack\",{\"target\":\"riverbank-survey/2:east\"}]",
+            "ok": true
+          },
+          {
+            "id": "auto-34-56",
+            "fp": "[\"attack\",{\"target\":\"riverbank-survey/2:east\"}]",
+            "ok": true
+          },
+          {
+            "id": "auto-36-57",
+            "fp": "[\"attack\",{\"target\":\"riverbank-survey/2:east\"}]",
+            "ok": true
+          },
+          {
+            "id": "auto-38-58",
+            "fp": "[\"attack\",{\"target\":\"riverbank-survey/2:east\"}]",
+            "ok": true
+          },
+          {
+            "id": "video-target-clear-76706.09999996424",
+            "fp": "[\"target-clear\",{}]",
+            "ok": true
+          },
+          {
+            "id": "adv-1789383535310-17",
+            "fp": "[\"pursuit-sample\",{\"run\":\"riverbank-survey/2\",\"id\":\"east-sample\"}]",
+            "ok": true
+          },
+          {
+            "id": "adv-1789383542759-18",
+            "fp": "[\"starter-leave\",{}]",
+            "ok": true
+          },
+          {
+            "id": "adv-1789383544456-19",
+            "fp": "[\"pursuit-claim\",{\"run\":\"riverbank-survey/2\"}]",
+            "ok": true
+          },
+          {
+            "id": "outing-film-92817.19999998808",
+            "fp": "[\"rest\",{}]",
+            "ok": true
+          },
+          {
+            "id": "adv-1789383553109-20",
+            "fp": "[\"pursuit-start\",{\"after\":2}]",
+            "ok": true
+          },
+          {
+            "id": "adv-1789383554932-21",
+            "fp": "[\"starter-enter\",{}]",
+            "ok": true
+          },
+          {
+            "id": "adv-1789383558610-22",
+            "fp": "[\"pursuit-sample\",{\"run\":\"riverbank-survey/3\",\"id\":\"west-sample\"}]",
+            "ok": true
+          },
+          {
+            "id": "outing-film-102553",
+            "fp": "[\"target-select\",{\"id\":\"riverbank-survey/3:west\"}]",
+            "ok": true
+          },
+          {
+            "id": "outing-spell-102570.59999996424",
+            "fp": "[\"class-technique\",{}]",
+            "ok": true
+          },
+          {
+            "id": "video-target-select-102601.09999996424",
+            "fp": "[\"target-select\",{\"id\":\"riverbank-survey/3:west\"}]",
+            "ok": true
+          },
+          {
+            "id": "video-auto-toggle-102601.09999996424",
+            "fp": "[\"auto-toggle\",{}]",
+            "ok": true
+          },
+          {
+            "id": "video-guard-102601.89999997616",
+            "fp": "[\"guard\",{}]",
+            "ok": true
+          },
+          {
+            "id": "auto-41-73",
+            "fp": "[\"attack\",{\"target\":\"riverbank-survey/3:west\"}]",
+            "ok": true
+          },
+          {
+            "id": "auto-43-74",
+            "fp": "[\"attack\",{\"target\":\"riverbank-survey/3:west\"}]",
+            "ok": true
+          },
+          {
+            "id": "video-target-clear-103289.39999997616",
+            "fp": "[\"target-clear\",{}]",
+            "ok": true
+          },
+          {
+            "id": "outing-film-107588.19999998808",
+            "fp": "[\"target-select\",{\"id\":\"riverbank-survey/3:east\"}]",
+            "ok": true
+          },
+          {
+            "id": "video-target-select-107635.30000001192",
+            "fp": "[\"target-select\",{\"id\":\"riverbank-survey/3:east\"}]",
+            "ok": true
+          },
+          {
+            "id": "video-auto-toggle-107635.30000001192",
+            "fp": "[\"auto-toggle\",{}]",
+            "ok": true
+          },
+          {
+            "id": "auto-45-80",
+            "fp": "[\"attack\",{\"target\":\"riverbank-survey/3:east\"}]",
+            "ok": true
+          },
+          {
+            "id": "auto-47-81",
+            "fp": "[\"attack\",{\"target\":\"riverbank-survey/3:east\"}]",
+            "ok": true
+          },
+          {
+            "id": "auto-49-82",
+            "fp": "[\"attack\",{\"target\":\"riverbank-survey/3:east\"}]",
+            "ok": true
+          },
+          {
+            "id": "auto-51-83",
+            "fp": "[\"attack\",{\"target\":\"riverbank-survey/3:east\"}]",
+            "ok": true
+          },
+          {
+            "id": "video-target-clear-109393.69999998808",
+            "fp": "[\"target-clear\",{}]",
+            "ok": true
+          },
+          {
+            "id": "adv-1789383568029-23",
+            "fp": "[\"pursuit-sample\",{\"run\":\"riverbank-survey/3\",\"id\":\"east-sample\"}]",
+            "ok": true
+          },
+          {
+            "id": "adv-1789383575439-24",
+            "fp": "[\"starter-leave\",{}]",
+            "ok": true
+          },
+          {
+            "id": "adv-1789383577130-25",
+            "fp": "[\"pursuit-claim\",{\"run\":\"riverbank-survey/3\"}]",
+            "ok": true
+          },
+          {
+            "id": "outing-film-125525.80000001192",
+            "fp": "[\"rest\",{}]",
+            "ok": true
+          },
+          {
+            "id": "adv-1789383585768-26",
+            "fp": "[\"pursuit-start\",{\"after\":3}]",
+            "ok": true
+          },
+          {
+            "id": "adv-1789383587543-27",
+            "fp": "[\"starter-enter\",{}]",
+            "ok": true
+          },
+          {
+            "id": "adv-1789383591213-28",
+            "fp": "[\"pursuit-sample\",{\"run\":\"riverbank-survey/4\",\"id\":\"west-sample\"}]",
+            "ok": true
+          },
+          {
+            "id": "outing-film-135163.59999996424",
+            "fp": "[\"target-select\",{\"id\":\"riverbank-survey/4:west\"}]",
+            "ok": true
+          },
+          {
+            "id": "outing-spell-135194.5",
+            "fp": "[\"class-technique\",{}]",
+            "ok": true
+          },
+          {
+            "id": "video-target-select-135223.19999998808",
+            "fp": "[\"target-select\",{\"id\":\"riverbank-survey/4:west\"}]",
+            "ok": true
+          },
+          {
+            "id": "video-auto-toggle-135223.19999998808",
+            "fp": "[\"auto-toggle\",{}]",
+            "ok": true
+          },
+          {
+            "id": "video-guard-135224.19999998808",
+            "fp": "[\"guard\",{}]",
+            "ok": true
+          },
+          {
+            "id": "auto-54-98",
+            "fp": "[\"attack\",{\"target\":\"riverbank-survey/4:west\"}]",
+            "ok": true
+          },
+          {
+            "id": "auto-56-99",
+            "fp": "[\"attack\",{\"target\":\"riverbank-survey/4:west\"}]",
+            "ok": true
+          },
+          {
+            "id": "video-target-clear-135914.59999996424",
+            "fp": "[\"target-clear\",{}]",
+            "ok": true
+          },
+          {
+            "id": "outing-film-140219.09999996424",
+            "fp": "[\"target-select\",{\"id\":\"riverbank-survey/4:east\"}]",
+            "ok": true
+          },
+          {
+            "id": "video-target-select-140268.59999996424",
+            "fp": "[\"target-select\",{\"id\":\"riverbank-survey/4:east\"}]",
+            "ok": true
+          },
+          {
+            "id": "video-auto-toggle-140268.59999996424",
+            "fp": "[\"auto-toggle\",{}]",
+            "ok": true
+          },
+          {
+            "id": "auto-58-105",
+            "fp": "[\"attack\",{\"target\":\"riverbank-survey/4:east\"}]",
+            "ok": true
+          },
+          {
+            "id": "auto-60-106",
+            "fp": "[\"attack\",{\"target\":\"riverbank-survey/4:east\"}]",
+            "ok": true
+          },
+          {
+            "id": "auto-62-107",
+            "fp": "[\"attack\",{\"target\":\"riverbank-survey/4:east\"}]",
+            "ok": true
+          },
+          {
+            "id": "auto-64-108",
+            "fp": "[\"attack\",{\"target\":\"riverbank-survey/4:east\"}]",
+            "ok": true
+          },
+          {
+            "id": "video-target-clear-142026.19999998808",
+            "fp": "[\"target-clear\",{}]",
+            "ok": true
+          },
+          {
+            "id": "adv-1789383600643-29",
+            "fp": "[\"pursuit-sample\",{\"run\":\"riverbank-survey/4\",\"id\":\"east-sample\"}]",
+            "ok": true
+          },
+          {
+            "id": "adv-1789383608097-30",
+            "fp": "[\"starter-leave\",{}]",
+            "ok": true
+          },
+          {
+            "id": "adv-1789383609817-31",
+            "fp": "[\"pursuit-claim\",{\"run\":\"riverbank-survey/4\"}]",
+            "ok": true
+          },
+          {
+            "id": "outing-film-158195.5",
+            "fp": "[\"rest\",{}]",
+            "ok": true
+          },
+          {
+            "id": "adv-1789383618484-32",
+            "fp": "[\"pursuit-start\",{\"after\":4}]",
+            "ok": true
+          },
+          {
+            "id": "adv-1789383620303-33",
+            "fp": "[\"starter-enter\",{}]",
+            "ok": true
+          },
+          {
+            "id": "adv-1789383623995-34",
+            "fp": "[\"pursuit-sample\",{\"run\":\"riverbank-survey/5\",\"id\":\"west-sample\"}]",
+            "ok": true
+          },
+          {
+            "id": "outing-film-167948.30000001192",
+            "fp": "[\"target-select\",{\"id\":\"riverbank-survey/5:west\"}]",
+            "ok": true
+          },
+          {
+            "id": "outing-spell-167973.39999997616",
+            "fp": "[\"class-technique\",{}]",
+            "ok": true
+          },
+          {
+            "id": "video-target-select-167998.69999998808",
+            "fp": "[\"target-select\",{\"id\":\"riverbank-survey/5:west\"}]",
+            "ok": true
+          },
+          {
+            "id": "video-auto-toggle-167998.80000001192",
+            "fp": "[\"auto-toggle\",{}]",
+            "ok": true
+          },
+          {
+            "id": "video-guard-168001.59999996424",
+            "fp": "[\"guard\",{}]",
+            "ok": true
+          },
+          {
+            "id": "auto-67-123",
+            "fp": "[\"attack\",{\"target\":\"riverbank-survey/5:west\"}]",
+            "ok": true
+          },
+          {
+            "id": "auto-69-124",
+            "fp": "[\"attack\",{\"target\":\"riverbank-survey/5:west\"}]",
+            "ok": true
+          },
+          {
+            "id": "video-target-clear-168692.39999997616",
+            "fp": "[\"target-clear\",{}]",
+            "ok": true
+          },
+          {
+            "id": "outing-film-172984.89999997616",
+            "fp": "[\"target-select\",{\"id\":\"riverbank-survey/5:east\"}]",
+            "ok": true
+          },
+          {
+            "id": "video-target-select-173033.80000001192",
+            "fp": "[\"target-select\",{\"id\":\"riverbank-survey/5:east\"}]",
+            "ok": true
+          },
+          {
+            "id": "video-auto-toggle-173033.89999997616",
+            "fp": "[\"auto-toggle\",{}]",
+            "ok": true
+          },
+          {
+            "id": "auto-71-130",
+            "fp": "[\"attack\",{\"target\":\"riverbank-survey/5:east\"}]",
+            "ok": true
+          },
+          {
+            "id": "auto-73-131",
+            "fp": "[\"attack\",{\"target\":\"riverbank-survey/5:east\"}]",
+            "ok": true
+          },
+          {
+            "id": "auto-75-132",
+            "fp": "[\"attack\",{\"target\":\"riverbank-survey/5:east\"}]",
+            "ok": true
+          },
+          {
+            "id": "auto-77-133",
+            "fp": "[\"attack\",{\"target\":\"riverbank-survey/5:east\"}]",
+            "ok": true
+          },
+          {
+            "id": "video-target-clear-174803.80000001192",
+            "fp": "[\"target-clear\",{}]",
+            "ok": true
+          },
+          {
+            "id": "adv-1789383633441-35",
+            "fp": "[\"pursuit-sample\",{\"run\":\"riverbank-survey/5\",\"id\":\"east-sample\"}]",
+            "ok": true
+          },
+          {
+            "id": "adv-1789383640883-36",
+            "fp": "[\"starter-leave\",{}]",
+            "ok": true
+          },
+          {
+            "id": "adv-1789383642560-37",
+            "fp": "[\"pursuit-claim\",{\"run\":\"riverbank-survey/5\"}]",
+            "ok": true
+          },
+          {
+            "id": "adv-1789383643984-38",
+            "fp": "[\"forge\",{}]",
+            "ok": true
+          },
+          {
+            "id": "adv-1789383644726-39",
+            "fp": "[\"pursuit-fit\",{\"weapon\":\"copper_blade\",\"step\":1}]",
+            "ok": true
+          },
+          {
+            "id": "adv-1789383645476-40",
+            "fp": "[\"pursuit-fit\",{\"weapon\":\"copper_blade\",\"step\":2}]",
+            "ok": true
+          },
+          {
+            "id": "adv-1789383646316-41",
+            "fp": "[\"equip\",{\"id\":\"copper_blade\"}]",
+            "ok": true
+          },
+          {
+            "id": "adv-1789383649431-42",
+            "fp": "[\"starter-enter\",{}]",
+            "ok": true
+          },
+          {
+            "id": "outing-film-195017.5",
+            "fp": "[\"target-select\",{\"id\":\"river-practice\"}]",
+            "ok": true
+          },
+          {
+            "id": "adv-1789383651124-43",
+            "fp": "[\"auto-toggle\",{}]",
+            "ok": true
+          },
+          {
+            "id": "auto-79-146",
+            "fp": "[\"attack\",{\"target\":\"river-practice\"}]",
+            "ok": true
+          },
+          {
+            "id": "auto-81-147",
+            "fp": "[\"attack\",{\"target\":\"river-practice\"}]",
+            "ok": true
+          },
+          {
+            "id": "auto-83-148",
+            "fp": "[\"attack\",{\"target\":\"river-practice\"}]",
+            "ok": true
+          },
+          {
+            "id": "auto-85-149",
+            "fp": "[\"attack\",{\"target\":\"river-practice\"}]",
+            "ok": true
+          },
+          {
+            "id": "auto-87-150",
+            "fp": "[\"attack\",{\"target\":\"river-practice\"}]",
+            "ok": true
+          },
+          {
+            "id": "adv-1789383653651-44",
+            "fp": "[\"auto-toggle\",{}]",
+            "ok": true
+          }
+        ]
+      },
+      "sandbox": {
+        "version": 1,
+        "elapsed": 179.25850000003243,
+        "revision": 0,
+        "inventory": {
+          "wood": 0,
+          "stone": 0,
+          "fiber": 4,
+          "crystal": 0,
+          "plank": 0,
+          "block": 0,
+          "seeds": 4,
+          "berry": 0,
+          "axe": 0,
+          "pick": 0,
+          "floor": 0,
+          "wall": 0,
+          "masonry": 0,
+          "lantern": 0,
+          "bench": 0,
+          "bed": 0,
+          "fire": 0,
+          "workbench": 0
+        },
+        "nodes": [
+          {
+            "id": "timber-1",
+            "hp": 4,
+            "readyAt": 0
+          },
+          {
+            "id": "timber-2",
+            "hp": 4,
+            "readyAt": 0
+          },
+          {
+            "id": "timber-3",
+            "hp": 4,
+            "readyAt": 0
+          },
+          {
+            "id": "timber-4",
+            "hp": 4,
+            "readyAt": 0
+          },
+          {
+            "id": "stone-1",
+            "hp": 4,
+            "readyAt": 0
+          },
+          {
+            "id": "stone-2",
+            "hp": 4,
+            "readyAt": 0
+          },
+          {
+            "id": "stone-3",
+            "hp": 4,
+            "readyAt": 0
+          },
+          {
+            "id": "fibre-1",
+            "hp": 1,
+            "readyAt": 0
+          },
+          {
+            "id": "fibre-2",
+            "hp": 1,
+            "readyAt": 0
+          },
+          {
+            "id": "fibre-3",
+            "hp": 1,
+            "readyAt": 0
+          },
+          {
+            "id": "wild-timber-1",
+            "hp": 4,
+            "readyAt": 0
+          },
+          {
+            "id": "wild-timber-2",
+            "hp": 4,
+            "readyAt": 0
+          },
+          {
+            "id": "wild-timber-3",
+            "hp": 4,
+            "readyAt": 0
+          },
+          {
+            "id": "wild-stone-1",
+            "hp": 4,
+            "readyAt": 0
+          },
+          {
+            "id": "wild-stone-2",
+            "hp": 4,
+            "readyAt": 0
+          },
+          {
+            "id": "wild-fibre",
+            "hp": 1,
+            "readyAt": 0
+          },
+          {
+            "id": "crystal-1",
+            "hp": 4,
+            "readyAt": 0
+          },
+          {
+            "id": "crystal-2",
+            "hp": 4,
+            "readyAt": 0
+          }
+        ],
+        "bridge": false,
+        "placed": [],
+        "nextId": 1,
+        "stats": {
+          "gathered": 0,
+          "crafted": 0,
+          "harvested": 0
+        },
+        "milestones": [],
+        "recentCommands": [],
+        "cooldownUntil": 0
+      },
+      "score": {
+        "format": "eternities.score.v1",
+        "title": "A Window Left Open",
+        "bpm": 88,
+        "voice": "felt",
+        "melody": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ]
+        ],
+        "bass": [
+          1,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        "drums": [
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0
+          ]
+        ]
+      },
+      "scoreRevision": 0,
+      "retreat": {
+        "version": 1,
+        "revision": 0,
+        "wall": "moss",
+        "floor": "oak",
+        "items": [
+          {
+            "slot": "nw",
+            "kind": "shelf",
+            "rotation": 0
+          },
+          {
+            "slot": "ne",
+            "kind": "piano",
+            "rotation": 0
+          },
+          {
+            "slot": "w",
+            "kind": "sofa",
+            "rotation": 1
+          },
+          {
+            "slot": "e",
+            "kind": "plant",
+            "rotation": 0
+          },
+          {
+            "slot": "c",
+            "kind": "rug",
+            "rotation": 0
+          }
+        ]
+      },
+      "visitor": {
+        "name": "Visitor",
+        "skin": 0,
+        "cloak": 0,
+        "hair": 0
+      },
+      "version": 9,
+      "seed": 2317,
+      "day": 1,
+      "hour": 18.006663249989472,
+      "weather": "clear",
+      "player": {
+        "x": 15,
+        "z": 7.000000000000004,
+        "yaw": 3.141592653589793
+      },
+      "visited": [
+        "market",
+        "commons"
+      ],
+      "flowers": [],
+      "notes": [],
+      "journal": [
+        {
+          "seq": 1,
+          "day": 1,
+          "hour": 17.200072,
+          "kind": "routine",
+          "text": "Ilan is heading to amphitheatre."
+        },
+        {
+          "seq": 2,
+          "day": 1,
+          "hour": 17.200072,
+          "kind": "routine",
+          "text": "Mara is heading to observatory."
+        },
+        {
+          "seq": 3,
+          "day": 1,
+          "hour": 17.200072,
+          "kind": "routine",
+          "text": "Oren is heading to workshop."
+        },
+        {
+          "seq": 4,
+          "day": 1,
+          "hour": 17.209409949999873,
+          "kind": "discovery",
+          "text": "You found The makers\u2019 exchange."
+        },
+        {
+          "seq": 5,
+          "day": 1,
+          "hour": 17.213597199999818,
+          "kind": "quest",
+          "text": "Oren supplied a trail blade, a lantern, three tonics and a salve for an injured animal. Find the northern mine."
+        },
+        {
+          "seq": 6,
+          "day": 1,
+          "hour": 17.213691249999815,
+          "kind": "choice",
+          "text": "You chose the Magician path. Your equipment, profession, companion and soul remain your own choices."
+        },
+        {
+          "seq": 7,
+          "day": 1,
+          "hour": 17.280879849998964,
+          "kind": "survey",
+          "text": "Accepted riverbank-survey/1: two skitters and two samples for 3 copper, 4 sunmarks and 2 fibre. Oren\u2019s once-only quest is paused, not reset."
+        },
+        {
+          "seq": 8,
+          "day": 1,
+          "hour": 17.305567299998614,
+          "kind": "survey",
+          "text": "Copper gravel sample recorded for riverbank-survey/1. 1/2 samples."
+        },
+        {
+          "seq": 9,
+          "day": 1,
+          "hour": 17.30884869999858,
+          "kind": "survey",
+          "text": "Bankroot skitter cleared for riverbank-survey/1. The declared materials are paid once when this survey is returned."
+        },
+        {
+          "seq": 10,
+          "day": 1,
+          "hour": 17.336192499998212,
+          "kind": "survey",
+          "text": "Reedback skitter cleared for riverbank-survey/1. The declared materials are paid once when this survey is returned."
+        },
+        {
+          "seq": 11,
+          "day": 1,
+          "hour": 17.34791139999806,
+          "kind": "survey",
+          "text": "Reed-fibre sample recorded for riverbank-survey/1. 2/2 samples."
+        },
+        {
+          "seq": 12,
+          "day": 1,
+          "hour": 17.388599049997524,
+          "kind": "survey",
+          "text": "riverbank-survey/1 paid: 3 copper, 4 sunmarks, 2 fibre. All surveys through 1 are claimed."
+        },
+        {
+          "seq": 13,
+          "day": 1,
+          "hour": 17.402848749997343,
+          "kind": "discovery",
+          "text": "You found The Firstlight Commons."
+        },
+        {
+          "seq": 14,
+          "day": 1,
+          "hour": 17.425380249997033,
+          "kind": "survey",
+          "text": "Accepted riverbank-survey/2: two skitters and two samples for 3 copper, 4 sunmarks and 2 fibre. Oren\u2019s once-only quest is paused, not reset."
+        },
+        {
+          "seq": 15,
+          "day": 1,
+          "hour": 17.45016174999673,
+          "kind": "survey",
+          "text": "Copper gravel sample recorded for riverbank-survey/2. 1/2 samples."
+        },
+        {
+          "seq": 16,
+          "day": 1,
+          "hour": 17.45334954999669,
+          "kind": "survey",
+          "text": "Bankroot skitter cleared for riverbank-survey/2. The declared materials are paid once when this survey is returned."
+        },
+        {
+          "seq": 17,
+          "day": 1,
+          "hour": 17.48078694999632,
+          "kind": "survey",
+          "text": "Reedback skitter cleared for riverbank-survey/2. The declared materials are paid once when this survey is returned."
+        },
+        {
+          "seq": 18,
+          "day": 1,
+          "hour": 17.492349249996206,
+          "kind": "survey",
+          "text": "Reed-fibre sample recorded for riverbank-survey/2. 2/2 samples."
+        },
+        {
+          "seq": 19,
+          "day": 1,
+          "hour": 17.533287099995707,
+          "kind": "survey",
+          "text": "riverbank-survey/2 paid: 3 copper, 4 sunmarks, 2 fibre. All surveys through 2 are claimed."
+        },
+        {
+          "seq": 20,
+          "day": 1,
+          "hour": 17.570223549995244,
+          "kind": "survey",
+          "text": "Accepted riverbank-survey/3: two skitters and two samples for 3 copper, 4 sunmarks and 2 fibre. Oren\u2019s once-only quest is paused, not reset."
+        },
+        {
+          "seq": 21,
+          "day": 1,
+          "hour": 17.594848899994926,
+          "kind": "survey",
+          "text": "Copper gravel sample recorded for riverbank-survey/3. 1/2 samples."
+        },
+        {
+          "seq": 22,
+          "day": 1,
+          "hour": 17.598129849994894,
+          "kind": "survey",
+          "text": "Bankroot skitter cleared for riverbank-survey/3. The declared materials are paid once when this survey is returned."
+        },
+        {
+          "seq": 23,
+          "day": 1,
+          "hour": 17.625536199994556,
+          "kind": "survey",
+          "text": "Reedback skitter cleared for riverbank-survey/3. The declared materials are paid once when this survey is returned."
+        },
+        {
+          "seq": 24,
+          "day": 1,
+          "hour": 17.637255099994395,
+          "kind": "survey",
+          "text": "Reed-fibre sample recorded for riverbank-survey/3. 2/2 samples."
+        },
+        {
+          "seq": 25,
+          "day": 1,
+          "hour": 17.677942749993846,
+          "kind": "survey",
+          "text": "riverbank-survey/3 paid: 3 copper, 4 sunmarks, 2 fibre. All surveys through 3 are claimed."
+        },
+        {
+          "seq": 26,
+          "day": 1,
+          "hour": 17.714786949993385,
+          "kind": "survey",
+          "text": "Accepted riverbank-survey/4: two skitters and two samples for 3 copper, 4 sunmarks and 2 fibre. Oren\u2019s once-only quest is paused, not reset."
+        },
+        {
+          "seq": 27,
+          "day": 1,
+          "hour": 17.739162549993083,
+          "kind": "survey",
+          "text": "Copper gravel sample recorded for riverbank-survey/4. 1/2 samples."
+        },
+        {
+          "seq": 28,
+          "day": 1,
+          "hour": 17.742505599993034,
+          "kind": "survey",
+          "text": "Bankroot skitter cleared for riverbank-survey/4. The declared materials are paid once when this survey is returned."
+        },
+        {
+          "seq": 29,
+          "day": 1,
+          "hour": 17.769974949992687,
+          "kind": "survey",
+          "text": "Reedback skitter cleared for riverbank-survey/4. The declared materials are paid once when this survey is returned."
+        },
+        {
+          "seq": 30,
+          "day": 1,
+          "hour": 17.78159979999252,
+          "kind": "survey",
+          "text": "Reed-fibre sample recorded for riverbank-survey/4. 2/2 samples."
+        },
+        {
+          "seq": 31,
+          "day": 1,
+          "hour": 17.82266274999199,
+          "kind": "survey",
+          "text": "riverbank-survey/4 paid: 3 copper, 4 sunmarks, 2 fibre. All surveys through 4 are claimed."
+        },
+        {
+          "seq": 32,
+          "day": 1,
+          "hour": 17.859693699991528,
+          "kind": "survey",
+          "text": "Accepted riverbank-survey/5: two skitters and two samples for 3 copper, 4 sunmarks and 2 fibre. Oren\u2019s once-only quest is paused, not reset."
+        },
+        {
+          "seq": 33,
+          "day": 1,
+          "hour": 17.884381599991197,
+          "kind": "survey",
+          "text": "Copper gravel sample recorded for riverbank-survey/5. 1/2 samples."
+        },
+        {
+          "seq": 34,
+          "day": 1,
+          "hour": 17.88769404999113,
+          "kind": "survey",
+          "text": "Bankroot skitter cleared for riverbank-survey/5. The declared materials are paid once when this survey is returned."
+        },
+        {
+          "seq": 35,
+          "day": 1,
+          "hour": 17.915100399990756,
+          "kind": "survey",
+          "text": "Reedback skitter cleared for riverbank-survey/5. The declared materials are paid once when this survey is returned."
+        },
+        {
+          "seq": 36,
+          "day": 1,
+          "hour": 17.926881399990588,
+          "kind": "survey",
+          "text": "Reed-fibre sample recorded for riverbank-survey/5. 2/2 samples."
+        },
+        {
+          "seq": 37,
+          "day": 1,
+          "hour": 17.96766309999,
+          "kind": "survey",
+          "text": "riverbank-survey/5 paid: 3 copper, 4 sunmarks, 2 fibre. All surveys through 5 are claimed."
+        },
+        {
+          "seq": 38,
+          "day": 1,
+          "hour": 17.96766309999,
+          "kind": "craft",
+          "text": "River fitting I fitted to Copper-edged blade for 3 copper, 4 sunmarks and 2 fibre. Identity and socket retained."
+        },
+        {
+          "seq": 39,
+          "day": 1,
+          "hour": 17.96766309999,
+          "kind": "craft",
+          "text": "River fitting II fitted to Copper-edged blade for 6 copper, 8 sunmarks and 4 fibre. Identity and socket retained."
+        }
+      ],
+      "nextEvent": 40,
+      "residents": [
+        {
+          "id": "ilan",
+          "x": 0,
+          "z": -11.6,
+          "yaw": 1.5707963267948966,
+          "progress": 0.08218515200001383,
+          "conversations": 0
+        },
+        {
+          "id": "mara",
+          "x": 9,
+          "z": -5.8,
+          "yaw": 0,
+          "progress": 0.0822665300000138,
+          "conversations": 0
+        },
+        {
+          "id": "oren",
+          "x": 11,
+          "z": 9,
+          "yaw": -1.5707963267948966,
+          "progress": 0.08218515200001383,
+          "conversations": 0
+        }
+      ],
+      "settings": {
+        "quality": "balanced",
+        "cameraMode": "follow",
+        "cameraFov": 60,
+        "cameraViews": {
+          "version": 1,
+          "lastDiorama": "follow",
+          "profiles": {
+            "adventure": {
+              "yaw": 0.21999999999999975,
+              "elevation": 0.28,
+              "distance": 7.5
+            },
+            "follow": {
+              "yaw": 0.7599999999999998,
+              "elevation": 0.88,
+              "zoom": 1
+            }
+          }
+        },
+        "cameraCutaway": true,
+        "reducedMotion": false,
+        "labels": true,
+        "timeFlow": true,
+        "sound": false
+      }
+    },
+    "diagnostics": {
+      "version": "10.0.0",
+      "mode": "webgl2",
+      "scene": "riverbank",
+      "networkDependencies": 0,
+      "liveAI": false,
+      "multiplayer": false,
+      "adventure": {
+        "tactics": {
+          "scene": "riverbank",
+          "target": "river-practice",
+          "auto": false,
+          "nextAttack": 0,
+          "guardUntil": 155.16110000000955,
+          "shield": 0,
+          "shieldUntil": 0,
+          "cooldowns": {
+            "guard": 160.16110000000955,
+            "insight": 0,
+            "spirit": 0
+          },
+          "hits": [],
+          "serial": 88,
+          "windup": null,
+          "motion": {
+            "style": "blade",
+            "at": 176.30710000002992
+          }
+        },
+        "beacon": {
+          "phase": "idle",
+          "time": 0,
+          "wave": 0,
+          "ward": 100,
+          "actors": [],
+          "serial": 0,
+          "notice": "",
+          "repairAt": 0,
+          "maraAt": 0,
+          "ilanAt": 0,
+          "playerRepairAt": 0,
+          "defeats": 0
+        },
+        "crossing": {
+          "room": "riverbank",
+          "tones": [],
+          "seek": false,
+          "rangAt": -10,
+          "tone": null,
+          "toneSerial": 0
+        },
+        "player": {
+          "x": -5,
+          "z": 11.5,
+          "yaw": 3.141592653589793
+        },
+        "paused": false,
+        "intent": null,
+        "stats": {
+          "level": 1,
+          "attack": 27,
+          "defense": 1,
+          "maxHP": 100
+        },
+        "weapon": {
+          "style": "blade",
+          "reach": 2.65,
+          "cooldown": 0.52,
+          "stamina": 0,
+          "primary": "Sunstrike",
+          "special": "Dawn sweep"
+        },
+        "arrows": [],
+        "range": {
+          "active": false,
+          "start": 0,
+          "hits": {},
+          "shots": 0,
+          "message": "A calm place to learn a different rhythm."
+        },
+        "enemies": [
+          {
+            "id": "river-practice",
+            "x": -5,
+            "z": 10,
+            "hp": 100,
+            "maxHP": 100,
+            "hidden": false,
+            "eventEnemy": false,
+            "kind": "practice",
+            "ringMode": null,
+            "custom": null,
+            "mode": "idle",
+            "timer": 0,
+            "aim": null
+          }
+        ],
+        "companion": {
+          "room": "riverbank",
+          "x": 0,
+          "z": 12,
+          "yaw": 3.141592653589793,
+          "path": [],
+          "nextPath": 0,
+          "nextHit": 0,
+          "seek": null,
+          "status": "Beside you"
+        }
+      },
+      "sandbox": {
+        "bridge": false,
+        "objects": 0,
+        "elapsed": 179.25850000003243,
+        "autoGather": null,
+        "buildMode": null
+      },
+      "saveState": "saved",
+      "characters": {
+        "mode": "legacy",
+        "active": "legacy",
+        "revision": 0,
+        "count": 1,
+        "writer": false,
+        "error": null
+      },
+      "fps": 144.0042471298698,
+      "errors": [],
+      "camera": {
+        "yaw": 0.7599999999999998,
+        "elevation": 0.88,
+        "half": 17,
+        "distance": 7.5,
+        "actualDistance": 7.499999999999998,
+        "fov": 60,
+        "center": [
+          -4.999999999999978,
+          2.000083265076074,
+          11.500000000000044
+        ],
+        "overview": false,
+        "preset": "follow",
+        "tour": false,
+        "ready": true,
+        "baseHalf": 17,
+        "zoom": 1,
+        "projection": "orthographic",
+        "eye": [
+          27.921031526134556,
+          59.80549918249877,
+          46.13725701999271
+        ],
+        "target": [
+          -4.999999999999978,
+          2.000083265076074,
+          11.500000000000044
+        ]
+      },
+      "metrics": {
+        "drawCalls": 23,
+        "instances": 913,
+        "triangles": 79268
+      },
+      "reflection": {
+        "method": "world-plane P*V*H",
+        "height": 0.01,
+        "horizontalFlip": false
+      },
+      "cutaway": {
+        "enabled": true,
+        "focus": [
+          -5,
+          2.45,
+          11.5
+        ]
+      },
+      "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3080 (0x00002216) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "music": {
+        "playing": false,
+        "scoreRevision": 0,
+        "playingRevision": -1,
+        "step": -1
+      },
+      "gathering": null,
+      "layoutRevision": 0,
+      "audio": {
+        "enabled": false,
+        "state": "not-created"
+      }
+    },
+    "practiceText": "Last confirmed impact: 27 \u00b7 no XP or loot"
+  },
+  "final_diagnostics": {
+    "version": "10.0.0",
+    "mode": "webgl2",
+    "scene": "riverbank",
+    "networkDependencies": 0,
+    "liveAI": false,
+    "multiplayer": false,
+    "adventure": {
+      "tactics": {
+        "scene": "riverbank",
+        "target": "river-practice",
+        "auto": false,
+        "nextAttack": 0,
+        "guardUntil": 155.16110000000955,
+        "shield": 0,
+        "shieldUntil": 0,
+        "cooldowns": {
+          "guard": 160.16110000000955,
+          "insight": 0,
+          "spirit": 0
+        },
+        "hits": [],
+        "serial": 88,
+        "windup": null,
+        "motion": {
+          "style": "blade",
+          "at": 176.30710000002992
+        }
+      },
+      "beacon": {
+        "phase": "idle",
+        "time": 0,
+        "wave": 0,
+        "ward": 100,
+        "actors": [],
+        "serial": 0,
+        "notice": "",
+        "repairAt": 0,
+        "maraAt": 0,
+        "ilanAt": 0,
+        "playerRepairAt": 0,
+        "defeats": 0
+      },
+      "crossing": {
+        "room": "riverbank",
+        "tones": [],
+        "seek": false,
+        "rangAt": -10,
+        "tone": null,
+        "toneSerial": 0
+      },
+      "player": {
+        "x": -5,
+        "z": 11.5,
+        "yaw": 3.141592653589793
+      },
+      "paused": false,
+      "intent": null,
+      "stats": {
+        "level": 1,
+        "attack": 27,
+        "defense": 1,
+        "maxHP": 100
+      },
+      "weapon": {
+        "style": "blade",
+        "reach": 2.65,
+        "cooldown": 0.52,
+        "stamina": 0,
+        "primary": "Sunstrike",
+        "special": "Dawn sweep"
+      },
+      "arrows": [],
+      "range": {
+        "active": false,
+        "start": 0,
+        "hits": {},
+        "shots": 0,
+        "message": "A calm place to learn a different rhythm."
+      },
+      "enemies": [
+        {
+          "id": "river-practice",
+          "x": -5,
+          "z": 10,
+          "hp": 100,
+          "maxHP": 100,
+          "hidden": false,
+          "eventEnemy": false,
+          "kind": "practice",
+          "ringMode": null,
+          "custom": null,
+          "mode": "idle",
+          "timer": 0,
+          "aim": null
+        }
+      ],
+      "companion": {
+        "room": "riverbank",
+        "x": 0,
+        "z": 12,
+        "yaw": 3.141592653589793,
+        "path": [],
+        "nextPath": 0,
+        "nextHit": 0,
+        "seek": null,
+        "status": "Beside you"
+      }
+    },
+    "sandbox": {
+      "bridge": false,
+      "objects": 0,
+      "elapsed": 179.27240000003243,
+      "autoGather": null,
+      "buildMode": null
+    },
+    "saveState": "saved",
+    "characters": {
+      "mode": "legacy",
+      "active": "legacy",
+      "revision": 0,
+      "count": 1,
+      "writer": false,
+      "error": null
+    },
+    "fps": 144.0042471298698,
+    "errors": [],
+    "camera": {
+      "yaw": 0.7599999999999998,
+      "elevation": 0.88,
+      "half": 17,
+      "distance": 7.5,
+      "actualDistance": 7.499999999999998,
+      "fov": 60,
+      "center": [
+        -4.999999999999978,
+        2.0000803096032898,
+        11.500000000000044
+      ],
+      "overview": false,
+      "preset": "follow",
+      "tour": false,
+      "ready": true,
+      "baseHalf": 17,
+      "zoom": 1,
+      "projection": "orthographic",
+      "eye": [
+        27.921031526134556,
+        59.80549622702599,
+        46.13725701999271
+      ],
+      "target": [
+        -4.999999999999978,
+        2.0000803096032898,
+        11.500000000000044
+      ]
+    },
+    "metrics": {
+      "drawCalls": 23,
+      "instances": 913,
+      "triangles": 79268
+    },
+    "reflection": {
+      "method": "world-plane P*V*H",
+      "height": 0.01,
+      "horizontalFlip": false
+    },
+    "cutaway": {
+      "enabled": true,
+      "focus": [
+        -5,
+        2.45,
+        11.5
+      ]
+    },
+    "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3080 (0x00002216) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "music": {
+      "playing": false,
+      "scoreRevision": 0,
+      "playingRevision": -1,
+      "step": -1
+    },
+    "gathering": null,
+    "layoutRevision": 0,
+    "audio": {
+      "enabled": false,
+      "state": "not-created"
+    }
+  },
+  "final_quest": {
+    "version": 1,
+    "accepted": false,
+    "bundles": [],
+    "reward": null
+  },
+  "final_pursuit": {
+    "version": 1,
+    "pinned": "copper_blade",
+    "claimed": 5,
+    "active": null,
+    "fittings": {
+      "copper_blade": 2
+    }
+  },
+  "video_path": "C:\\dev\\firstlight-artifacts\\outing-readability-2026-09-14\\full-outing-video-final\\1b7aae863768fc080196ba38b774d081.webm",
+  "delivered_video": {
+    "file": "workshop-to-upgrade.mp4",
+    "frames": 1599,
+    "seconds": 63.96,
+    "bytes": 12558757,
+    "sha256": "fb77c89d3c17551f21b701d76f50aed688b771af2a529af20c3a8aea33477874",
+    "source_ranges_seconds": [
+      [
+        0,
+        24
+      ],
+      [
+        160.76,
+        200.76
+      ]
+    ],
+    "method": "Two actual excerpts: opening workshop/class/practice flow, then final survey return/craft/two fittings/equip/practice. The time between excerpts is omitted; full real-time recording remains in local artifacts. Silent H.264 at original 25 fps."
+  },
+  "full_video": {
+    "file": "full-outing.mp4",
+    "frames": 5019,
+    "seconds": 200.76,
+    "bytes": 55591665,
+    "sha256": "3026f4bcb4eaf2b6348f981b1ee9ab617fcc39f2362b372265bd854f709c1ebc",
+    "transcode": "Full recording at original 25fps and duration, H.264 CRF22; silent; no cuts",
+    "local_path": "C:\\dev\\firstlight-artifacts\\outing-readability-2026-09-14\\full-outing-video-final\\full-outing.mp4"
+  },
+  "reproduction_actions": {
+    "file": "full-outing-actions.json",
+    "sha256": "a9fd4fbd0a1ca1b1b9a87f5fe8aa0a12457e83be5a4b51b7f13d224870e46c02",
+    "steps": 177,
+    "method": "LF-normalized source of the 177 completed recording steps; no gameplay data edits."
+  }
+}

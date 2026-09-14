@@ -54,7 +54,9 @@ class PursuitUI{
  }
  tick(){const p=this.p,b=$('.tracker-switch [data-id="project"]');b.hidden=!this.a.started;
   if(this.lastPin!==p.pinned||this.lastRun!==p.active?.id){if(p.pinned||p.active)this.rpg.quest='project';this.lastPin=p.pinned;this.lastRun=p.active?.id;}
-  if(this.rpg.quest!=='project')return;const next=this.next();$('#tracked-chapter').textContent='EQUIPMENT PROJECT';$('#tracked-title').textContent=(p.pinned?A.GEAR[p.pinned].name+' · ':'')+next.title;$('#tracked-detail').textContent=next.detail;$('#tracked-progress').textContent=p.active?p.active.defeated.length+'/2 threats · '+p.active.samples.length+'/2 samples':p.pinned?H.stage(this.a,p.pinned)+'/2 fittings · '+p.claimed+' surveys paid':'Open the field guide to pin a local project';
+  if(this.rpg.quest!=='project')return;const next=this.next(),room=this.sim.room;let detail=next.detail;
+  if(p.active){if(H.complete(this.a))detail=this.atOren()?'Oren is here. E opens your survey; claim the materials when ready.':room===Q.ROOM?'Return by the southern path and claim your materials at Oren.':room?'Leave this area, then visit Oren’s workshop to claim your materials.':'Visit Oren’s workshop to claim your completed survey.';else detail=room===Q.ROOM?'Follow the gravel and reed beds. M shows the route.':room?'Leave this area, then take the riverbank sign east of Oren’s workshop.':'Take the sign east of Oren’s workshop. E enters the riverbank.';}
+  $('#tracked-chapter').textContent='EQUIPMENT PROJECT';$('#tracked-title').textContent=(p.pinned?A.GEAR[p.pinned].name+' · ':'')+next.title;$('#tracked-detail').textContent=detail;$('#tracked-progress').textContent=p.active?p.active.defeated.length+'/2 threats · '+p.active.samples.length+'/2 samples':p.pinned?H.stage(this.a,p.pinned)+'/2 fittings · '+p.claimed+' surveys paid':'Open the field guide to pin a local project';
  }
 }
 G.RealmPursuitUI={PursuitUI};

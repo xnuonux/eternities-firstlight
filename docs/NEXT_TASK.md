@@ -1,10 +1,10 @@
 # Next playable acceptance
 
-Current class implementation is on `gameplay/chosen-class-experiment`, stacked on PR #11. Read CURRENT_STATE and the dated class results first; never restart from main or an archive. Dom's autonomous window ends 07:00 Central on 2026-09-14. No continuation beyond that time is implied by these records.
+Current playable implementation is on `gameplay/outing-readability`, stacked on PR #12. Read CURRENT_STATE and the dated outing results first; never restart from main or an archive. Dom's autonomous window ends 07:00 Central on 2026-09-14. No continuation beyond that time is implied by these records.
 
 ## First, play the implemented loop
 
-Dom should try one new Magician and an existing bow character choosing Hunter. Compare the exact technique values before choosing, use the riverbank practice bundle, finish a materials survey, then switch characters and resume the earlier life. Questions: did you understand the choice before committing; did the technique change how the fight felt; did the next equipment project give you a reason to head out again? Keep automated success separate from these answers.
+Dom should try one new Magician and an existing bow character choosing Hunter. Start from Oren's visible comparison, use the linked practice route, finish a materials survey, then switch characters and resume the earlier life. Questions: did you know where to go; did the technique change how the fight felt; did the next equipment project give you a reason to head out again? Keep automated success separate from these answers.
 
 ## Bounded refinement options
 
