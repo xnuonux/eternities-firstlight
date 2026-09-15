@@ -1,0 +1,69 @@
+{
+  "prepared_date": "2026-09-14",
+  "packaged_at_utc": "2026-09-15T00:43:34.075394+00:00",
+  "title": "Cosmos — The Unwritten Meridian",
+  "status": "completed_design_not_a_playable_build",
+  "reader_words": 23000,
+  "counts": {
+    "provinces": 10,
+    "quest_threads": 40,
+    "event_families": 10,
+    "campaign_movements": 6,
+    "prototype_points": 24,
+    "abstract_links": 32,
+    "encounters": 4,
+    "local_resolutions": 3
+  },
+  "validation": {
+    "design_checks_passed": 51,
+    "design_checks_failed": 0,
+    "checker_tests_passed": 30,
+    "checker_tests_failed": 0,
+    "zip_crc_passed": true,
+    "fresh_extract_manifest_files": 24,
+    "fresh_extract_manifest_mismatches": 0,
+    "fresh_catalogue_identical": true,
+    "fresh_reader_identical": true,
+    "fresh_design_checks_passed": 51,
+    "fresh_checker_tests_passed": 30
+  },
+  "observed_gameplay_reference": {
+    "repo": "xnuonux/eternities-firstlight",
+    "pr": 13,
+    "branch": "gameplay/outing-readability",
+    "head": "bdad75b70b7762f6ef89fe0982ebc07cd4ddef0c",
+    "review": "PR metadata/body, not new gameplay execution"
+  },
+  "preserved_canon_reference": {
+    "commit": "455a9873e0a623597bf772bd4e3fc0e9ea3992ab",
+    "blob": "77477b31ad64e51f2b7f74331fe2d9db347b1617",
+    "source": "Living Canticle Draft C, selected relevant sections"
+  },
+  "research": "Existing canon plus primary NASA, Epic and Blender references; five magical exceptions remain identified fiction.",
+  "art": "Two earlier concept PNGs preserved unchanged; no new game rendering or image generation.",
+  "not_performed": [
+    "Gameplay implementation",
+    "Browser/game testing",
+    "Geometry or navmesh validation",
+    "GPU/hardware benchmark",
+    "Multiplayer or economy execution",
+    "New audio or image generation",
+    "Source CI rerun",
+    "GitHub or Drive upload",
+    "Merge or deployment",
+    "Personal-save or live Luna access",
+    "Extension of autonomous work"
+  ],
+  "artifacts": [
+    {
+      "filename": "COSMOS_COMPLETE_DESIGN_2026-09-14.md",
+      "bytes": 158097,
+      "sha256": "58ecf00cc6901f8a538c3ca0f67435b379c1a7da7a7cc8a995557aabde9ceb59"
+    },
+    {
+      "filename": "COSMOS_DESIGN_AND_PROTOTYPE_BLUEPRINT_2026-09-14.zip",
+      "bytes": 5940418,
+      "sha256": "c39b211390875dd166392eb3c136a37dc38dfc7727cc8eff2cd815e9555427e2"
+    }
+  ]
+}
