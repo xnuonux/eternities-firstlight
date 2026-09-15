@@ -1,3 +1,15 @@
+# Near Expanse playtest handoff, 2026-09-15
+
+Human acceptance is pending. No new Dom playtest was observed during this session.
+
+The first visit is a peaceful walk with two routes, an occupied refuge/observatory and an explicit return. Test one fresh and one returning character in both cameras. Ask only: did you know where to go and how to get home; did the horizon make you want to explore; did either camera hide the path or feel uncomfortable? Try Briar's Follow/Stay if bonded.
+
+Rendered inspection led to replacing bare thin platforms with supported cliff mass, softer ridge geometry, stone paths, a complete refuge roof, an arched observatory and a fixed moon. These are engineering observations, not founder approval. Native input, travel/refusal/reload and character checks are reported in the [M1 results](development/COSMOS_M1_RESULTS_2026-09-15.md). Normal-time recorded gameplay is labelled automated; no enjoyment or pacing claim follows from it.
+
+The earlier ordinary-outing questions remain valuable: did fights feel better, and did the equipment project give a reason to head out again? This peaceful scene does not answer them.
+
+---
+
 # Firstlight playtest notes
 
 ## 2026-09-14: connected workshop, practice and equipment loop

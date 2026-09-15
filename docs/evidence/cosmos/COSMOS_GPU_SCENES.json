@@ -1,0 +1,26 @@
+[
+  {
+    "name": "valley-third-person",
+    "expression": "()=>{window.cosmosMeasureWalk=async(x,z)=>{const r=Realm.test.move(x,z);if(!r.ok)throw Error(r.error);const start=performance.now();while(Realm.test.path.length){if(performance.now()-start>45000)throw Error('walk timeout');await new Promise(r=>setTimeout(r,50));}};document.querySelector('[data-rpg=\"camera\"][data-id=\"adventure\"]').click();Realm.test.view({yaw:0,elevation:.28,distance:10});return {scene:Realm.diagnostics.scene};}"
+  },
+  {
+    "name": "cosmos-arrival-third-person",
+    "expression": "async()=>{await cosmosMeasureWalk(14,-5);document.querySelector('[data-rpg=\"open\"][data-id=\"atlas\"]').click();document.querySelector('[data-rpg=\"cosmos-invitation\"]').click();document.querySelector('[data-rpg=\"cosmos-confirm\"]').click();if(Realm.diagnostics.scene!=='cosmos-near-expanse')throw Error('entry refused');Realm.test.view({yaw:0,elevation:.28,distance:10});return {scene:Realm.diagnostics.scene};}"
+  },
+  {
+    "name": "cosmos-moving-open-road-third-person",
+    "expression": "async()=>{await cosmosMeasureWalk(13,-6);const r=Realm.test.move(13,-24);if(!r.ok)throw Error(r.error);return {moving:true,from:Realm.diagnostics.adventure.player,destination:{x:13,z:-24}};}"
+  },
+  {
+    "name": "cosmos-observatory-third-person",
+    "expression": "async()=>{await cosmosMeasureWalk(3,-43);Realm.test.view({yaw:.7,elevation:.4,distance:12});return {scene:Realm.diagnostics.scene};}"
+  },
+  {
+    "name": "cosmos-observatory-diorama",
+    "expression": "()=>{document.querySelector('[data-rpg=\"camera\"][data-id=\"follow\"]').click();return {scene:Realm.diagnostics.scene};}"
+  },
+  {
+    "name": "valley-after-return-diorama",
+    "expression": "()=>{document.querySelector('#cosmos-home').click();if(Realm.diagnostics.scene!=='valley')throw Error('return failed');return {scene:Realm.diagnostics.scene};}"
+  }
+]

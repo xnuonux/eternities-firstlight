@@ -1,0 +1,44 @@
+{
+  "packages": [
+    {
+      "file": "ATLANTIS_DESIGN_AND_PROTOTYPE_BLUEPRINT_2026-09-14.zip",
+      "bytes": 2925004,
+      "sha256": "25bb74f60d334d0cac8690cde1efbb08319ac8448bd718c85d92f91a7bdeca6c",
+      "archive_match": true
+    },
+    {
+      "file": "EARTH_DESIGN_AND_PROTOTYPE_BLUEPRINT_2026-09-14.zip",
+      "bytes": 3350110,
+      "sha256": "c7b248c095553b04b761406e9228bc485fd6955523b06811c535729cca803ad5",
+      "archive_match": true
+    },
+    {
+      "file": "FIRSTLIGHT_EXPANDED_DESIGN_LIBRARY_2026-09-14.zip",
+      "bytes": 12111534,
+      "sha256": "e1bea960d01e407c4d43390af8ce209fc1635ac9ed038d849f4bae32ce26bba4",
+      "archive_match": "not listed in originals manifest"
+    },
+    {
+      "file": "HEAVEN_DESIGN_AND_PROTOTYPE_BLUEPRINT_2026-09-14.zip",
+      "bytes": 124284,
+      "sha256": "295ea122f7c4c22bde49a8f08d2924cdbd5b5b52bbbb2351c93943bdca047997",
+      "archive_match": true
+    },
+    {
+      "file": "HELL_DESIGN_AND_PROTOTYPE_BLUEPRINT_2026-09-14.zip",
+      "bytes": 5565904,
+      "sha256": "a0c617060ec7574d3c7b4d03e9a0739180d39cd3b9b15b9e27b91e88958d4929",
+      "archive_match": true
+    },
+    {
+      "file": "COSMOS.zip",
+      "bytes": 5940418,
+      "sha256": "c39b211390875dd166392eb3c136a37dc38dfc7727cc8eff2cd815e9555427e2",
+      "archive_match": "matched Cosmos published package receipt"
+    }
+  ],
+  "retrieved_on": "2026-09-15",
+  "archive_pr": "https://github.com/xnuonux/eternities-firstlight/pull/14",
+  "archive_head": "799a0a467dd11b50742c3b441c45e807e4454443",
+  "original_manifest": "https://drive.google.com/file/d/1ZA6HC_c-WsrLbx4cHtCgODUf9XgDPtWe/view"
+}

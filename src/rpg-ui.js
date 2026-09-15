@@ -59,18 +59,19 @@ class RPGUI{
   d.addEventListener('input',e=>{if(e.target.id==='bag-search'){this.search=e.target.value;this.paintBag();}});
   $('#tracked-open').onclick=()=>this.open(this.quest==='project'?'pursuit':'journal');$('#beacon-menu').onclick=()=>{if(B.runtime(this.sim).phase==='assault')this.run('beacon-repair');else this.open('beacon');};$('#target-clear').onclick=()=>this.run('target-clear');$('#health-orb').onclick=()=>this.open('equipment');
   for(const el of hud.querySelectorAll('[data-skill]'))el.onclick=()=>this.skill(el.dataset.skill);
-  this.crossing=new G.RealmCrossingUI.CrossingUI(this);this.starter=new G.RealmStarterUI.StarterUI(this);this.pursuit=new G.RealmPursuitUI.PursuitUI(this);this.characters=new G.RealmCharactersUI.CharactersUI(this);this.classes=new G.RealmClassesUI.ClassesUI(this);if(this.state.starter.accepted&&!this.state.starter.reward)this.quest='starter';
+  this.crossing=new G.RealmCrossingUI.CrossingUI(this);this.starter=new G.RealmStarterUI.StarterUI(this);this.pursuit=new G.RealmPursuitUI.PursuitUI(this);this.characters=new G.RealmCharactersUI.CharactersUI(this);this.classes=new G.RealmClassesUI.ClassesUI(this);this.cosmos=new G.RealmCosmosUI.CosmosUI(this);if(this.state.starter.accepted&&!this.state.starter.reward)this.quest='starter';
  }
  get sim(){return this.api.sim();} get state(){return this.sim.state.adventure;}
  run(t,p={},quiet=false){const paused=this.sim.paused;try{if(this.dialog.open)this.sim.paused=false;const r=this.api.adventure().run(t,p,quiet);if(r.ok&&this.dialog.open)this.paint();return r;}finally{this.sim.paused=paused;}}
  open(tab='equipment'){
+  if(tab!=='cosmos')this.cosmos?.reset();
   if(!this.dialog.open){this.api.closePanel();this.api.endBuild();this.api.clearKeys();this.api.adventure().stopAuto();if(document.querySelector('#studio-dialog[open]'))document.querySelector('#studio-close').click();T.stop(this.sim);this.wasPaused=this.sim.paused;this.sim.paused=true;this.dialog.showModal();}
   this.tab=tab;this.paint();$('#rpg-content').scrollTop=0;$('#rpg-close').focus();
  }
- close(){if(!this.dialog.open)return;this.dialog.close();this.sim.paused=this.wasPaused;this.api.clearKeys();this.api.focusWorld();}
+ close(){this.cosmos?.reset();if(!this.dialog.open)return;this.dialog.close();this.sim.paused=this.wasPaused;this.api.clearKeys();this.api.focusWorld();}
  cameraPaint(mode){for(const el of document.querySelectorAll('[data-rpg="camera"]'))el.setAttribute('aria-pressed',String(el.dataset.id===mode));}
  reset(){if(this.dialog.open)this.close();this.item=null;this.seenPhase='';this.filter='all';this.search='';this.recipe='trail_bow';this.craftFilter='weapons';this.avatarDrag=null;this.lastPreview=-1;this.pursuit.selected=null;this.starter.temper=null;this.starter.destination=null;this.starter.lastSound=0;this.starter.lastSoundScene=null;this.crossing.destination=null;this.crossing.uiRoom=null;this.characters.reset();this.classes.reset();}
- action(el){if(this.classes.action(el))return;if(this.characters.action(el))return;if(this.starter.action(el))return;if(this.crossing.action(el))return;if(this.pursuit.action(el))return;const act=el.dataset.rpg,id=el.dataset.id,a=this.state;
+ action(el){if(this.cosmos.action(el))return;if(this.classes.action(el))return;if(this.characters.action(el))return;if(this.starter.action(el))return;if(this.crossing.action(el))return;if(this.pursuit.action(el))return;const act=el.dataset.rpg,id=el.dataset.id,a=this.state;
   if(act==='open'){this.open(id);return;}
   if(act==='track'){this.quest=id;if(this.dialog.open)this.paint();this.tick();return;}
   if(act==='camera'){this.api.camera(id);return;}
@@ -140,6 +141,7 @@ class RPGUI{
  }
  intercept(name){const map={armory:'craft',craft:'craft',pack:'bag',adventure:'journal',journey:'journal'};if(map[name]){if(name==='journey')this.quest='homestead';this.open(map[name]);return true;}return false;}
  interact(){
+  if(this.cosmos.interact())return true;
   if(this.starter.interact())return true;
   if(this.crossing.interact())return true;
   if(this.sim.room==='road'&&this.state.road.cartRepaired&&Math.hypot(this.sim.state.player.x+10,this.sim.state.player.z-12)<3){this.open('merchant');return true;}
@@ -150,7 +152,7 @@ class RPGUI{
   this.open('beacon');return true;
  }
  paint(){
-  const extra=this.classes.page(this.tab)||this.characters.page(this.tab)||this.pursuit.page(this.tab)||this.starter.page(this.tab)||this.crossing.page(this.tab);
+  const extra=this.cosmos.page(this.tab)||this.classes.page(this.tab)||this.characters.page(this.tab)||this.pursuit.page(this.tab)||this.starter.page(this.tab)||this.crossing.page(this.tab);
   const titles={equipment:'Your character',bag:'Your belongings',companion:'Your companion',soul:'The paths within',craft:'The workbench',journal:'Your journal',beacon:'The Beacon Answers',more:'Life in Firstlight',merchant:'Tessa’s road shop',pursuit:'Field guide'};
   $('#rpg-heading').textContent=extra?.title||titles[this.tab]||'Firstlight';
   $('#rpg-tabs').innerHTML=[['equipment','Equipment'],['bag','Inventory'],['companion','Companion'],['soul','Soul'],['craft','Crafting'],['pursuit','Field guide'],['journal','Journal'],['atlas','Map'],['characters','Characters'],['classes','Path']].map(([id,n])=>button(n,'open',id,false,'aria-current="'+(this.tab===id?'page':'false')+'"')).join('');
@@ -166,6 +168,7 @@ class RPGUI{
   else if(this.tab==='beacon')body.innerHTML=this.beacon();
   else if(this.tab==='merchant')body.innerHTML=this.merchant();
   else body.innerHTML=this.more();
+  if(!this.sim.room&&['atlas','more'].includes(this.tab))body.insertAdjacentHTML('afterbegin',this.cosmos.invitation());
   if(this.tab==='journal')body.insertAdjacentHTML('afterbegin',this.starter.journal());if(this.tab==='characters')this.characters.attach();if(this.tab==='classes')this.classes.attach();
  }
  inventory(){
@@ -285,7 +288,7 @@ class RPGUI{
   const bm=$('#beacon-menu');bm.textContent=b.phase==='assault'?'Repair ward · E · 20 stamina':'Speak with the envoy · E';bm.disabled=b.phase==='assault'&&(!B.near(sim)||b.ward>=100||b.time<b.playerRepairAt||a.stamina<20);
   sim.presentation=sim.presentation||{};sim.presentation.attackTarget=t.target||(this.api.adventure().intent?.kind==='attack'?this.api.adventure().intent.id:null);
   const lastHit=t.hits.at(-1);if(lastHit&&this.soundedHit!==lastHit){this.soundedHit=lastHit;if(a.elapsed-lastHit.at<.25)this.api.adventure().sound('confirmed-hit');}
-  this.numbers();this.worldHealth();this.crossing.tick();this.starter.tick();this.pursuit.tick();
+  this.numbers();this.worldHealth();this.crossing.tick();this.starter.tick();this.pursuit.tick();this.cosmos.tick();
  }
  worldHealth(){
   const root=$('#enemy-health');root.replaceChildren();if(!this.sim.presentation?.perspective||!A.combatScene(this.sim))return;
