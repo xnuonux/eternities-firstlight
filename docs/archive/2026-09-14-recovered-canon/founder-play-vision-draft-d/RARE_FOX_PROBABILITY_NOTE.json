@@ -1,0 +1,19 @@
+{
+  "status": "design calculation, not an implemented spawn system",
+  "founder_example": {
+    "shared_appearance_interval_minutes": 30,
+    "gold_variant_probability_per_appearance": 0.1
+  },
+  "assumptions": [
+    "Each appearance has an independent 10% gold roll.",
+    "The observer sees every counted appearance.",
+    "A gold appearance is not the same as a successful tame.",
+    "Travel, competition, eligibility and server-instance policy are excluded."
+  ],
+  "mean_appearances_to_first_gold": 10,
+  "median_appearances_to_first_gold": 7,
+  "appearances_for_at_least_95_percent_chance": 29,
+  "probability_no_gold_after_10_appearances": 0.3486784401000001,
+  "probability_at_least_one_gold_after_29_appearances": 0.9528987130275375,
+  "clock_time_note": "Multiplying a count by 30 minutes assumes waiting a full interval before every opportunity; arrival phase and missed appearances change elapsed waiting time. No time-to-tame guarantee follows."
+}

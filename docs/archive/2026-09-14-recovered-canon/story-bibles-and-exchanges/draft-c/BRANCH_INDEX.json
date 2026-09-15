@@ -1,0 +1,557 @@
+{
+  "document_type": "editorial_branch_index",
+  "version": 1,
+  "prepared": "2026-09-13",
+  "runtime_compatible": false,
+  "notes": [
+    "These identifiers are draft-document navigation aids, not production quest IDs.",
+    "The index does not fully specify triggers, balance, all dependencies, dialogue, or migrations.",
+    "Acts and perspective threads can overlap. The three major terrestrial arcs have a proposed two-of-three gate, not an implicit all-content prerequisite.",
+    "Existing companion, equipment, moral histories and character records must not be rewritten from this index."
+  ],
+  "threads": [
+    {
+      "id": "prologue.oren",
+      "act": "Prologue",
+      "viewpoints": [
+        "Oren"
+      ],
+      "working_title": "Useful work before prophecy",
+      "goal": "Recover supplies while noticing unfamiliar workmanship.",
+      "approach": "Follow the mark or complete a safe repair first.",
+      "local_resolution": "Workshop restored; question recorded.",
+      "later_payoff": "The same mark helps distinguish a counterfeit road.",
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "prologue.mara",
+      "act": "Prologue",
+      "viewpoints": [
+        "Mara"
+      ],
+      "working_title": "The quiet patch of river",
+      "goal": "Observe wildlife avoiding apparently clean water.",
+      "approach": "Collect observations or ask a local fisher to corroborate.",
+      "local_resolution": "A bounded anomaly is recorded, not explained away.",
+      "later_payoff": "Mara recognizes a repeated disturbance before the crossing.",
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "prologue.ilan",
+      "act": "Prologue",
+      "viewpoints": [
+        "Ilan"
+      ],
+      "working_title": "The empty listening seat",
+      "goal": "Help prepare a small performance.",
+      "approach": "Bring a listener or help finish a piece.",
+      "local_resolution": "An ordinary shared moment exists before loss.",
+      "later_payoff": "Later silence and the completed song carry specific history.",
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "prologue.tessa",
+      "act": "Prologue",
+      "viewpoints": [
+        "Tessa"
+      ],
+      "working_title": "A cart holds more than goods",
+      "goal": "Recover work and records from a damaged journey.",
+      "approach": "Prepare well enough to rescue both; no automatic punishment for helping.",
+      "local_resolution": "A merchant and her commitments become recognizable.",
+      "later_payoff": "Her later safe-passage dilemma has a personal basis.",
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "act1.briar",
+      "act": "I",
+      "viewpoints": [
+        "Player",
+        "Briar",
+        "Envoy"
+      ],
+      "working_title": "The return of a small friend",
+      "goal": "Find the severed companion through the Nearshore.",
+      "approach": "Witnessed memories plus a repaired living passage; recoverable counterfeit investigation.",
+      "local_resolution": "The same named companion returns.",
+      "later_payoff": "The player understands the difference between recovery and possession.",
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "act1.nella",
+      "act": "I",
+      "viewpoints": [
+        "Nella"
+      ],
+      "working_title": "The keeper who cannot bring everyone back",
+      "goal": "Help Nella care for the lost while learning about her missing sister.",
+      "approach": "Listen and investigate without promising impossible resurrection.",
+      "local_resolution": "Care is given without making return a measure of worth.",
+      "later_payoff": "The coast later supplies a truthful last account.",
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "act1.rowan",
+      "act": "I",
+      "viewpoints": [
+        "Rowan"
+      ],
+      "working_title": "A bell can guide more than friends",
+      "goal": "Decide how to warn travelers without exposing a refuge carelessly.",
+      "approach": "Use scouts, shelter, and a bounded warning plan.",
+      "local_resolution": "A practical signal is restored with consequences.",
+      "later_payoff": "Final regional coordination uses what the town learned.",
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "act1.envoy",
+      "act": "I",
+      "viewpoints": [
+        "Envoy"
+      ],
+      "working_title": "The warning that was not enough",
+      "goal": "Acknowledge the limits of the earlier safety assessment.",
+      "approach": "Repair trust through action, not a flawless speech.",
+      "local_resolution": "The envoy becomes fallible without being secretly malicious.",
+      "later_payoff": "She accepts mortal judgment at a later celestial council.",
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "act2.mountain.apprentice",
+      "act": "II",
+      "viewpoints": [
+        "Highland apprentice"
+      ],
+      "working_title": "Shelter before the summit",
+      "goal": "Reach stranded travelers and establish a usable refuge.",
+      "approach": "Route-finding, repairs, and a defended return.",
+      "local_resolution": "The apprentice can take responsibility beyond the player.",
+      "later_payoff": "Independent keepers support a later passage.",
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "act2.mountain.bell",
+      "act": "II",
+      "viewpoints": [
+        "Monastery keepers",
+        "travelers"
+      ],
+      "working_title": "The last bell before snow",
+      "goal": "Resolve protection of the sanctuary versus access to it.",
+      "approach": "Change the material conditions; do not reduce disagreement to two moral buttons.",
+      "local_resolution": "The bell guides people rather than merely remaining intact.",
+      "later_payoff": "Gliding routes and a stable celestial bearing become available.",
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "act2.mountain.roadkeeper",
+      "act": "II",
+      "viewpoints": [
+        "Injured roadkeeper"
+      ],
+      "working_title": "A vocation after injury",
+      "goal": "Make the keeper's knowledge usable through another role.",
+      "approach": "Teaching and route-marking rather than mandatory heroic death.",
+      "local_resolution": "An altered future remains a worthwhile life.",
+      "later_payoff": "A later expedition benefits from learned routes.",
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "act2.kingdom.claimant",
+      "act": "II",
+      "viewpoints": [
+        "Claimant",
+        "survivors"
+      ],
+      "working_title": "The crown without a name",
+      "goal": "Investigate a dynasty and a system that stole departures.",
+      "approach": "Compare testimony, material records, and rival accounts.",
+      "local_resolution": "Authority is not settled by a flattering inscription alone.",
+      "later_payoff": "The restored gates acquire explicit stewards and obligations.",
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "act2.kingdom.records",
+      "act": "II",
+      "viewpoints": [
+        "Archivist",
+        "families"
+      ],
+      "working_title": "Who comes out of the city",
+      "goal": "Recover people and the records that permit departure.",
+      "approach": "Preparation can open a second route rather than force an arbitrary sacrifice.",
+      "local_resolution": "Survivors and their histories can leave together.",
+      "later_payoff": "Recovered evidence reveals the Regent's methods.",
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "act2.kingdom.revenant",
+      "act": "II",
+      "viewpoints": [
+        "A thinking revenant"
+      ],
+      "working_title": "The witness who stayed",
+      "goal": "Distinguish a surviving witness from an enemy silhouette.",
+      "approach": "Conversation and investigation with a viable combat boundary.",
+      "local_resolution": "A person's testimony survives without forced ownership.",
+      "later_payoff": "The player questions later imitations more precisely.",
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "act2.forest.hunter",
+      "act": "II",
+      "viewpoints": [
+        "Hunter",
+        "village"
+      ],
+      "working_title": "The beast blamed for the wound",
+      "goal": "Track the actual source of ecological harm.",
+      "approach": "Companion scent and visible signs correct an early accusation.",
+      "local_resolution": "A territorial animal need not be slain as a convenient answer.",
+      "later_payoff": "Regional knowledge changes future encounters.",
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "act2.forest.heart",
+      "act": "II",
+      "viewpoints": [
+        "Forest communities",
+        "living heart"
+      ],
+      "working_title": "The heart that would not yield",
+      "goal": "Relieve the organism holding a breach shut.",
+      "approach": "Create a new support while fighting the parasitic threat.",
+      "local_resolution": "The forest survives rather than being cleared for convenience.",
+      "later_payoff": "An adaptive living channel supports the finale.",
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "act2.forest.briar",
+      "act": "II",
+      "viewpoints": [
+        "Briar",
+        "player"
+      ],
+      "working_title": "The shape a friend may take",
+      "goal": "Choose a learned technique or an unlocked form.",
+      "approach": "Explicit evolution or viable retention of the present form.",
+      "local_resolution": "Identity is preserved through growth.",
+      "later_payoff": "Companion contribution differs without excluding a campaign ending.",
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "act3.tessa",
+      "act": "III",
+      "viewpoints": [
+        "Tessa",
+        "maritime guilds"
+      ],
+      "working_title": "The company promising safe arrivals",
+      "goal": "Investigate a useful shipping service with concealed claims.",
+      "approach": "Trace the bargain while arranging an alternative livelihood.",
+      "local_resolution": "Refusing exploitation does not require pretending its benefits were imaginary.",
+      "later_payoff": "An honest coalition can replace coercive passage.",
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "act3.nella",
+      "act": "III",
+      "viewpoints": [
+        "Nella",
+        "surviving witness"
+      ],
+      "working_title": "The last account",
+      "goal": "Recover a reliable account of the missing sister.",
+      "approach": "Test the evidence; deliver it gently without fake hope.",
+      "local_resolution": "A permanent loss can be acknowledged rather than reversed.",
+      "later_payoff": "Nella's later festival includes the person truthfully.",
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "act3.divers",
+      "act": "III",
+      "viewpoints": [
+        "Pearl-divers"
+      ],
+      "working_title": "The breath that remains",
+      "goal": "Rescue a living crew from a submerged route.",
+      "approach": "Protected dive, navigation, and cooperative recovery.",
+      "local_resolution": "Not every maritime loss is already final.",
+      "later_payoff": "Diving access and a future local ally are earned.",
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "act3.leviathan",
+      "act": "III",
+      "viewpoints": [
+        "Marine communities",
+        "explorers"
+      ],
+      "working_title": "The deep road moves",
+      "goal": "Discover that a great creature shapes a migration route.",
+      "approach": "Observation and ecological navigation earn useful progress without compulsory killing.",
+      "local_resolution": "The ocean becomes a place, not a blue combat room.",
+      "later_payoff": "An underwater record becomes reachable.",
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "act4.garden",
+      "act": "IV",
+      "viewpoints": [
+        "Celestial gardener"
+      ],
+      "working_title": "The garden that kept a place",
+      "goal": "Restore a neglected shared space without commanding its keeper to stop grieving.",
+      "approach": "Work, presence, and a new use chosen with the keeper.",
+      "local_resolution": "A beautiful place can change without erasing its history.",
+      "later_payoff": "The player has a peaceful celestial home to revisit.",
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "act4.defender",
+      "act": "IV",
+      "viewpoints": [
+        "Wounded celestial defender"
+      ],
+      "working_title": "A life beyond the formation",
+      "goal": "Help a defender discover another vocation.",
+      "approach": "Craft, guidance, or teaching as alternatives to returning to war.",
+      "local_resolution": "Value is not limited to combat service.",
+      "later_payoff": "The defender contributes to refuge or recovery.",
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "act4.michael",
+      "act": "IV",
+      "viewpoints": [
+        "Michael",
+        "refugees"
+      ],
+      "working_title": "The gate and the people outside",
+      "goal": "Protect an entry without abandoning those seeking help.",
+      "approach": "Evidence, controlled access, and shared responsibility.",
+      "local_resolution": "Defense and mercy become material choices.",
+      "later_payoff": "A coalition learns to sustain safe passage together.",
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "act4.gabriel",
+      "act": "IV",
+      "viewpoints": [
+        "Gabriel",
+        "Mara"
+      ],
+      "working_title": "The missing annotation",
+      "goal": "Recover context that expertise alone no longer supplies.",
+      "approach": "Compare mortal records and celestial knowledge while marking uncertainty.",
+      "local_resolution": "Knowledge can admit dependence without losing value.",
+      "later_payoff": "The counterfeit route is identified through corroboration.",
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "act4.uriel",
+      "act": "IV",
+      "viewpoints": [
+        "Uriel",
+        "caretakers"
+      ],
+      "working_title": "Hope after the answer is no",
+      "goal": "Aid a community facing both rescuable lives and permanent absence.",
+      "approach": "Make room for return where possible and farewell where it is not.",
+      "local_resolution": "Hope does not become denial.",
+      "later_payoff": "The player can offer care without bargaining for an outcome.",
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "act5.faces",
+      "act": "V",
+      "viewpoints": [
+        "Captive",
+        "imitator",
+        "collaborator"
+      ],
+      "working_title": "The Court of Familiar Faces",
+      "goal": "Identify different people beneath persuasive appearances.",
+      "approach": "Evidence and conduct, not prettiness or deformity, distinguish danger.",
+      "local_resolution": "Trust becomes discriminating rather than universally cynical.",
+      "later_payoff": "The Regent's personalized offer can be understood.",
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "act5.names",
+      "act": "V",
+      "viewpoints": [
+        "Captives",
+        "smiths"
+      ],
+      "working_title": "The Foundry of Names",
+      "goal": "Free people and disable the mechanism claiming their departures.",
+      "approach": "Evacuation, sabotage, infiltration, and combat.",
+      "local_resolution": "A foundry is broken; not every downstream consequence vanishes.",
+      "later_payoff": "The stolen route pattern reaches the coalition.",
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "act5.open_cage",
+      "act": "V",
+      "viewpoints": [
+        "A frightened captive"
+      ],
+      "working_title": "The cage with an open door",
+      "goal": "Build a credible safe departure for someone afraid to leave.",
+      "approach": "Clear a route and establish support rather than merely ordering escape.",
+      "local_resolution": "Freedom becomes usable.",
+      "later_payoff": "A rescued witness returns voluntarily with knowledge.",
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "act5.deserter",
+      "act": "V",
+      "viewpoints": [
+        "Deserter",
+        "victims"
+      ],
+      "working_title": "The testimony no one owes forgiveness",
+      "goal": "Use accountable cooperation without erasing prior harm.",
+      "approach": "Verification, restitution, and safety; no compulsory forgiveness.",
+      "local_resolution": "The deserter can help without being declared innocent.",
+      "later_payoff": "A route into hostile infrastructure becomes possible.",
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "act6.atlas",
+      "act": "VI",
+      "viewpoints": [
+        "Atlas",
+        "explorers"
+      ],
+      "working_title": "The blank map",
+      "goal": "Admit where the cosmic route is unknown.",
+      "approach": "Survey from stable landmarks and publish uncertainty.",
+      "local_resolution": "An incomplete honest map becomes useful.",
+      "later_payoff": "No false certainty is built into the final approach.",
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "act6.pixel",
+      "act": "VI",
+      "viewpoints": [
+        "Pixel",
+        "survivors"
+      ],
+      "working_title": "The city that looked whole",
+      "goal": "Distinguish restorative imagery from concealment.",
+      "approach": "Revise a projection through actual testimony.",
+      "local_resolution": "Beauty reveals absence and points toward living survivors.",
+      "later_payoff": "A memorial becomes both truthful and useful.",
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "act6.echo",
+      "act": "VI",
+      "viewpoints": [
+        "Echo",
+        "unwilling witness"
+      ],
+      "working_title": "What is not ours to keep",
+      "goal": "Obtain sufficient evidence without demanding a whole private life.",
+      "approach": "Accept bounded testimony and seek independent corroboration.",
+      "local_resolution": "Memory is held without ownership.",
+      "later_payoff": "The final witness network preserves separate voices.",
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "act6.luna",
+      "act": "VI",
+      "viewpoints": [
+        "Luna",
+        "player"
+      ],
+      "working_title": "The unopened room",
+      "goal": "Help Luna release her demand to finish someone else's unfinished account.",
+      "approach": "Attention and an honest boundary rather than forced disclosure.",
+      "local_resolution": "Preservation no longer freezes the subject in the past.",
+      "later_payoff": "Luna protects names while allowing independent futures.",
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "act7.household",
+      "act": "VII",
+      "viewpoints": [
+        "Oren",
+        "Mara",
+        "Ilan"
+      ],
+      "working_title": "The right to choose a part",
+      "goal": "Allow the family to make its own informed contributions.",
+      "approach": "Plan material roles and respect individual limits.",
+      "local_resolution": "Local people remain protagonists of their own lives.",
+      "later_payoff": "The defense is a community's action, not a set of summoned buffs.",
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "act7.regent",
+      "act": "VII",
+      "viewpoints": [
+        "Regent",
+        "player",
+        "allies"
+      ],
+      "working_title": "The refuge with no doors",
+      "goal": "Defeat the Regent and reject a perfect private world governed by ownership.",
+      "approach": "Combat and restored independent anchors; no compulsory raid for the story ending.",
+      "local_resolution": "His claims are broken and one real region is restored.",
+      "later_payoff": "A First Answer resolves the saga while the larger world remains open.",
+      "status": "proposed_not_implemented"
+    },
+    {
+      "id": "epilogue.home",
+      "act": "Epilogue",
+      "viewpoints": [
+        "The household",
+        "Briar",
+        "player"
+      ],
+      "working_title": "The empty bowl is full",
+      "goal": "Return to a changed home with room for both joy and absence.",
+      "approach": "Stay, create, celebrate, remember, or set out again.",
+      "local_resolution": "The player can enjoy what the journey protected.",
+      "later_payoff": "Postgame continues a life rather than deleting the campaign's meaning.",
+      "status": "proposed_not_implemented"
+    }
+  ],
+  "recurring_character_paths": {
+    "tessa": [
+      "prologue.tessa",
+      "act3.tessa",
+      "act7.regent"
+    ],
+    "nella": [
+      "act1.nella",
+      "act3.nella",
+      "epilogue.home"
+    ],
+    "briar": [
+      "act1.briar",
+      "act2.forest.briar",
+      "act7.regent",
+      "epilogue.home"
+    ],
+    "knowledge_and_witness": [
+      "prologue.mara",
+      "act4.gabriel",
+      "act6.atlas",
+      "act6.echo",
+      "act6.luna",
+      "act7.regent"
+    ],
+    "creation_and_home": [
+      "prologue.oren",
+      "prologue.ilan",
+      "act4.garden",
+      "act6.pixel",
+      "act7.household",
+      "epilogue.home"
+    ]
+  }
+}
