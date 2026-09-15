@@ -1,6 +1,8 @@
 """Near Expanse input/UI, real navigation and native isolated saves.
 
-Accelerated movement setup is test evidence only. No personal browser data.
+Accelerated movement setup is test evidence only. Software-WebGL interaction
+coverage explicitly uses low quality; balanced desktop rendering has a separate
+hardware report. No personal browser data.
 """
 from pathlib import Path
 from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
@@ -12,7 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'evidence10/cosmos-browser'
 OUT.mkdir(parents=True, exist_ok=True)
 report = {'method': __doc__, 'checks': [], 'errors': [], 'browser_errors': [],
-          'html_sha256': hashlib.sha256((ROOT / 'index.html').read_bytes()).hexdigest()}
+          'software_quality': 'low', 'html_sha256': hashlib.sha256((ROOT / 'index.html').read_bytes()).hexdigest()}
 class Handler(SimpleHTTPRequestHandler):
     def __init__(self, *args, **kw): super().__init__(*args, directory=str(ROOT), **kw)
     def log_message(self, *_args): pass
@@ -34,7 +36,8 @@ try:
         ev=lambda js,arg=None:page.evaluate(js,arg)
         state=lambda:ev('() => Realm.state')
         scene=lambda:ev('() => Realm.diagnostics.scene')
-        def render(): ev('() => Realm.test.render()')
+        def render(): ev("() => {if(Realm.state.settings.quality!=='low')Realm.test.quality('low');Realm.test.render()}")
+        render()
         def close():
             if page.locator('#rpg-window').evaluate('(e)=>e.open'):page.locator('#rpg-close').click()
         def walk(x,z):

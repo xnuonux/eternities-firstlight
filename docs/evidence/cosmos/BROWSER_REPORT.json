@@ -1,5 +1,5 @@
 {
-  "method": "Near Expanse input/UI, real navigation and native isolated saves.\n\nAccelerated movement setup is test evidence only. No personal browser data.\n",
+  "method": "Near Expanse input/UI, real navigation and native isolated saves.\n\nAccelerated movement setup is test evidence only. Software-WebGL interaction\ncoverage explicitly uses low quality; balanced desktop rendering has a separate\nhardware report. No personal browser data.\n",
   "checks": [
     {
       "name": "exact generated build loads",
@@ -300,6 +300,7 @@
   ],
   "errors": [],
   "browser_errors": [],
+  "software_quality": "low",
   "html_sha256": "64610ac470827b48c587f06875b42b475969641dedd796714165c35e5eb956c7",
   "returning_fixture": {
     "path": "docs\\evidence\\classes\\HUNTER_SOURCE.json",

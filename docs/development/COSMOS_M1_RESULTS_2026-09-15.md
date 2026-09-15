@@ -35,13 +35,15 @@ The Python executable for browser commands was `C:/dev/firstlight-artifacts/boot
 | Production command journeys | 11 passed |
 | Browser assertions | 776 passed across 11 suites |
 
+The portable Cosmos interaction suite explicitly uses low quality on software WebGL, matching the existing camera suite's interaction setup. Balanced rendering is covered separately by the actual desktop screenshots/video/measurement below.
+
 Browser breakdown: Crossing **115**, earlier gameplay/creative regression **107**, cutaway **6**, reflection **8**, native-origin persistence **11**, starter **147**, camera **51**, pursuit **145**, characters **67**, classes **45**, Cosmos **74**. Runtime browser errors: **0**. Full-run command exit: **0**. Logs are under `verification/cosmos-release`; CI uploads its independent logs/artifacts.
 
 Build SHA-256: **64610ac470827b48c587f06875b42b475969641dedd796714165c35e5eb956c7**. Both `index.html` and `FIRSTLIGHT_VALLEY.html` contain the same bytes.
 
 The Cosmos journey freshly consumes the current campaign-earned veteran produced by `pursuit_journey.cjs --veteran` after the starter veteran journey. It walks both full approaches through production ticks and segment validation, preserves equipment/sockets/fittings/XP/story/ownership, exercises follow/stay commands and refuses stale identities/revisions, failed writes and scene construction. In a clean checkout the source chain is regenerated. The checked-in browser veteran fixture has matching SHA **56e09068038bc92bd51d9f98a3636668005fb296743875db0359a677ae3696fd**. The separate existing bow fixture remains separately labelled.
 
-Failures kept visible: an early corner-grazing path exposed a gap in sampled segment validation; exact union/solid segment checks replaced that path in Cosmos. A later test incorrectly equated passage of time with immutable sandbox state; the assertion now excludes only its elapsed clock while retaining ownership/history comparisons. The browser returning-bow fixture did not contain a rescued companion; it remains a bow case and the command-earned veteran supplies the separate companion case. None of those failures remains in the final full run. No runtime behavior was weakened to satisfy a fixture assumption.
+Failures kept visible: an early corner-grazing path exposed a gap in sampled segment validation; exact union/solid segment checks replaced that path in Cosmos. A later test incorrectly equated passage of time with immutable sandbox state; the assertion now excludes only its elapsed clock while retaining ownership/history comparisons. The browser returning-bow fixture did not contain a rescued companion; it remains a bow case and the command-earned veteran supplies the separate companion case. A first hosted Ubuntu run at `b0ff2e8` passed its first nine Cosmos assertions but hit Playwright's 30-second timeout taking the balanced-quality arrival screenshot; its earlier valley steps were also slow on the hosted software renderer. The portable interaction gate was changed to explicit low quality while retaining every assertion and screenshot. Hosted rerun status is recorded in the final PR body. None of the earlier local failures remains in the full local run. No runtime behavior was weakened to satisfy a fixture assumption.
 
 ## Gameplay and desktop measurement
 
