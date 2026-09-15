@@ -1,0 +1,27 @@
+{
+  "build_sha256": "64610ac470827b48c587f06875b42b475969641dedd796714165c35e5eb956c7",
+  "fixture": "docs/evidence/cosmos/VETERAN_SOURCE.json",
+  "fixture_sha256": "56e09068038bc92bd51d9f98a3636668005fb296743875db0359a677ae3696fd",
+  "browser_version": "153.0.8010.36",
+  "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3080 (0x00002216) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+  "completed_actions": 32,
+  "browser_errors": [],
+  "last_scene": "valley",
+  "method": "Automated accepted commands and UI on normal real-time RAF; command-earned checkpoint, no gameplay state grants; video is not an FPS measurement.",
+  "video": {
+    "path": "NEAR_EXPANSE_GAMEPLAY.mp4",
+    "bytes": 7675099,
+    "sha256": "8c863a53a092dc8f5f1353a8c536a190f4762f0192fc1453c5e169f397d0cb0a",
+    "duration_seconds": 83.64,
+    "resolution": [
+      1280,
+      720
+    ],
+    "encoded_frames_per_second": 25,
+    "audio": "silent Playwright video; no audio capture",
+    "source_webm_sha256": "5160a2076142da9c15b38c2ece17142917075581c0fe9f8ee37a498e81c37108",
+    "conversion": "ffmpeg 7.1, libx264 CRF 28 slow, yuv420p; no retiming, cuts, generated frames or overlays added in post"
+  },
+  "frame_measurement": "RTX_3080_REPORT.json",
+  "performance_claim": "Video frame rate is encoding rate. GPU report measures normal browser RAF intervals only, not monitor presentation or human comfort."
+}

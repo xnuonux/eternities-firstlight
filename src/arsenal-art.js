@@ -15,7 +15,7 @@ function court(a){a.begin('range');a.e.theme='range';a.e.ambientOverride=.58;con
  // Distant forest and broken aqueduct are scenery, not hidden walkable regions.
  for(let i=0;i<17;i++){const x=-27+i*3.5;a.tree(x,-18-rng()*5,.8+rng()*.8,i%3,0);}for(let i=0;i<7;i++){a.box(-26+i*8,4,-32,2,12,2.4,0x77877a);a.box(-22+i*8,10,-32,8.4,.6,2.5,0x94a092);}for(let i=0;i<35;i++){let q=i*2.4;a.flowers(Math.cos(q)*(18+i%8),Math.sin(q)*(17+i%9),.5);}
  a.commit();}
-function draw(out,sim,t){const A=G.RealmAdventure,s=sim.state.adventure,r=AR.runtime(sim),p=sim.state.player,base=sim.room?1.58:1.31;
+function draw(out,sim,t){const A=G.RealmAdventure,s=sim.state.adventure,r=AR.runtime(sim),p=sim.state.player,base=sim.room===G.RealmCosmos?.ROOM?G.RealmCosmos.height(p.x,p.z):sim.room?1.58:1.31;
  const add=(k,x,y,z,w,h,d,c,o={})=>out[k].push({p:[x,y,z],s:[w,h,d],c,...o}),box=(...a)=>add('box',...a);
  function ring(x,y,z,rad,col,yaw=0){for(let i=0;i<26;i++){const q=i*TAU/26;const xx=Math.sin(q)*rad,yy=Math.cos(q)*rad;box(x+xx*Math.cos(yaw),y+yy,z-xx*Math.sin(yaw),.12,.19,.07,col,{r:[0,yaw,-q],em:.15});}}
  if(sim.room==='range')for(const e of r.enemies){const col=e.id==='range-west'?0xc99165:e.id==='range-mid'?0x9acbd8:0xe2c875;for(const x of[-.42,.42])box(e.x+x,2.0,e.z,.12,1,.15,0x796953,{r:[0,0,x*.35]});box(e.x,2.5,e.z,.12,1.8,.16,0x8c785c);ring(e.x,2.9,e.z,.78,e.flash>s.elapsed?0xffeed1:col);ring(e.x,2.9,e.z+.04,.46,0xe5dbc0);ring(e.x,2.9,e.z+.08,.18,col);add('disc',e.x,2.9,e.z-.02,1.44,.08,1.44,0x7c6c55,{r:[Math.PI/2,0,0]});for(let j=0;j<(r.range.hits[e.id]||0);j++)add('octa',e.x-.17+j*.34,4.0,e.z,.18,.3,.14,0xf6d38a,{em:.8});if(e.id==='range-east')box(6,1.63,-5,5,.12,.18,0x90877a);}

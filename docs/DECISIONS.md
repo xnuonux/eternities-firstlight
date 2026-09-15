@@ -1,3 +1,13 @@
+# Decisions added 2026-09-15
+
+- **Complete source intake, bounded implementation.** Dom requested the new Astra visions and confirmed the comprehensive realm collection. Full Earth, Heaven, Hell, Atlantis and Cosmos packages plus the expanded library were retrieved. Published hashes and reading/implementation boundaries are in the vision index. Archive text remains evidence; current user authorization and verified gameplay state govern changes.
+- **Cosmos M1 first, Earth stays home.** The optional Near Expanse proves one connected ground scene, two routes, inhabited landmarks, a gentle rise and reversible travel. No M2 combat, reward, durable visit or campaign fact is inferred. The next shared spatial application is Earth E0/E1, subject to observed play and current source.
+- **No migration without a durable need.** M1 uses existing transient-scene serialization. Before entry, save the source checkpoint and bind its preview to simulation, character, revision, position and destination. Reopen/switch resumes on the valley side. This choice is visible in the invitation. All existing save versions and XP stay unchanged.
+- **Geometry and camera agree.** Cosmos ground and solids are rule definitions consumed by navigation and inverse picking. Manual movement checks complete segments at route corners. Remote sky images opt out of camera collision, shadow casting and surface targets; world-space stars stay fixed while orbiting. Terrain variation is presentation only. Existing scene consumers retain their defaults.
+- **Separate future realms and unanswered economics.** Earth, Heaven, Hell, Atlantis and Cosmos may share proven technical primitives, never accidental quest/reward IDs, personal history or automatic progression. Paid power, offline loss, rare pets, construction scale, native engine and multiplayer decisions remain open. No protected resident/sanctuary source is imported.
+
+---
+
 # Firstlight decisions
 
 ## 2026-09-14: connect the implemented loop before adding another system
