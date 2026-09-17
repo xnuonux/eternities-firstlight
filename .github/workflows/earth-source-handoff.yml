@@ -1,0 +1,32 @@
+name: Earth worktree source handoff
+on:
+  push:
+    branches: [gameplay/earth-riverwalk-astra]
+    paths: [.github/workflows/earth-source-handoff.yml]
+permissions:
+  contents: read
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Package exact tracked source, not a working directory or credentials
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/firstlight-source"
+          git archive --format=zip --output="$RUNNER_TEMP/firstlight-source/SOURCE.zip" HEAD
+          git rev-parse HEAD > "$RUNNER_TEMP/firstlight-source/COMMIT.txt"
+          git rev-parse HEAD^{tree} > "$RUNNER_TEMP/firstlight-source/TREE.txt"
+          git ls-tree -r -z HEAD > "$RUNNER_TEMP/firstlight-source/TRACKED_FILES.bin"
+          cd "$RUNNER_TEMP/firstlight-source"
+          sha256sum SOURCE.zip > SHA256SUMS
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: firstlight-earth-source-${{ github.sha }}
+          path: ${{ runner.temp }}/firstlight-source/
+          if-no-files-found: error
+          retention-days: 7
