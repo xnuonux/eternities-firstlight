@@ -32,7 +32,11 @@ jobs:
           allowed=set('''.github/workflows/verify.yml AGENTS.md build.py docs/CURRENT_STATE.md docs/NEXT_TASK.md docs/PLAYTEST_NOTES.md docs/development/EARTH_RIVERWALK_RESULTS_2026-09-17.md docs/development/EARTH_RIVERWALK_TASK_2026-09-17.md src/adventure.js src/app.js src/core.js src/riverwalk-art.js src/riverwalk-ui.js src/riverwalk.css src/riverwalk.js src/rpg-ui.js src/shell.html src/starter-art.js src/starter-ui.js src/starter.js tests/README.md tests/riverwalk.test.cjs tests/riverwalk_browser.py tests/riverwalk_journey.cjs tools/verify.py'''.split())
           marker=root/'.handoff/earth-riverwalk.json'
           wrap=json.loads(marker.read_text())
-          raw=gzip.decompress(base64.b64decode(wrap['gzip_base64'],validate=True))
+          assert wrap['parts']==4
+          parts=[root/('.handoff/earth-riverwalk.part'+str(i)) for i in range(1,5)]
+          encoded=''.join(p.read_text().strip() for p in parts)
+          assert len(encoded)<50000
+          raw=gzip.decompress(base64.b64decode(encoded,validate=True))
           assert len(raw)<250000 and hashlib.sha256(raw).hexdigest()==wrap['sha256'], 'Payload integrity'
           data=json.loads(raw)
           assert data['format']==1 and data['source_commit']=='afb0011c45d3fc7f4b5c9135d755685ae3f09d0a'
@@ -64,9 +68,9 @@ jobs:
           for name in ['FIRSTLIGHT_VALLEY.html','index.html']:
               assert hashlib.sha256((root/name).read_bytes()).hexdigest()==data['expected_html_sha256'], 'Generated HTML differs'
           subprocess.run(['python','tools/verify.py','--output','verification/earth-publish'],check=True)
-          # Retire only this task's two temporary transfer files, not the existing import workflow.
-          marker.unlink();(root/'.github/workflows/earth-apply-verified-source.yml').unlink()
-          stage=sorted(allowed)+['FIRSTLIGHT_VALLEY.html','index.html','.handoff/earth-riverwalk.json','.github/workflows/earth-apply-verified-source.yml']
+          # Retire this task's transfer files, never the historical import workflow.
+          for p in [marker,*parts,root/'.github/workflows/earth-apply-verified-source.yml']:p.unlink()
+          stage=sorted(allowed)+['FIRSTLIGHT_VALLEY.html','index.html','.handoff/earth-riverwalk.json','.github/workflows/earth-apply-verified-source.yml']+[p.relative_to(root).as_posix() for p in parts]
           subprocess.run(['git','add','--',*stage],check=True)
           subprocess.run(['git','-c','user.name=Firstlight source handoff','-c','user.email=41898282+github-actions[bot]@users.noreply.github.com','commit','-m','feat: connect orchard and waterside routes to the existing riverbank worksite'],check=True)
           head=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
