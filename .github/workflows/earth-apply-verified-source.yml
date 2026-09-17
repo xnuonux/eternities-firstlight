@@ -1,0 +1,92 @@
+name: Publish reviewed Earth source
+on:
+  push:
+    branches: [gameplay/earth-riverwalk-astra]
+    paths: [.handoff/earth-riverwalk.json]
+permissions:
+  contents: write
+jobs:
+  apply-and-verify:
+    if: github.repository == 'xnuonux/eternities-firstlight' && github.ref == 'refs/heads/gameplay/earth-riverwalk-astra'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24'
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.13'
+      - name: Apply only reviewed source deltas, reproduce bytes, publish and independently clone
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EXPECTED_HEAD: ${{ github.sha }}
+        shell: python
+        run: |
+          import base64, gzip, hashlib, json, os, pathlib, subprocess, tempfile
+          root=pathlib.Path.cwd()
+          allowed=set('''.github/workflows/verify.yml AGENTS.md build.py docs/CURRENT_STATE.md docs/NEXT_TASK.md docs/PLAYTEST_NOTES.md docs/development/EARTH_RIVERWALK_RESULTS_2026-09-17.md docs/development/EARTH_RIVERWALK_TASK_2026-09-17.md src/adventure.js src/app.js src/core.js src/riverwalk-art.js src/riverwalk-ui.js src/riverwalk.css src/riverwalk.js src/rpg-ui.js src/shell.html src/starter-art.js src/starter-ui.js src/starter.js tests/README.md tests/riverwalk.test.cjs tests/riverwalk_browser.py tests/riverwalk_journey.cjs tools/verify.py'''.split())
+          marker=root/'.handoff/earth-riverwalk.json'
+          wrap=json.loads(marker.read_text())
+          raw=gzip.decompress(base64.b64decode(wrap['gzip_base64'],validate=True))
+          assert len(raw)<250000 and hashlib.sha256(raw).hexdigest()==wrap['sha256'], 'Payload integrity'
+          data=json.loads(raw)
+          assert data['format']==1 and data['source_commit']=='afb0011c45d3fc7f4b5c9135d755685ae3f09d0a'
+          assert len(data['files'])==len(allowed) and {f['path'] for f in data['files']}==allowed
+          auth=base64.b64encode(('x-access-token:'+os.environ['GH_TOKEN']).encode()).decode()
+          env={**os.environ,'GIT_CONFIG_COUNT':'1','GIT_CONFIG_KEY_0':'http.https://github.com/.extraheader','GIT_CONFIG_VALUE_0':'AUTHORIZATION: basic '+auth}
+          url='https://github.com/xnuonux/eternities-firstlight.git'
+          branch='gameplay/earth-riverwalk-astra'
+          expected=os.environ['EXPECTED_HEAD']
+          remote=subprocess.check_output(['git','ls-remote',url,'refs/heads/'+branch],env=env,text=True).split()[0]
+          assert remote==expected, 'Branch moved: do not overwrite concurrent work'
+          updates=[]
+          for f in data['files']:
+              p=root/f['path'];assert not p.is_symlink()
+              if f['before_git_blob_sha1'] is None:
+                  assert not p.exists(), 'New path already exists';old=''
+              else:
+                  b=p.read_bytes();assert hashlib.sha1(('blob '+str(len(b))+'\0').encode()+b).hexdigest()==f['before_git_blob_sha1'], 'Source changed: '+f['path'];old=b.decode('utf-8')
+              end=0
+              for i,j,value in f['edits']:
+                  assert isinstance(i,int) and isinstance(j,int) and isinstance(value,str) and end<=i<=j<=len(old)
+                  end=j
+              text=old
+              for i,j,value in reversed(f['edits']):text=text[:i]+value+text[j:]
+              b=text.encode('utf-8');assert hashlib.sha256(b).hexdigest()==f['after_sha256'], 'Reconstruction hash'
+              updates.append((p,b))
+          for p,b in updates:p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(b)
+          subprocess.run(['python','build.py'],check=True)
+          for name in ['FIRSTLIGHT_VALLEY.html','index.html']:
+              assert hashlib.sha256((root/name).read_bytes()).hexdigest()==data['expected_html_sha256'], 'Generated HTML differs'
+          subprocess.run(['python','tools/verify.py','--output','verification/earth-publish'],check=True)
+          # Retire only this task's two temporary transfer files, not the existing import workflow.
+          marker.unlink();(root/'.github/workflows/earth-apply-verified-source.yml').unlink()
+          stage=sorted(allowed)+['FIRSTLIGHT_VALLEY.html','index.html','.handoff/earth-riverwalk.json','.github/workflows/earth-apply-verified-source.yml']
+          subprocess.run(['git','add','--',*stage],check=True)
+          subprocess.run(['git','-c','user.name=Firstlight source handoff','-c','user.email=41898282+github-actions[bot]@users.noreply.github.com','commit','-m','feat: connect orchard and waterside routes to the existing riverbank worksite'],check=True)
+          head=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
+          remote=subprocess.check_output(['git','ls-remote',url,'refs/heads/'+branch],env=env,text=True).split()[0]
+          assert remote==expected, 'Branch moved during verification'
+          subprocess.run(['git','push',url,'HEAD:refs/heads/'+branch],env=env,check=True)
+          fresh=pathlib.Path(tempfile.mkdtemp(prefix='firstlight-earth-fresh-'))/'repo'
+          subprocess.run(['git','clone','--depth','1','--single-branch','--branch',branch,url,str(fresh)],env=env,check=True)
+          assert subprocess.check_output(['git','rev-parse','HEAD'],cwd=fresh,text=True).strip()==head
+          subprocess.run(['python','tools/verify.py','--output','verification/earth-fresh-clone'],cwd=fresh,check=True)
+          assert not subprocess.check_output(['git','status','--porcelain'],cwd=fresh), 'Fresh clone changed tracked source'
+          for name in ['FIRSTLIGHT_VALLEY.html','index.html']:assert hashlib.sha256((fresh/name).read_bytes()).hexdigest()==data['expected_html_sha256']
+          out=root/'verification/earth-publication';out.mkdir(parents=True,exist_ok=True)
+          receipt={'head':head,'source_delta_sha256':wrap['sha256'],'html_sha256':data['expected_html_sha256'],'fresh_clone_verified':True,'remote':url,'branch':branch,'files':[{k:f[k] for k in ['path','after_sha256']} for f in data['files']],'scope':'Exact source/build/rules/helper/journey verification; browser CI is separate; no main merge or deployment.'}
+          (out/'RECEIPT.json').write_text(json.dumps(receipt,indent=2))
+          subprocess.run(['git','archive','--format=zip','--output='+str(out/'PLAYABLE_AND_SOURCE.zip'),'HEAD'],cwd=fresh,check=True)
+          print('Published and independently cloned:',head)
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: firstlight-earth-publication
+          path: verification/
+          retention-days: 7
