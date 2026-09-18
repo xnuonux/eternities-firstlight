@@ -145,6 +145,7 @@ body.rpg-edition{--gold:#dbc18c;--ink:#111d21;--pane:rgba(15,29,33,.94);--muted:
 
 .cosmos-reading{max-width:940px;margin:0 auto;padding:clamp(12px,3vw,38px)}.cosmos-reading>small,.cosmos-invitation>small{color:#d6bd89;letter-spacing:.16em;font-size:11px}.cosmos-reading h2{font-family:Georgia,serif;font-weight:400;font-size:clamp(27px,3vw,43px);line-height:1.15;margin:18px 0 24px;color:#f1e5cf}.cosmos-reading p{line-height:1.65;color:#c6d0cc}.cosmos-reading .cosmos-quote{font-family:Georgia,serif;font-size:clamp(20px,2vw,25px);line-height:1.5;color:#e4decf;max-width:730px}.cosmos-terms{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin:30px 0;border-block:1px solid #77908a44;padding:22px 0}.cosmos-terms h3{font-size:15px;color:#e5cc9d;margin:0 0 8px}.cosmos-terms p{font-size:14px;margin:0}.cosmos-actions{display:flex;flex-wrap:wrap;gap:12px;margin:24px 0}.cosmos-actions button{padding:12px 18px}.cosmos-note{font-size:12px!important;color:#a7b6b2!important}.cosmos-atlas{display:grid;grid-template-columns:minmax(260px,420px) 1fr;gap:28px;max-width:980px;margin:auto}.cosmos-atlas svg{width:100%;max-height:62vh}.cosmos-atlas section>button{display:block;text-align:left;width:100%;padding:12px;margin:8px 0}.cosmos-atlas p{font-size:14px;color:#b7c4c0;line-height:1.6}.cosmos-invitation{padding:22px;border:1px solid #b3a17855;border-radius:14px;background:linear-gradient(120deg,#243b3a,#252939);margin:20px 0}.cosmos-invitation p{color:#c9d1c7;max-width:640px}#cosmos-labels{position:fixed;inset:0;pointer-events:none}#cosmos-labels span{position:absolute;transform:translate(-50%,-100%);padding:5px 10px;border:1px solid #bbae8066;border-radius:6px;background:#17242ce6;color:#ebdfc4;font-size:12px;white-space:nowrap;text-shadow:0 1px 2px #000}#cosmos-home{position:fixed;right:24px;top:132px;border-color:#b5ab7b77;padding:9px 14px;pointer-events:auto}.in-cosmos .tracker-switch{visibility:hidden}.in-cosmos #skillbar{opacity:.8}@media(max-width:700px){.cosmos-terms{grid-template-columns:1fr;gap:17px}.cosmos-atlas{grid-template-columns:1fr}.cosmos-atlas svg{max-height:45vh}#cosmos-home{right:10px;top:116px;font-size:11px}.cosmos-reading{padding:10px}.cosmos-atlas{gap:10px}}.photo-mode #cosmos-home{display:none}
 
+
 #earth-home{position:fixed;right:20px;bottom:96px;z-index:18;border:1px solid #d5bd8b;background:#20392f;color:#fff1d0;border-radius:999px;padding:11px 16px;font:700 12px/1 system-ui;letter-spacing:.04em}
 #earth-labels{position:fixed;inset:0;z-index:10;pointer-events:none}
 #earth-labels span{position:absolute;transform:translate(-50%,-100%);background:#17271fd9;color:#fff1d0;border:1px solid #bba57580;border-radius:999px;padding:5px 9px;font:650 11px/1.1 system-ui;white-space:nowrap}
@@ -174,7 +175,129 @@ body.in-earth .place-title #place-kicker{color:#d7bd83}
 <aside id="drawer" aria-label="Realm panel" inert><div id="drawer-head"><h2 id="panel-title">Explore</h2><button id="close-panel" aria-label="Close panel">✕</button></div><div id="drawer-body"></div></aside><div id="toast" role="status" aria-live="polite"></div><div id="fallback-banner" role="status">3D is unavailable. Explore the same local world using this map.</div></div>
 <button id="photo-exit">Return to the realm · H</button><input id="import-file" class="file-input" type="file" accept=".json,application/json" aria-label="Import a saved local world"><div id="loading"><span class="seal">Σ</span><div>Opening Firstlight Valley</div><p>EVERYTHING IS ALREADY HERE.</p><noscript>This interactive world needs JavaScript enabled in a full browser. Download the HTML and open it in Chrome, Edge, Firefox or Safari rather than a document preview.</noscript></div>
 <dialog id="story-dialog" aria-labelledby="story-title"><div class="story-sigil">✦</div><small id="story-speaker">THE ENVOY</small><h2 id="story-title"></h2><p id="story-body"></p><div id="story-buttons"></div><button id="story-close">Continue another time</button></dialog><dialog id="fallen-dialog" aria-labelledby="fallen-title"><span class="story-sigil">✧</span><h2 id="fallen-title">The light has not left you.</h2><p>Your belongings and home are safe. Defeated encounters and excavated paths remain.</p><button id="revive-button">Return to the spring</button></dialog><dialog id="studio-dialog" aria-labelledby="studio-title"><div class="studio-heading"><div><span class="overline">ETERNITIES · THE LISTENING ROOM</span><h2 id="studio-title">A little music, made here.</h2></div><button id="studio-close" aria-label="Close music workspace">✕</button></div><div id="studio-body"></div></dialog><input id="score-import" class="file-input" type="file" accept=".json,application/json" aria-label="Import an editable score">
-<script>/* The Near Expanse M1. Physical ground and transient travel, no new save data or payout. */
+<script>/* Earth E1 — Hearthwater Vale's first connected approach.
+ * Physical ground and transient travel only: no quest completion, payout, class,
+ * economy, Bellweather unlock, or durable region state. */
+(function(G){'use strict';
+const ROOM='earth-hearthwater-approach';
+const GATE=Object.freeze({x:0,z:27});
+const ENTRY=Object.freeze({x:0,z:24,yaw:Math.PI});
+const PATCHES=Object.freeze([
+ {id:'arrival',x:0,z:21,w:10,d:14},
+ {id:'south-meadow',x:0,z:10,w:22,d:12},
+ {id:'orchard-lane',x:-9,z:-1,w:14,d:16},
+ {id:'mill-road',x:8,z:-2,w:14,d:16},
+ {id:'west-track',x:-13,z:-17,w:10,d:26},
+ {id:'ridge-track',x:13,z:-18,w:10,d:28},
+ {id:'north-common',x:0,z:-32,w:34,d:12},
+ {id:'bellweather-road',x:0,z:-43,w:20,d:16}
+]);
+const SOLIDS=Object.freeze([
+ {id:'mill-pond',x:0,z:-15,w:9,d:20,h:.35},
+ {id:'orchard-shed',x:-8,z:0,w:4.4,d:4.2,h:3.5},
+ {id:'quarry-stack',x:11.7,z:-18,w:3.2,d:4.5,h:2.5},
+ {id:'shelter-back',x:-12,z:-26,w:6.6,d:.5,h:3.1},
+ {id:'shelter-west',x:-15,z:-23.8,w:.5,d:4.8,h:3.1},
+ {id:'shelter-east',x:-9,z:-24.6,w:.5,d:3.2,h:3.1}
+]);
+const POINTS=Object.freeze([
+ {id:'arrival',name:'Lake footbridge · way home',x:0,z:24,kind:'return'},
+ {id:'bridge',name:'Hearthwater footbridge',x:0,z:16,kind:'route'},
+ {id:'orchard',name:'Orchard lane',x:-8,z:3,kind:'view'},
+ {id:'millfork',name:'Mill road fork',x:7,z:2,kind:'route'},
+ {id:'ridge',name:'Ridge road',x:13,z:-13,kind:'view'},
+ {id:'quarry',name:'Quarry approach',x:12,z:-26,kind:'route'},
+ {id:'shelter',name:'Old ridge shelter',x:-12,z:-23,kind:'rest'},
+ {id:'bellweather',name:'Bellweather west road',x:0,z:-43,kind:'boundary'}
+]);
+const clamp=(n,a,b)=>Math.max(a,Math.min(b,n)),dist=(a,b)=>Math.hypot(a.x-b.x,a.z-b.z),tickets=new WeakMap();
+const fail=error=>({ok:false,error});
+function height(x,z){
+ const rise=clamp((-z+8)/50,0,1);
+ return 1.57+.62*rise+.08*Math.sin(x*.16)*clamp((-z+3)/45,0,1);
+}
+function inside(x,z,p,r=0){return Math.abs(x-p.x)<=p.w/2-r&&Math.abs(z-p.z)<=p.d/2-r;}
+function land(x,z,r=.31){
+ if(![x,z,r].every(Number.isFinite)||r<0||r>2)return false;
+ const offsets=[[0,0],[r,0],[-r,0],[0,r],[0,-r],[r*.707,r*.707],[-r*.707,r*.707],[r*.707,-r*.707],[-r*.707,-r*.707]];
+ return offsets.every(([dx,dz])=>PATCHES.some(p=>inside(x+dx,z+dz,p)));
+}
+function walkable(x,z,r=.31){return land(x,z,r)&&!SOLIDS.some(p=>inside(x,z,p,-r));}
+function interval(a,b,p,r=0){
+ let lo=0,hi=1;
+ for(const [k,size] of [['x','w'],['z','d']]){
+  const d=b[k]-a[k],min=p[k]-p[size]/2-r,max=p[k]+p[size]/2+r;
+  if(Math.abs(d)<1e-9){if(a[k]<min||a[k]>max)return null;}
+  else{
+   const u=(min-a[k])/d,v=(max-a[k])/d;
+   lo=Math.max(lo,Math.min(u,v));hi=Math.min(hi,Math.max(u,v));
+   if(lo>hi)return null;
+  }
+ }
+ return[lo,hi];
+}
+function segment(a,b,r=.31){
+ if(!a||!b||!Number.isFinite(dist(a,b))||dist(a,b)>160||!walkable(a.x,a.z,r)||!walkable(b.x,b.z,r))return false;
+ if(SOLIDS.some(p=>interval(a,b,p,r)))return false;
+ const offsets=[[0,0],[r,0],[-r,0],[0,r],[0,-r],[r*.707,r*.707],[-r*.707,r*.707],[r*.707,-r*.707],[-r*.707,-r*.707]];
+ for(const [dx,dz] of offsets){
+  const intervals=PATCHES.map(p=>interval({x:a.x+dx,z:a.z+dz},{x:b.x+dx,z:b.z+dz},p)).filter(Boolean).sort((u,v)=>u[0]-v[0]);
+  let end=0;
+  for(const [lo,hi] of intervals){if(lo>end+1e-8)return false;end=Math.max(end,hi);}
+  if(end<1-1e-8)return false;
+ }
+ return true;
+}
+function line(a,b){return segment(a,b,.04);}
+function near(sim,p,r=2.8){return dist(sim.state.player,p)<=r;}
+function preview(ctx){
+ const sim=ctx.sim;
+ if(sim.room||sim.state.adventure.hp<=0||!near(sim,GATE))return fail('Approach the Hearthwater trail marker at the lake footbridge.');
+ const ticket=Object.freeze({destination:ROOM});
+ tickets.set(ticket,{sim,active:ctx.active,revision:ctx.revision,position:{...sim.state.player},used:false});
+ return{ok:true,ticket};
+}
+function cancel(ticket){const t=tickets.get(ticket);if(t)t.used=true;}
+function enter(ticket,ctx,io){
+ const t=tickets.get(ticket),sim=ctx.sim;
+ if(!t||t.used||ticket.destination!==ROOM||t.sim!==sim||t.active!==ctx.active||t.revision!==ctx.revision||sim.room||!near(sim,GATE)||dist(sim.state.player,t.position)>.01||sim.state.adventure.hp<=0)return fail('That trail preview has changed. Review the Hearthwater marker again.');
+ t.used=true;
+ if(io.available===false)return fail('The Hearthwater approach scene is unavailable. You are still beside the lake.');
+ const source=sim.snapshot();let saved;
+ try{saved=io.save(source);}catch(e){return fail('Travel save refused: '+e.message);}
+ if(!saved?.ok)return fail(saved?.error||'Save the Firstlight checkpoint before taking the trail.');
+ const prior={room:sim.room,returnPos:sim.returnPos,player:{...sim.state.player},path:sim.playerPath,runtime:sim.adventureRuntime};
+ try{
+  sim.returnPos={...t.position};sim.room=ROOM;sim.state.player={...ENTRY};sim.playerPath=[];
+  sim.earthTrip={active:t.active,sourceRegion:'valley',sourceRevision:t.revision,destination:ROOM,checkpoint:{...t.position}};
+  io.build();G.RealmAdventure.syncScene(sim);G.RealmCombat.stop(sim,true);return{ok:true};
+ }catch(e){
+  sim.room=prior.room;sim.returnPos=prior.returnPos;sim.state.player=prior.player;sim.playerPath=prior.path;sim.adventureRuntime=prior.runtime;delete sim.earthTrip;
+  try{io.restore?.();}catch(restoreError){return fail('The route could not load. Your saved valley checkpoint is safe; reopen the game. '+restoreError.message);}
+  return fail('The route could not load. You are back at the lake checkpoint. '+e.message);
+ }
+}
+function leave(sim){
+ if(sim.room!==ROOM||!sim.returnPos)return fail('You are already on the Firstlight side.');
+ const r=sim.leave();delete sim.earthTrip;G.RealmAdventure.syncScene(sim);G.RealmCombat.stop(sim,true);return r;
+}
+function recover(sim){
+ if(sim.room!==ROOM||walkable(sim.state.player.x,sim.state.player.z))return false;
+ sim.state.player={...ENTRY};sim.playerPath=[];G.RealmCombat.stop(sim,true);return true;
+}
+function pick(start,ray,max=420){
+ if(![...start,...ray,max].every(Number.isFinite)||max<=0)return null;
+ for(let t=.1;t<=Math.min(420,max);t+=.12){
+  const x=start[0]+ray[0]*t,y=start[1]+ray[1]*t,z=start[2]+ray[2]*t,h=height(x,z);
+  if(SOLIDS.some(p=>inside(x,z,p)&&y>=h-.15&&y<=h+p.h))return null;
+  if(land(x,z,0)&&y<=h&&y>=h-.45)return walkable(x,z)?{x,z}:null;
+ }
+ return null;
+}
+const api={ROOM,GATE,ENTRY,PATCHES,SOLIDS,POINTS,height,land,walkable,segment,line,near,preview,cancel,enter,leave,recover,pick};
+G.RealmEarth=api;if(typeof module!=='undefined')module.exports=api;
+})(globalThis);
+</script><script>/* The Near Expanse M1. Physical ground and transient travel, no new save data or payout. */
 (function(G){'use strict';
 const ROOM='cosmos-near-expanse',GATE=Object.freeze({x:14,z:-5}),ENTRY=Object.freeze({x:0,z:18,yaw:Math.PI});
 const PATCHES=Object.freeze([
@@ -3325,128 +3448,6 @@ class PursuitUI{
  }
 }
 G.RealmPursuitUI={PursuitUI};
-})(globalThis);
-</script><script>/* Earth E1 — Hearthwater Vale's first connected approach.
- * Physical ground and transient travel only: no quest completion, payout, class,
- * economy, Bellweather unlock, or durable region state. */
-(function(G){'use strict';
-const ROOM='earth-hearthwater-approach';
-const GATE=Object.freeze({x:0,z:27});
-const ENTRY=Object.freeze({x:0,z:24,yaw:Math.PI});
-const PATCHES=Object.freeze([
- {id:'arrival',x:0,z:21,w:10,d:14},
- {id:'south-meadow',x:0,z:10,w:22,d:12},
- {id:'orchard-lane',x:-9,z:-1,w:14,d:16},
- {id:'mill-road',x:8,z:-2,w:14,d:16},
- {id:'west-track',x:-13,z:-17,w:10,d:26},
- {id:'ridge-track',x:13,z:-18,w:10,d:28},
- {id:'north-common',x:0,z:-32,w:34,d:12},
- {id:'bellweather-road',x:0,z:-43,w:20,d:16}
-]);
-const SOLIDS=Object.freeze([
- {id:'mill-pond',x:0,z:-15,w:9,d:20,h:.35},
- {id:'orchard-shed',x:-8,z:0,w:4.4,d:4.2,h:3.5},
- {id:'quarry-stack',x:11.7,z:-18,w:3.2,d:4.5,h:2.5},
- {id:'shelter-back',x:-12,z:-26,w:6.6,d:.5,h:3.1},
- {id:'shelter-west',x:-15,z:-23.8,w:.5,d:4.8,h:3.1},
- {id:'shelter-east',x:-9,z:-24.6,w:.5,d:3.2,h:3.1}
-]);
-const POINTS=Object.freeze([
- {id:'arrival',name:'Lake footbridge · way home',x:0,z:24,kind:'return'},
- {id:'bridge',name:'Hearthwater footbridge',x:0,z:16,kind:'route'},
- {id:'orchard',name:'Orchard lane',x:-8,z:3,kind:'view'},
- {id:'millfork',name:'Mill road fork',x:7,z:2,kind:'route'},
- {id:'ridge',name:'Ridge road',x:13,z:-13,kind:'view'},
- {id:'quarry',name:'Quarry approach',x:12,z:-26,kind:'route'},
- {id:'shelter',name:'Old ridge shelter',x:-12,z:-23,kind:'rest'},
- {id:'bellweather',name:'Bellweather west road',x:0,z:-43,kind:'boundary'}
-]);
-const clamp=(n,a,b)=>Math.max(a,Math.min(b,n)),dist=(a,b)=>Math.hypot(a.x-b.x,a.z-b.z),tickets=new WeakMap();
-const fail=error=>({ok:false,error});
-function height(x,z){
- const rise=clamp((-z+8)/50,0,1);
- return 1.57+.62*rise+.08*Math.sin(x*.16)*clamp((-z+3)/45,0,1);
-}
-function inside(x,z,p,r=0){return Math.abs(x-p.x)<=p.w/2-r&&Math.abs(z-p.z)<=p.d/2-r;}
-function land(x,z,r=.31){
- if(![x,z,r].every(Number.isFinite)||r<0||r>2)return false;
- const offsets=[[0,0],[r,0],[-r,0],[0,r],[0,-r],[r*.707,r*.707],[-r*.707,r*.707],[r*.707,-r*.707],[-r*.707,-r*.707]];
- return offsets.every(([dx,dz])=>PATCHES.some(p=>inside(x+dx,z+dz,p)));
-}
-function walkable(x,z,r=.31){return land(x,z,r)&&!SOLIDS.some(p=>inside(x,z,p,-r));}
-function interval(a,b,p,r=0){
- let lo=0,hi=1;
- for(const [k,size] of [['x','w'],['z','d']]){
-  const d=b[k]-a[k],min=p[k]-p[size]/2-r,max=p[k]+p[size]/2+r;
-  if(Math.abs(d)<1e-9){if(a[k]<min||a[k]>max)return null;}
-  else{
-   const u=(min-a[k])/d,v=(max-a[k])/d;
-   lo=Math.max(lo,Math.min(u,v));hi=Math.min(hi,Math.max(u,v));
-   if(lo>hi)return null;
-  }
- }
- return[lo,hi];
-}
-function segment(a,b,r=.31){
- if(!a||!b||!Number.isFinite(dist(a,b))||dist(a,b)>160||!walkable(a.x,a.z,r)||!walkable(b.x,b.z,r))return false;
- if(SOLIDS.some(p=>interval(a,b,p,r)))return false;
- const offsets=[[0,0],[r,0],[-r,0],[0,r],[0,-r],[r*.707,r*.707],[-r*.707,r*.707],[r*.707,-r*.707],[-r*.707,-r*.707]];
- for(const [dx,dz] of offsets){
-  const intervals=PATCHES.map(p=>interval({x:a.x+dx,z:a.z+dz},{x:b.x+dx,z:b.z+dz},p)).filter(Boolean).sort((u,v)=>u[0]-v[0]);
-  let end=0;
-  for(const [lo,hi] of intervals){if(lo>end+1e-8)return false;end=Math.max(end,hi);}
-  if(end<1-1e-8)return false;
- }
- return true;
-}
-function line(a,b){return segment(a,b,.04);}
-function near(sim,p,r=2.8){return dist(sim.state.player,p)<=r;}
-function preview(ctx){
- const sim=ctx.sim;
- if(sim.room||sim.state.adventure.hp<=0||!near(sim,GATE))return fail('Approach the Hearthwater trail marker at the lake footbridge.');
- const ticket=Object.freeze({destination:ROOM});
- tickets.set(ticket,{sim,active:ctx.active,revision:ctx.revision,position:{...sim.state.player},used:false});
- return{ok:true,ticket};
-}
-function cancel(ticket){const t=tickets.get(ticket);if(t)t.used=true;}
-function enter(ticket,ctx,io){
- const t=tickets.get(ticket),sim=ctx.sim;
- if(!t||t.used||ticket.destination!==ROOM||t.sim!==sim||t.active!==ctx.active||t.revision!==ctx.revision||sim.room||!near(sim,GATE)||dist(sim.state.player,t.position)>.01||sim.state.adventure.hp<=0)return fail('That trail preview has changed. Review the Hearthwater marker again.');
- t.used=true;
- if(io.available===false)return fail('The Hearthwater approach scene is unavailable. You are still beside the lake.');
- const source=sim.snapshot();let saved;
- try{saved=io.save(source);}catch(e){return fail('Travel save refused: '+e.message);}
- if(!saved?.ok)return fail(saved?.error||'Save the Firstlight checkpoint before taking the trail.');
- const prior={room:sim.room,returnPos:sim.returnPos,player:{...sim.state.player},path:sim.playerPath,runtime:sim.adventureRuntime};
- try{
-  sim.returnPos={...t.position};sim.room=ROOM;sim.state.player={...ENTRY};sim.playerPath=[];
-  sim.earthTrip={active:t.active,sourceRegion:'valley',sourceRevision:t.revision,destination:ROOM,checkpoint:{...t.position}};
-  io.build();G.RealmAdventure.syncScene(sim);G.RealmCombat.stop(sim,true);return{ok:true};
- }catch(e){
-  sim.room=prior.room;sim.returnPos=prior.returnPos;sim.state.player=prior.player;sim.playerPath=prior.path;sim.adventureRuntime=prior.runtime;delete sim.earthTrip;
-  try{io.restore?.();}catch(restoreError){return fail('The route could not load. Your saved valley checkpoint is safe; reopen the game. '+restoreError.message);}
-  return fail('The route could not load. You are back at the lake checkpoint. '+e.message);
- }
-}
-function leave(sim){
- if(sim.room!==ROOM||!sim.returnPos)return fail('You are already on the Firstlight side.');
- const r=sim.leave();delete sim.earthTrip;G.RealmAdventure.syncScene(sim);G.RealmCombat.stop(sim,true);return r;
-}
-function recover(sim){
- if(sim.room!==ROOM||walkable(sim.state.player.x,sim.state.player.z))return false;
- sim.state.player={...ENTRY};sim.playerPath=[];G.RealmCombat.stop(sim,true);return true;
-}
-function pick(start,ray,max=420){
- if(![...start,...ray,max].every(Number.isFinite)||max<=0)return null;
- for(let t=.1;t<=Math.min(420,max);t+=.12){
-  const x=start[0]+ray[0]*t,y=start[1]+ray[1]*t,z=start[2]+ray[2]*t,h=height(x,z);
-  if(SOLIDS.some(p=>inside(x,z,p)&&y>=h-.15&&y<=h+p.h))return null;
-  if(land(x,z,0)&&y<=h&&y>=h-.45)return walkable(x,z)?{x,z}:null;
- }
- return null;
-}
-const api={ROOM,GATE,ENTRY,PATCHES,SOLIDS,POINTS,height,land,walkable,segment,line,near,preview,cancel,enter,leave,recover,pick};
-G.RealmEarth=api;if(typeof module!=='undefined')module.exports=api;
 })(globalThis);
 </script><script>/* Near Expanse M1. Original procedural stone, timber and living ground. */
 (function(G){'use strict';
