@@ -2,7 +2,7 @@
 const {test}=require('node:test'),assert=require('node:assert/strict');
 const C=require('../src/core.js'),E=require('../src/earth.js');
 const fresh=()=>new C.Simulation(C.fresh());
-function atGate(){const sim=fresh();sim.state.player={x:0,z:27,yaw:0};return sim;}
+function atGate(){const sim=fresh();sim.state.player={x:0,z:23,yaw:0};return sim;}
 const owner=(sim,extra={})=>({sim,active:'character-1',revision:5,...extra});
 test('orchard and ridge approaches connect the lake to Bellweather west road',()=>{
  const room={id:E.ROOM};
