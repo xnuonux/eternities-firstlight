@@ -37,7 +37,7 @@ try:
       r=ev('([x,z])=>{const r=Realm.test.move(x,z);if(!r.ok)return r;for(let i=0;i<3500&&Realm.test.path.length;i++)Realm.test.step(.05);Realm.test.render();const p=Realm.diagnostics.adventure.player;return{ok:Math.hypot(p.x-x,p.z-z)<.25}}',[x,z])
       check(f'production walking reaches {x},{z}',r.get('ok'))
     def enter():
-      close();walk(0,27);page.keyboard.press('e');render()
+      close();walk(0,23);page.keyboard.press('e');render()
       check('physical trail marker opens explicit preview',page.locator('[data-rpg="earth-confirm"]').count()==1)
       page.locator('[data-rpg="earth-confirm"]').click();render();check('explicit input enters Hearthwater',scene()=='earth-hearthwater-approach')
     render();page.keyboard.press('m');render()
@@ -46,7 +46,7 @@ try:
     check('remote terms declare no payout and retain old authorities',all(t in text for t in ['no new payout','Oren','Bellweather','Return is available']))
     check('remote invitation cannot enter before physical arrival',page.locator('[data-rpg="earth-confirm"]').count()==0)
     page.locator('[data-rpg="earth-walk"][data-id="gate"]').click();ev('()=>{for(let i=0;i<3000&&Realm.test.path.length;i++)Realm.test.step(.05);Realm.test.render()}')
-    check('map invitation walks to lake rather than teleporting',scene()=='valley' and ev('()=>Math.hypot(Realm.diagnostics.adventure.player.x,Realm.diagnostics.adventure.player.z-27)<.25'))
+    check('map invitation walks to lake rather than teleporting',scene()=='valley' and ev('()=>Math.hypot(Realm.diagnostics.adventure.player.x,Realm.diagnostics.adventure.player.z-23)<.25'))
     page.keyboard.press('e');render();before=state();page.screenshot(path=str(OUT/'TRAVEL_PREVIEW.png'))
     page.locator('[data-rpg="earth-confirm"]').click();render()
     check('fresh visitor can enter with no class or campaign advancement',scene()=='earth-hearthwater-approach' and state()==before)
