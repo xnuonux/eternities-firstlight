@@ -5,9 +5,36 @@
 /*__STARTER_STYLE__*/
 /*__PURSUIT_STYLE__*/
 /*__CHARACTERS_STYLE__*/
-/*__CLASSES_STYLE__*/
-/*__COSMOS_STYLE__*/
-/*__EARTH_STYLE__*/</style></head>
+#rpg-window .class-page{display:grid;gap:16px}.class-intro{padding:4px 2px}.class-intro h2{margin:.25rem 0 .45rem;color:#f0d6a2}.class-intro p{max-width:68ch;color:#b9c6bd}.class-notice,.class-confirm{padding:13px 15px;border:1px solid #7d6a4e;background:#282a28;border-radius:8px}.class-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.class-card{display:grid;grid-template-columns:54px 1fr;gap:12px;padding:14px;border:1px solid #4b5d57;background:#202826;border-radius:9px}.class-card.is-selected{border-color:#d4b175;box-shadow:0 0 0 1px #d4b17555}.class-glyph{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:color-mix(in srgb,var(--class-color) 22%,#18211f);color:var(--class-color);font-size:28px}.class-card h3{margin:.2rem 0;color:#f0d6a2}.class-card h4{margin:12px 0 4px;color:#d7e0d7}.class-card p{margin:5px 0;color:#b9c6bd}.class-technique{font-size:.93em}.class-stats{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.class-stats div{padding:5px 8px;border-radius:5px;background:#17201d}.class-stats dt{font-size:.68em;text-transform:uppercase;color:#879991}.class-stats dd{margin:2px 0 0;color:#f0d6a2}.class-primary{border-color:#d4b175!important;color:#f0d6a2!important}.class-confirm h3{margin:.25rem 0;color:#f0d6a2}.class-confirm p{max-width:70ch;color:#b9c6bd}.fineprint{font-size:.82em;color:#91a49a}@media(max-width:620px){.class-grid{grid-template-columns:1fr}.class-card{grid-template-columns:42px 1fr}.class-glyph{width:40px;height:40px;font-size:23px}}
+@media(prefers-reduced-motion:reduce){.class-card{transition:none;animation:none}}
+
+#skill-class[hidden]{display:none}.skill-class .skill-icon{font-size:28px}.has-class .skill-row{display:flex}.has-class .skill{flex-shrink:1;min-width:0}.has-class .combat-help{letter-spacing:0}
+@media(max-width:1100px) and (min-width:551px){.has-class .skill{width:54px}}
+@media(max-width:550px){.has-class .skill{flex:1;width:0}.has-class .skill small{font-size:7px}.has-class .skill-class .skill-icon{font-size:22px}.has-class .combat-help{font-size:7px}}
+
+#rpg-window .chars-path{display:inline-block;color:#dfc996;border:1px solid #ad946f66;border-radius:4px;padding:3px 6px;font-size:10px;margin-top:3px}#rpg-window .starter-path{display:flex;align-items:center;gap:18px;justify-content:space-between;padding:14px 16px;margin:16px 0;background:#203830;border:1px solid #9ba37d66;border-radius:8px}#rpg-window .starter-path p{margin:4px 0;max-width:60ch}#rpg-window .starter-path button{flex-shrink:0}#rpg-window .class-next{padding:18px 2px}#rpg-window .class-next h3{color:#efd5a2;margin:6px 0}#rpg-window .class-next p{color:#b9c6bd;max-width:72ch}#rpg-window .class-next button{margin:4px 8px 4px 0}@media(max-width:620px){#rpg-window .starter-path{display:block}#rpg-window .starter-path button{margin-top:8px}}
+
+.cosmos-reading{max-width:940px;margin:0 auto;padding:clamp(12px,3vw,38px)}.cosmos-reading>small,.cosmos-invitation>small{color:#d6bd89;letter-spacing:.16em;font-size:11px}.cosmos-reading h2{font-family:Georgia,serif;font-weight:400;font-size:clamp(27px,3vw,43px);line-height:1.15;margin:18px 0 24px;color:#f1e5cf}.cosmos-reading p{line-height:1.65;color:#c6d0cc}.cosmos-reading .cosmos-quote{font-family:Georgia,serif;font-size:clamp(20px,2vw,25px);line-height:1.5;color:#e4decf;max-width:730px}.cosmos-terms{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin:30px 0;border-block:1px solid #77908a44;padding:22px 0}.cosmos-terms h3{font-size:15px;color:#e5cc9d;margin:0 0 8px}.cosmos-terms p{font-size:14px;margin:0}.cosmos-actions{display:flex;flex-wrap:wrap;gap:12px;margin:24px 0}.cosmos-actions button{padding:12px 18px}.cosmos-note{font-size:12px!important;color:#a7b6b2!important}.cosmos-atlas{display:grid;grid-template-columns:minmax(260px,420px) 1fr;gap:28px;max-width:980px;margin:auto}.cosmos-atlas svg{width:100%;max-height:62vh}.cosmos-atlas section>button{display:block;text-align:left;width:100%;padding:12px;margin:8px 0}.cosmos-atlas p{font-size:14px;color:#b7c4c0;line-height:1.6}.cosmos-invitation{padding:22px;border:1px solid #b3a17855;border-radius:14px;background:linear-gradient(120deg,#243b3a,#252939);margin:20px 0}.cosmos-invitation p{color:#c9d1c7;max-width:640px}#cosmos-labels{position:fixed;inset:0;pointer-events:none}#cosmos-labels span{position:absolute;transform:translate(-50%,-100%);padding:5px 10px;border:1px solid #bbae8066;border-radius:6px;background:#17242ce6;color:#ebdfc4;font-size:12px;white-space:nowrap;text-shadow:0 1px 2px #000}#cosmos-home{position:fixed;right:24px;top:132px;border-color:#b5ab7b77;padding:9px 14px;pointer-events:auto}.in-cosmos .tracker-switch{visibility:hidden}.in-cosmos #skillbar{opacity:.8}@media(max-width:700px){.cosmos-terms{grid-template-columns:1fr;gap:17px}.cosmos-atlas{grid-template-columns:1fr}.cosmos-atlas svg{max-height:45vh}#cosmos-home{right:10px;top:116px;font-size:11px}.cosmos-reading{padding:10px}.cosmos-atlas{gap:10px}}.photo-mode #cosmos-home{display:none}
+
+
+#earth-home{position:fixed;right:20px;bottom:96px;z-index:18;border:1px solid #d5bd8b;background:#20392f;color:#fff1d0;border-radius:999px;padding:11px 16px;font:700 12px/1 system-ui;letter-spacing:.04em}
+#earth-labels{position:fixed;inset:0;z-index:10;pointer-events:none}
+#earth-labels span{position:absolute;transform:translate(-50%,-100%);background:#17271fd9;color:#fff1d0;border:1px solid #bba57580;border-radius:999px;padding:5px 9px;font:650 11px/1.1 system-ui;white-space:nowrap}
+.earth-invitation,.earth-reading{border:1px solid #bca46f66;background:linear-gradient(145deg,#23352bea,#18271f);border-radius:18px;padding:18px;color:#eee3cb}
+.earth-invitation small,.earth-reading small,.earth-atlas small{color:#d7bd83;letter-spacing:.12em}
+.earth-reading h2,.earth-invitation h3{color:#fff0cf}
+.earth-quote{font-size:1.08rem;line-height:1.65;color:#f3ead7}
+.earth-actions,.earth-invitation{display:grid;gap:10px}
+.earth-actions{grid-template-columns:repeat(auto-fit,minmax(180px,1fr));margin-top:16px}
+.earth-terms{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;margin:15px 0}
+.earth-terms section{background:#e8d9b70d;border:1px solid #c5ad7840;border-radius:14px;padding:12px}
+.earth-note{font-size:.83rem;color:#c9c0ad}
+.earth-atlas{display:grid;grid-template-columns:minmax(280px,1fr) minmax(260px,.8fr);gap:18px;align-items:start}
+.earth-atlas svg{width:100%;max-height:58vh}
+.earth-atlas section:last-child{display:grid;gap:8px}
+body.in-earth .place-title #place-kicker{color:#d7bd83}
+@media(max-width:760px){.earth-atlas{grid-template-columns:1fr}.earth-atlas svg{max-height:42vh}#earth-home{bottom:86px;right:12px}}
+</style></head>
 <body><canvas tabindex="0" id="world" aria-label="Interactive isometric Firstlight Valley. Click to walk, drag to orbit, scroll to zoom. Use the Explore menu for accessible destinations."></canvas><canvas tabindex="0" id="map-fallback" aria-label="Interactive map fallback. Click to move or choose a destination in Explore."></canvas><div id="labels" aria-hidden="true"></div>
 <div id="hud"><header class="brand"><span class="seal" aria-hidden="true">Σ</span><div><div class="wordmark">ETERNITIES</div><div class="tagline">A window into another life.</div></div></header>
 <div class="controls-hint"><span><b>CLICK</b> walk</span><span><b>DRAG</b> orbit</span><span><b>SCROLL</b> zoom</span><span><b>WASD</b> explore</span></div>
@@ -19,4 +46,682 @@
 <aside id="drawer" aria-label="Realm panel" inert><div id="drawer-head"><h2 id="panel-title">Explore</h2><button id="close-panel" aria-label="Close panel">✕</button></div><div id="drawer-body"></div></aside><div id="toast" role="status" aria-live="polite"></div><div id="fallback-banner" role="status">3D is unavailable. Explore the same local world using this map.</div></div>
 <button id="photo-exit">Return to the realm · H</button><input id="import-file" class="file-input" type="file" accept=".json,application/json" aria-label="Import a saved local world"><div id="loading"><span class="seal">Σ</span><div>Opening Firstlight Valley</div><p>EVERYTHING IS ALREADY HERE.</p><noscript>This interactive world needs JavaScript enabled in a full browser. Download the HTML and open it in Chrome, Edge, Firefox or Safari rather than a document preview.</noscript></div>
 <dialog id="story-dialog" aria-labelledby="story-title"><div class="story-sigil">✦</div><small id="story-speaker">THE ENVOY</small><h2 id="story-title"></h2><p id="story-body"></p><div id="story-buttons"></div><button id="story-close">Continue another time</button></dialog><dialog id="fallen-dialog" aria-labelledby="fallen-title"><span class="story-sigil">✧</span><h2 id="fallen-title">The light has not left you.</h2><p>Your belongings and home are safe. Defeated encounters and excavated paths remain.</p><button id="revive-button">Return to the spring</button></dialog><dialog id="studio-dialog" aria-labelledby="studio-title"><div class="studio-heading"><div><span class="overline">ETERNITIES · THE LISTENING ROOM</span><h2 id="studio-title">A little music, made here.</h2></div><button id="studio-close" aria-label="Close music workspace">✕</button></div><div id="studio-body"></div></dialog><input id="score-import" class="file-input" type="file" accept=".json,application/json" aria-label="Import an editable score">
-<script>/*__EARTH__*/</script><script>/*__COSMOS__*/</script><script>/*__STARTER__*/</script><script>/*__CROSSING__*/</script><script>/*__ARSENAL__*/</script><script>/*__ROAD__*/</script><script>/*__BEACON__*/</script><script>/*__COMBAT__*/</script><script>/*__PURSUIT__*/</script><script>/*__CLASSES__*/</script><script>/*__ADVENTURE__*/</script><script>/*__SANDBOX__*/</script><script>/*__CREATIVE__*/</script><script>/*__EXPERIENCE__*/</script><script>/*__ENGINE__*/</script><script>/*__CORE__*/</script><script>/*__CHARACTERS__*/</script><script>/*__WORLD__*/</script><script>/*__SANDBOX_ART__*/</script><script>/*__SANDBOX_UI__*/</script><script>/*__ROAD_ART__*/</script><script>/*__ADVENTURE_ART__*/</script><script>/*__ADVENTURE_UI__*/</script><script>/*__ARSENAL_ART__*/</script><script>/*__ARSENAL_UI__*/</script><script>/*__BEACON_ART__*/</script><script>/*__CHARACTERS_UI__*/</script><script>/*__CLASSES_UI__*/</script><script>/*__RPG_UI__*/</script><script>/*__CROSSING_ART__*/</script><script>/*__CROSSING_UI__*/</script><script>/*__STARTER_ART__*/</script><script>/*__STARTER_UI__*/</script><script>/*__PURSUIT_UI__*/</script><script>/*__COSMOS_ART__*/</script><script>/*__COSMOS_UI__*/</script><script>/*__EARTH_ART__*/</script><script>/*__EARTH_UI__*/</script><script>/*__APP__*/</script></body></html>
+<script>/* Earth E1 — Hearthwater Vale's first connected approach.
+ * Physical ground and transient travel only: no quest completion, payout, class,
+ * economy, Bellweather unlock, or durable region state. */
+(function(G){'use strict';
+const ROOM='earth-hearthwater-approach';
+const GATE=Object.freeze({x:0,z:27});
+const ENTRY=Object.freeze({x:0,z:24,yaw:Math.PI});
+const PATCHES=Object.freeze([
+ {id:'arrival',x:0,z:21,w:10,d:14},
+ {id:'south-meadow',x:0,z:10,w:22,d:12},
+ {id:'orchard-lane',x:-9,z:-1,w:14,d:16},
+ {id:'mill-road',x:8,z:-2,w:14,d:16},
+ {id:'west-track',x:-13,z:-17,w:10,d:26},
+ {id:'ridge-track',x:13,z:-18,w:10,d:28},
+ {id:'north-common',x:0,z:-32,w:34,d:12},
+ {id:'bellweather-road',x:0,z:-43,w:20,d:16}
+]);
+const SOLIDS=Object.freeze([
+ {id:'mill-pond',x:0,z:-15,w:9,d:20,h:.35},
+ {id:'orchard-shed',x:-8,z:0,w:4.4,d:4.2,h:3.5},
+ {id:'quarry-stack',x:11.7,z:-18,w:3.2,d:4.5,h:2.5},
+ {id:'shelter-back',x:-12,z:-26,w:6.6,d:.5,h:3.1},
+ {id:'shelter-west',x:-15,z:-23.8,w:.5,d:4.8,h:3.1},
+ {id:'shelter-east',x:-9,z:-24.6,w:.5,d:3.2,h:3.1}
+]);
+const POINTS=Object.freeze([
+ {id:'arrival',name:'Lake footbridge · way home',x:0,z:24,kind:'return'},
+ {id:'bridge',name:'Hearthwater footbridge',x:0,z:16,kind:'route'},
+ {id:'orchard',name:'Orchard lane',x:-8,z:3,kind:'view'},
+ {id:'millfork',name:'Mill road fork',x:7,z:2,kind:'route'},
+ {id:'ridge',name:'Ridge road',x:13,z:-13,kind:'view'},
+ {id:'quarry',name:'Quarry approach',x:12,z:-26,kind:'route'},
+ {id:'shelter',name:'Old ridge shelter',x:-12,z:-23,kind:'rest'},
+ {id:'bellweather',name:'Bellweather west road',x:0,z:-43,kind:'boundary'}
+]);
+const clamp=(n,a,b)=>Math.max(a,Math.min(b,n)),dist=(a,b)=>Math.hypot(a.x-b.x,a.z-b.z),tickets=new WeakMap();
+const fail=error=>({ok:false,error});
+function height(x,z){
+ const rise=clamp((-z+8)/50,0,1);
+ return 1.57+.62*rise+.08*Math.sin(x*.16)*clamp((-z+3)/45,0,1);
+}
+function inside(x,z,p,r=0){return Math.abs(x-p.x)<=p.w/2-r&&Math.abs(z-p.z)<=p.d/2-r;}
+function land(x,z,r=.31){
+ if(![x,z,r].every(Number.isFinite)||r<0||r>2)return false;
+ const offsets=[[0,0],[r,0],[-r,0],[0,r],[0,-r],[r*.707,r*.707],[-r*.707,r*.707],[r*.707,-r*.707],[-r*.707,-r*.707]];
+ return offsets.every(([dx,dz])=>PATCHES.some(p=>inside(x+dx,z+dz,p)));
+}
+function walkable(x,z,r=.31){return land(x,z,r)&&!SOLIDS.some(p=>inside(x,z,p,-r));}
+function interval(a,b,p,r=0){
+ let lo=0,hi=1;
+ for(const [k,size] of [['x','w'],['z','d']]){
+  const d=b[k]-a[k],min=p[k]-p[size]/2-r,max=p[k]+p[size]/2+r;
+  if(Math.abs(d)<1e-9){if(a[k]<min||a[k]>max)return null;}
+  else{
+   const u=(min-a[k])/d,v=(max-a[k])/d;
+   lo=Math.max(lo,Math.min(u,v));hi=Math.min(hi,Math.max(u,v));
+   if(lo>hi)return null;
+  }
+ }
+ return[lo,hi];
+}
+function segment(a,b,r=.31){
+ if(!a||!b||!Number.isFinite(dist(a,b))||dist(a,b)>160||!walkable(a.x,a.z,r)||!walkable(b.x,b.z,r))return false;
+ if(SOLIDS.some(p=>interval(a,b,p,r)))return false;
+ const offsets=[[0,0],[r,0],[-r,0],[0,r],[0,-r],[r*.707,r*.707],[-r*.707,r*.707],[r*.707,-r*.707],[-r*.707,-r*.707]];
+ for(const [dx,dz] of offsets){
+  const intervals=PATCHES.map(p=>interval({x:a.x+dx,z:a.z+dz},{x:b.x+dx,z:b.z+dz},p)).filter(Boolean).sort((u,v)=>u[0]-v[0]);
+  let end=0;
+  for(const [lo,hi] of intervals){if(lo>end+1e-8)return false;end=Math.max(end,hi);}
+  if(end<1-1e-8)return false;
+ }
+ return true;
+}
+function line(a,b){return segment(a,b,.04);}
+function near(sim,p,r=2.8){return dist(sim.state.player,p)<=r;}
+function preview(ctx){
+ const sim=ctx.sim;
+ if(sim.room||sim.state.adventure.hp<=0||!near(sim,GATE))return fail('Approach the Hearthwater trail marker at the lake footbridge.');
+ const ticket=Object.freeze({destination:ROOM});
+ tickets.set(ticket,{sim,active:ctx.active,revision:ctx.revision,position:{...sim.state.player},used:false});
+ return{ok:true,ticket};
+}
+function cancel(ticket){const t=tickets.get(ticket);if(t)t.used=true;}
+function enter(ticket,ctx,io){
+ const t=tickets.get(ticket),sim=ctx.sim;
+ if(!t||t.used||ticket.destination!==ROOM||t.sim!==sim||t.active!==ctx.active||t.revision!==ctx.revision||sim.room||!near(sim,GATE)||dist(sim.state.player,t.position)>.01||sim.state.adventure.hp<=0)return fail('That trail preview has changed. Review the Hearthwater marker again.');
+ t.used=true;
+ if(io.available===false)return fail('The Hearthwater approach scene is unavailable. You are still beside the lake.');
+ const source=sim.snapshot();let saved;
+ try{saved=io.save(source);}catch(e){return fail('Travel save refused: '+e.message);}
+ if(!saved?.ok)return fail(saved?.error||'Save the Firstlight checkpoint before taking the trail.');
+ const prior={room:sim.room,returnPos:sim.returnPos,player:{...sim.state.player},path:sim.playerPath,runtime:sim.adventureRuntime};
+ try{
+  sim.returnPos={...t.position};sim.room=ROOM;sim.state.player={...ENTRY};sim.playerPath=[];
+  sim.earthTrip={active:t.active,sourceRegion:'valley',sourceRevision:t.revision,destination:ROOM,checkpoint:{...t.position}};
+  io.build();G.RealmAdventure.syncScene(sim);G.RealmCombat.stop(sim,true);return{ok:true};
+ }catch(e){
+  sim.room=prior.room;sim.returnPos=prior.returnPos;sim.state.player=prior.player;sim.playerPath=prior.path;sim.adventureRuntime=prior.runtime;delete sim.earthTrip;
+  try{io.restore?.();}catch(restoreError){return fail('The route could not load. Your saved valley checkpoint is safe; reopen the game. '+restoreError.message);}
+  return fail('The route could not load. You are back at the lake checkpoint. '+e.message);
+ }
+}
+function leave(sim){
+ if(sim.room!==ROOM||!sim.returnPos)return fail('You are already on the Firstlight side.');
+ const r=sim.leave();delete sim.earthTrip;G.RealmAdventure.syncScene(sim);G.RealmCombat.stop(sim,true);return r;
+}
+function recover(sim){
+ if(sim.room!==ROOM||walkable(sim.state.player.x,sim.state.player.z))return false;
+ sim.state.player={...ENTRY};sim.playerPath=[];G.RealmCombat.stop(sim,true);return true;
+}
+function pick(start,ray,max=420){
+ if(![...start,...ray,max].every(Number.isFinite)||max<=0)return null;
+ for(let t=.1;t<=Math.min(420,max);t+=.12){
+  const x=start[0]+ray[0]*t,y=start[1]+ray[1]*t,z=start[2]+ray[2]*t,h=height(x,z);
+  if(SOLIDS.some(p=>inside(x,z,p)&&y>=h-.15&&y<=h+p.h))return null;
+  if(land(x,z,0)&&y<=h&&y>=h-.45)return walkable(x,z)?{x,z}:null;
+ }
+ return null;
+}
+const api={ROOM,GATE,ENTRY,PATCHES,SOLIDS,POINTS,height,land,walkable,segment,line,near,preview,cancel,enter,leave,recover,pick};
+G.RealmEarth=api;if(typeof module!=='undefined')module.exports=api;
+})(globalThis);
+</script><script>/* The Near Expanse M1. Physical ground and transient travel, no new save data or payout. */
+(function(G){'use strict';
+const ROOM='cosmos-near-expanse',GATE=Object.freeze({x:14,z:-5}),ENTRY=Object.freeze({x:0,z:18,yaw:Math.PI});
+const PATCHES=Object.freeze([
+ {id:'arrival',x:0,z:15,w:14,d:14},
+ {id:'three-lamps',x:0,z:5,w:24,d:18},
+ {id:'rootcut',x:-13,z:-15,w:10,d:38},
+ {id:'open-road',x:12,z:-15,w:10,d:38},
+ {id:'landing',x:0,z:-33,w:36,d:12},
+ {id:'observatory',x:2,z:-43,w:24,d:20}
+]);
+// Every solid has a matching rendered footprint. Height is above the local surface.
+const SOLIDS=Object.freeze([
+ {id:'central-ridge',x:-.5,z:-16,w:13,d:24,h:6.6},
+ {id:'culvert-cover',x:-12,z:-9,w:3,d:3,h:3.2},
+ {id:'road-cover',x:11,z:-17,w:2.8,d:4,h:2.6},
+ {id:'refuge-back',x:-6,z:3,w:7,d:.45,h:3.2},
+ {id:'refuge-west',x:-9.3,z:6,w:.45,d:6,h:3.2},
+ {id:'refuge-east',x:-2.7,z:5,w:.45,d:4,h:3.2},
+ {id:'refuge-bench',x:-6,z:4.2,w:2,d:.7,h:1.3},
+ {id:'observatory-back',x:3,z:-49,w:14,d:.6,h:5},
+ {id:'observatory-west',x:-3.8,z:-46,w:.6,d:6,h:4},
+ {id:'observatory-east',x:9.8,z:-46,w:.6,d:6,h:4},
+ {id:'instrument',x:3,z:-47,w:2.2,d:2.2,h:3.3}
+]);
+const POINTS=Object.freeze([
+ {id:'arrival',name:'Arrival gate',x:0,z:18,kind:'return'},
+ {id:'lamps',name:'Three Lamps · Teren',x:3,z:7,kind:'person'},
+ {id:'bench',name:'Farroad refuge bench',x:-6,z:6,kind:'rest'},
+ {id:'rootcut',name:'Rootcut Lane · sheltered approach',x:-14,z:-3,kind:'route'},
+ {id:'rise',name:'First Horizon Rise · open approach',x:13,z:-6,kind:'view'},
+ {id:'landing',name:'Common Landing',x:0,z:-34,kind:'route'},
+ {id:'anik',name:'Anik · observatory overlook',x:3,z:-43,kind:'person'}
+]);
+const dist=(a,b)=>Math.hypot(a.x-b.x,a.z-b.z),clamp=(n,a,b)=>Math.max(a,Math.min(b,n)),tickets=new WeakMap();
+const fail=error=>({ok:false,error});
+function height(x,z){return 1.57+3.2*clamp((-z-2)/30,0,1);}
+function inside(x,z,p,r=0){return Math.abs(x-p.x)<=p.w/2-r&&Math.abs(z-p.z)<=p.d/2-r;}
+function land(x,z,r=.31){
+ if(![x,z,r].every(Number.isFinite)||r<0||r>2)return false;
+ // Check the union, not each individual patch's inset: adjoining roads have no invisible seam.
+ return [[0,0],[r,0],[-r,0],[0,r],[0,-r],[r*.707,r*.707],[-r*.707,r*.707],[r*.707,-r*.707],[-r*.707,-r*.707]].every(([dx,dz])=>PATCHES.some(p=>inside(x+dx,z+dz,p)));
+}
+function walkable(x,z,r=.31){return land(x,z,r)&&!SOLIDS.some(p=>inside(x,z,p,-r));}
+function interval(a,b,p,r=0){
+ let lo=0,hi=1;for(const [k,size]of [['x','w'],['z','d']]){const d=b[k]-a[k],min=p[k]-p[size]/2-r,max=p[k]+p[size]/2+r;
+  if(Math.abs(d)<1e-9){if(a[k]<min||a[k]>max)return null;}else{const u=(min-a[k])/d,v=(max-a[k])/d;lo=Math.max(lo,Math.min(u,v));hi=Math.min(hi,Math.max(u,v));if(lo>hi)return null;}
+ }return[lo,hi];
+}
+function segment(a,b,r=.31){
+ if(!a||!b||!Number.isFinite(dist(a,b))||dist(a,b)>150||!walkable(a.x,a.z,r)||!walkable(b.x,b.z,r))return false;
+ if(SOLIDS.some(p=>interval(a,b,p,r)))return false;
+ for(const [dx,dz]of [[0,0],[r,0],[-r,0],[0,r],[0,-r],[r*.707,r*.707],[-r*.707,r*.707],[r*.707,-r*.707],[-r*.707,-r*.707]]){
+  const intervals=PATCHES.map(p=>interval({x:a.x+dx,z:a.z+dz},{x:b.x+dx,z:b.z+dz},p)).filter(Boolean).sort((a,b)=>a[0]-b[0]);let end=0;
+  for(const [lo,hi]of intervals){if(lo>end+1e-8)return false;end=Math.max(end,hi);}if(end<1-1e-8)return false;
+ }return true;
+}
+function line(a,b){return segment(a,b,.04);}
+function near(sim,p,r=2.6){return dist(sim.state.player,p)<=r;}
+function preview(ctx){
+ const sim=ctx.sim;
+ if(sim.room||sim.state.adventure.hp<=0||!near(sim,GATE))return fail('Approach the invitation beside the valley observatory.');
+ const ticket=Object.freeze({destination:ROOM});tickets.set(ticket,{sim,active:ctx.active,revision:ctx.revision,position:{...sim.state.player},used:false});
+ return{ok:true,ticket};
+}
+function cancel(ticket){const t=tickets.get(ticket);if(t)t.used=true;}
+function enter(ticket,ctx,io){
+ const t=tickets.get(ticket),sim=ctx.sim;
+ if(!t||t.used||ticket.destination!==ROOM||t.sim!==sim||t.active!==ctx.active||t.revision!==ctx.revision||sim.room||!near(sim,GATE)||dist(sim.state.player,t.position)>.01||sim.state.adventure.hp<=0)return fail('That travel preview has changed. Review the invitation again.');
+ t.used=true;
+ if(io.available===false)return fail('The Near Expanse scene is unavailable. You are still in the valley.');
+ const source=sim.snapshot();let saved;
+ try{saved=io.save(source);}catch(e){return fail('Travel save refused: '+e.message);}
+ if(!saved?.ok)return fail(saved?.error||'Save the valley checkpoint before travelling.');
+ const prior={room:sim.room,returnPos:sim.returnPos,player:{...sim.state.player},path:sim.playerPath,runtime:sim.adventureRuntime};
+ try{
+  sim.returnPos={...t.position};sim.room=ROOM;sim.state.player={...ENTRY};sim.playerPath=[];
+  sim.cosmosTrip={active:t.active,sourceRegion:'valley',sourceRevision:t.revision,destination:ROOM,checkpoint:{...t.position}};
+  io.build();G.RealmAdventure.syncScene(sim);G.RealmCombat.stop(sim,true);
+  return{ok:true};
+ }catch(e){
+  sim.room=prior.room;sim.returnPos=prior.returnPos;sim.state.player=prior.player;sim.playerPath=prior.path;sim.adventureRuntime=prior.runtime;delete sim.cosmosTrip;
+  try{io.restore?.();}catch(restoreError){return fail('The scene could not load. Your saved valley checkpoint is safe; reopen the game. '+restoreError.message);}
+  return fail('The scene could not load. You are back at the valley checkpoint. '+e.message);
+ }
+}
+function leave(sim){
+ if(sim.room!==ROOM||!sim.returnPos)return fail('You are already on the valley side.');
+ const r=sim.leave();delete sim.cosmosTrip;G.RealmAdventure.syncScene(sim);G.RealmCombat.stop(sim,true);return r;
+}
+function recover(sim){
+ if(sim.room!==ROOM||walkable(sim.state.player.x,sim.state.player.z))return false;
+ sim.state.player={...ENTRY};sim.playerPath=[];G.RealmCombat.stop(sim,true);return true;
+}
+// First hit along the actual camera ray. Solids occlude the ground behind them; sky images do not participate.
+function pick(start,ray,max=420){
+ if(![...start,...ray,max].every(Number.isFinite)||max<=0)return null;
+ for(let t=.1;t<=Math.min(420,max);t+=.12){const x=start[0]+ray[0]*t,y=start[1]+ray[1]*t,z=start[2]+ray[2]*t,h=height(x,z);
+  if(SOLIDS.some(p=>inside(x,z,p)&&y>=h-.15&&y<=h+p.h))return null;
+  if(land(x,z,0)&&y<=h&&y>=h-.4)return walkable(x,z)?{x,z}:null;
+ }
+ return null;
+}
+const api={ROOM,GATE,ENTRY,PATCHES,SOLIDS,POINTS,height,land,walkable,segment,line,near,preview,cancel,enter,leave,recover,pick};G.RealmCosmos=api;if(typeof module!=='undefined')module.exports=api;
+})(globalThis);
+</script><script>/*__STARTER__*/</script><script>/*__CROSSING__*/</script><script>/*__ARSENAL__*/</script><script>/*__ROAD__*/</script><script>/*__BEACON__*/</script><script>/*__COMBAT__*/</script><script>/*__PURSUIT__*/</script><script>/* Explicit character identity and one bounded technique per prototype class.
+ * Equipment, profession, companion and soul choices remain separate systems. */
+(function(G){'use strict';
+const VERSION=1;
+const DEFINITIONS=Object.freeze({
+ hunter:Object.freeze({id:'hunter',name:'Hunter',technique:'quarry-mark',techniqueName:'Quarry mark',cost:15,cooldown:8,duration:8,range:11,color:0xa8d68d,description:'Mark a visible target for 8 seconds. Your next confirmed weapon hit against it adds 50% damage, up to 24 extra. Misses and companion strikes do not spend the mark.'}),
+ magician:Object.freeze({id:'magician',name:'Magician',technique:'arcane-flare',techniqueName:'Arcane flare',cost:25,cooldown:10,duration:0,range:8,color:0xc3a3ed,description:'Strike a visible target within 8 paces with a focused spell. Damage is 8 plus 75% of your current attack, rounded. This instant spell is separate from your weapon.'})
+});
+const known=id=>typeof id==='string'&&Object.hasOwn(DEFINITIONS,id);
+function fresh(){return{version:VERSION,choice:null,readyAt:0};}
+function validate(raw,a){
+ const bad=why=>{throw Error('Invalid class path: '+why);};
+ if(!raw||typeof raw!=='object'||Array.isArray(raw)||raw.version!==VERSION)bad('version');
+ if(raw.choice!==null&&!known(raw.choice))bad('choice');
+ if(!Number.isFinite(raw.readyAt)||raw.readyAt<0||raw.readyAt>1e9+10)bad('cooldown');
+ if(raw.choice===null&&raw.readyAt!==0||raw.choice!==null&&!a.started)bad('choice prerequisites');
+ if(raw.choice!==null&&raw.readyAt>a.elapsed+DEFINITIONS[raw.choice].cooldown+1e-6)bad('future cooldown');
+ return{version:VERSION,choice:raw.choice,readyAt:raw.readyAt};
+}
+function definition(a){return known(a.classPath?.choice)?DEFINITIONS[a.classPath.choice]:null;}
+function preview(a,id){if(!known(id))return{damage:0,bonus:0};const n=G.RealmAdventure.stats(a).attack;return{damage:id==='magician'?Math.round(8+n*.75):n,bonus:id==='hunter'?Math.min(24,Math.round(n*.5)):0};}
+function canChoose(sim){const a=sim.state.adventure;return a.started&&a.hp>0&&!definition(a)&&!sim.room&&Math.hypot(sim.state.player.x-11,sim.state.player.z-9)<3;}
+function runtime(sim){
+ const r=G.RealmAdventure.runtime(sim),run=r.pursuitRun||null;
+ if(!r.classRuntime||r.classRuntime.scene!==sim.room||r.classRuntime.run!==run)r.classRuntime={scene:sim.room,run,mark:null};
+ const k=r.classRuntime;if(k.mark&&(sim.state.adventure.elapsed>=k.mark.until||!r.enemies.includes(k.mark.enemy)||k.mark.enemy.hp<=0))k.mark=null;
+ return k;
+}
+function status(sim){const a=sim.state.adventure,d=definition(a),mark=runtime(sim).mark;return{id:d?.id||null,name:d?.techniqueName||'Choose a class',description:d?.description||'An optional path chosen at Oren’s workshop.',cost:d?.cost||0,cooldown:d?.cooldown||1,readyAt:a.classPath?.readyAt||0,remaining:Math.max(0,(a.classPath?.readyAt||0)-a.elapsed),markedTarget:mark?.enemy.id||null,markRemaining:mark?Math.max(0,mark.until-a.elapsed):0};}
+function weaponDamage(sim,e,n,source){const d=definition(sim.state.adventure),k=runtime(sim);if(source!=='weapon'||d?.id!=='hunter'||k.mark?.enemy!==e)return n;const bonus=Math.min(24,Math.round(n*.5));k.mark=null;G.RealmAdventure.fx(sim,'quarry-hit',e.x,e.z,d.color);return n+bonus;}
+function handle(sim,type,p={}){
+ if(type!=='class-choose'&&type!=='class-technique')return null;
+ const A=G.RealmAdventure,a=sim.state.adventure,fail=error=>({ok:false,error}),yes=text=>({ok:true,text});
+ if(type==='class-choose'){
+  if(!known(p.id)||p.confirm!==true)return fail('Preview a known class and explicitly confirm your choice.');
+  if(!canChoose(sim))return fail(definition(a)?'This character has already chosen a class.':'Take the expedition kit and visit Oren’s workshop to choose a class.');
+  a.classPath={version:VERSION,choice:p.id,readyAt:0};sim.event('choice','You chose the '+DEFINITIONS[p.id].name+' path. Your equipment, profession, companion and soul remain your own choices.');return yes(DEFINITIONS[p.id].name+' chosen · '+DEFINITIONS[p.id].techniqueName+' is ready on X.');
+ }
+ const d=definition(a);if(!d)return fail('Choose a class at Oren’s workshop, or continue unassigned.');
+ if(!a.started||a.hp<=0||sim.paused||!A.combatScene(sim)||sim.room==='range')return fail('Use your technique in the field or at Oren’s riverbank practice bundle.');
+ if(a.elapsed<a.classPath.readyAt)return fail(d.techniqueName+' is recovering.');
+ const e=G.RealmCombat.selected(sim),p0=sim.state.player;
+ if(!e||Math.hypot(e.x-p0.x,e.z-p0.z)>d.range)return fail('Select a visible target within '+d.range+' paces.');
+ if(!G.RealmArsenal.aimClear(sim,p0,e))return fail('Line of sight blocked.');
+ if(a.stamina<d.cost)return fail(d.techniqueName+' needs '+d.cost+' stamina.');
+ a.stamina-=d.cost;a.classPath.readyAt=a.elapsed+d.cooldown;p0.yaw=Math.atan2(e.x-p0.x,e.z-p0.z);
+ if(d.id==='hunter'){runtime(sim).mark={enemy:e,until:a.elapsed+d.duration};A.fx(sim,'quarry-mark',e.x,e.z,d.color);return yes('Quarry marked · the next confirmed weapon hit gains up to 24 damage.');}
+ const damage=preview(a,d.id).damage;A.damageEnemy(sim,e,damage,'class');A.fx(sim,'arcane-cast',p0.x,p0.z,d.color);A.fx(sim,'arcane-flare',e.x,e.z,d.color);return yes('Arcane flare · '+damage+' spell damage.');
+}
+G.RealmClasses={VERSION,DEFINITIONS,fresh,validate,definition,preview,canChoose,runtime,status,weaponDamage,handle};if(typeof module!=='undefined')module.exports=G.RealmClasses;
+})(globalThis);
+</script><script>/*__ADVENTURE__*/</script><script>/*__SANDBOX__*/</script><script>/*__CREATIVE__*/</script><script>/*__EXPERIENCE__*/</script><script>/*__ENGINE__*/</script><script>/*__CORE__*/</script><script>/* Independent local character worlds. One bounded write commits state and selection together. */
+(function(G){'use strict';
+const C=G.RealmCore||(typeof require==='function'?require('./core.js'):null);
+const X=G.RealmCreative||(typeof require==='function'?require('./creative.js'):null);
+const VERSION=1,KEY='eternities.realm10.characters.v1',MAX_SLOTS=3,MAX_CHARS=1500000;
+const clone=o=>JSON.parse(JSON.stringify(o));
+const object=o=>o&&typeof o==='object'&&!Array.isArray(o);
+const sequence=n=>Number.isSafeInteger(n)&&n>=1&&n<1e9;
+const fail=error=>({ok:false,error:String(error)});
+
+function validate(raw){
+ const bad=why=>{throw Error('Invalid character library: '+why);};
+ if(!object(raw)||raw.version!==VERSION)bad('version');
+ if(!sequence(raw.revision)||!sequence(raw.nextId)||raw.nextId<2)bad('sequence');
+ if(!Array.isArray(raw.slots)||!raw.slots.length||raw.slots.length>MAX_SLOTS)bad('character count');
+ const ids=new Set(),slots=raw.slots.map(slot=>{
+  if(!object(slot)||typeof slot.id!=='string'||!/^character-[1-9][0-9]{0,8}$/.test(slot.id))bad('character identity');
+  const n=Number(slot.id.slice(10));if(n>=raw.nextId||ids.has(slot.id))bad('duplicate or reused identity');ids.add(slot.id);
+  return{id:slot.id,world:C.validate(slot.world)};
+ });
+ if(!ids.has(raw.active))bad('selected character');
+ return{version:VERSION,revision:raw.revision,nextId:raw.nextId,active:raw.active,slots};
+}
+
+class Store{
+ constructor(storage){this.storage=storage;this.record=null;this.source=undefined;this.legacySource=undefined;this.writer=false;this.blocked=false;this.error=null;}
+ get managed(){return !!this.record;}
+ get revision(){return this.record?.revision||0;}
+ get active(){return this.record?.active||'legacy';}
+ load(){
+  try{
+   this.source=this.storage.getItem(KEY);
+   if(this.source!==null){
+    if(typeof this.source!=='string'||this.source.length>MAX_CHARS)throw Error('Character library exceeds its storage limit.');
+    this.record=validate(JSON.parse(this.source));
+    return{state:clone(this.record.slots.find(s=>s.id===this.active).world),status:'loaded',characters:true};
+   }
+   this.legacySource=this.storage.getItem(C.KEY);
+   const loaded=C.load(this.storage);this.blocked=!!loaded.preserveExisting;this.error=loaded.error||null;return loaded;
+  }catch(e){this.blocked=true;this.error=e.message;return{state:C.fresh(),status:'unavailable-or-corrupt',preserveExisting:true,error:e.message};}
+ }
+ describe(current){
+  const slots=this.record?this.record.slots.map(s=>({id:s.id,active:s.id===this.active,world:clone(s.id===this.active?current:s.world)})):[{id:'legacy',active:true,world:clone(current)}];
+  return{mode:this.blocked?'blocked':this.managed?'managed':'legacy',revision:this.revision,active:this.active,limit:MAX_SLOTS,slots,writable:!this.blocked&&this.writer,error:this.error};
+ }
+ checkSource(){
+  if(this.blocked)return fail(this.error||'Existing character data could not be read. Export your current world and reload.');
+  try{
+   if(this.storage.getItem(KEY)!==this.source){this.blocked=true;this.error='Another tab changed the character library. Export any unsaved play, then reload the saved characters.';return fail(this.error);}
+   if(!this.managed&&this.storage.getItem(C.KEY)!==this.legacySource){this.blocked=true;this.error='Another tab changed the original world. Export any unsaved play, then reload before creating a character library.';return fail(this.error);}
+   return{ok:true};
+  }catch(e){return fail('Character storage could not be read: '+e.message);}
+ }
+ write(candidate){
+  if(!this.writer)return fail('The character library is open in another tab, or this browser cannot lock it. Export your current world and reload in the editing tab.');
+  const check=this.checkSource();if(!check.ok)return check;
+  try{
+   const record=validate(candidate),text=JSON.stringify(record);
+   if(text.length>MAX_CHARS)return fail('The character library is full. Export and remove an inactive character before adding more data.');
+   this.storage.setItem(KEY,text);
+   this.record=record;this.source=text;this.error=null;
+   return{ok:true};
+  }catch(e){return fail('Character save refused: '+e.message);}
+ }
+ save(current){
+  const check=this.checkSource();if(!check.ok)return check;
+  try{
+   const state=C.validate(current);
+   if(!this.managed){const text=JSON.stringify(state);this.storage.setItem(C.KEY,text);this.legacySource=text;return{ok:true};}
+   if(!this.writer)return fail('This tab cannot write the character library. Export unsaved play or reload in the editing tab.');
+   const previous=this.record.slots.find(s=>s.id===this.active).world;
+   if(JSON.stringify(previous)===JSON.stringify(state))return{ok:true};
+   const next=clone(this.record);next.slots.find(s=>s.id===this.active).world=state;next.revision++;
+   return this.write(next);
+  }catch(e){return fail('World save refused: '+e.message);}
+ }
+ replaceLegacy(current){
+  // This path remains available only through the existing explicit single-world reset/import UI.
+  try{
+   if(this.managed||this.source!==null||this.storage.getItem(KEY)!==null)return fail('Use the character library to import another character.');
+   if(this.storage.getItem(C.KEY)!==this.legacySource)return fail('The original world changed in another tab. Export unsaved play and reload first.');
+   const state=C.validate(current),text=JSON.stringify(state);this.storage.setItem(C.KEY,text);this.legacySource=text;this.blocked=false;this.error=null;return{ok:true,state};
+  }catch(e){return fail('World replacement refused: '+e.message);}
+ }
+ command(type,payload,current,expectedRevision){
+  const check=this.checkSource();if(!check.ok)return check;
+  if(!this.writer)return fail('This browser tab does not own the character library. Close the other editing tab, then reload.');
+  if(expectedRevision!==this.revision)return fail('The character list changed. Reopen it and inspect the current selection.');
+  try{
+   const outgoing=C.validate(current);
+   const next=this.record?clone(this.record):{version:VERSION,revision:0,nextId:2,active:'character-1',slots:[{id:'character-1',world:outgoing}]};
+   next.slots.find(s=>s.id===next.active).world=outgoing;
+   if(type==='create'||type==='import'){
+    if(next.slots.length>=MAX_SLOTS)return fail('All three character places are occupied. Export and remove an inactive character first.');
+    if(next.nextId>=1e9-1)return fail('No further character identities are available in this library.');
+    let world;
+    if(type==='create'){world=C.fresh();world.visitor=X.validateVisitor(payload.visitor);}
+    else world=C.validate(payload.world);
+    const id='character-'+next.nextId++;next.slots.push({id,world});next.active=id;
+   }else if(type==='switch'){
+    if(!this.managed||payload.id===next.active||!next.slots.some(s=>s.id===payload.id))return fail('Choose a different saved character.');
+    next.active=payload.id;
+   }else if(type==='delete'){
+    const slot=next.slots.find(s=>s.id===payload.id);
+    if(!this.managed||!slot||slot.id===next.active||next.slots.length<=1)return fail('Only an inactive character can be removed. Play another character first.');
+    if(payload.confirmName!==slot.world.visitor.name)return fail('Type the exact name of the character being removed.');
+    next.slots=next.slots.filter(s=>s.id!==slot.id);
+   }else return fail('Unknown character action.');
+   next.revision++;
+   const result=this.write(next);if(!result.ok)return result;
+   return{ok:true,active:this.active,state:clone(this.record.slots.find(s=>s.id===this.active).world)};
+  }catch(e){return fail('Character action refused: '+e.message);}
+ }
+ export(id,current){
+  const world=id===this.active?current:this.record?.slots.find(s=>s.id===id)?.world;
+  if(!world)throw Error('That character is no longer in this library.');
+  return JSON.stringify(C.validate(world),null,2);
+ }
+}
+
+class WriterLock{
+ constructor(manager=G.navigator?.locks){this.manager=manager;this.owned=false;this.pending=null;this.releaseHeld=null;this.error=null;}
+ acquire(){
+  if(this.owned)return Promise.resolve(true);
+  if(this.pending)return this.pending;
+  if(!this.manager?.request){this.error='This browser cannot safely coordinate character saves. Use Firstlight on a local HTTP origin in a browser with Web Locks.';return Promise.resolve(false);}
+  this.pending=new Promise(resolve=>{
+   try{
+    this.manager.request(KEY+':editor',{mode:'exclusive',ifAvailable:true},lock=>{
+     if(!lock){this.error='Another Firstlight tab is editing this character library. Close that tab and reload here.';resolve(false);return;}
+     this.owned=true;this.error=null;resolve(true);
+     return new Promise(done=>{this.releaseHeld=done;});
+    }).catch(e=>{this.owned=false;this.error=e.message;resolve(false);});
+   }catch(e){this.error=e.message;resolve(false);}
+  }).finally(()=>{this.pending=null;});
+  return this.pending;
+ }
+ release(){this.owned=false;if(this.releaseHeld)this.releaseHeld();this.releaseHeld=null;}
+}
+
+const api={VERSION,KEY,MAX_SLOTS,MAX_CHARS,validate,Store,WriterLock};
+G.RealmCharacters=api;if(typeof module!=='undefined')module.exports=api;
+})(globalThis);
+</script><script>/*__WORLD__*/</script><script>/*__SANDBOX_ART__*/</script><script>/*__SANDBOX_UI__*/</script><script>/*__ROAD_ART__*/</script><script>/*__ADVENTURE_ART__*/</script><script>/*__ADVENTURE_UI__*/</script><script>/*__ARSENAL_ART__*/</script><script>/*__ARSENAL_UI__*/</script><script>/*__BEACON_ART__*/</script><script>/*__CHARACTERS_UI__*/</script><script>(function(G){'use strict';
+  const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const btn=(label,action,id='',disabled=false,extra='')=>`<button data-rpg="${action}" ${id?`data-id="${esc(id)}"`:''} ${disabled?'disabled ':''}${extra}>${label}</button>`;
+  class ClassesUI{
+    constructor(rpg){this.rpg=rpg;this.pending=null;this.confirming=null;}
+    reset(){this.pending=null;this.confirming=null;}
+    api(){return {...G.RealmClasses.status(this.rpg.sim),eligible:G.RealmClasses.canChoose(this.rpg.sim)};}
+    defs(){return G.RealmClasses?.DEFINITIONS||{};}
+    page(tab){if(tab!=='classes')return null;const s=this.api(), defs=this.defs(), ids=['hunter','magician'];
+      if(s.id){const d=defs[s.id]||{},practice=s.id==='hunter'?'Press X to mark it, then 1 to begin weapon attacks. The next confirmed hit consumes the mark; 1 stops autoattack.':'Press X to cast, then compare its impact with your ordinary weapon attack on 1. Press 1 again to stop autoattack.';return {title:'Your path',html:this.card(s.id,d,s,true)+'<section class="class-next"><small>TRY YOUR TECHNIQUE</small><h3>A familiar place to practise.</h3><p>Oren’s riverbank bundle takes no damage permanently and awards no XP. Select it with Tab or a click. '+practice+' The field guide connects your next outing to equipment.</p>'+this.rpg.pursuit.routeButton('practice')+' '+btn('Review equipment projects','open','pursuit')+'</section>'};}
+      const eligible=!!s.eligible, choices=ids.map(id=>this.card(id,defs[id],s,false)).join('');
+      return {title:'Choose your path',html:`<div class="class-page"><header class="class-intro"><small>OREN · THE FIRST EXPEDITION</small><h2>Choose a way to fight.</h2><p>After the expedition kit, Oren can help you choose one traditional path. This is a once-per-character choice. It grants no gear, XP, profession, companion or soul history.</p></header>${eligible?'':'<div class="class-notice">You can compare both paths now. To choose, collect your expedition kit and stand beside Oren’s workshop in the village.</div>'}<div class="class-grid">${choices}</div>${this.pending?this.confirmation(this.pending,defs[this.pending]):''}</div>`};
+    }
+    card(id,d,s,current){const selected=this.pending===id, preview=G.RealmClasses?.preview?.(this.rpg.state,id)||{};const cost=d.cost??0,cd=d.cooldown??0;
+      const name=d.name||id,tech=d.techniqueName||d.technique||'Technique';
+      return `<article class="class-card ${selected?'is-selected':''}" data-class="${id}"><div class="class-glyph" style="--class-color:${esc('#'+(d.color||0xd4b175).toString(16).padStart(6,'0'))}">${id==='hunter'?'⌁':'✦'}</div><div><small>${current?'CHOSEN PATH':'TRADITIONAL PATH'}</small><h3>${esc(name)}</h3><p>${esc(d.description||'A distinct way to approach the valley.')}</p><h4>${esc(tech)}</h4><p class="class-technique">${d.range} paces · ${id==='hunter'?'8-second mark':'Instant focused spell'}</p><dl class="class-stats"><div><dt>Cost</dt><dd>${cost} stamina</dd></div><div><dt>Cooldown</dt><dd>${cd}s</dd></div>${preview.damage?`<div><dt>${id==='hunter'?'Current attack':'Spell impact'}</dt><dd>${preview.damage} damage</dd></div>`:''}${preview.bonus?`<div><dt>Next hit</dt><dd>+${preview.bonus} damage</dd></div>`:''}</dl>${current?'<p class="fineprint">Your existing blade and bow remain usable. Try the technique with X when a target is selected.</p>':btn(selected?'Selected':'Preview '+name,'class-preview',id,false,'class="class-primary"')}</div></article>`;
+    }
+    confirmation(id,d){const name=d?.name||id,eligible=G.RealmClasses.canChoose(this.rpg.sim);return `<section class="class-confirm" aria-live="polite"><small>ONE-TIME CHOICE</small><h3>Choose ${esc(name)}?</h3><p>This choice is permanent for this character in the prototype. It changes one technique only. Your equipment, sockets, upgrades, companion, soul choice and story remain exactly as they are.</p><div class="button-row">${btn('Confirm '+esc(name),'class-confirm',id,!eligible,'class="class-primary"')} ${btn('Keep comparing','class-cancel')}</div></section>`;}
+    action(el){if(!el?.dataset?.rpg||!String(el.dataset.rpg).startsWith('class-'))return false;const act=el.dataset.rpg,id=el.dataset.id;
+      if(act==='class-preview'){this.pending=id;this.rpg.paint();return true;}
+      if(act==='class-cancel'){this.pending=null;this.rpg.paint();return true;}
+      if(act==='class-confirm'){const r=this.rpg.run('class-choose',{id,confirm:true});if(r.ok){this.pending=null;this.rpg.paint();}return true;}
+      if(act==='class-technique'){this.rpg.skill('class-technique');return true;}
+      return true;
+    }
+    attach(){if(this.pending)document.querySelector('.class-confirm')?.scrollIntoView({block:'nearest'});}
+  }
+  G.RealmClassesUI={ClassesUI};
+})(globalThis);
+</script><script>/*__RPG_UI__*/</script><script>/*__CROSSING_ART__*/</script><script>/*__CROSSING_UI__*/</script><script>/*__STARTER_ART__*/</script><script>/*__STARTER_UI__*/</script><script>/*__PURSUIT_UI__*/</script><script>/* Near Expanse M1. Original procedural stone, timber and living ground. */
+(function(G){'use strict';
+const C=G.RealmCosmos,TAU=Math.PI*2,h=C.height;
+const col={grass:0x78856b,stone:0x898777,light:0xc3b99b,wood:0x69513d,bronze:0xb99b60,leaf:0x71856b};
+function lamp(a,x,z,s=1){const b=h(x,z);a.add('cylinder',x,b,z,.32,2.65*s,.32,col.bronze);a.box(x,b+2.55*s,z,.64,.85*s,.64,0xffd793,{em:.7,rough:.4});a.add('cone',x,b+3*s,z,1,.48*s,1,col.wood);a.box(x,b+.12,z,.62,.24,.62,col.stone);}
+function paving(a,points,width=2){for(let i=1;i<points.length;i++){let u=points[i-1],v=points[i],d=Math.hypot(v[0]-u[0],v[1]-u[1]);for(let t=0;t<d;t+=.72){let f=t/d,x=u[0]+(v[0]-u[0])*f,z=u[1]+(v[1]-u[1])*f;if(C.walkable(x,z,.1))a.add('disc',x,h(x,z)+.024,z,width,1,width,0xb6ac8e,{rough:1,cameraSolid:false,r:[Math.atan2(h(x,z-.1)-h(x,z+.1),.2),0,0]});}}}
+const paths=[[[0,20],[0,10],[3,7],[10,2],[14,-4],[14,-14],[14,-24],[12,-31],[3,-37],[3,-43]],[[0,10],[-6,10],[-14,0],[-15,-8],[-15,-19],[-14,-30],[0,-34],[3,-37]],[[-6,10],[-6,6]]];
+function pathDistance(x,z){let best=Infinity;for(const ps of paths)for(let i=1;i<ps.length;i++){const u=ps[i-1],v=ps[i],dx=v[0]-u[0],dz=v[1]-u[1],t=Math.max(0,Math.min(1,((x-u[0])*dx+(z-u[1])*dz)/(dx*dx+dz*dz)));best=Math.min(best,Math.hypot(x-u[0]-dx*t,z-u[1]-dz*t));}return best;}
+function terrain(a,rnd){
+ // Ground top and physical height use the same function; buried mass closes every seam.
+ for(let z=-53;z<22;z+=.5){let runs=C.PATCHES.filter(p=>z+.5>p.z-p.d/2&&z<p.z+p.d/2).map(p=>[p.x-p.w/2,p.x+p.w/2]).sort((u,v)=>u[0]-v[0]),merged=[];
+  for(const p of runs){let last=merged[merged.length-1];if(last&&p[0]<=last[1])last[1]=Math.max(last[1],p[1]);else merged.push(p.slice());}
+  for(const [lo,hi]of merged){let x=(lo+hi)/2,ha=h(x,z),hb=h(x,z+.5),ang=Math.atan2(ha-hb,.5);a.box(x,(ha+hb)/2-.045,z+.25,hi-lo,.09,Math.hypot(.5,hb-ha)+.002,col.grass,{rough:1,terrain:true,cameraSolid:false,cutaway:false,r:[ang,0,0]});a.box(x,Math.min(ha,hb)-5.08,z+.25,hi-lo,10,.502,0x777970,{cameraSolid:false,cutaway:false});}
+ }
+ // Irregular low shoulders and deep cliff roots; the walking edge remains on supported ground.
+ for(let z=-53;z<=22;z+=1.3)for(let x=-18;x<=18;x+=1.3){if(!C.land(x,z,0))continue;const edge=[[1.3,0],[-1.3,0],[0,1.3],[0,-1.3]].find(([dx,dz])=>!C.land(x+dx,z+dz,0));if(!edge)continue;let xx=x+edge[0]*.3,zz=z+edge[1]*.3,b=h(xx,zz);a.add('round',xx,b-2.4,zz,2.8+rnd()*1.6,4.6,3.5,col.stone,{rough:1,cameraSolid:false,cutaway:false});a.add('octa',xx,b-6.5,zz,3.6,8+rnd()*5,3.8,0x5e6d6b,{rough:1,cameraSolid:false,cutaway:false});}
+ // The central ridge is closed ground, with two real paths around its limestone walls.
+ a.box(-.5,h(-.5,-16)+.8,-16,13,1.6,24,0x85877a,{rough:1,cameraSolid:true});
+ for(let z=-6.2;z>=-25.8;z-=3.9)for(let x of [-4.8,-.5,3.8])a.add('round',x,h(x,z)+1.7,z,4.3,5.1,4.4,0x939580,{rough:1,cameraSolid:true});
+ for(let i=0;i<11;i++){let z=-6-i*2.05;a.add('round',-.5+Math.sin(i*2.3)*2.5,h(-.5,z)+3.8,z,7.4,5.2,4.9,i%2?0xaaa48c:0x929783,{rough:1,cameraSolid:true});}
+ for(let i=0;i<1400;i++){let x=-18+rnd()*36,z=-53+rnd()*75;if(!C.walkable(x,z,.5)||pathDistance(x,z)<1.25)continue;let s=.09+rnd()*.1;a.add('leaf',x,h(x,z)+.02,z,s,s*2.7,s,i%4===0?0xb5b18c:col.leaf,{wind:1,rough:1,r:[0,rnd()*TAU,0]});if(i%9===0)a.add('round',x,h(x,z)+.03,z,.26,.1,.34,0xa0a086,{cameraSolid:false,rough:1});}
+ for(const ps of paths)paving(a,ps);
+ // Paved gathering aprons are flush, never invisible raised steps.
+ for(const [x,z,w,d]of [[-6,6,6,5],[3,7,4,4],[3,-43,8,7],[0,18,5,4]])a.box(x,h(x,z)+.012,z,w,.02,d,0xb6ac8e,{cameraSolid:false,rough:1});
+}
+function refuge(a){const b=h(-6,5);a.box(-6,b+1.6,3,7,3.2,.45,col.light);a.box(-9.3,b+1.6,6,.45,3.2,6,col.light);a.box(-2.7,b+1.6,5,.45,3.2,4,col.light);
+ a.add('roof',-6,b+3.2,5.65,7.8,1.65,6.6,0x596c65,{cameraSolid:true});a.box(-6,b+3.23,5.65,7.9,.16,6.65,col.wood);
+ for(let x of [-9.3,-2.7])a.box(x,b+1.65,3,.24,3.3,.65,col.wood);
+ for(let x of [-8,-4]){a.box(x,b+2,3.24,1.25,1.25,.06,col.wood);a.box(x,b+2,3.28,1.01,1.01,.05,0xf4d091,{em:.5});a.box(x,b+2,3.32,1.06,.08,.05,col.wood);a.box(x,b+2,3.32,.08,1.06,.05,col.wood);}
+ a.bench(-6,4.2,0,b);lamp(a,-10.6,8.7,.65);
+ for(let i=0;i<8;i++)a.box(-9.4+i*.98,b+3.24+(1-Math.abs(i/7-.5)*2)*1.65,5.65,.07,.09,6.7,0x8c9a82,{cameraSolid:false});
+}
+function observatory(a){const b=h(3,-47);a.box(3,b+2.5,-49,14,5,.6,col.light);a.box(-3.8,b+2,-46,.6,4,6,col.light);a.box(9.8,b+2,-46,.6,4,6,col.light);
+ // Tall crown stays recognizable above the ridge in the arrival view.
+ for(let x of [-3.8,9.8]){a.box(x,b+4.9,-49,1,9.8,1,0xa7a28d);a.box(x,b+10,-49,1.45,.35,1.45,col.bronze);}
+ for(let i=0;i<24;i++){let q=i/24*Math.PI,r=(i+1)/24*Math.PI,x1=3+6.8*Math.cos(q),y1=b+9.8+4*Math.sin(q),x2=3+6.8*Math.cos(r),y2=b+9.8+4*Math.sin(r);a.box((x1+x2)/2,(y1+y2)/2,-49,Math.hypot(x2-x1,y2-y1)+.035,.65,.75,col.light,{r:[0,0,Math.atan2(y2-y1,x2-x1)],cameraSolid:true});}
+ for(let x of [-1.8,3,7.8]){a.box(x,b+3.05,-48.64,2,2.25,.08,0x526b72);a.box(x,b+3.05,-48.54,2.2,.09,.1,col.bronze);a.box(x,b+3.05,-48.54,.1,2.4,.1,col.bronze);}
+ a.box(3,b+1.65,-47,2.2,3.3,2.2,col.stone);a.add('cylinder',3,b+3.3,-47,2.6,.24,2.6,col.light);
+ for(let i=0;i<3;i++)a.add('ring',3,b+6.7,-47,5.3-i*.9,5.3-i*.9,5.3-i*.9,col.bronze,{r:[i*.66,i*.48,0],cameraSolid:false});
+ a.add('octa',3,b+6.7,-47,.7,.85,.7,0xffd394,{em:.9,cameraSolid:false});
+ for(let x of [-2.8,8.8])lamp(a,x,-42,.7);
+}
+function sky(a,rnd){
+ // Remote world-space sky images: no camera clearance, surface picks, shadows or route state.
+ a.add('round',-52,-16,-110,90,90,90,0xa8a8c2,{skyImage:true,em:.3,rough:1,cameraSolid:false,cutaway:false});
+ for(let i=0;i<165;i++){let ang=rnd()*TAU,y=22+rnd()*135,r=Math.sqrt(205*205-y*y),s=.13+rnd()*.24;a.add('octa',Math.cos(ang)*r,y,Math.sin(ang)*r-15,s,s,s,i%7?0xc8ccdf:0xf4d8b4,{em:1.6,skyImage:true,cameraSolid:false,cutaway:false});}
+ for(let i=0;i<20;i++){let x=-42+i*4,z=-68-(i%4)*4;a.add('octa',x,-3,z,8,18+i%4*5,9,0x475970,{cameraSolid:false,cutaway:false,rough:1});}
+}
+function make(a){a.begin(C.ROOM);a.e.theme='cosmos';a.e.isInterior=false;a.e.noWater=true;a.e.ambientOverride=.55;const rnd=G.RealmCore.rng(9512026);terrain(a,rnd);refuge(a);observatory(a);
+ for(const [x,z,w,d,hh]of [[-12,-9,3,3,3.2],[11,-17,2.8,4,2.6]]){a.box(x,h(x,z)+hh/2,z,w,hh,d,col.stone);for(let i=0;i<4;i++)a.box(x,h(x,z)+(i+.5)*hh/4,z+d/2+.01,w,.035,.04,0x666d62,{cameraSolid:false});a.add('round',x,h(x,z)+hh-.1,z,w*.98,.3,d*.98,col.grass,{cameraSolid:false});}
+ for(let x of [6.6,8.1,9.6])lamp(a,x,10.8,x===8.1?1.2:1);
+ for(const [x,z]of [[-16.7,-18],[16.6,-28],[-7,-34]])lamp(a,x,z,.7);
+ sky(a,rnd);a.commit();}
+function draw(out,sim,t,a){if(sim.room!==C.ROOM)return;let p=sim.state.player;a.person(out,3,7,Math.PI*.8,'#b38c68',t,false,'keeper',false,h(3,7)+.02);a.person(out,3,-43,Math.PI,'#78959a',t,false,'researcher',false,h(3,-43)+.02);
+ if(!sim.state.settings?.reducedMotion)for(let i=0;i<6;i++){let q=t*.16+i*TAU/6;out.octa.push({p:[3+Math.sin(q)*1.1,h(3,-47)+6.7+Math.cos(q)*.35,-47+Math.cos(q)*1.1],s:[.08,.14,.08],c:0xffd69a,em:.7});}
+ out.disc.push({p:[p.x,h(p.x,p.z)+.02,p.z],s:[.8,1,.8],c:0xd9c38c,rough:.8,em:.05});}
+function gate(a){a.add('cylinder',C.GATE.x,1.25,C.GATE.z,.18,1.3,.18,col.bronze,{cameraSolid:false});a.add('octa',C.GATE.x,2.75,C.GATE.z,.55,.6,.55,0xffd394,{em:.8,cameraSolid:false});}
+G.RealmCosmosArt={make,draw,gate};
+})(globalThis);
+</script><script>/* A quiet journey in the existing workspace. Looking never writes a quest or reward. */
+(function(G){'use strict';const N=G.RealmCosmos,$=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const button=(s,act,id='')=>'<button data-rpg="'+act+'" data-id="'+id+'">'+s+'</button>';
+function projection(w,h){const scale=Math.min(w/42,h/82);return{scale,x:w/2,y:h/2+15*scale};}
+function mapCanvas(canvas,sim){const g=canvas.getContext('2d');if(!g)return;const w=canvas.width,h=canvas.height,{scale:s,x:ox,y:oy}=projection(w,h);
+ g.fillStyle='#171d32';g.fillRect(0,0,w,h);g.fillStyle='#697369';for(const p of N.PATCHES)g.fillRect(ox+(p.x-p.w/2)*s,oy+(p.z-p.d/2)*s,p.w*s,p.d*s);
+ g.fillStyle='#363b47';for(const p of N.SOLIDS)g.fillRect(ox+(p.x-p.w/2)*s,oy+(p.z-p.d/2)*s,p.w*s,p.d*s);
+ for(const p of N.POINTS){g.fillStyle=p.kind==='return'?'#eacb8f':'#ccd5c6';g.beginPath();g.arc(ox+p.x*s,oy+p.z*s,2.5,0,Math.PI*2);g.fill();}
+ g.fillStyle='#fff3c5';g.beginPath();g.arc(ox+sim.state.player.x*s,oy+sim.state.player.z*s,4,0,Math.PI*2);g.fill();
+}
+function mapSVG(sim){const {scale:s,x:ox,y:oy}=projection(420,530);let html='<rect width="420" height="530" rx="18" fill="#171d32"/>';
+ for(const p of N.PATCHES)html+='<rect x="'+(ox+(p.x-p.w/2)*s)+'" y="'+(oy+(p.z-p.d/2)*s)+'" width="'+p.w*s+'" height="'+p.d*s+'" fill="#697369"/>';
+ for(const p of N.SOLIDS)html+='<rect x="'+(ox+(p.x-p.w/2)*s)+'" y="'+(oy+(p.z-p.d/2)*s)+'" width="'+p.w*s+'" height="'+p.d*s+'" fill="#363b47"/>';
+ for(const [i,p]of N.POINTS.entries())html+='<circle cx="'+(ox+p.x*s)+'" cy="'+(oy+p.z*s)+'" r="10" fill="#273a3c" stroke="#e4cd9e"/><text x="'+(ox+p.x*s)+'" y="'+(oy+p.z*s+4)+'" text-anchor="middle" fill="#fff0d3">'+(i+1)+'</text>';
+ const p=sim.state.player;return '<svg id="cosmos-map" viewBox="0 0 420 530" role="img" aria-label="Near Expanse: two ground approaches join at the observatory">'+html+'<circle cx="'+(ox+p.x*s)+'" cy="'+(oy+p.z*s)+'" r="4" fill="white"/><text x="210" y="19" text-anchor="middle" fill="#e4cd9e">NORTH · OCCUPIED OBSERVATORY</text></svg>';
+}
+const WORDS={
+ lamps:{title:'Teren · the road is open',text:'“Three lamps for three things: a road out, shelter, and a road home. Rootcut Lane follows the stone on your left. The open road climbs on your right. Both reach Anik’s observatory.”',detail:'Choose either approach. You can walk the other on your return. This opening visit has no quest reward or hostile encounters.'},
+ bench:{title:'A little shelter, a long way from home',text:'The bench is worn smooth. Someone has mended its crossbar with warm bronze, and left room for another traveller.',detail:'The refuge is part of the same ground. Rest here for a moment, or continue to the first horizon. Your own music remains available in More.'},
+ rise:{title:'The moon beneath the road',text:'A pale disk appears below the raised road. The brass marker names it a folded view: a distant moon seen from another bearing.',detail:'The moon is an image beyond this country, not a floor or a portal. The marked road under your feet continues north to the observatory. Turn around to find the three warm lamps.'},
+ anik:{title:'Anik · someone kept the lamps lit',text:'“You found us. Teren’s lamps are easy to lose in all that sky. There is a cup on the bench if you want to stay, and a clear way home when you are ready.”',detail:'This overlook is inhabited. Its instruments and later field work are still being prepared. You have reached the end of this first walking visit; try the other approach on the way back.'}
+};
+class CosmosUI{
+ constructor(rpg){this.rpg=rpg;this.ticket=null;this.reading=null;const root=document.createElement('div');root.id='cosmos-labels';root.setAttribute('aria-hidden','true');$('#hud').append(root);
+  const home=document.createElement('button');home.id='cosmos-home';home.hidden=true;home.textContent='Return to Firstlight';home.onclick=()=>this.returnHome();$('#rpg-hud').append(home);
+ }
+ get sim(){return this.rpg.sim;}
+ reset(){N.cancel(this.ticket);this.ticket=null;this.reading=null;}
+ context(){if(this.sim.room===N.ROOM){const p=N.POINTS.find(p=>N.near(this.sim,p));return p?(p.kind==='return'?'E · Return to Firstlight':WORDS[p.id]?'E · '+p.name:'E · Read the local route'):'M · Near Expanse routes';}return !this.sim.room&&N.near(this.sim,N.GATE)?'E · Near Expanse invitation':null;}
+ interact(){if(!this.context())return false;if(this.sim.room===N.ROOM){const p=N.POINTS.find(p=>N.near(this.sim,p));if(p?.kind==='return'){this.returnHome();return true;}this.reading=WORDS[p?.id]?p.id:null;this.rpg.open(this.reading?'cosmos':'atlas');}else{this.reset();this.rpg.open('cosmos');}return true;}
+ returnHome(){const r=this.rpg.api.cosmosReturn();if(r.ok){this.rpg.close();this.reset();}else this.rpg.api.toast(r.error);}
+ action(el){const act=el.dataset.rpg,id=el.dataset.id;
+  if(act==='cosmos-confirm'){const r=this.rpg.api.cosmosTravel(this.ticket);this.ticket=null;if(r.ok){this.rpg.close();this.rpg.api.toast('Near Expanse · choose the sheltered lane or open road. Return is always available.');}else{this.rpg.api.toast(r.error);this.rpg.paint();}return true;}
+  if(act==='cosmos-return'){this.returnHome();return true;}
+  if(act==='cosmos-invitation'){this.reset();this.rpg.open('cosmos');return true;}
+  if(act==='cosmos-walk'){const p=id==='gate'&&!this.sim.room?N.GATE:this.sim.room===N.ROOM?N.POINTS.find(p=>p.id===id):null;if(p){this.rpg.close();this.rpg.api.walkLocal(p.x,p.z);}return true;}
+  return false;
+ }
+ invitation(){return '<section class="cosmos-invitation"><small>OPTIONAL JOURNEY · PROTOTYPE OPENING</small><h3>A road under an extraordinary sky</h3><p>Beside the valley observatory, an invitation leads to Three Lamps and a walk through the Near Expanse.</p>'+button('Read the travel invitation','cosmos-invitation')+'</section>';}
+ page(tab){
+  if(tab==='atlas'&&this.sim.room===N.ROOM)return{title:'Near Expanse · the road out and home',html:'<div class="cosmos-atlas"><section>'+mapSVG(this.sim)+'<p>Solid ground, two approaches. The dark middle is impassable. The moon belongs to the distant view.</p></section><section><small>ONE CONNECTED PLACE</small><h2>Pick a bearing.</h2><p>These destinations use the real walking paths. No teleport is needed between them.</p>'+N.POINTS.map((p,i)=>button('<b>'+String(i+1).padStart(2,'0')+'</b> '+esc(p.name),'cosmos-walk',p.id)).join('')+button('Return to the valley now','cosmos-return')+'<p class="cosmos-note">Saving, reopening or switching characters resumes at your valley checkpoint. This first visit has no reward or story claim.</p></section></div>'};
+  if(tab!=='cosmos')return null;
+  if(this.sim.room===N.ROOM){const word=WORDS[this.reading]||WORDS.lamps;return{title:word.title,html:'<article class="cosmos-reading"><small>THE NEAR EXPANSE</small><h2>'+word.title+'</h2><p class="cosmos-quote">'+word.text+'</p><p>'+word.detail+'</p><div class="cosmos-actions">'+button('See both ground routes','open','atlas')+button('Return to Firstlight','cosmos-return')+'</div><p class="cosmos-note">A local conversation in the prototype. No class, allegiance or personal story choice is made here.</p></article>'};}
+  const near=!this.sim.room&&N.near(this.sim,N.GATE);
+  if(near&&!this.ticket){const r=N.preview(this.rpg.api.cosmosContext());if(r.ok)this.ticket=r.ticket;}
+  return{title:'Near Expanse · travel invitation',html:'<article class="cosmos-reading"><small>OPTIONAL JOURNEY · FIRST WALKING VISIT</small><h2>A road under an extraordinary sky.</h2><p class="cosmos-quote">Three warm lamps. Two roads through unfamiliar country. Someone still tending an observatory beneath a folded moon.</p><div class="cosmos-terms"><section><h3>Your route</h3><p>Arrive at Three Lamps. Take sheltered Rootcut Lane or the rising open road to Anik’s overlook. Both approaches join on actual ground.</p></section><section><h3>Your way home</h3><p>Return is available from the start and from anywhere on the route. Saving and reopening, or switching characters, resumes at this valley checkpoint.</p></section><section><h3>This opening visit</h3><p>No combat or rewards yet. No equipment is required. Entry grants no items, class, XP, allegiance or story completion. Your existing equipment projects remain yours.</p></section></div><p><strong>Traveller:</strong> '+esc(this.sim.state.visitor.name)+' · <strong>Return:</strong> beside the Firstlight observatory.</p><div class="cosmos-actions">'+(near&&this.ticket?button('Save checkpoint & enter Near Expanse','cosmos-confirm'):button('Walk to the invitation beside the observatory','cosmos-walk','gate'))+'</div><p class="cosmos-note">No save migration is required for this visit. Both camera styles stay available: V swaps them.</p></article>'};
+ }
+ tick(){const inside=this.sim.room===N.ROOM;$('#cosmos-home').hidden=!inside;document.body.classList.toggle('in-cosmos',inside);const root=$('#cosmos-labels');root.replaceChildren();
+  if(inside){$('#tracked-chapter').textContent='NEAR EXPANSE · FIRST WALK';$('#tracked-title').textContent=this.sim.state.player.z<-37?'The observatory is inhabited':'Find the occupied observatory';$('#tracked-detail').textContent='Sheltered lane west · open road east';$('#tracked-progress').textContent='M · routes and return · no reward in this visit';}
+  if(!this.sim.state.settings.labels||this.rpg.dialog.open)return;
+  const points=inside?N.POINTS:[{...N.GATE,name:'Near Expanse · invitation'}],player=this.sim.state.player,shown=[];
+  for(const p of points.map(p=>({...p,d:Math.hypot(p.x-player.x,p.z-player.z)})).sort((a,b)=>a.d-b.d)){
+   if(p.d>24||p.d<2.5||shown.length>=3)continue;const q=this.rpg.api.project(p.x,(inside?N.height(p.x,p.z):1.3)+2.6,p.z);if(!q?.visible||shown.some(v=>Math.abs(v.x-q.x)<190&&Math.abs(v.y-q.y)<34))continue;
+   const label=document.createElement('span');label.textContent=p.name;label.style.left=q.x+'px';label.style.top=q.y+'px';root.append(label);shown.push(q);
+  }
+ }
+}
+G.RealmCosmosUI={CosmosUI,mapCanvas,mapSVG,projection};})(globalThis);
+</script><script>/* Earth E1 — Hearthwater Vale procedural geography. */
+(function(G){'use strict';
+const C=G.RealmEarth,TAU=Math.PI*2,h=C.height;
+const col={grass:0x74835c,meadow:0x89946a,stone:0x8f8a74,path:0xa79a78,wood:0x725b40,roof:0x6c5b4e,leaf:0x6f8555,fruit:0xc98968,water:0x577c7a,gold:0xc2a86c};
+const paths=[
+ [[0,25],[0,17],[0,10],[-7,5],[-12,-3],[-14,-12],[-14,-22],[-10,-30],[0,-35],[0,-44]],
+ [[0,10],[7,5],[13,-3],[14,-12],[14,-22],[11,-30],[0,-35],[0,-44]],
+ [[-14,-22],[-12,-24]]
+];
+function pathDistance(x,z){let best=Infinity;for(const ps of paths)for(let i=1;i<ps.length;i++){const u=ps[i-1],v=ps[i],dx=v[0]-u[0],dz=v[1]-u[1],d=dx*dx+dz*dz,t=d?Math.max(0,Math.min(1,((x-u[0])*dx+(z-u[1])*dz)/d)):0;best=Math.min(best,Math.hypot(x-u[0]-dx*t,z-u[1]-dz*t));}return best;}
+function paving(a,points,width=1.7){for(let i=1;i<points.length;i++){const u=points[i-1],v=points[i],d=Math.hypot(v[0]-u[0],v[1]-u[1]);for(let t=0;t<d;t+=.68){const f=t/d,x=u[0]+(v[0]-u[0])*f,z=u[1]+(v[1]-u[1])*f;if(C.walkable(x,z,.08))a.add('disc',x,h(x,z)+.025,z,width,1,width,col.path,{rough:1,cameraSolid:false,r:[Math.atan2(h(x,z-.1)-h(x,z+.1),.2),0,0]});}}}
+function terrain(a,rnd){
+ for(let z=-52;z<29;z+=.5){let runs=C.PATCHES.filter(p=>z+.5>p.z-p.d/2&&z<p.z+p.d/2).map(p=>[p.x-p.w/2,p.x+p.w/2]).sort((u,v)=>u[0]-v[0]),merged=[];
+  for(const p of runs){const last=merged[merged.length-1];if(last&&p[0]<=last[1])last[1]=Math.max(last[1],p[1]);else merged.push(p.slice());}
+  for(const [lo,hi]of merged){const x=(lo+hi)/2,ha=h(x,z),hb=h(x,z+.5),ang=Math.atan2(ha-hb,.5),green=z<-25?col.meadow:col.grass;a.box(x,(ha+hb)/2-.045,z+.25,hi-lo,.09,Math.hypot(.5,hb-ha)+.002,green,{rough:1,terrain:true,cameraSolid:false,cutaway:false,r:[ang,0,0]});a.box(x,Math.min(ha,hb)-2.55,z+.25,hi-lo,5,.502,0x756d5a,{cameraSolid:false,cutaway:false});}
+ }
+ for(const ps of paths)paving(a,ps);
+ // Mill pond/watercourse is a visible reason the direct center is not walkable in E1.
+ a.box(0,h(0,-15)-.12,-15,8.8,.12,19.7,col.water,{rough:.25,wet:1,cameraSolid:false,cutaway:false});
+ for(let i=0;i<9;i++){let z=-7-i*2.1;a.add('disc',Math.sin(i*.8)*1.2,h(0,z)-.04,z,.55,1,.55,0x6e8f69,{cameraSolid:false,rough:.8});}
+ // Low stone walls make the orchard road legible without turning every fence into a collision maze.
+ for(let z=6;z>-9;z-=1.15){a.box(-15.6,h(-15.6,z)+.28,z,.5,.56,1.02,col.stone,{cameraSolid:true});}
+ // Orchard trees: solids are limited to the declared shed; trunks here are presentation-scale.
+ for(let row=0;row<3;row++)for(let i=0;i<5;i++){let x=-12+row*3,z=5-i*2.6;if(pathDistance(x,z)<1.25)continue;let b=h(x,z);a.add('cylinder',x,b,z,.22,1.65,.22,col.wood,{cameraSolid:false});a.add('round',x,b+2,z,1.45,1.35,1.45,col.leaf,{cameraSolid:false,rough:1});for(let f=0;f<3;f++){let q=(i*3+f)*2.1;a.add('round',x+Math.sin(q)*.7,b+2.05+f*.1,z+Math.cos(q)*.7,.12,.12,.12,col.fruit,{cameraSolid:false});}}
+ // Orchard shed.
+ {let x=-8,z=0,b=h(x,z);a.box(x,b+1.75,z,4.4,3.5,4.2,0xa99a79);a.add('roof',x,b+3.5,z,5,1.5,4.8,col.roof,{cameraSolid:true});a.box(x,b+1.2,z+2.12,1.3,2.4,.08,0x594b3a);}
+ // Quarry stacks and worked stone.
+ for(const [x,z,s]of [[11.7,-18,1],[14,-21,.7],[10,-24,.8]]){let b=h(x,z);for(let i=0;i<4;i++)a.box(x+(i%2)*.8,b+.25+i*.37,z+(i%3)*.35,1.25,.45,.72,i%2?0xa29a83:0x817b69,{rough:1});}
+ // Ridge shelter matches its collision footprint.
+ {let x=-12,z=-25,b=h(x,z);a.box(x,b+1.55,-26,6.6,3.1,.5,0x9b9279);a.box(-15,b+1.55,-23.8,.5,3.1,4.8,0x9b9279);a.box(-9,b+1.55,-24.6,.5,3.1,3.2,0x9b9279);a.add('roof',x,b+3.1,-24.2,7.3,1.5,5.2,0x695c4b,{cameraSolid:true});a.bench(-12,-23,0,b);a.box(-11,b+2.1,-26.25,1.5,1.15,.06,0x5d6a60);a.box(-11,b+2.1,-26.18,1.2,.9,.04,0xa6c0af,{em:.08});}
+ // Bellweather bell is a distant orientation landmark beyond the qualified boundary.
+ const bb=h(0,-48);for(const x of[-2.4,2.4])a.box(x,bb+4.2,-50,.55,8.4,.55,0x82765e,{cameraSolid:false});
+ a.box(0,bb+7.7,-50,5.2,.45,.6,0x82765e,{cameraSolid:false});a.add('bell',0,bb+6.7,-49.9,1.2,1.6,1.2,0xc6aa6b,{cameraSolid:false,em:.06});
+ // Footbridge and parapets.
+ for(let z=18;z<27;z+=.5){let b=h(0,z);a.box(0,b+.04,z,3.7,.08,.46,0x9b8e72,{cameraSolid:false,rough:.8});}
+ for(let z=18;z<27;z+=1.8)for(const x of[-1.7,1.7]){let b=h(x,z);a.box(x,b+.55,z,.14,1.1,.14,0x81755f);a.box(x,b+1.03,z,.14,.1,1.8,0x81755f,{cameraSolid:false});}
+ // Field dressing respects route clearance.
+ for(let i=0;i<850;i++){let x=-18+rnd()*36,z=-49+rnd()*74;if(!C.walkable(x,z,.45)||pathDistance(x,z)<1.25)continue;let b=h(x,z),s=.07+rnd()*.11;a.add('leaf',x,b+.02,z,s,s*2.6,s,i%7===0?0xb3a56f:0x678150,{wind:1,rough:1,cameraSolid:false,r:[0,rnd()*TAU,0]});if(i%33===0)a.add('octa',x,b+.18,z,.10,.16,.10,[0xdfc78f,0xcaa6a1,0xd9d3a2][i%3],{cameraSolid:false});}
+ // Distant wooded hills are scenery only.
+ for(let i=0;i<26;i++){let a0=i/26*TAU,r=44+rnd()*22,x=Math.cos(a0)*r,z=-12+Math.sin(a0)*r*.55,b=1.0+rnd()*1.5;a.add('cone',x,-1.2,z,9+rnd()*11,8+rnd()*15,9+rnd()*11,i%3?0x60755d:0x75846b,{cameraSolid:false,cutaway:false,rough:1});if(i%2===0)a.add('round',x,b+5,z,7,4,7,0x647858,{cameraSolid:false,cutaway:false,rough:1});}
+}
+function sign(a,x,z,textColor=col.gold){const b=h(x,z);a.box(x,b+.85,z,.16,1.7,.16,col.wood,{cameraSolid:false});a.box(x,b+1.55,z,2.3,.75,.12,0x826c4b,{cameraSolid:false});a.add('octa',x,b+1.57,z+.09,.12,.12,.04,textColor,{em:.15,cameraSolid:false});}
+function make(a){a.begin(C.ROOM);a.e.theme='earth';a.e.isInterior=false;a.e.noWater=false;a.e.ambientOverride=.78;const rnd=G.RealmCore.rng(18092026);terrain(a,rnd);for(const [x,z]of [[0,16],[-8,3],[7,2],[13,-13],[12,-26],[-12,-23],[0,-43]])sign(a,x,z);a.commit();}
+function draw(out,sim,t,a){if(sim.room!==C.ROOM)return;const p=sim.state.player;if(!sim.state.settings?.reducedMotion){for(let i=0;i<5;i++){let q=t*.13+i*1.7,x=-4+Math.sin(q)*5,z=-30+Math.cos(q*.7)*4,b=h(x,z);out.box.push({p:[x,b+5+Math.sin(q*1.8)*.35,z],s:[.38,.045,.12],r:[0,q,.2],c:0x4c5f55});}}out.disc.push({p:[p.x,h(p.x,p.z)+.02,p.z],s:[.8,1,.8],c:0xd5bd83,rough:.8,em:.04});}
+function gate(a){const b=1.3;a.box(C.GATE.x,b+.75,C.GATE.z,.18,1.5,.18,col.wood,{cameraSolid:false});a.box(C.GATE.x,b+1.35,C.GATE.z,1.9,.55,.12,0x826c4b,{cameraSolid:false});a.add('octa',C.GATE.x,b+1.38,C.GATE.z+.08,.12,.12,.04,col.gold,{em:.15,cameraSolid:false});}
+G.RealmEarthArt={make,draw,gate};
+})(globalThis);
+</script><script>/* Earth E1 route UI. Geography only; no roadworks contract or new reward. */
+(function(G){'use strict';const N=G.RealmEarth,$=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const button=(s,act,id='')=>'<button data-rpg="'+act+'" data-id="'+id+'">'+s+'</button>';
+function projection(w,h){const scale=Math.min(w/44,h/86);return{scale,x:w/2,y:h/2+14*scale};}
+function mapCanvas(canvas,sim){const g=canvas.getContext('2d');if(!g)return;const w=canvas.width,h=canvas.height,{scale:s,x:ox,y:oy}=projection(w,h);
+ g.fillStyle='#16231e';g.fillRect(0,0,w,h);g.fillStyle='#657758';for(const p of N.PATCHES)g.fillRect(ox+(p.x-p.w/2)*s,oy+(p.z-p.d/2)*s,p.w*s,p.d*s);
+ g.fillStyle='#314239';for(const p of N.SOLIDS)g.fillRect(ox+(p.x-p.w/2)*s,oy+(p.z-p.d/2)*s,p.w*s,p.d*s);
+ for(const p of N.POINTS){g.fillStyle=p.kind==='return'?'#ecd09a':p.kind==='boundary'?'#c7aa7a':'#d8ddc1';g.beginPath();g.arc(ox+p.x*s,oy+p.z*s,2.5,0,Math.PI*2);g.fill();}
+ g.fillStyle='#fff1c8';g.beginPath();g.arc(ox+sim.state.player.x*s,oy+sim.state.player.z*s,4,0,Math.PI*2);g.fill();
+}
+function mapSVG(sim){const {scale:s,x:ox,y:oy}=projection(420,540);let html='<rect width="420" height="540" rx="18" fill="#16231e"/>';
+ for(const p of N.PATCHES)html+='<rect x="'+(ox+(p.x-p.w/2)*s)+'" y="'+(oy+(p.z-p.d/2)*s)+'" width="'+p.w*s+'" height="'+p.d*s+'" fill="#657758"/>';
+ for(const p of N.SOLIDS)html+='<rect x="'+(ox+(p.x-p.w/2)*s)+'" y="'+(oy+(p.z-p.d/2)*s)+'" width="'+p.w*s+'" height="'+p.d*s+'" fill="#314239"/>';
+ for(const [i,p]of N.POINTS.entries())html+='<circle cx="'+(ox+p.x*s)+'" cy="'+(oy+p.z*s)+'" r="10" fill="#263b32" stroke="#dfc38d"/><text x="'+(ox+p.x*s)+'" y="'+(oy+p.z*s+4)+'" text-anchor="middle" fill="#fff2d5">'+(i+1)+'</text>';
+ const p=sim.state.player;return '<svg id="earth-map" viewBox="0 0 420 540" role="img" aria-label="Hearthwater approach: two real ground routes join at Bellweather west road">'+html+'<circle cx="'+(ox+p.x*s)+'" cy="'+(oy+p.z*s)+'" r="4" fill="white"/><text x="210" y="20" text-anchor="middle" fill="#dfc38d">NORTH · BELLWEATHER WEST ROAD</text></svg>';
+}
+const WORDS={
+ bridge:{title:'Hearthwater footbridge',text:'The old lake path continues over dressed stone. Cart ruts begin again beyond the water.',detail:'This is physical connected ground. The riverbank outing and its rewards remain owned by Oren’s existing sign and scene.'},
+ orchard:{title:'Orchard lane',text:'Low walls, fruit trees and work paths make the country legible before any quest marker does.',detail:'The western lane stays quiet and sheltered. It reaches the same northern road without changing your campaign state.'},
+ millfork:{title:'Mill road fork',text:'A watercourse runs through the low ground. One path bends toward orchards; another climbs toward the quarry ridge.',detail:'The mill problem described in the Earth design is later E2 content. Nothing is accepted or paid on this geography visit.'},
+ ridge:{title:'The ridge road',text:'Bellweather’s bell appears above the distant orchard before the town itself can be seen.',detail:'The eastern route is more exposed, but it remains ordinary traversable country—not a teleport or painted destination.'},
+ quarry:{title:'Quarry approach',text:'Stone stacks and worn wheel marks explain why this grade exists. The working camp lies beyond the current qualified boundary.',detail:'No materials are granted for looking at scenery. Future contracts will use explicit ownership and run identities.'},
+ shelter:{title:'Old ridge shelter',text:'A repaired roof, a dry bench and sightlines back toward the lake. Someone expected travelers to need this place.',detail:'The shelter has no fee, reward or hidden checkpoint. Your safe persisted checkpoint remains beside the Firstlight lake.'},
+ bellweather:{title:'Bellweather west road',text:'The bell is close now, beyond orchards and the last bend. Old Sunward markers still define the recognized chapter road into town.',detail:'E1 stops here deliberately. It does not bypass the existing Sunward Beacon or Bellweather chapter prerequisites. Return by either route while this connection is being qualified.'}
+};
+class EarthUI{
+ constructor(rpg){this.rpg=rpg;this.ticket=null;this.reading=null;const root=document.createElement('div');root.id='earth-labels';root.setAttribute('aria-hidden','true');$('#hud').append(root);
+  const home=document.createElement('button');home.id='earth-home';home.hidden=true;home.textContent='Return to Firstlight';home.onclick=()=>this.returnHome();$('#rpg-hud').append(home);
+ }
+ get sim(){return this.rpg.sim;}
+ reset(){N.cancel(this.ticket);this.ticket=null;this.reading=null;}
+ context(){if(this.sim.room===N.ROOM){const p=N.POINTS.find(p=>N.near(this.sim,p));return p?(p.kind==='return'?'E · Return to Firstlight':WORDS[p.id]?'E · '+p.name:'E · Read the Hearthwater marker'):'M · Hearthwater routes';}return !this.sim.room&&N.near(this.sim,N.GATE)?'E · Hearthwater trail marker':null;}
+ interact(){if(!this.context())return false;if(this.sim.room===N.ROOM){const p=N.POINTS.find(p=>N.near(this.sim,p));if(p?.kind==='return'){this.returnHome();return true;}this.reading=WORDS[p?.id]?p.id:null;this.rpg.open(this.reading?'earth':'atlas');}else{this.reset();this.rpg.open('earth');}return true;}
+ returnHome(){const r=this.rpg.api.earthReturn();if(r.ok){this.rpg.close();this.reset();}else this.rpg.api.toast(r.error);}
+ action(el){const act=el.dataset.rpg,id=el.dataset.id;
+  if(act==='earth-confirm'){const r=this.rpg.api.earthTravel(this.ticket);this.ticket=null;if(r.ok){this.rpg.close();this.rpg.api.toast('Hearthwater Vale · orchard lane west, ridge road east. Return is always available.');}else{this.rpg.api.toast(r.error);this.rpg.paint();}return true;}
+  if(act==='earth-return'){this.returnHome();return true;}
+  if(act==='earth-invitation'){this.reset();this.rpg.open('earth');return true;}
+  if(act==='earth-walk'){const p=id==='gate'&&!this.sim.room?N.GATE:this.sim.room===N.ROOM?N.POINTS.find(p=>p.id===id):null;if(p){this.rpg.close();this.rpg.api.walkLocal(p.x,p.z);}return true;}
+  return false;
+ }
+ invitation(){return '<section class="earth-invitation"><small>EARTH · HEARTHWATER VALE · E1</small><h3>A road beyond the little valley</h3><p>The lake footbridge now opens onto connected country: orchard lane, quarry ridge and the west road toward Bellweather.</p>'+button('Read the Hearthwater marker','earth-invitation')+'</section>';}
+ page(tab){
+  if(tab==='atlas'&&this.sim.room===N.ROOM)return{title:'Hearthwater Vale · first connected approach',html:'<div class="earth-atlas"><section>'+mapSVG(this.sim)+'<p>Two physical approaches meet on the north road. The dark center is the mill watercourse and cannot be crossed here.</p></section><section><small>EARTH E1 · GEOGRAPHY FIRST</small><h2>Learn the road.</h2><p>Every listed destination uses the actual walking ground. Existing Oren, Sunward and Bellweather quest authorities remain unchanged.</p>'+N.POINTS.map((p,i)=>button('<b>'+String(i+1).padStart(2,'0')+'</b> '+esc(p.name),'earth-walk',p.id)).join('')+button('Return to the Firstlight lake','earth-return')+'<p class="earth-note">No enemies, payout, XP, class choice, regional save schema or campaign completion is added by E1.</p></section></div>'};
+  if(tab!=='earth')return null;
+  if(this.sim.room===N.ROOM){const word=WORDS[this.reading]||WORDS.bridge;return{title:word.title,html:'<article class="earth-reading"><small>HEARTHWATER VALE</small><h2>'+word.title+'</h2><p class="earth-quote">'+word.text+'</p><p>'+word.detail+'</p><div class="earth-actions">'+button('See the whole approach','open','atlas')+button('Return to Firstlight','earth-return')+'</div><p class="earth-note">A geography qualification slice. Looking and walking do not write new quest or reward state.</p></article>'};}
+  const near=!this.sim.room&&N.near(this.sim,N.GATE);
+  if(near&&!this.ticket){const r=N.preview(this.rpg.api.earthContext());if(r.ok)this.ticket=r.ticket;}
+  return{title:'Hearthwater Vale · trail marker',html:'<article class="earth-reading"><small>OPTIONAL EARTH JOURNEY · E1</small><h2>Walk the country between places.</h2><p class="earth-quote">A stone footbridge crosses the lake edge. Orchard walls take the western grade. Quarry tracks climb east. Both roads meet beneath Bellweather’s distant bell.</p><div class="earth-terms"><section><h3>What this proves</h3><p>Real connected ground, landmarks, two camera styles, a safe source checkpoint and a reversible walk out and back.</p></section><section><h3>What it does not change</h3><p>Oren’s outing, surveys, Sunward, the Beacon and Bellweather keep their existing rewards, identities and prerequisites. There is no new payout or story completion.</p></section><section><h3>Your way home</h3><p>Return is available from the start and anywhere on the route. Saving and reopening, or switching characters, resumes at this Firstlight lake checkpoint.</p></section></div><p><strong>Traveller:</strong> '+esc(this.sim.state.visitor.name)+' · <strong>Return:</strong> lake footbridge.</p><div class="earth-actions">'+(near&&this.ticket?button('Save checkpoint & enter Hearthwater','earth-confirm'):button('Walk to the lake trail marker','earth-walk','gate'))+'</div><p class="earth-note">No save migration is required. V still switches third person and your remembered diorama view.</p></article>'};
+ }
+ tick(){const inside=this.sim.room===N.ROOM;$('#earth-home').hidden=!inside;document.body.classList.toggle('in-earth',inside);const root=$('#earth-labels');root.replaceChildren();
+  if(inside){$('#tracked-chapter').textContent='EARTH · HEARTHWATER VALE';$('#tracked-title').textContent=this.sim.state.player.z<-36?'Bellweather road ahead':'Learn the road between places';$('#tracked-detail').textContent='Orchard lane west · quarry ridge east';$('#tracked-progress').textContent='M · local routes and return · no E1 reward';}
+  if(!this.sim.state.settings.labels||this.rpg.dialog.open)return;
+  const points=inside?N.POINTS:[{...N.GATE,name:'Hearthwater Vale · trail marker'}],player=this.sim.state.player,shown=[];
+  for(const p of points.map(p=>({...p,d:Math.hypot(p.x-player.x,p.z-player.z)})).sort((a,b)=>a.d-b.d)){
+   if(p.d>25||p.d<2.5||shown.length>=3)continue;const q=this.rpg.api.project(p.x,(inside?N.height(p.x,p.z):1.3)+2.4,p.z);if(!q?.visible||shown.some(v=>Math.abs(v.x-q.x)<190&&Math.abs(v.y-q.y)<34))continue;
+   const label=document.createElement('span');label.textContent=p.name;label.style.left=q.x+'px';label.style.top=q.y+'px';root.append(label);shown.push(q);
+  }
+ }
+}
+G.RealmEarthUI={EarthUI,mapCanvas,mapSVG,projection};
+})(globalThis);
+</script><script>/*__APP__*/</script></body></html>
