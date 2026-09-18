@@ -16,7 +16,7 @@ const fixture=JSON.parse(fs.readFileSync(fixturePath,'utf8'));
 function walk(sim,x,z){const r=sim.moveTo(x,z);assert.ok(r.ok,r.error);for(let i=0;i<9000&&sim.playerPath.length;i++){const before={...sim.state.player};sim.tick(.05);if(sim.room===E.ROOM)assert.ok(E.segment(before,sim.state.player),'movement crossed unsupported Earth ground');}assert.ok(Math.hypot(sim.state.player.x-x,sim.state.player.z-z)<.35);}
 function run(){
  const sim=new C.Simulation(fixture),ctx={sim,active:'character-7',revision:23};
- walk(sim,0,27);const before=sim.snapshot();
+ walk(sim,0,23);const before=sim.snapshot();
  let p=E.preview(ctx);assert.equal(p.ok,true);assert.equal(E.enter(p.ticket,{...ctx,active:'character-8'},{save:()=>({ok:true}),build:()=>{}}).ok,false);
  p=E.preview(ctx);assert.equal(E.enter(p.ticket,{...ctx,revision:24},{save:()=>({ok:true}),build:()=>{}}).ok,false);
  p=E.preview(ctx);const refused=E.enter(p.ticket,ctx,{save:()=>({ok:false,error:'synthetic write refusal'}),build:()=>{}});assert.equal(refused.ok,false);assert.deepEqual(sim.snapshot(),before);
@@ -28,7 +28,7 @@ function run(){
  const {elapsed:oldElapsed,...oldSandbox}=before.sandbox,{elapsed:newElapsed,...newSandbox}=sim.snapshot().sandbox;assert.ok(newElapsed>=oldElapsed);assert.deepEqual(newSandbox,oldSandbox,'housing, inventory and claims must not change');
  const companion=A.runtime(sim).companion;if(before.adventure.companion.bonded){assert.equal(companion.room,E.ROOM);assert.ok(E.walkable(companion.x,companion.z));}
  const after=sim.snapshot();assert.equal(E.leave(sim).ok,true);assert.equal(sim.room,null);assert.deepEqual(sim.snapshot(),after);
- walk(sim,0,27);p=E.preview(ctx);const rollback=sim.snapshot();const failed=E.enter(p.ticket,ctx,{save:()=>({ok:true}),build:()=>{throw Error('synthetic scene failure');},restore:()=>{}});assert.equal(failed.ok,false);assert.equal(sim.room,null);assert.equal(sim.earthTrip,undefined);assert.deepEqual(sim.snapshot(),rollback);
+ walk(sim,0,23);p=E.preview(ctx);const rollback=sim.snapshot();const failed=E.enter(p.ticket,ctx,{save:()=>({ok:true}),build:()=>{throw Error('synthetic scene failure');},restore:()=>{}});assert.equal(failed.ok,false);assert.equal(sim.room,null);assert.equal(sim.earthTrip,undefined);assert.deepEqual(sim.snapshot(),rollback);
  const reopened=new C.Simulation(sim.snapshot());assert.equal(reopened.room,null);assert.deepEqual(reopened.snapshot(),sim.snapshot());
  const report={status:'passed',variant:'command-earned-returning-veteran',source:'evidence10/pursuit/veteran/07_PRACTICE_PERSISTED.json',sourceSha256:crypto.createHash('sha256').update(fs.readFileSync(fixturePath)).digest('hex'),checks:{staleIdentityRefused:true,writeRefusalAtomic:true,entryNoCanonicalMutation:true,orchardRouteWalked:true,ridgeRouteWalked:true,bellweatherBoundaryReachable:true,returnPreserved:true,sceneFailureRollback:true,reopenSourceSide:true},acceleratedTicks:true,personalSaves:false};
  const out=path.join(ROOT,'evidence10/earth/journey');fs.mkdirSync(out,{recursive:true});fs.writeFileSync(path.join(out,'EARTH_E1_JOURNEY_REPORT.json'),JSON.stringify(report,null,2)+'\n');return report;
