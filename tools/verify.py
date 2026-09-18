@@ -70,8 +70,9 @@ def main():
     run('characters-journey', ['node', 'tests/characters_journey.cjs', '--sources-ready'])
     run('classes-journey', ['node', 'tests/classes_journey.cjs', '--sources-ready'])
     run('cosmos-journey', ['node', 'tests/cosmos_journey.cjs', '--sources-ready'])
+    run('earth-journey', ['node', 'tests/earth_journey.cjs', '--sources-ready'])
     if args.browser:
-        for suite in ['crossing_browser', 'regression09_browser', 'cutaway_browser', 'reflection_browser', 'native_origin_browser', 'starter_browser', 'camera_browser', 'pursuit_browser', 'characters_browser', 'classes_browser', 'cosmos_browser']:
+        for suite in ['crossing_browser', 'regression09_browser', 'cutaway_browser', 'reflection_browser', 'native_origin_browser', 'starter_browser', 'camera_browser', 'pursuit_browser', 'characters_browser', 'classes_browser', 'cosmos_browser', 'earth_browser']:
             run(suite, [sys.executable, f'tests/{suite}.py'], timeout=600)
     print('Verification passed. Automated checks do not qualify human pacing or device performance.', flush=True)
 
