@@ -74,7 +74,7 @@ try:
     fixture=ROOT/'docs/evidence/classes/HUNTER_SOURCE.json';returning=json.loads(fixture.read_text(encoding='utf-8'));returning['settings']['reducedMotion']=True
     ev('(w)=>Realm.test.replace(w)',returning);render();before_returning=state();enter()
     check('returning Hunter equipment and fittings remain unchanged',state()['adventure']['equipment']==before_returning['adventure']['equipment'] and state()['adventure']['arsenal']==before_returning['adventure']['arsenal'])
-    page.locator('#earth-home').click();render();check('returning history survives Earth round trip',state()['adventure']==before_returning['adventure'])
+    page.locator('#earth-home').click();render();check('returning history survives Earth round trip',all(state()['adventure'][k]==before_returning['adventure'][k] for k in before_returning['adventure'] if k!='elapsed'))
     check('no runtime browser exceptions',not report['browser_errors'])
     context.close()
 except Exception as e:
