@@ -74,8 +74,11 @@ def main():
     run('earth-outing-blade', ['node', 'tests/pursuit_journey.cjs', '--earth'])
     run('earth-outing-bow', ['node', 'tests/pursuit_journey.cjs', '--earth', '--bow'])
     run('earth-outing-veteran', ['node', 'tests/pursuit_journey.cjs', '--earth', '--veteran'])
+    run('earth-story-blade', ['node', 'tests/earth_story_journey.cjs'])
+    run('earth-story-bow', ['node', 'tests/earth_story_journey.cjs', '--bow'])
+    run('earth-story-veteran', ['node', 'tests/earth_story_journey.cjs', '--veteran', '--sources-ready'])
     if args.browser:
-        for suite in ['crossing_browser', 'regression09_browser', 'cutaway_browser', 'reflection_browser', 'native_origin_browser', 'starter_browser', 'camera_browser', 'pursuit_browser', 'characters_browser', 'classes_browser', 'cosmos_browser', 'earth_browser']:
+        for suite in ['crossing_browser', 'regression09_browser', 'cutaway_browser', 'reflection_browser', 'native_origin_browser', 'starter_browser', 'camera_browser', 'pursuit_browser', 'characters_browser', 'classes_browser', 'cosmos_browser', 'earth_browser', 'earth_story_browser']:
             run(suite, [sys.executable, f'tests/{suite}.py'], timeout=600)
     print('Verification passed. Automated checks do not qualify human pacing or device performance.', flush=True)
 

@@ -57,7 +57,7 @@ class RPGUI{
   $('#rpg-close').onclick=()=>this.close();d.addEventListener('cancel',e=>{e.preventDefault();this.close();});
   const click=e=>{const b=e.target.closest('[data-rpg]');if(b)this.action(b);};d.addEventListener('click',click);hud.addEventListener('click',click);
   d.addEventListener('input',e=>{if(e.target.id==='bag-search'){this.search=e.target.value;this.paintBag();}});
-  $('#tracked-open').onclick=()=>this.open(this.quest==='project'?'pursuit':'journal');$('#beacon-menu').onclick=()=>{if(B.runtime(this.sim).phase==='assault')this.run('beacon-repair');else this.open('beacon');};$('#target-clear').onclick=()=>this.run('target-clear');$('#health-orb').onclick=()=>this.open('equipment');
+  $('#tracked-open').onclick=()=>this.open(this.sim.room===G.RealmEarth.ROOM&&this.state.earthStory.accepted?'earth-story':this.quest==='project'?'pursuit':'journal');$('#beacon-menu').onclick=()=>{if(B.runtime(this.sim).phase==='assault')this.run('beacon-repair');else this.open('beacon');};$('#target-clear').onclick=()=>this.run('target-clear');$('#health-orb').onclick=()=>this.open('equipment');
   for(const el of hud.querySelectorAll('[data-skill]'))el.onclick=()=>this.skill(el.dataset.skill);
   this.crossing=new G.RealmCrossingUI.CrossingUI(this);this.starter=new G.RealmStarterUI.StarterUI(this);this.pursuit=new G.RealmPursuitUI.PursuitUI(this);this.characters=new G.RealmCharactersUI.CharactersUI(this);this.classes=new G.RealmClassesUI.ClassesUI(this);this.cosmos=new G.RealmCosmosUI.CosmosUI(this);this.earth=new G.RealmEarthUI.EarthUI(this);if(this.state.starter.accepted&&!this.state.starter.reward)this.quest='starter';
  }

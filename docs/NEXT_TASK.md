@@ -1,19 +1,17 @@
 # Next playable acceptance
 
-Current review: `gameplay/earth-connected-outing`, stacked on PR #16 at `67b4eebc1026ed1027c4f8777ed33da77edc015b`. Fetch newer gameplay work and comments before continuing. Read CURRENT_STATE and the connected-outing results; archive updates remain design evidence.
+Current review: `gameplay/road-after-rain`, stacked on PR #17 at `26dff6e4fe9b2968c3c351ef317e2c03eab1ff19`. Fetch newer gameplay work and comments before continuing. Read CURRENT_STATE and the Road After Rain results; archive material remains design evidence, not automatic implementation authority.
 
-## Human route and reward check
+## Human check
 
-Try a fresh character and a returning equipped character. Accept a survey at Oren, take the lake bridge and orchard entrance, finish the work, return along the orchard path, and collect at Oren. Try both cameras at the sign and in combat. The workshop shortcut remains available.
+Dom should try one fresh character and one returning equipped character. Enter Hearthwater, read Fenna’s contract, prepare one route, return to choose that route, meet the delivery and collect once. Try both cameras. The mill uses two explicitly spent timber; quarry and detour cost no personal inventory. Other improvements can be completed without extra payment.
 
-Ask Dom: **Did you know where to go and how to get home? Did the fights feel better? Did the reward make you want another outing?** Also ask whether the longer orchard route adds a sense of place or merely delays useful work. Record his answers as human feedback; automated travel times and the engineering recording do not answer these questions.
+Ask: **Did you know where to go? Did the three approaches feel like meaningful choices? Was the arrival worth the trip?** Also retain the earlier outing questions: did ordinary fights feel better, and did equipment rewards make you want another outing? A returning fully fitted character may value the public improvement more than these materials. Do not infer enjoyment from green tests or recorded automation.
 
-## Next candidate: Road After Rain, a bounded Earth E2 story
+## Next bounded candidate
 
-Hearthwater now connects to useful work under existing authorities. Review the Earth package's E2 story: Ansel's mill, Fenna's safe passage and Darric's public repair, with declared alternatives and one delivery outcome.
+First address reported route/UI/pacing friction. Then assess a small Earth presentation/settlement pass: make the mill mechanism, public works and west-road handoff read as inhabited places from both cameras. Keep collision/visual geometry aligned, avoid another disconnected realm, and qualify changes with actual screenshots and input. Existing loading boundaries and source-side checkpoints remain until seamless travel is separately proved.
 
-Before coding E2, specify supported locations, eligible entry state, understandable route/cost choices, exact finite reward, capacity refusal, objective/claim IDs and deliberate migration if new durable story state is needed. Validate before mutation. Retries or new request IDs cannot repay the story. Never silently consume inventory or force campaign progress. Later repeatable material work needs separate run/claim authority.
+A later Nella inn/gathering continuation must explicitly handle fresh characters without bypassing Bellweather’s main campaign gate. Do not silently turn this once-only story into a repeatable payout, introduce a raw-power tier, strand the delivery again, add a compulsory escort or make fluid simulation a prerequisite. Any repeat work needs its own declared terms and run/claim authority.
 
-Resolve concrete playtest friction first if Dom reports it. Keep explicit scene boundaries until seamless travel is qualified. Preserve both cameras, combat distances, retreat/death recovery, companion modes, unpaid surveys, character ownership, sockets, music and home state.
-
-Earth remains home. Heaven H0/H1, Hell D0/D1, Atlantis A0 and Cosmos M2+ remain separate gates in the vision index. Paid power, offline loss, rare pets, construction scale, final names, native engine, respec and online authority remain unresolved. No automatic merge, deployment or restarted timed automation.
+Keep adventure8/earthStory1 forward refusal, old data, both cameras, retreat/recovery, classes, companion, unpaid surveys, gear identity/sockets, housing and music intact. Heaven H0/H1, Hell D0/D1, Atlantis A0 and Cosmos M2+ remain separate gates in the comprehensive vision index. Paid power, offline loss, rare pets, construction scale, final naming, native engine, respec and online authority remain unresolved. No automatic merge, deployment or restarted timed automation.

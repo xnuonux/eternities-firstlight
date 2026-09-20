@@ -1,29 +1,27 @@
-# Current checkpoint: a useful outing through Hearthwater
+# Current checkpoint: Road After Rain
 
-Updated 2026-09-20. Branch `gameplay/earth-connected-outing` starts from Astra's PR #16 (`gameplay/earth-hearthwater-approach`) at **67b4eebc1026ed1027c4f8777ed33da77edc015b**. That newer Earth implementation supersedes the previous local Cosmos checkout. This review remains stacked on PR #16; main and the archives are not gameplay substitutes.
+Updated 2026-09-20. `gameplay/road-after-rain` is stacked on PR #17 (`gameplay/earth-connected-outing`) at **26dff6e4fe9b2968c3c351ef317e2c03eab1ff19**. Origin and comments were inspected before branching. Main and design archives are not gameplay substitutes. The implementation PR records the exact pushed head, hosted checks and fresh remote-clone receipt.
 
-Read the [task](development/EARTH_CONNECTED_OUTING_TASK_2026-09-20.md), [results](development/EARTH_CONNECTED_OUTING_RESULTS_2026-09-20.md), [vision index](design/COMPREHENSIVE_VISION_INDEX.md), NEXT_TASK, PLAYTEST_NOTES and DECISIONS. The PR records the exact pushed head and subsequent independent remote-clone result.
+Read [task](development/ROAD_AFTER_RAIN_TASK_2026-09-20.md), [results](development/ROAD_AFTER_RAIN_RESULTS_2026-09-20.md), NEXT_TASK, PLAYTEST_NOTES and DECISIONS. The recovered Earth prototype/story atlas informed this bounded E2 implementation; names, tuning and pacing remain prototype choices.
 
-## Play the connected outing
+## Play
 
-Launch `PLAY_FIRSTLIGHT_WINDOWS.cmd` or `python tools/play_local.py` on the stable loopback origin, port 8780. The launcher refuses a conflicting older server rather than changing your save origin or stopping another process.
+Launch `PLAY_FIRSTLIGHT_WINDOWS.cmd` or `python tools/play_local.py` on the stable loopback origin, port8780. The launcher refuses a different build already serving there rather than changing the save origin or stopping an unrelated process.
 
-1. At Oren's workshop, take the initial expedition kit. Accept his once-only supplies quest or a separately repeatable materials survey. The Field guide still offers one pinned equipment project and two finite fittings.
-2. Open **Map → Read the Hearthwater marker → Walk to the lake trail marker**, or walk to `(0,23)`. Press E and confirm entry.
-3. Cross the footbridge and take the western orchard lane to the **Riverbank worksite** sign at `(-13,4)`. E shows your current objectives, danger, reward and return route. Confirm the crossing.
-4. Complete the existing riverbank work. The southern exit returns an orchard traveller to the orchard. A traveller who used the original workshop entrance still returns to the workshop.
-5. From Hearthwater, use **Return to Firstlight**, then return to Oren for the existing reward. The road accepts no job and pays nothing.
+1. Take Oren’s initial expedition kit. No main chapter, class or soul choice is required.
+2. Map → Hearthwater marker → walk to the lake marker. E, then confirm entry. Cross the footbridge and take the right fork to Fenna at `(7,5)`.
+3. E previews all three approaches and the exact reward before acceptance. Repair Ansel’s mill gate for **2 timber**, use Darric’s designated public blocks for **no inventory cost**, or survey Fenna’s ridge/shelter/north-lane detour for **no inventory cost**. Task buttons walk real paths; nearby E presents the available local work.
+4. Complete any route, return to Fenna and explicitly send the load by that route. The cart travels offscreen; walk to the west-road handoff beneath the bell `(0,-43)`.
+5. Confirm arrival, then explicitly claim **3 copper, 4 sunmarks, 2 fibre, 0 XP**. The delivered load/table and completed public improvements remain. Other improvements stay optional and do not pay again.
 
-**V** switches third person/diorama; **R** resets the current view. Remembered framing, manual movement, target selection, stationary attacks, skills and companion commands remain. Orchard and ridge routes join beneath Bellweather's landmark; the actual chapter entrance retains its Sunward prerequisites.
+**M** opens the local map and delivery review; click the Earth tracker to review active work. **V** switches third person/diorama; **R** resets the current view. Oren’s separate supplies quest, repeat surveys, finite fittings and the orchard riverbank connection remain available. Bellweather’s main chapter entrance retains its Sunward prerequisites.
 
-The scene has a readable worksite spur, split orchard wall and packed load. Distant hills sit outside the walking/camera corridor; the watercourse lies below its banks. Cosmos invitation labels no longer appear in Earth, the riverbank or interiors. Earth, riverbank and Cosmos atlases now retain readable map dimensions instead of inheriting the shared icon size.
+## State and compatibility
 
-## Save and ownership contract
+Adventure **8**, new required `earthStory` **1**. Schema7 migrates to an unaccepted story, preserving all older canonical data. World/key9 and character envelope/classPath/starter/pursuit/arsenal/cameraViews1 remain. Levels1–5 and stored XP0–9999 are unchanged. An older schema7 writer rejects schema8 rather than silently erasing delivery history; use this newer build for continued play.
 
-No migration. World/key **9**, adventure **7**, character envelope/classPath/starter/pursuit/arsenal/cameraViews **1**, levels **1–5**, stored XP **0–9999** remain.
+The story owns only accepted tasks, selected delivery route, arrival and one claimed flag. Rules validate location, prerequisites, explicit costs and every reward capacity before mutation. Completed unpaid work remains retryable after a capacity refusal. New request IDs, reload or later improvements cannot repay. Quest blocks never occupy normal inventory. No automatic equip or extra upgrade tier.
 
-Earth owns transient travel checkpoints. Starter owns Oren's quest; pursuit owns survey identities, claims and fittings; adventure/arsenal own combat and equipment. Scenes retain their original local scale. The worksite crossing is an explicit transition, not seamless streaming.
+Travel remains transient: saving/reopening or switching characters returns to the Firstlight lake while retaining the entire character’s earned work. Personal saves were not used. Both cameras, combat controls, campaign, companion, housing, crops, music/exports, notes, sockets, temper, fittings and explicit choices retain regression checks.
 
-Browser travel binds simulation, character, saved revision, source position and destination. It saves before crossing and restores the source if construction fails. The outer Firstlight lake checkpoint remains the serialized location, including in the riverbank via Earth. Reload or character switching returns there while retaining earned objectives and unpaid rewards. Death uses the existing spring and clears the temporary route. Personal saves were not used.
-
-Campaign, Cosmos, music/export, housing, crops, notes, gear identities, sockets, Oren temper, fittings, classes, companions and independent characters retain regression coverage. Human enjoyment and visual acceptance remain pending. No main merge, tag, public deployment, paid generation, Unreal rewrite or background automation.
+This is a quiet local delivery with procedural residents, not an animated escort, simulated fluid system, expanded town, multiplayer event or recurring contract. Human enjoyment and route-choice acceptance remain pending. No merge, tag, deployment, paid service, new engine or background schedule.

@@ -29,7 +29,7 @@ const POINTS=Object.freeze([
  {id:'bridge',name:'Hearthwater footbridge',x:0,z:16,kind:'route'},
  {id:'orchard',name:'Orchard lane',x:-8,z:3,kind:'view'},
  {id:'riverbank',name:'Riverbank worksite',...RIVER_GATE,kind:'worksite'},
- {id:'millfork',name:'Mill road fork',x:7,z:2,kind:'route'},
+ {id:'millfork',name:'Mill road fork · Fenna',x:7,z:2,kind:'route'},
  {id:'ridge',name:'Ridge road',x:13,z:-13,kind:'view'},
  {id:'quarry',name:'Quarry approach',x:12,z:-26,kind:'route'},
  {id:'shelter',name:'Old ridge shelter',x:-12,z:-23,kind:'rest'},

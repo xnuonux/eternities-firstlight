@@ -93,3 +93,9 @@ Automated blade, bow/Magician and strongest-weapon/Hunter journeys take the orch
 Visual inspection found and corrected oversized background hills obstructing the arrival view, a floating water surface and foreign Cosmos labels. This does not establish founder approval of art, pacing or camera comfort.
 
 Pending Dom: fresh and returning outing. Did you know where to go and how to get home? Did the fights feel better? Did the reward make you want another outing? Does the longer orchard route add a place worth visiting, or delay the work? No human answers have been inferred.
+
+## 2026-09-20: Road After Rain implementation
+
+Dom requested continued development; he has not supplied new human playtest observations. Command-earned fresh blade/detour, fresh bow/quarry and returning strongest-weapon/mill journeys exercise accepted work, reload at every stage and exact single payment. Browser tests exercise the visible contract, task navigation, both cameras, ownership and blocked-payment retry. The separate real-time GPU recording is automated play, not a completion-time or enjoyment measurement.
+
+Pending Dom: did you know where to go; did the three approaches feel meaningfully different; did meeting the delivered load make the trip worthwhile? For the returning case, was the material payment honest/useful, or was the public improvement the reason to finish? The explicit offscreen delivery and west-road handoff are prototype scope choices; no positive founder response to these choices has been inferred. Existing combat/upgrade and camera-comfort questions remain open.

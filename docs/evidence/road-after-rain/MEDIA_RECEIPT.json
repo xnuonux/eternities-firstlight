@@ -1,0 +1,33 @@
+{
+  "htmlSha256": "1e120649179245d10c3fe1a551c88549a53cfbcd020bf2aa71b111b7dcb298b1",
+  "sourceSha256": "d07891100810f1d03e6b03b3f28fd56f57ca8b6861e910404dce46c3937f6406",
+  "videoSha256": "d0e72080252cda8dbc9124b0abb66a17097fea0b8bed42abbd8a16c26443a05c",
+  "bytes": 11336677,
+  "browser": "153.0.8010.52",
+  "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3080 (0x00002216) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+  "completedActions": 37,
+  "browserErrors": [],
+  "capture": "1280x720, normal real-time RAF, automated accepted walking and UI, silent",
+  "videoMetadata": [
+    "Duration: 00:01:32.68, start: 0.000000, bitrate: 978 kb/s",
+    "Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt470bg/unknown/unknown, progressive), 1280x720 [SAR 1:1 DAR 16:9], 976 kb/s, 25 fps, 25 tbr, 12800 tbn (default)"
+  ],
+  "performanceClaim": false,
+  "finalStory": {
+    "version": 1,
+    "accepted": true,
+    "steps": [
+      "detour-ridge",
+      "detour-shelter",
+      "detour-mark"
+    ],
+    "dispatch": "detour",
+    "arrived": true,
+    "claimed": true
+  },
+  "finalBalances": {
+    "xp": 0,
+    "ore": 3,
+    "coins": 4
+  }
+}
