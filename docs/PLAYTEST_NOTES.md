@@ -1,3 +1,13 @@
+# Marks Beneath the Rain — human acceptance pending, 2026-09-20
+
+No new Dom playtest was observed. The optional post-delivery mystery comes from the recovered Earth prototype's Mara clue. Game dialogue, carved stones, tracing and chart are authored adaptations, not founder-approved additions to final mythology.
+
+Try a fresh and returning character: did the clues make sense, did aligning the tracing feel like discovery, and did Mara's reply make you curious? The explicit cardinal hints are accessible but may be too easy; only human play can settle that pacing choice. Check the stones and observatory chart from both cameras. There is no reward item or XP, and no material is consumed.
+
+Engineering inspection caught the tracing inheriting a tiny shared SVG icon size and the initial wall-chart camera facing away from the chart. The layout is now scoped and its rendered dimensions are checked; evidence views explicitly select camera styles. Earlier camera assertions in the Earth story suite accidentally read a nonexistent `mode` property and now read the actual `preset`. These are verification/presentation fixes, not enjoyment claims.
+
+---
+
 # Near Expanse playtest handoff, 2026-09-15
 
 Human acceptance is pending. No new Dom playtest was observed during this session.

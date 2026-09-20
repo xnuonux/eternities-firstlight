@@ -1,0 +1,180 @@
+[
+  {
+    "evaluate": "()=>{Realm.test.quality('balanced');Realm.test.view({yaw:.3,elevation:.38,distance:10});Realm.test.pause(false);}",
+    "wait_ms": 1000
+  },
+  {
+    "walk": [
+      9,
+      -5.8
+    ]
+  },
+  {
+    "key": "e",
+    "wait_ms": 700
+  },
+  {
+    "walk": [
+      -2,
+      0
+    ]
+  },
+  {
+    "key": "e",
+    "wait_ms": 2300
+  },
+  {
+    "click": "[data-rpg=\"notes-accept\"]",
+    "wait_ms": 1500
+  },
+  {
+    "click": "#rpg-close"
+  },
+  {
+    "key": "Escape",
+    "wait_ms": 300
+  },
+  {
+    "walk": [
+      0,
+      23
+    ]
+  },
+  {
+    "key": "e",
+    "wait_ms": 600
+  },
+  {
+    "click": "[data-rpg=\"earth-confirm\"]",
+    "wait_ms": 700
+  },
+  {
+    "walk": [
+      -13,
+      -6
+    ]
+  },
+  {
+    "key": "e",
+    "wait_ms": 900
+  },
+  {
+    "click": "[data-rpg=\"notes-observe\"][data-id=\"orchard-stone\"]",
+    "wait_ms": 1600
+  },
+  {
+    "click": "#rpg-close"
+  },
+  {
+    "walk": [
+      -13,
+      -16
+    ]
+  },
+  {
+    "key": "v",
+    "wait_ms": 1300
+  },
+  {
+    "key": "e",
+    "wait_ms": 600
+  },
+  {
+    "click": "[data-rpg=\"notes-observe\"][data-id=\"bank-footing\"]",
+    "wait_ms": 1600
+  },
+  {
+    "click": "#rpg-close"
+  },
+  {
+    "walk": [
+      -13,
+      -21
+    ]
+  },
+  {
+    "key": "v",
+    "wait_ms": 1200
+  },
+  {
+    "key": "e",
+    "wait_ms": 600
+  },
+  {
+    "click": "[data-rpg=\"notes-observe\"][data-id=\"shelter-mark\"]",
+    "wait_ms": 1600
+  },
+  {
+    "click": "#rpg-close"
+  },
+  {
+    "click": "#earth-home",
+    "wait_ms": 400
+  },
+  {
+    "walk": [
+      9,
+      -5.8
+    ]
+  },
+  {
+    "key": "e",
+    "wait_ms": 400
+  },
+  {
+    "walk": [
+      -2,
+      0
+    ]
+  },
+  {
+    "key": "e",
+    "wait_ms": 600
+  },
+  {
+    "scroll": ".notes-tracing",
+    "wait_ms": 1800
+  },
+  {
+    "click": "[data-rpg=\"notes-turn\"][data-id=\"left\"]",
+    "wait_ms": 650
+  },
+  {
+    "click": "[data-rpg=\"notes-turn\"][data-id=\"left\"]",
+    "wait_ms": 650
+  },
+  {
+    "click": "[data-rpg=\"notes-turn\"][data-id=\"left\"]",
+    "wait_ms": 650
+  },
+  {
+    "click": "[data-rpg=\"notes-turn\"][data-id=\"left\"]",
+    "wait_ms": 650
+  },
+  {
+    "click": "[data-rpg=\"notes-compare\"]",
+    "wait_ms": 1900
+  },
+  {
+    "click": "[data-rpg=\"notes-record\"][data-id=\"old-road\"]",
+    "wait_ms": 2600
+  },
+  {
+    "scroll": ".notes-answer",
+    "wait_ms": 2600
+  },
+  {
+    "click": "#rpg-close"
+  },
+  {
+    "evaluate": "()=>{Realm.test.view({yaw:1.3,elevation:.3,distance:8});Realm.test.render();}",
+    "wait_ms": 2200
+  },
+  {
+    "key": "v",
+    "wait_ms": 1800
+  },
+  {
+    "evaluate": "()=>{const s=Realm.state.adventure;if(s.earthNotes.interpretation!=='old-road'||s.earthStory.claimed)throw Error('Expected chart and unpaid delivery');return s.earthNotes;}"
+  }
+]

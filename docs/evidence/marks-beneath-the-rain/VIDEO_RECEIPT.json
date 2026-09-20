@@ -1,0 +1,35 @@
+{
+  "method": "Automated accepted commands and UI on normal real-time RAF; command-earned checkpoint, no gameplay state grants; video is not an FPS measurement.",
+  "source_sha256": "14c79b47648e13764fbe4d623d4835ebe0089a54f37bc48d8d6fa7bccc2a8750",
+  "source_bytes": 712134,
+  "fixture": "fresh-blade-detour_01_SOURCE.json",
+  "fixture_sha256": "c4ed9da346fb3df6cf150f8c0a09b83cf68691d08d94b97bd8a4fd4a5d16d11c",
+  "actions": 42,
+  "browser_version": "153.0.8010.52",
+  "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3080 (0x00002216) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+  "quality": "balanced",
+  "video": "MARKS_BENEATH_THE_RAIN.mp4",
+  "video_sha256": "249695a99158e372588784110ab52d30e15bbcfc2fd9242257969ec39ce0a898",
+  "bytes": 16115239,
+  "duration_seconds": 82.72,
+  "encoded_fps": 25.0,
+  "size": [
+    1280,
+    720
+  ],
+  "browser_errors": [],
+  "final_notes": {
+    "version": 1,
+    "accepted": true,
+    "marks": [
+      "orchard-stone",
+      "bank-footing",
+      "shelter-mark"
+    ],
+    "compared": true,
+    "interpretation": "old-road"
+  },
+  "delivery_still_unpaid": true,
+  "performance_claim": false,
+  "nvidia_driver": "610.74"
+}

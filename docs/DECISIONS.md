@@ -108,3 +108,12 @@ The fixed payment is one existing-survey equivalent:3 copper,4 sunmarks,2 fibre,
 Adventure8 requires earthStory1; schema7 migration adds empty, unaccepted state only. Current missing/malformed/future state is rejected. Existing world keys, stored XP, choices, upgrades, notes, housing and music remain. Character libraries own this state as part of the complete local world. Geography checkpoints remain transient and save/reload resumes at the lake.
 
 The handoff/table sits outside gated Bellweather, so a fresh kit character can finish without chapter advancement. Nella’s actual inn/gathering is deferred until its route and story gates are separately designed. The mill mechanism is a finite visible repair, not fluid simulation; quarry packing and detour markers are persistent presentation and do not close the player’s existing paths. No new enemies or encounter rewards. No main merge or deployment.
+
+
+## 2026-09-20: Mara's observations before revelation
+
+Dom requested creative implementation from his ChatGPT canon. After a bounded GitHub/Drive/Downloads intake, use the Earth specification's optional post-delivery clue: Mara studies old flood marks after ordinary work is resolved. Do not import unrelated resident/product material from the broader Eternities hub. Complete realm packages remain indexed; no newer relevant game-canon upload was found during this search.
+
+Accept at the existing observatory field table after Fenna's arrival, including an unpaid arrival. Collect three identified rubbings along the existing western Earth road in any order. Compare a north/south tracing at the table and record one of two tentative explanations. Both directions of the axis are valid; neither interpretation is a hidden morality/class choice. The chart and Mara's reply are the declared reward; no economy or combat change is needed to make every outing worthwhile.
+
+Adventure8 → 9 adds required earthNotes1, empty and unaccepted. Current/future malformed state refuses. Durable observation and comparison authority stays separate from art and transient tracing angle. Old choices, notebooks, music, inventory and Fenna's unpaid entitlement remain. The chart does not prove these stones belong to the Roads of Light or make Beacons a source of the uncreated First Light. New game text is a Codex-authored proposal in playable form. Human curiosity and pacing remain pending.

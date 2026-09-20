@@ -45,7 +45,7 @@ try:
       check(variant+' contract declares all routes, cost, reward and escort method',all(t in content for t in ['Ansel','Darric','detour','2 timber','3 copper ore','4 sunmarks','2 fibre','0 XP','offscreen','Sunward Beacon']))
       check(variant+' inspection grants no hidden progress',not state()['adventure']['earthStory']['accepted'])
       if route=='detour':
-        page.screenshot(path=str(OUT/'CONTRACT.png'));camera=ev('()=>Realm.diagnostics.camera.mode');page.keyboard.press('v');render();check('dialog consumes camera shortcut',ev('()=>Realm.diagnostics.camera.mode')==camera)
+        page.screenshot(path=str(OUT/'CONTRACT.png'));camera=ev('()=>Realm.diagnostics.camera.preset');page.keyboard.press('v');render();check('dialog consumes camera shortcut',ev('()=>Realm.diagnostics.camera.preset')==camera)
       click('accept');check(variant+' explicit accept preserves inventory',state()['sandbox']['inventory']==before['sandbox']['inventory']);reload()
       for i,id in enumerate(steps):
         walk(7,5);page.keyboard.press('e');render();click('walk',id)

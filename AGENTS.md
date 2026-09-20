@@ -78,3 +78,12 @@ Read the dated Road After Rain task/results. `earth-story.js` owns finite task/d
 Mill repair explicitly costs2 timber. Quarry blocks and detour notes stay quest-only; no hidden normal-inventory mutation. All reward capacities validate before any grant. The west-road handoff does not bypass Bellweather chapters. Offscreen cart travel is disclosed and not an escort simulation. Both cameras, existing local checkpoints, stored XP, gear identity/sockets/fittings, independent characters, companion and creative systems remain.
 
 The portable verifier includes three command-earned Earth-story journeys and `earth_story_browser.py`; CI adds its isolated browser job. Keep synthetic capacity/malformed-state tests labelled separately from earned journeys and normal-time GPU footage. Report exact-head fresh clone results and real failures/skips; human enjoyment remains separate.
+
+
+## Mara's field-note extension
+
+Read the Marks Beneath the Rain task/results and fresh canon intake. `earth-notes.js` owns accepted observations, comparison and one tentative interpretation; UI owns transient bearing and art reads state. Adventure9 requires earthNotes1, migrating schema8 to unaccepted notes without altering unpaid delivery or prior canonical data. Do not coerce array/object values into stable interpretation IDs or weaken forward refusal.
+
+Both 0° and180° match the north–south axis. Physical proximity/line and all three observations are required at comparison. The chart grants no XP, item or currency and does not overwrite personal notes/music. Distinguish observed marks, Mara's hypotheses and world truth; do not silently turn an optional mystery into confirmed cosmology. Her existing schedule stays intact; a field note does not claim she is always present.
+
+The portable verifier adds three command-earned continuations and `earth_notes_browser.py`, including diagram dimensions, both camera presets, save/reload and character ownership. Keep actual normal-time GPU footage separate from accelerated coverage and human playtesting. Preserve all prior systems and no automatic merge/deploy.
