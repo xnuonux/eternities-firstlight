@@ -3,8 +3,9 @@
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),crypto=require('node:crypto');
 const C=require('../src/core.js'),A=require('../src/adventure.js'),Q=require('../src/starter.js'),H=require('../src/pursuit.js'),AR=require('../src/arsenal.js'),S=require('../src/sandbox.js'),T=require('../src/combat.js');
 const ROOT=path.join(__dirname,'../evidence10/pursuit');
-function journey({bow=false,veteran=false}={}){
- const variant=veteran?'veteran':bow?'fresh-bow':'fresh-blade',out=path.join(ROOT,variant);fs.mkdirSync(out,{recursive:true});
+function journey({bow=false,veteran=false,earth=false}={}){
+ const E=require('../src/earth.js');
+ const variant=veteran?'veteran':bow?'fresh-bow':'fresh-blade',out=path.join(ROOT,earth?'earth-'+variant:variant);fs.mkdirSync(out,{recursive:true});
  const source=path.resolve(__dirname,'../evidence10/starter/veteran/03_TEMPER_EQUIPPED_RELOADED.json');
  if(veteran&&!fs.existsSync(source))require('node:child_process').execFileSync(process.execPath,['tests/starter_veteran.cjs'],{cwd:path.join(__dirname,'..')});
  const raw=veteran?JSON.parse(fs.readFileSync(source,'utf8')):null;let sim=new C.Simulation(raw||undefined),serial=0;
@@ -17,8 +18,9 @@ function journey({bow=false,veteran=false}={}){
  const walk=(x,z)=>{const r=sim.moveTo(x,z);assert.ok(r.ok,'walk '+x+','+z+': '+r.error);for(let i=0;i<7000&&sim.playerPath.length;i++)tick(.05);assert.ok(Math.hypot(sim.state.player.x-x,sim.state.player.z-z)<.25,'arrived '+x+','+z);assert.ok(sim.state.adventure.hp>0,'alive walking');actions.push({walk:[x,z]});};
  const snap=name=>fs.writeFileSync(path.join(out,name+'.json'),JSON.stringify(sim.snapshot(),null,2));
  const reload=()=>{const saved=sim.snapshot();sim=new C.Simulation(saved);assert.deepEqual(sim.snapshot(),saved);actions.push({reload:true});};
- const enter=()=>{walk(15,7);cmd('starter-enter');};
- const home=()=>{walk(0,12);cmd('starter-leave');walk(11,9);};
+ const travel=()=>{const ctx={sim,active:'character-1',revision:1},p=E.preview(ctx);assert.ok(p.ok,p.error);assert.ok(E.enter(p.ticket,ctx,{save:()=>({ok:true}),build:()=>{}}).ok);actions.push({crossing:sim.room});};
+ const enter=()=>{if(!earth){walk(15,7);cmd('starter-enter');return;}walk(0,23);travel();walk(0,10);walk(-13,4);travel();assert.equal(sim.room,'riverbank');assert.deepEqual(sim.snapshot().player,{x:0,z:23,yaw:sim.returnPos.yaw});};
+ const home=()=>{walk(0,12);cmd('starter-leave');if(earth){assert.equal(sim.room,E.ROOM);walk(0,10);walk(0,24);assert.ok(E.leave(sim).ok);}walk(11,9);};
  function fight(objective){
   let e=A.runtime(sim).enemies.find(e=>e.objective===objective);assert.ok(e);const enemyId=e.id;
   cmd('target-select',{id:enemyId});if(!T.runtime(sim).auto)cmd('auto-toggle');let guards=0,ticks=0;
@@ -35,7 +37,7 @@ function journey({bow=false,veteran=false}={}){
  }
  function gather(id){const n=S.NODES.find(n=>n.id===id);walk(n.x+1.1,n.z);let node=sim.state.sandbox.nodes.find(q=>q.id===id);while(node.hp){if(node.readyAt>sim.state.sandbox.elapsed)tick(node.readyAt-sim.state.sandbox.elapsed+.1);sandbox('gather',{node:id});tick(1);}}
  function practice(){enter();walk(-5,AR.weapon(sim.state.adventure).style==='bow'?6:11.5);cmd('target-select',{id:'river-practice'});cmd('auto-toggle');tick(1.5);const damage=A.runtime(sim).training?.lastDamage;assert.ok(damage>0,'confirmed practice impact');cmd('target-clear');home();return damage;}
- walk(11,9);if(!veteran)cmd('start');cmd('pursuit-pin',{weapon:id});snap('01_KIT_PINNED');
+ walk(11,9);if(!veteran)cmd('start');if(earth&&(bow||veteran))cmd('class-choose',{id:bow?'magician':'hunter',confirm:true});cmd('pursuit-pin',{weapon:id});snap('01_KIT_PINNED');
  if(bow&&!veteran){for(const n of ['timber-1','timber-2','fibre-1','fibre-2','stone-1','stone-2'])gather(n);walk(11,9);cmd('arsenal-craft',{id:'trail_bow'});cmd('equip',{id:'trail_bow'});sandbox('craft',{recipe:'plank'});}
  const beforeDamage=practice();assert.equal(beforeDamage,veteran?44:bow?13:16);snap('02_SOURCE_READY');
  const runs=veteran?3:5;
@@ -57,8 +59,8 @@ function journey({bow=false,veteran=false}={}){
  if(veteran){assert.deepEqual(final.adventure.arsenal,legacy.adventure.arsenal);assert.deepEqual(final.adventure.equipment,legacy.adventure.equipment);}
  const end=balances(),net={};for(const k of Object.keys(initial)){net[k]=transactions.reduce((n,t)=>n+t.after[k]-t.before[k],0);assert.equal(initial[k]+net[k],end[k],'accounting '+k);}
  if(!veteran){assert.equal(end.ore,2);assert.equal(end.coins,bow?2:4);assert.equal(end.fiber,bow?6:4);}
- const report={status:'passed',variant,commands:serial,positionEdits:0,inventoryGrants:0,plantedDefeats:0,acceleratedTick:true,source:veteran?{path:source,sha256:crypto.createHash('sha256').update(fs.readFileSync(source)).digest('hex')}:null,claimed:final.adventure.pursuit.claimed,beforeDamage,afterDamage,equipped:final.adventure.equipment.weapon,stats:A.stats(final.adventure),xp:final.adventure.xp,economy:{initial,end,net,surveys:{count:runs,ore:runs*3,coins:runs*4,fiber:runs*2},transactions},claims,combats,actions};
+ const report={status:'passed',variant,earthRoute:earth,classPath:final.adventure.classPath.choice,commands:serial,positionEdits:0,inventoryGrants:0,plantedDefeats:0,acceleratedTick:true,source:veteran?{path:source,sha256:crypto.createHash('sha256').update(fs.readFileSync(source)).digest('hex')}:null,claimed:final.adventure.pursuit.claimed,beforeDamage,afterDamage,equipped:final.adventure.equipment.weapon,stats:A.stats(final.adventure),xp:final.adventure.xp,economy:{initial,end,net,surveys:{count:runs,ore:runs*3,coins:runs*4,fiber:runs*2},transactions},claims,combats,actions};
  fs.writeFileSync(path.join(out,'PURSUIT_JOURNEY_REPORT.json'),JSON.stringify(report,null,2));return report;
 }
-if(require.main===module){const r=journey({bow:process.argv.includes('--bow'),veteran:process.argv.includes('--veteran')});console.log(JSON.stringify({...r,actions:undefined,economy:{...r.economy,transactions:undefined},claims:undefined,combats:undefined},null,2));}
+if(require.main===module){const r=journey({bow:process.argv.includes('--bow'),veteran:process.argv.includes('--veteran'),earth:process.argv.includes('--earth')});console.log(JSON.stringify({...r,actions:undefined,economy:{...r.economy,transactions:undefined},claims:undefined,combats:undefined},null,2));}
 module.exports={journey};

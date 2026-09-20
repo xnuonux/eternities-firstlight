@@ -45,7 +45,7 @@ try:
     render();page.keyboard.press('m');render()
     check('Earth invitation appears beside existing realm invitations',page.locator('[data-rpg="earth-invitation"]').count()==1)
     page.locator('[data-rpg="earth-invitation"]').click();text=page.locator('#rpg-content').inner_text()
-    check('remote terms declare no payout and retain old authorities',all(t in text for t in ['no new payout','Oren','Bellweather','Return is available']))
+    check('remote terms explain work, gates and source-side return',all(t in text for t in ['no new payout','Oren','Bellweather','Return is available']))
     check('remote invitation cannot enter before physical arrival',page.locator('[data-rpg="earth-confirm"]').count()==0)
     page.locator('[data-rpg="earth-walk"][data-id="gate"]').click();ev('()=>{for(let i=0;i<3000&&Realm.test.path.length;i++)Realm.test.step(.05);Realm.test.render()}')
     check('map invitation walks to lake rather than teleporting',scene()=='valley' and ev('()=>Math.hypot(Realm.diagnostics.adventure.player.x,Realm.diagnostics.adventure.player.z-23)<.25'))
@@ -55,6 +55,9 @@ try:
     check('Earth diagnostics report supported ground',ev('()=>Realm.diagnostics.earth.walkable'))
     check('E1 introduces no enemies',ev('()=>Realm.diagnostics.adventure.enemies.length')==0)
     check('return is available immediately',page.locator('#earth-home').is_visible())
+    walk(0,10);walk(-13,4);page.keyboard.press('e');render()
+    check('unassigned visitor sees worksite danger and kit requirement',page.locator('[data-rpg="earth-confirm"]').count()==0 and 'expedition kit' in page.locator('#rpg-content').inner_text())
+    close();walk(0,24)
     ev('()=>Realm.test.view({yaw:.15,elevation:.30,distance:10})');render();page.screenshot(path=str(OUT/'ARRIVAL_THIRD.png'))
     # Western orchard route.
     for x,z in [(0,10),(-8,3),(-14,-12),(-12,-23),(-10,-30),(0,-35),(0,-43)]:walk(x,z)
@@ -75,6 +78,60 @@ try:
     ev('(w)=>Realm.test.replace(w)',returning);render();before_returning=state();enter()
     check('returning Hunter equipment and fittings remain unchanged',state()['adventure']['equipment']==before_returning['adventure']['equipment'] and state()['adventure']['arsenal']==before_returning['adventure']['arsenal'])
     page.locator('#earth-home').click();render();check('returning history survives Earth round trip',all(state()['adventure'][k]==before_returning['adventure'][k] for k in before_returning['adventure'] if k!='elapsed'))
+    # A returning bow Hunter accepts real work, clears it through the orchard
+    # entrance, reloads an unpaid run, and receives precisely one normal payout.
+    walk(11,9);page.keyboard.press('e');render()
+    page.locator('#rpg-content [data-rpg="open"][data-id="pursuit"]').first.click();render()
+    page.locator('[data-rpg="pursuit-start"]').click();render();close()
+    run=state()['adventure']['pursuit']['active']['id'];prior=state()['adventure']['pursuit']['claimed']
+    def worksite():
+      enter();walk(0,10);walk(-13,4);page.keyboard.press('e');render()
+      check('orchard sign declares current objectives and exact survey reward',all(t in page.locator('#rpg-content').inner_text() for t in ['Materials survey','3 ore, 4 sunmarks and 2 fibre','southern worksite exit']))
+      page.locator('[data-rpg="earth-confirm"]').click();render();check('orchard confirmation enters existing combat scene',scene()=='riverbank')
+    worksite()
+    check('riverbank uses the equipped bow and original run identity',ev('()=>Realm.diagnostics.adventure.weapon.style')=='bow' and state()['adventure']['pursuit']['active']['id']==run)
+    page.keyboard.press('m');render();check('riverbank map names the orchard return', 'orchard lane' in page.locator('#rpg-content').inner_text())
+    check('riverbank route map is readable rather than icon-sized',page.locator('#starter-map').bounding_box()['height']>200);close()
+    def command(kind,payload=None):
+      result=ev('([t,p])=>Realm.test.adventure("earth-browser-"+t+"-"+performance.now(),t,p)',[kind,payload or {}]);check('accepted '+kind,result.get('ok'));return result
+    def fight(objective):
+      result=ev('''objective=>{const cmd=(t,p={})=>Realm.test.adventure('earth-fight-'+t+'-'+performance.now(),t,p);let e=Realm.diagnostics.adventure.enemies.find(e=>e.id.endsWith(':'+objective));if(!e)throw Error('missing encounter '+objective);const id=e.id;cmd('target-select',{id});if(!Realm.diagnostics.adventure.tactics.auto)cmd('auto-toggle');
+       for(let i=0;i<3500;i++){const d=Realm.diagnostics.adventure,a=Realm.state.adventure;e=d.enemies.find(e=>e.id===id);if(!e||e.hp<=0){cmd('target-clear');return true;}if(a.hp<=0)return false;if(a.hp<48&&a.tonics)cmd('heal');if(e.mode==='windup'&&a.stamina>=20&&a.elapsed>=d.tactics.cooldowns.guard)cmd('guard');if(!Realm.test.path.length&&(Math.hypot(d.player.x-e.x,d.player.z-e.z)>=d.weapon.reach-.2||!RealmStarter.line(d.player,e))){const rad=d.weapon.style==='bow'?5:1.6;for(let j=0;j<16;j++){const x=e.x+Math.sin(j*Math.PI/8)*rad,z=e.z+Math.cos(j*Math.PI/8)*rad;if(RealmStarter.walkable(x,z)&&RealmStarter.line({x,z},e)&&Realm.test.move(x,z).ok)break;}}Realm.test.step(.1);}return false;}''',objective)
+      check('production bow combat clears '+objective,result)
+    walk(-7,3);fight('west');walk(-7,3);page.keyboard.press('e');render()
+    check('accepted pickup updates the same survey',state()['adventure']['pursuit']['active']['samples']==['west-sample'])
+    command('target-clear');ev('()=>Realm.test.save()');page.reload();page.wait_for_function('()=>!!window.Realm');render()
+    check('partial survey reload returns to lake with earned objective intact',scene()=='valley' and state()['adventure']['pursuit']['active']['defeated']==['west'])
+    worksite();check('re-entry does not recreate the cleared encounter',not ev('()=>Realm.diagnostics.adventure.enemies.some(e=>e.id.endsWith(":west"))'))
+    walk(5,-3);fight('east');walk(5,-11);page.keyboard.press('e');render()
+    check('both survey objectives complete without a road payout',len(state()['adventure']['pursuit']['active']['samples'])==2 and state()['adventure']['pursuit']['claimed']==prior)
+    walk(0,12);page.keyboard.press('e');render()
+    check('normal exit input returns to exact orchard checkpoint',scene()=='earth-hearthwater-approach' and ev('()=>Math.hypot(Realm.diagnostics.adventure.player.x+13,Realm.diagnostics.adventure.player.z-4)<.25'))
+    check('following companion arrives on the same supported route',ev('()=>!Realm.state.adventure.companion.bonded || (Realm.diagnostics.adventure.companion.room===RealmEarth.ROOM&&RealmEarth.walkable(Realm.diagnostics.adventure.companion.x,Realm.diagnostics.adventure.companion.z))'))
+    page.keyboard.press('v');page.keyboard.press('r');render();page.screenshot(path=str(OUT/'ORCHARD_WORKSITE_DIORAMA.png'))
+    page.keyboard.press('v');render();page.screenshot(path=str(OUT/'ORCHARD_WORKSITE_THIRD.png'))
+    ev('()=>Realm.test.save()');unpaid=state()['adventure']['pursuit'];page.reload();page.wait_for_function('()=>!!window.Realm');render()
+    check('completed unpaid run survives reopen before claim',scene()=='valley' and state()['adventure']['pursuit']==unpaid)
+    walk(11,9);page.keyboard.press('e');render()
+    before_claim=state();page.locator('[data-rpg="pursuit-claim"]').click();render();after_claim=state()
+    check('Oren pays exactly the declared old reward',after_claim['adventure']['ore']-before_claim['adventure']['ore']==3 and after_claim['adventure']['coins']-before_claim['adventure']['coins']==4 and after_claim['sandbox']['inventory']['fiber']-before_claim['sandbox']['inventory']['fiber']==2)
+    close();result=ev('(run)=>Realm.test.adventure("earth-retry-different-request","pursuit-claim",{run})',run)
+    check('changed request cannot claim the completed outing twice',not result.get('ok') and state()==after_claim)
+    # Same live route, two independent character worlds; no personal profile.
+    enter();walk(0,10);walk(-13,4);page.keyboard.press('e');render();page.locator('[data-rpg="earth-confirm"]').click();render()
+    original_id=ev('()=>Realm.diagnostics.characters.active');original=state()
+    def library():
+      close();page.locator('[data-rpg="open"][data-id="more"]').first.click();page.locator('#rpg-content [data-rpg="open"][data-id="characters"]').click()
+    library();page.locator('#chars-name').fill('Orchard route visitor');page.locator('#chars-create-submit').click();page.wait_for_function('(id)=>Realm.diagnostics.characters.active!==id',arg=original_id);render()
+    check('new character receives neither travel state nor survey payout',scene()=='valley' and state()['adventure']['pursuit']['claimed']==0 and not state()['adventure']['started'])
+    restored_id='character-1' if original_id=='legacy' else original_id
+    library();page.locator(f'[data-rpg="chars-switch"][data-id="{restored_id}"]').click();page.wait_for_function('(id)=>Realm.diagnostics.characters.active===id',arg=restored_id);render()
+    check('returning character restores valley checkpoint and its own progress',scene()=='valley' and state()['player']==original['player'] and all(state()['adventure'][k]==original['adventure'][k] for k in ['pursuit','starter','equipment','arsenal','classPath','xp']))
+    close();enter();page.set_viewport_size({'width':640,'height':720});render();page.keyboard.press('m');render()
+    check('compact Earth map has useful map dimensions',page.locator('#earth-map').bounding_box()['height']>200 and page.locator('#earth-map').bounding_box()['width']>250)
+    check('compact map exposes a reachable worksite route',page.locator('[data-rpg="earth-walk"][data-id="riverbank"]').is_visible());page.screenshot(path=str(OUT/'COMPACT_ROUTES.png'))
+    page.locator('[data-rpg="earth-walk"][data-id="riverbank"]').click();ev('()=>{for(let i=0;i<3500&&Realm.test.path.length;i++)Realm.test.step(.05);Realm.test.render()}');page.keyboard.press('e');render()
+    check('map walks to the real worksite marker in compact view',page.locator('[data-rpg="earth-confirm"]').count()==1 and scene()=='earth-hearthwater-approach')
     check('no runtime browser exceptions',not report['browser_errors'])
     context.close()
 except Exception as e:

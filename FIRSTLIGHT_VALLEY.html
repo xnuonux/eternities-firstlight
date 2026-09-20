@@ -41,6 +41,8 @@ body.rpg-edition{--gold:#dbc18c;--ink:#111d21;--pane:rgba(15,29,33,.94);--muted:
 #rpg-hud button:focus-visible,#rpg-window :focus-visible{outline:2px solid #f4dba8;outline-offset:3px}
 #rpg-hud button:disabled,#rpg-window button:disabled{cursor:default;opacity:.45;border-color:var(--line)}
 #rpg-hud svg,#rpg-window svg{width:28px;height:28px;flex-shrink:0}
+#rpg-window :is(#earth-map,#cosmos-map,#starter-map){display:block;width:100%;height:auto}
+#rpg-window :is(#earth-map,#cosmos-map,#starter-map) text{stroke:none}
 .rpg-nav{position:absolute;top:23px;left:260px;display:flex;gap:7px;pointer-events:auto}
 .rpg-nav button{border-radius:6px;display:flex;align-items:center;gap:9px;padding:8px 12px;background:var(--pane)!important;font-size:12px}
 .rpg-nav svg{width:19px!important;height:19px!important;color:var(--gold)}
@@ -182,6 +184,7 @@ body.in-earth .place-title #place-kicker{color:#d7bd83}
 const ROOM='earth-hearthwater-approach';
 const GATE=Object.freeze({x:0,z:23});
 const ENTRY=Object.freeze({x:0,z:24,yaw:Math.PI});
+const RIVER_GATE=Object.freeze({x:-13,z:4});
 const PATCHES=Object.freeze([
  {id:'arrival',x:0,z:21,w:10,d:14},
  {id:'south-meadow',x:0,z:10,w:22,d:12},
@@ -204,6 +207,7 @@ const POINTS=Object.freeze([
  {id:'arrival',name:'Lake footbridge · way home',x:0,z:24,kind:'return'},
  {id:'bridge',name:'Hearthwater footbridge',x:0,z:16,kind:'route'},
  {id:'orchard',name:'Orchard lane',x:-8,z:3,kind:'view'},
+ {id:'riverbank',name:'Riverbank worksite',...RIVER_GATE,kind:'worksite'},
  {id:'millfork',name:'Mill road fork',x:7,z:2,kind:'route'},
  {id:'ridge',name:'Ridge road',x:13,z:-13,kind:'view'},
  {id:'quarry',name:'Quarry approach',x:12,z:-26,kind:'route'},
@@ -250,32 +254,50 @@ function segment(a,b,r=.31){
 }
 function line(a,b){return segment(a,b,.04);}
 function near(sim,p,r=2.8){return dist(sim.state.player,p)<=r;}
+function riverTrip(sim){return !!(sim.earthTrip?.riverCheckpoint&&sim.returnPos&&walkable(sim.earthTrip.riverCheckpoint.x,sim.earthTrip.riverCheckpoint.z));}
+function route(sim){
+ const Q=G.RealmStarter;
+ if(sim.state.adventure.hp<=0)return null;
+ if(!sim.room&&near(sim,GATE))return{destination:ROOM,arrival:ENTRY};
+ if(sim.room===ROOM&&sim.earthTrip&&sim.returnPos&&sim.state.adventure.started&&near(sim,RIVER_GATE,2.4))return{destination:Q.ROOM,arrival:Q.ENTRY};
+ if(sim.room===Q.ROOM&&riverTrip(sim)&&near(sim,Q.ENTRY,2.8))return{destination:ROOM,arrival:sim.earthTrip.riverCheckpoint};
+ return null;
+}
 function preview(ctx){
- const sim=ctx.sim;
- if(sim.room||sim.state.adventure.hp<=0||!near(sim,GATE))return fail('Approach the Hearthwater trail marker at the lake footbridge.');
- const ticket=Object.freeze({destination:ROOM});
- tickets.set(ticket,{sim,active:ctx.active,revision:ctx.revision,position:{...sim.state.player},used:false});
+ const sim=ctx.sim,link=route(sim);
+ if(!link)return fail('Approach the lake trail marker, or take Oren’s initial kit to the orchard worksite sign.');
+ const ticket=Object.freeze({destination:link.destination});
+ tickets.set(ticket,{sim,active:ctx.active,revision:ctx.revision,source:sim.room,trip:sim.earthTrip,position:{...sim.state.player},used:false});
  return{ok:true,ticket};
 }
 function cancel(ticket){const t=tickets.get(ticket);if(t)t.used=true;}
 function enter(ticket,ctx,io){
- const t=tickets.get(ticket),sim=ctx.sim;
- if(!t||t.used||ticket.destination!==ROOM||t.sim!==sim||t.active!==ctx.active||t.revision!==ctx.revision||sim.room||!near(sim,GATE)||dist(sim.state.player,t.position)>.01||sim.state.adventure.hp<=0)return fail('That trail preview has changed. Review the Hearthwater marker again.');
+ const t=tickets.get(ticket),sim=ctx.sim,link=route(sim);
+ if(!t||t.used||!link||ticket.destination!==link.destination||t.sim!==sim||t.active!==ctx.active||t.revision!==ctx.revision||t.source!==sim.room||t.trip!==sim.earthTrip||dist(sim.state.player,t.position)>.01)return fail('That trail preview has changed. Review the marker again.');
  t.used=true;
- if(io.available===false)return fail('The Hearthwater approach scene is unavailable. You are still beside the lake.');
+ if(io.available===false)return fail('That route is unavailable. You are still at the source marker.');
  const source=sim.snapshot();let saved;
  try{saved=io.save(source);}catch(e){return fail('Travel save refused: '+e.message);}
- if(!saved?.ok)return fail(saved?.error||'Save the Firstlight checkpoint before taking the trail.');
- const prior={room:sim.room,returnPos:sim.returnPos,player:{...sim.state.player},path:sim.playerPath,runtime:sim.adventureRuntime};
+ if(!saved?.ok)return fail(saved?.error||'Save your progress before taking the trail.');
+ const prior={room:sim.room,returnPos:sim.returnPos,player:{...sim.state.player},path:sim.playerPath,runtime:sim.adventureRuntime,trip:sim.earthTrip};
  try{
-  sim.returnPos={...t.position};sim.room=ROOM;sim.state.player={...ENTRY};sim.playerPath=[];
-  sim.earthTrip={active:t.active,sourceRegion:'valley',sourceRevision:t.revision,destination:ROOM,checkpoint:{...t.position}};
+  if(!sim.room){sim.returnPos={...t.position};sim.earthTrip={active:t.active,sourceRegion:'valley',sourceRevision:t.revision,destination:ROOM,checkpoint:{...t.position}};}
+  else if(sim.room===ROOM)sim.earthTrip={...sim.earthTrip,riverCheckpoint:{...t.position}};
+  else{sim.earthTrip={...sim.earthTrip};delete sim.earthTrip.riverCheckpoint;}
+  sim.room=link.destination;sim.state.player={...link.arrival};sim.playerPath=[];
   io.build();G.RealmAdventure.syncScene(sim);G.RealmCombat.stop(sim,true);return{ok:true};
  }catch(e){
-  sim.room=prior.room;sim.returnPos=prior.returnPos;sim.state.player=prior.player;sim.playerPath=prior.path;sim.adventureRuntime=prior.runtime;delete sim.earthTrip;
+  sim.room=prior.room;sim.returnPos=prior.returnPos;sim.state.player=prior.player;sim.playerPath=prior.path;sim.adventureRuntime=prior.runtime;if(prior.trip)sim.earthTrip=prior.trip;else delete sim.earthTrip;
   try{io.restore?.();}catch(restoreError){return fail('The route could not load. Your saved valley checkpoint is safe; reopen the game. '+restoreError.message);}
-  return fail('The route could not load. You are back at the lake checkpoint. '+e.message);
+  return fail('The route could not load. You are back at the source marker. '+e.message);
  }
+}
+// Headless command authority uses the same local checkpoint. The browser wraps
+// this return in preview/enter to save first and roll back failed scene builds.
+function backToApproach(sim){
+ if(sim.room!==G.RealmStarter.ROOM||!riverTrip(sim)||!near(sim,G.RealmStarter.ENTRY,2.8))return fail('Return to the southern orchard path.');
+ sim.state.player={...sim.earthTrip.riverCheckpoint};sim.earthTrip={...sim.earthTrip};delete sim.earthTrip.riverCheckpoint;
+ sim.room=ROOM;sim.playerPath=[];G.RealmAdventure.syncScene(sim);G.RealmCombat.stop(sim,true);return{ok:true,text:'Back on the orchard lane. Oren is home in Firstlight.'};
 }
 function leave(sim){
  if(sim.room!==ROOM||!sim.returnPos)return fail('You are already on the Firstlight side.');
@@ -294,7 +316,7 @@ function pick(start,ray,max=420){
  }
  return null;
 }
-const api={ROOM,GATE,ENTRY,PATCHES,SOLIDS,POINTS,height,land,walkable,segment,line,near,preview,cancel,enter,leave,recover,pick};
+const api={ROOM,GATE,ENTRY,RIVER_GATE,PATCHES,SOLIDS,POINTS,height,land,walkable,segment,line,near,preview,cancel,enter,leave,riverTrip,backToApproach,recover,pick};
 G.RealmEarth=api;if(typeof module!=='undefined')module.exports=api;
 })(globalThis);
 </script><script>/* The Near Expanse M1. Physical ground and transient travel, no new save data or payout. */
@@ -446,8 +468,8 @@ function walkable(x,z,r=.31){return land(x,z,r)&&!OBSTACLES.some(o=>Math.hypot(x
 function line(a,b){if(!a||!b||!Number.isFinite(distance(a,b))||distance(a,b)>100)return false;const n=Math.max(1,Math.ceil(distance(a,b)/.1));for(let i=0;i<=n;i++)if(!walkable(a.x+(b.x-a.x)*i/n,a.z+(b.z-a.z)*i/n,.04))return false;return true;}
 function near(sim,p,r=3){return distance(sim.state.player,p)<r;}
 function points(sim){const a=sim.state.adventure;
- if(sim.room===ROOM&&a.pursuit?.active)return[{id:'river-exit',name:'Return survey to Oren',...ENTRY,kind:'gate'},{...PRACTICE,kind:'practice'},...G.RealmPursuit.points(sim),...G.RealmPursuit.enemies(a).map(e=>({...e,kind:'threat'}))];
- if(sim.room===ROOM)return[{id:'river-exit',name:'Return to the workshop',...ENTRY,kind:'gate'},{...PRACTICE,kind:'practice'},...(a.starter.accepted?BUNDLES.filter(q=>!a.starter.bundles.includes(q.id)).map(q=>({...q,kind:'supplies'})):[]),...(a.starter.accepted&&!a.defeated.includes('river-old-bristle')?[{...ENEMIES[2],kind:'threat'}]:[])];
+ if(sim.room===ROOM&&a.pursuit?.active)return[{id:'river-exit',name:G.RealmEarth?.riverTrip(sim)?'Orchard lane · then home to Oren':'Return survey to Oren',...ENTRY,kind:'gate'},{...PRACTICE,kind:'practice'},...G.RealmPursuit.points(sim),...G.RealmPursuit.enemies(a).map(e=>({...e,kind:'threat'}))];
+ if(sim.room===ROOM)return[{id:'river-exit',name:G.RealmEarth?.riverTrip(sim)?'Return to the orchard lane':'Return to the workshop',...ENTRY,kind:'gate'},{...PRACTICE,kind:'practice'},...(a.starter.accepted?BUNDLES.filter(q=>!a.starter.bundles.includes(q.id)).map(q=>({...q,kind:'supplies'})):[]),...(a.starter.accepted&&!a.defeated.includes('river-old-bristle')?[{...ENEMIES[2],kind:'threat'}]:[])];
  if(!sim.room)return[{id:'oren-outing',name:'Oren · riverbank supplies',...OREN,kind:'quest'},{id:'river-gate',name:'Nearby riverbank worksite',...GATE,kind:'gate'}];return[];
 }
 function practiceHit(sim,e,n){const A=G.RealmAdventure,t=sim.state.adventure.elapsed;e.flash=t+.18;G.RealmCombat.hit(sim,e,n);A.runtime(sim).training={lastDamage:n,style:G.RealmArsenal.weapon(sim.state.adventure).style,at:t};}
@@ -464,6 +486,7 @@ function handle(sim,type,p={}){
   sim.returnPos={...sim.state.player};sim.room=ROOM;sim.state.player={...ENTRY};sim.playerPath=[];A.syncScene(sim);G.RealmCombat.stop(sim,true);return yes(a.pursuit?.active?'Riverbank survey · clear two skitters, record two samples, return to Oren.':'The nearby riverbank · bundles and Old Bristle share one short route.');
  case'starter-leave':
   if(sim.room!==ROOM||!near(sim,ENTRY))return fail('Return to the southern workshop path.');
+  if(G.RealmEarth?.riverTrip(sim))return G.RealmEarth.backToApproach(sim);
   sim.leave();A.syncScene(sim);G.RealmCombat.stop(sim,true);return yes('Back beside Oren’s workshop.');
  case'starter-pickup':{
   const bundle=BUNDLES.find(b=>b.id===p.id);
@@ -2530,7 +2553,7 @@ class AdventureUI{
  }
  get sim(){return this.api.sim();}get state(){return this.sim.state.adventure;}
  reset(){this.intent=null;this.labelCache='';$('#fallen-dialog').close();if($('#story-dialog').open)$('#story-dialog').close();}
- run(type,payload={},quiet=false){const result=this.sim.adventureCommand('adv-'+Date.now()+'-'+(++this.sequence),type,payload);if(result.ok&&!result.duplicate){this.api.save();this.api.changed();if(!quiet&&result.text)this.api.toast(result.text);this.sound(type);}else if(!quiet&&result.error)this.api.toast(result.error);if(!quiet&&this.api.panel()==='adventure')this.api.renderPanel();return result;}
+ run(type,payload={},quiet=false){const result=type==='starter-leave'&&G.RealmEarth?.riverTrip(this.sim)?this.api.earthRiverReturn():this.sim.adventureCommand('adv-'+Date.now()+'-'+(++this.sequence),type,payload);if(result.ok&&!result.duplicate){this.api.save();this.api.changed();if(!quiet&&result.text)this.api.toast(result.text);this.sound(type);}else if(!quiet&&result.error)this.api.toast(result.error);if(!quiet&&this.api.panel()==='adventure')this.api.renderPanel();return result;}
  sound(type){let au=this.api.audio();if(!au?.enabled||!au.ctx)return;let f={'confirmed-hit':295,heal:660,dodge:330,dig:145,rescue:523,loot:880,relic:784,guard:245,insight:590,spirit:392,'beacon-answer':784,'beacon-repair':523}[type];if(f)au.note(f,au.ctx.currentTime,.15,.035);}
  stopAuto(){this.intent=null;}
  go(id){this.intent=null;this.api.endBuild();if(A.combatScene(this.sim)){this.api.toast('Use this expedition’s southern exit before taking an outdoor route.');return false;}if(id==='mine'){if(!this.sim.state.sandbox.bridge){this.api.toast('Repair the northern crossing first. The Field guide shows the materials.');return false;}this.api.closePanel();return this.api.walk(A.MINE.x,A.MINE.z);}if(id==='road')return this.api.navigate('lookout');if(id==='workshop')return this.api.navigate('market');if(id==='spring')return this.api.navigate('commons');return false;}
@@ -3342,7 +3365,7 @@ class StarterUI{
  get sim(){return this.rpg.sim;}get a(){return this.rpg.state;}get q(){return this.a.starter;}
  run(type,p={}){return this.rpg.run(type,p);}
  context(){if(!this.a.started||this.a.hp<=0)return null;const sim=this.sim;
-  if(sim.room===Q.ROOM){if(Q.near(sim,Q.ENTRY,2.8))return'E · Return to Oren’s workshop';if(this.a.pursuit.active){const p=G.RealmPursuit.points(sim).find(p=>Q.near(sim,p,2.4));return p?'E · Record '+p.name:'M · Materials survey route';}const b=Q.BUNDLES.find(b=>this.q.accepted&&!this.q.bundles.includes(b.id)&&Q.near(sim,b,2.4));if(b)return'E · Recover '+b.name.toLowerCase();const e=A.roster(sim).find(e=>this.a.drops.includes(e.id)&&Q.near(sim,e));if(e)return'E · Collect '+e.name+' cache';return'M · Riverbank route';}
+  if(sim.room===Q.ROOM){if(Q.near(sim,Q.ENTRY,2.8))return G.RealmEarth?.riverTrip(sim)?'E · Return to the orchard lane':'E · Return to Oren’s workshop';if(this.a.pursuit.active){const p=G.RealmPursuit.points(sim).find(p=>Q.near(sim,p,2.4));return p?'E · Record '+p.name:'M · Materials survey route';}const b=Q.BUNDLES.find(b=>this.q.accepted&&!this.q.bundles.includes(b.id)&&Q.near(sim,b,2.4));if(b)return'E · Recover '+b.name.toLowerCase();const e=A.roster(sim).find(e=>this.a.drops.includes(e.id)&&Q.near(sim,e));if(e)return'E · Collect '+e.name+' cache';return'M · Riverbank route';}
   if(sim.room)return null;if(Q.near(sim,Q.GATE,2.5))return'E · Take the riverbank path';if(Q.near(sim,Q.OREN))return'E · Oren: supplies, rewards & workbench';return null;
  }
  interact(){if(!this.context())return false;const sim=this.sim;
@@ -3367,7 +3390,7 @@ class StarterUI{
  }
  journal(){const a=this.a,q=this.q;return '<section class="starter-journal"><small>OPTIONAL · CLOSE TO HOME</small><h3>Oren’s riverbank supplies</h3><p>Recover three distinct bundles and drive away Old Bristle. The objectives share one route and can be done in either order after acceptance.</p><ol>'+Q.BUNDLES.map(b=>'<li class="'+(q.bundles.includes(b.id)?'done':'')+'">'+esc(b.name)+(q.bundles.includes(b.id)?' · secured':' · riverbank path')+'</li>').join('')+'<li class="'+(a.defeated.includes('river-old-bristle')?'done':'')+'">Old Bristle'+(a.defeated.includes('river-old-bristle')?' · driven away':' · the far canvas clearing')+'</li></ol>'+button(q.reward?'See Oren’s thanks':'Review outing and rewards','open','starter')+button('Track riverbank outing','track','starter')+'</section>';}
  page(tab){const a=this.a,q=this.q,sim=this.sim;
-  if(tab==='atlas'&&sim.room===Q.ROOM)return{title:a.pursuit.active?'Riverbank survey · record and return':'Riverbank · the way out and home',html:'<div class="cross-atlas-layout"><section>'+mapSVG(sim)+'<p>Two goals along one riverbank. Numbered routes walk through the actual terrain.</p></section><section class="cross-atlas-list">'+Q.points(sim).map((p,i)=>button('<b>'+String(i+1).padStart(2,'0')+'</b><span><strong>'+esc(p.name)+'</strong><small>'+Math.round(Math.hypot(sim.state.player.x-p.x,sim.state.player.z-p.z))+' paces</small></span>','starter-walk',p.id)).join('')+this.journal()+'</section></div>'};
+  if(tab==='atlas'&&sim.room===Q.ROOM)return{title:a.pursuit.active?'Riverbank survey · record and return':'Riverbank · the way out and home',html:'<div class="cross-atlas-layout"><section>'+mapSVG(sim)+'<p>'+(G.RealmEarth?.riverTrip(sim)?'The southern path returns to the orchard lane. From there, return to Firstlight and find Oren at the workshop.':'The southern path returns to Oren’s workshop.')+' Numbered routes walk through the actual terrain.</p></section><section class="cross-atlas-list">'+Q.points(sim).map((p,i)=>button('<b>'+String(i+1).padStart(2,'0')+'</b><span><strong>'+esc(p.name)+'</strong><small>'+Math.round(Math.hypot(sim.state.player.x-p.x,sim.state.player.z-p.z))+' paces</small></span>','starter-walk',p.id)).join('')+this.journal()+'</section></div>'};
   if(tab!=='starter')return null;
   const path=G.RealmClasses.definition(a),pathLink='<section class="starter-path"><div><small>YOUR WAY TO FIGHT · OPTIONAL</small><p>'+(path?'Your '+esc(path.name)+' path keeps every weapon and soul choice available.':'Compare Hunter and Magician when you are ready. Your equipment and story remain your own.')+'</p></div>'+button(path?esc(path.name)+' · view technique':'Compare Hunter and Magician','open','classes')+'</section>';
   const reward=q.reward,near=!sim.room&&Q.near(sim,Q.OREN),intro=reward?'You brought the bundles home. Oren has stacked the supplies beside his workshop, ready for tomorrow’s repairs.':'“The rope, hand tools and canvas slipped from our load. Old Bristle has claimed the bank. Bring our supplies home, and I can put a better tool in your hands.”';
@@ -3558,7 +3581,7 @@ class CosmosUI{
  }
  tick(){const inside=this.sim.room===N.ROOM;$('#cosmos-home').hidden=!inside;document.body.classList.toggle('in-cosmos',inside);const root=$('#cosmos-labels');root.replaceChildren();
   if(inside){$('#tracked-chapter').textContent='NEAR EXPANSE · FIRST WALK';$('#tracked-title').textContent=this.sim.state.player.z<-37?'The observatory is inhabited':'Find the occupied observatory';$('#tracked-detail').textContent='Sheltered lane west · open road east';$('#tracked-progress').textContent='M · routes and return · no reward in this visit';}
-  if(!this.sim.state.settings.labels||this.rpg.dialog.open)return;
+  if((this.sim.room&&!inside)||!this.sim.state.settings.labels||this.rpg.dialog.open)return;
   const points=inside?N.POINTS:[{...N.GATE,name:'Near Expanse · invitation'}],player=this.sim.state.player,shown=[];
   for(const p of points.map(p=>({...p,d:Math.hypot(p.x-player.x,p.z-player.z)})).sort((a,b)=>a.d-b.d)){
    if(p.d>24||p.d<2.5||shown.length>=3)continue;const q=this.rpg.api.project(p.x,(inside?N.height(p.x,p.z):1.3)+2.6,p.z);if(!q?.visible||shown.some(v=>Math.abs(v.x-q.x)<190&&Math.abs(v.y-q.y)<34))continue;
@@ -3574,7 +3597,8 @@ const col={grass:0x74835c,meadow:0x89946a,stone:0x8f8a74,path:0xa79a78,wood:0x72
 const paths=[
  [[0,25],[0,17],[0,10],[-7,5],[-12,-3],[-14,-12],[-14,-22],[-10,-30],[0,-35],[0,-44]],
  [[0,10],[7,5],[13,-3],[14,-12],[14,-22],[11,-30],[0,-35],[0,-44]],
- [[-14,-22],[-12,-24]]
+ [[-14,-22],[-12,-24]],
+ [[-7,5],[-10,4],[-13,4]]
 ];
 function pathDistance(x,z){let best=Infinity;for(const ps of paths)for(let i=1;i<ps.length;i++){const u=ps[i-1],v=ps[i],dx=v[0]-u[0],dz=v[1]-u[1],d=dx*dx+dz*dz,t=d?Math.max(0,Math.min(1,((x-u[0])*dx+(z-u[1])*dz)/d)):0;best=Math.min(best,Math.hypot(x-u[0]-dx*t,z-u[1]-dz*t));}return best;}
 function paving(a,points,width=1.7){for(let i=1;i<points.length;i++){const u=points[i-1],v=points[i],d=Math.hypot(v[0]-u[0],v[1]-u[1]);for(let t=0;t<d;t+=.68){const f=t/d,x=u[0]+(v[0]-u[0])*f,z=u[1]+(v[1]-u[1])*f;if(C.walkable(x,z,.08))a.add('disc',x,h(x,z)+.025,z,width,1,width,col.path,{rough:1,cameraSolid:false,r:[Math.atan2(h(x,z-.1)-h(x,z+.1),.2),0,0]});}}}
@@ -3585,12 +3609,16 @@ function terrain(a,rnd){
  }
  for(const ps of paths)paving(a,ps);
  // Mill pond/watercourse is a visible reason the direct center is not walkable in E1.
- a.box(0,h(0,-15)-.12,-15,8.8,.12,19.7,col.water,{rough:.25,wet:1,cameraSolid:false,cutaway:false});
+ a.box(0,1.32,-12.5,8.8,.08,33,col.water,{rough:.25,wet:1,cameraSolid:false,cutaway:false});
  for(let i=0;i<9;i++){let z=-7-i*2.1;a.add('disc',Math.sin(i*.8)*1.2,h(0,z)-.04,z,.55,1,.55,0x6e8f69,{cameraSolid:false,rough:.8});}
  // Low stone walls make the orchard road legible without turning every fence into a collision maze.
- for(let z=6;z>-9;z-=1.15){a.box(-15.6,h(-15.6,z)+.28,z,.5,.56,1.02,col.stone,{cameraSolid:true});}
+ for(let z=6;z>-9;z-=1.15){if(z>2.7&&z<5.3)continue;a.box(-15.6,h(-15.6,z)+.28,z,.5,.56,1.02,col.stone,{cameraSolid:true});}
  // Orchard trees: solids are limited to the declared shed; trunks here are presentation-scale.
  for(let row=0;row<3;row++)for(let i=0;i<5;i++){let x=-12+row*3,z=5-i*2.6;if(pathDistance(x,z)<1.25)continue;let b=h(x,z);a.add('cylinder',x,b,z,.22,1.65,.22,col.wood,{cameraSolid:false});a.add('round',x,b+2,z,1.45,1.35,1.45,col.leaf,{cameraSolid:false,rough:1});for(let f=0;f<3;f++){let q=(i*3+f)*2.1;a.add('round',x+Math.sin(q)*.7,b+2.05+f*.1,z+Math.cos(q)*.7,.12,.12,.12,col.fruit,{cameraSolid:false});}}
+ // A worksite gateway: split wall, timber posts and a small packed load.
+ for(const z of [2.8,5.2]){const b=h(-14.7,z);a.box(-14.7,b+.85,z,.22,1.7,.22,col.wood,{cameraSolid:false});}
+ for(const z of [3.1,3.65])a.box(-14.5,h(-14.5,z)+.28,z,.7,.56,.46,col.wood,{cameraSolid:false});
+ a.box(-14.5,h(-14.5,3.4)+.6,3.4,.78,.12,1.12,0xb3a07b,{cameraSolid:false});
  // Orchard shed.
  {let x=-8,z=0,b=h(x,z);a.box(x,b+1.75,z,4.4,3.5,4.2,0xa99a79);a.add('roof',x,b+3.5,z,5,1.5,4.8,col.roof,{cameraSolid:true});a.box(x,b+1.2,z+2.12,1.3,2.4,.08,0x594b3a);}
  // Quarry stacks and worked stone.
@@ -3606,10 +3634,10 @@ function terrain(a,rnd){
  // Field dressing respects route clearance.
  for(let i=0;i<850;i++){let x=-18+rnd()*36,z=-49+rnd()*74;if(!C.walkable(x,z,.45)||pathDistance(x,z)<1.25)continue;let b=h(x,z),s=.07+rnd()*.11;a.add('leaf',x,b+.02,z,s,s*2.6,s,i%7===0?0xb3a56f:0x678150,{wind:1,rough:1,cameraSolid:false,r:[0,rnd()*TAU,0]});if(i%33===0)a.add('octa',x,b+.18,z,.10,.16,.10,[0xdfc78f,0xcaa6a1,0xd9d3a2][i%3],{cameraSolid:false});}
  // Distant wooded hills are scenery only.
- for(let i=0;i<26;i++){let a0=i/26*TAU,r=44+rnd()*22,x=Math.cos(a0)*r,z=-12+Math.sin(a0)*r*.55,b=1.0+rnd()*1.5;a.add('cone',x,-1.2,z,9+rnd()*11,8+rnd()*15,9+rnd()*11,i%3?0x60755d:0x75846b,{cameraSolid:false,cutaway:false,rough:1});if(i%2===0)a.add('round',x,b+5,z,7,4,7,0x647858,{cameraSolid:false,cutaway:false,rough:1});}
+ for(let i=0;i<26;i++){let a0=i/26*TAU,r=95+rnd()*22,x=Math.cos(a0)*r,z=-12+Math.sin(a0)*r*.8,b=1.0+rnd()*1.5;a.add('round',x,-1.2,z,14+rnd()*8,8+rnd()*10,14+rnd()*8,i%3?0x60755d:0x75846b,{cameraSolid:false,cutaway:false,rough:1});if(i%2===0)a.add('round',x,b+5,z,7,4,7,0x647858,{cameraSolid:false,cutaway:false,rough:1});}
 }
 function sign(a,x,z,textColor=col.gold){const b=h(x,z);a.box(x,b+.85,z,.16,1.7,.16,col.wood,{cameraSolid:false});a.box(x,b+1.55,z,2.3,.75,.12,0x826c4b,{cameraSolid:false});a.add('octa',x,b+1.57,z+.09,.12,.12,.04,textColor,{em:.15,cameraSolid:false});}
-function make(a){a.begin(C.ROOM);a.e.theme='earth';a.e.isInterior=false;a.e.noWater=false;a.e.ambientOverride=.78;const rnd=G.RealmCore.rng(18092026);terrain(a,rnd);for(const [x,z]of [[0,16],[-8,3],[7,2],[13,-13],[12,-26],[-12,-23],[0,-43]])sign(a,x,z);a.commit();}
+function make(a){a.begin(C.ROOM);a.e.theme='earth';a.e.isInterior=false;a.e.noWater=false;a.e.ambientOverride=.78;const rnd=G.RealmCore.rng(18092026);terrain(a,rnd);for(const [x,z]of [[0,16],[-8,3],[-13,4],[7,2],[13,-13],[12,-26],[-12,-23],[0,-43]])sign(a,x,z);a.commit();}
 function draw(out,sim,t,a){if(sim.room!==C.ROOM)return;const p=sim.state.player;if(!sim.state.settings?.reducedMotion){for(let i=0;i<5;i++){let q=t*.13+i*1.7,x=-4+Math.sin(q)*5,z=-30+Math.cos(q*.7)*4,b=h(x,z);out.box.push({p:[x,b+5+Math.sin(q*1.8)*.35,z],s:[.38,.045,.12],r:[0,q,.2],c:0x4c5f55});}}out.disc.push({p:[p.x,h(p.x,p.z)+.02,p.z],s:[.8,1,.8],c:0xd5bd83,rough:.8,em:.04});}
 function gate(a){const b=1.3;a.box(C.GATE.x,b+.75,C.GATE.z,.18,1.5,.18,col.wood,{cameraSolid:false});a.box(C.GATE.x,b+1.35,C.GATE.z,1.9,.55,.12,0x826c4b,{cameraSolid:false});a.add('octa',C.GATE.x,b+1.38,C.GATE.z+.08,.12,.12,.04,col.gold,{em:.15,cameraSolid:false});}
 G.RealmEarthArt={make,draw,gate};
@@ -3640,34 +3668,45 @@ const WORDS={
  shelter:{title:'Old ridge shelter',text:'A repaired roof, a dry bench and sightlines back toward the lake. Someone expected travelers to need this place.',detail:'The shelter has no fee, reward or hidden checkpoint. Your safe persisted checkpoint remains beside the Firstlight lake.'},
  bellweather:{title:'Bellweather west road',text:'The bell is close now, beyond orchards and the last bend. Old Sunward markers still define the recognized chapter road into town.',detail:'E1 stops here deliberately. It does not bypass the existing Sunward Beacon or Bellweather chapter prerequisites. Return by either route while this connection is being qualified.'}
 };
+WORDS.bridge.detail='Follow the orchard wall west for Oren’s riverbank worksite, or climb east to the quarry ridge. Both roads join beneath Bellweather’s bell.';
+WORDS.orchard.detail='A short spur beside the wall leads to the riverbank worksite. Take Oren’s expedition kit before entering; his supplies and materials surveys can be accepted at the village workshop.';
+WORDS.millfork.detail='The western lane passes the worksite sign and a roofed shelter. The eastern grade follows the quarry carts. Both lead back to this bridge.';
+WORDS.quarry.detail='The stacks belong to the quarry workers. Keep to the marked road; the working camp is beyond this path.';
+WORDS.shelter.detail='Stay as long as you like. The lake footbridge leads home; your saved return point remains on the Firstlight side.';
+WORDS.bellweather.detail='The road into Bellweather still requires the Sunward Beacon and its existing chapter prerequisites. This approach ends at the bell. Return by the orchard or ridge road.';
 class EarthUI{
  constructor(rpg){this.rpg=rpg;this.ticket=null;this.reading=null;const root=document.createElement('div');root.id='earth-labels';root.setAttribute('aria-hidden','true');$('#hud').append(root);
   const home=document.createElement('button');home.id='earth-home';home.hidden=true;home.textContent='Return to Firstlight';home.onclick=()=>this.returnHome();$('#rpg-hud').append(home);
  }
  get sim(){return this.rpg.sim;}
  reset(){N.cancel(this.ticket);this.ticket=null;this.reading=null;}
- context(){if(this.sim.room===N.ROOM){const p=N.POINTS.find(p=>N.near(this.sim,p));return p?(p.kind==='return'?'E · Return to Firstlight':WORDS[p.id]?'E · '+p.name:'E · Read the Hearthwater marker'):'M · Hearthwater routes';}return !this.sim.room&&N.near(this.sim,N.GATE)?'E · Hearthwater trail marker':null;}
- interact(){if(!this.context())return false;if(this.sim.room===N.ROOM){const p=N.POINTS.find(p=>N.near(this.sim,p));if(p?.kind==='return'){this.returnHome();return true;}this.reading=WORDS[p?.id]?p.id:null;this.rpg.open(this.reading?'earth':'atlas');}else{this.reset();this.rpg.open('earth');}return true;}
+ context(){if(this.sim.room===N.ROOM){const p=N.POINTS.find(p=>N.near(this.sim,p,p.kind==='worksite'?2.4:2.8));return p?(p.kind==='return'?'E · Return to Firstlight':p.kind==='worksite'?'E · Riverbank worksite':WORDS[p.id]?'E · '+p.name:'E · Read the Hearthwater marker'):'M · Hearthwater routes';}return !this.sim.room&&N.near(this.sim,N.GATE)?'E · Hearthwater trail marker':null;}
+ interact(){if(!this.context())return false;if(this.sim.room===N.ROOM){const p=N.POINTS.find(p=>N.near(this.sim,p,p.kind==='worksite'?2.4:2.8));if(p?.kind==='return'){this.returnHome();return true;}this.reset();this.reading=WORDS[p?.id]||p?.id==='riverbank'?p.id:null;this.rpg.open(this.reading?'earth':'atlas');}else{this.reset();this.rpg.open('earth');}return true;}
  returnHome(){const r=this.rpg.api.earthReturn();if(r.ok){this.rpg.close();this.reset();}else this.rpg.api.toast(r.error);}
  action(el){const act=el.dataset.rpg,id=el.dataset.id;
-  if(act==='earth-confirm'){const r=this.rpg.api.earthTravel(this.ticket);this.ticket=null;if(r.ok){this.rpg.close();this.rpg.api.toast('Hearthwater Vale · orchard lane west, ridge road east. Return is always available.');}else{this.rpg.api.toast(r.error);this.rpg.paint();}return true;}
+  if(act==='earth-confirm'){const r=this.rpg.api.earthTravel(this.ticket);this.ticket=null;if(r.ok){this.rpg.close();this.rpg.api.toast(this.sim.room==='riverbank'?'Riverbank worksite · the southern path returns to the orchard lane.':'Hearthwater Vale · orchard lane west, ridge road east.');}else{this.rpg.api.toast(r.error);this.rpg.paint();}return true;}
   if(act==='earth-return'){this.returnHome();return true;}
   if(act==='earth-invitation'){this.reset();this.rpg.open('earth');return true;}
   if(act==='earth-walk'){const p=id==='gate'&&!this.sim.room?N.GATE:this.sim.room===N.ROOM?N.POINTS.find(p=>p.id===id):null;if(p){this.rpg.close();this.rpg.api.walkLocal(p.x,p.z);}return true;}
   return false;
  }
- invitation(){return '<section class="earth-invitation"><small>EARTH · HEARTHWATER VALE · E1</small><h3>A road beyond the little valley</h3><p>The lake footbridge now opens onto connected country: orchard lane, quarry ridge and the west road toward Bellweather.</p>'+button('Read the Hearthwater marker','earth-invitation')+'</section>';}
+ invitation(){return '<section class="earth-invitation"><small>EARTH · HEARTHWATER VALE</small><h3>The longer way to useful work</h3><p>Cross the lake footbridge, take the orchard lane to Oren’s riverbank worksite, or follow the ridge toward Bellweather’s bell.</p>'+button('Read the Hearthwater marker','earth-invitation')+'</section>';}
+ worksite(){const a=this.sim.state.adventure,run=a.pursuit.active,q=a.starter;
+  if(!this.ticket){const p=N.preview(this.rpg.api.earthContext());if(p.ok)this.ticket=p.ticket;}
+  const work=run?'<h3>Materials survey · in progress</h3><p>'+run.defeated.length+'/2 skitters cleared · '+run.samples.length+'/2 samples recorded.</p><p>Finish both objectives and return to Oren for <strong>3 ore, 4 sunmarks and 2 fibre</strong>. Each accepted survey pays once.</p>':q.accepted&&!q.reward?'<h3>Oren’s supplies</h3><p>'+q.bundles.length+'/3 bundles recovered · '+(a.defeated.includes('river-old-bristle')?'Old Bristle driven away.':'Old Bristle remains.')+'</p><p>Return both objectives to Oren for your once-only blade, bow or weapon temper, plus 6 sunmarks and 25 XP.</p>':'<h3>A place to practise</h3><p>The practice bundle is by the southern path. For paid work, accept a materials survey at Oren’s workshop before leaving Firstlight.</p>';
+  return{title:'Riverbank worksite · orchard path',html:'<article class="earth-reading"><small>OFF THE ORCHARD LANE</small><h2>Bring something useful home.</h2><p class="earth-quote">Wheel tracks turn through the wall toward the river. Oren’s worksite is just beyond the bend.</p>'+work+'<div class="earth-terms"><section><h3>Before you cross</h3><p>The riverbank has hostile creatures. Your expedition kit is required. This sign accepts no work and grants no reward.</p></section><section><h3>Return by the same path</h3><p>The southern worksite exit returns here. From the orchard, return to Firstlight to find Oren. Saving and reopening resumes at the Firstlight lake, keeping your earned progress.</p></section></div><div class="earth-actions">'+(this.ticket?button('Save progress & enter the worksite','earth-confirm'):'<p><strong>First take the expedition kit from Oren at the village workshop.</strong></p>')+button('See Hearthwater routes','open','atlas')+'</div></article>'};
+ }
  page(tab){
-  if(tab==='atlas'&&this.sim.room===N.ROOM)return{title:'Hearthwater Vale · first connected approach',html:'<div class="earth-atlas"><section>'+mapSVG(this.sim)+'<p>Two physical approaches meet on the north road. The dark center is the mill watercourse and cannot be crossed here.</p></section><section><small>EARTH E1 · GEOGRAPHY FIRST</small><h2>Learn the road.</h2><p>Every listed destination uses the actual walking ground. Existing Oren, Sunward and Bellweather quest authorities remain unchanged.</p>'+N.POINTS.map((p,i)=>button('<b>'+String(i+1).padStart(2,'0')+'</b> '+esc(p.name),'earth-walk',p.id)).join('')+button('Return to the Firstlight lake','earth-return')+'<p class="earth-note">No enemies, payout, XP, class choice, regional save schema or campaign completion is added by E1.</p></section></div>'};
+  if(tab==='atlas'&&this.sim.room===N.ROOM)return{title:'Hearthwater Vale · routes & work',html:'<div class="earth-atlas"><section>'+mapSVG(this.sim)+'<p>Two physical approaches meet on the north road. The dark center is the mill watercourse and cannot be crossed here.</p></section><section><small>HEARTHWATER VALE</small><h2>Take a road. Bring something home.</h2><p>Orchard lane leads to the riverbank worksite. Accept supplies or a materials survey at Oren’s village workshop before you leave. The ridge road joins the orchard route beneath Bellweather’s bell.</p>'+N.POINTS.map((p,i)=>button('<b>'+String(i+1).padStart(2,'0')+'</b> '+esc(p.name),'earth-walk',p.id)).join('')+button('Return to the Firstlight lake','earth-return')+'<p class="earth-note">Hearthwater’s roads are quiet. The riverbank has hostile creatures. Return home to collect Oren’s rewards.</p></section></div>'};
   if(tab!=='earth')return null;
-  if(this.sim.room===N.ROOM){const word=WORDS[this.reading]||WORDS.bridge;return{title:word.title,html:'<article class="earth-reading"><small>HEARTHWATER VALE</small><h2>'+word.title+'</h2><p class="earth-quote">'+word.text+'</p><p>'+word.detail+'</p><div class="earth-actions">'+button('See the whole approach','open','atlas')+button('Return to Firstlight','earth-return')+'</div><p class="earth-note">A geography qualification slice. Looking and walking do not write new quest or reward state.</p></article>'};}
+  if(this.sim.room===N.ROOM){if(this.reading==='riverbank')return this.worksite();const word=WORDS[this.reading]||WORDS.bridge;return{title:word.title,html:'<article class="earth-reading"><small>HEARTHWATER VALE</small><h2>'+word.title+'</h2><p class="earth-quote">'+word.text+'</p><p>'+word.detail+'</p><div class="earth-actions">'+button('See the whole approach','open','atlas')+button('Return to Firstlight','earth-return')+'</div></article>'};}
   const near=!this.sim.room&&N.near(this.sim,N.GATE);
   if(near&&!this.ticket){const r=N.preview(this.rpg.api.earthContext());if(r.ok)this.ticket=r.ticket;}
-  return{title:'Hearthwater Vale · trail marker',html:'<article class="earth-reading"><small>OPTIONAL EARTH JOURNEY · E1</small><h2>Walk the country between places.</h2><p class="earth-quote">A stone footbridge crosses the lake edge. Orchard walls take the western grade. Quarry tracks climb east. Both roads meet beneath Bellweather’s distant bell.</p><div class="earth-terms"><section><h3>What this proves</h3><p>Real connected ground, landmarks, two camera styles, a safe source checkpoint and a reversible walk out and back.</p></section><section><h3>What it does not change</h3><p>Oren’s outing, surveys, Sunward, the Beacon and Bellweather keep their existing rewards, identities and prerequisites. There is no new payout or story completion.</p></section><section><h3>Your way home</h3><p>Return is available from the start and anywhere on the route. Saving and reopening, or switching characters, resumes at this Firstlight lake checkpoint.</p></section></div><p><strong>Traveller:</strong> '+esc(this.sim.state.visitor.name)+' · <strong>Return:</strong> lake footbridge.</p><div class="earth-actions">'+(near&&this.ticket?button('Save checkpoint & enter Hearthwater','earth-confirm'):button('Walk to the lake trail marker','earth-walk','gate'))+'</div><p class="earth-note">No save migration is required. V still switches third person and your remembered diorama view.</p></article>'};
+  return{title:'Hearthwater Vale · trail marker',html:'<article class="earth-reading"><small>OPTIONAL EARTH JOURNEY</small><h2>Walk the country between places.</h2><p class="earth-quote">A stone footbridge crosses the lake edge. Orchard walls take the western grade. Quarry tracks climb east. Both roads meet beneath Bellweather’s distant bell.</p><div class="earth-terms"><section><h3>The roads ahead</h3><p>Follow the western orchard lane to the riverbank worksite and shelter. The quarry ridge climbs east. Both meet at Bellweather’s west-road boundary.</p></section><section><h3>Work along the way</h3><p>Accept Oren’s supplies or a materials survey in the village, then take your expedition kit to the orchard worksite sign. Oren pays when you return; walking this road adds no new payout. Bellweather still requires its Sunward chapter progress.</p></section><section><h3>Your way home</h3><p>Return is available from the start and anywhere on the route. Saving and reopening, or switching characters, resumes at this Firstlight lake checkpoint.</p></section></div><p><strong>Traveller:</strong> '+esc(this.sim.state.visitor.name)+' · <strong>Return:</strong> lake footbridge.</p><div class="earth-actions">'+(near&&this.ticket?button('Save checkpoint & enter Hearthwater','earth-confirm'):button('Walk to the lake trail marker','earth-walk','gate'))+'</div><p class="earth-note">V switches third person and your remembered diorama view. M shows local routes.</p></article>'};
  }
  tick(){const inside=this.sim.room===N.ROOM;$('#earth-home').hidden=!inside;document.body.classList.toggle('in-earth',inside);const root=$('#earth-labels');root.replaceChildren();
-  if(inside){$('#tracked-chapter').textContent='EARTH · HEARTHWATER VALE';$('#tracked-title').textContent=this.sim.state.player.z<-36?'Bellweather road ahead':'Learn the road between places';$('#tracked-detail').textContent='Orchard lane west · quarry ridge east';$('#tracked-progress').textContent='M · local routes and return · no E1 reward';}
-  if(!this.sim.state.settings.labels||this.rpg.dialog.open)return;
+  if(inside){$('#tracked-chapter').textContent='EARTH · HEARTHWATER VALE';$('#tracked-title').textContent=this.sim.state.player.z<-36?'Bellweather road ahead':'Riverbank worksite · west orchard lane';$('#tracked-detail').textContent='Orchard lane west · quarry ridge east';$('#tracked-progress').textContent='M · local routes · Return to Firstlight for Oren';}
+  if((this.sim.room&&!inside)||!this.sim.state.settings.labels||this.rpg.dialog.open)return;
   const points=inside?N.POINTS:[{...N.GATE,name:'Hearthwater Vale · trail marker'}],player=this.sim.state.player,shown=[];
   for(const p of points.map(p=>({...p,d:Math.hypot(p.x-player.x,p.z-player.z)})).sort((a,b)=>a.d-b.d)){
    if(p.d>25||p.d<2.5||shown.length>=3)continue;const q=this.rpg.api.project(p.x,(inside?N.height(p.x,p.z):1.3)+2.4,p.z);if(!q?.visible||shown.some(v=>Math.abs(v.x-q.x)<190&&Math.abs(v.y-q.y)<34))continue;
@@ -3692,6 +3731,7 @@ function cosmosReturn(){const r=RealmCosmos.leave(sim);if(r.ok){switchScene();sa
 function earthContext(){return{sim,active:characterStore.active,revision:characterStore.revision};}
 function earthTravel(ticket){return RealmEarth.enter(ticket,earthContext(),{available:!!engine&&!!RealmEarthArt,save,build:()=>switchScene(),restore:()=>{scene=Symbol('travel-rollback');switchScene();}});}
 function earthReturn(){const r=RealmEarth.leave(sim);if(r.ok){switchScene();save();toast('Back beside the Firstlight lake.');}return r;}
+function earthRiverReturn(){const p=RealmEarth.preview(earthContext());return p.ok?earthTravel(p.ticket):p;}
 function cameraHalf(mode){
  const room=sim.room,inside=room&&![RealmEarth.ROOM,RealmCosmos.ROOM,'riverbank','range','crossing','road','mine'].includes(room),aspect=innerWidth/innerHeight;
  if(mode==='wide')return room===RealmEarth.ROOM?Math.max(40,25/Math.max(.35,aspect)):room===RealmCosmos.ROOM?Math.max(39,24/Math.max(.35,aspect)):room==='riverbank'?23:room==='range'?Math.max(19,17/Math.max(.35,aspect)):room==='crossing'?33:room==='road'?30:room==='mine'?17:inside?7:Math.max(36,39/Math.max(.55,aspect));
@@ -3809,7 +3849,7 @@ $('#now-playing').onclick=()=>experience.open();
 function walkSandbox(x,z){if(RealmAdventure.combatScene(sim)){toast('Use the southern lantern exit first.');return false;}adventure?.stopAuto();camera.tour=false;if(sim.room){sim.leave();switchScene();}let result=sim.moveTo(x,z);if(result.ok){target={x,z};camera.overview=false;follow=null;}else toast(result.error);return result.ok;}
 sandbox=new RealmSandboxUI.SandboxUI({sim:()=>sim,sequence:{n:0},time:()=>elapsed,save,toast,openPanel,closePanel,renderPanel,panel:()=>panel,walk:walkSandbox});
 function walkAdventure(x,z){camera.tour=false;follow=null;camera.overview=false;let r=sim.moveTo(x,z);if(r.ok)target={x,z};else toast(r.error);return r.ok;}
-adventure=new RealmAdventureUI.AdventureUI({sim:()=>sim,save,toast,openPanel,closePanel,renderPanel,panel:()=>panel,navigate,walk:walkSandbox,walkLocal:walkAdventure,changed:switchScene,endBuild:()=>sandbox.endBuild(),clearKeys:()=>keys.clear(),audio:()=>audio,project:(x,y,z)=>engine?.project(x,y,z),direction:()=>{let dx=(keys.has('d')||keys.has('arrowright')?1:0)-(keys.has('a')||keys.has('arrowleft')?1:0),dz=(keys.has('s')||keys.has('arrowdown')?1:0)-(keys.has('w')||keys.has('arrowup')?1:0);return dx||dz?{dx:dx*Math.cos(camera.yaw)+dz*Math.sin(camera.yaw),dz:-dx*Math.sin(camera.yaw)+dz*Math.cos(camera.yaw)}:{dx:Math.sin(sim.state.player.yaw),dz:Math.cos(sim.state.player.yaw)};}});
+adventure=new RealmAdventureUI.AdventureUI({earthRiverReturn,sim:()=>sim,save,toast,openPanel,closePanel,renderPanel,panel:()=>panel,navigate,walk:walkSandbox,walkLocal:walkAdventure,changed:switchScene,endBuild:()=>sandbox.endBuild(),clearKeys:()=>keys.clear(),audio:()=>audio,project:(x,y,z)=>engine?.project(x,y,z),direction:()=>{let dx=(keys.has('d')||keys.has('arrowright')?1:0)-(keys.has('a')||keys.has('arrowleft')?1:0),dz=(keys.has('s')||keys.has('arrowdown')?1:0)-(keys.has('w')||keys.has('arrowup')?1:0);return dx||dz?{dx:dx*Math.cos(camera.yaw)+dz*Math.sin(camera.yaw),dz:-dx*Math.sin(camera.yaw)+dz*Math.cos(camera.yaw)}:{dx:Math.sin(sim.state.player.yaw),dz:Math.cos(sim.state.player.yaw)};}});
 
 
 arsenal=new RealmArsenalUI.ArsenalUI({sim:()=>sim,adventure:()=>adventure,openPanel,closePanel,renderPanel,panel:()=>panel,walk:walkAdventure,endBuild:()=>{sandbox?.endBuild();sandbox?.stopAuto();keys.clear();}});

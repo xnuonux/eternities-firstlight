@@ -71,6 +71,9 @@ def main():
     run('classes-journey', ['node', 'tests/classes_journey.cjs', '--sources-ready'])
     run('cosmos-journey', ['node', 'tests/cosmos_journey.cjs', '--sources-ready'])
     run('earth-journey', ['node', 'tests/earth_journey.cjs', '--sources-ready'])
+    run('earth-outing-blade', ['node', 'tests/pursuit_journey.cjs', '--earth'])
+    run('earth-outing-bow', ['node', 'tests/pursuit_journey.cjs', '--earth', '--bow'])
+    run('earth-outing-veteran', ['node', 'tests/pursuit_journey.cjs', '--earth', '--veteran'])
     if args.browser:
         for suite in ['crossing_browser', 'regression09_browser', 'cutaway_browser', 'reflection_browser', 'native_origin_browser', 'starter_browser', 'camera_browser', 'pursuit_browser', 'characters_browser', 'classes_browser', 'cosmos_browser', 'earth_browser']:
             run(suite, [sys.executable, f'tests/{suite}.py'], timeout=600)

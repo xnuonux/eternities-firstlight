@@ -48,7 +48,7 @@ class CosmosUI{
  }
  tick(){const inside=this.sim.room===N.ROOM;$('#cosmos-home').hidden=!inside;document.body.classList.toggle('in-cosmos',inside);const root=$('#cosmos-labels');root.replaceChildren();
   if(inside){$('#tracked-chapter').textContent='NEAR EXPANSE · FIRST WALK';$('#tracked-title').textContent=this.sim.state.player.z<-37?'The observatory is inhabited':'Find the occupied observatory';$('#tracked-detail').textContent='Sheltered lane west · open road east';$('#tracked-progress').textContent='M · routes and return · no reward in this visit';}
-  if(!this.sim.state.settings.labels||this.rpg.dialog.open)return;
+  if((this.sim.room&&!inside)||!this.sim.state.settings.labels||this.rpg.dialog.open)return;
   const points=inside?N.POINTS:[{...N.GATE,name:'Near Expanse · invitation'}],player=this.sim.state.player,shown=[];
   for(const p of points.map(p=>({...p,d:Math.hypot(p.x-player.x,p.z-player.z)})).sort((a,b)=>a.d-b.d)){
    if(p.d>24||p.d<2.5||shown.length>=3)continue;const q=this.rpg.api.project(p.x,(inside?N.height(p.x,p.z):1.3)+2.6,p.z);if(!q?.visible||shown.some(v=>Math.abs(v.x-q.x)<190&&Math.abs(v.y-q.y)<34))continue;

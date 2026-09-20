@@ -1,29 +1,29 @@
-# Current checkpoint: the Near Expanse and complete vision intake
+# Current checkpoint: a useful outing through Hearthwater
 
-Updated 2026-09-15 after Dom resumed development and asked for the comprehensive Earth, Heaven, Hell, Atlantis and Cosmos material. The prior timed window ended on 2026-09-14; this work is a separately authorized bounded milestone, with no background schedule. Branch `gameplay/cosmos-near-expanse` starts from PR #13 (`gameplay/outing-readability`) at **bdad75b70b7762f6ef89fe0982ebc07cd4ddef0c**. It is stacked against that branch while the earlier review chain remains unmerged.
+Updated 2026-09-20. Branch `gameplay/earth-connected-outing` starts from Astra's PR #16 (`gameplay/earth-hearthwater-approach`) at **67b4eebc1026ed1027c4f8777ed33da77edc015b**. That newer Earth implementation supersedes the previous local Cosmos checkout. This review remains stacked on PR #16; main and the archives are not gameplay substitutes.
 
-Start with the [comprehensive vision index](design/COMPREHENSIVE_VISION_INDEX.md), [M1 task](development/COSMOS_M1_TASK_2026-09-15.md), [fresh results](development/COSMOS_M1_RESULTS_2026-09-15.md), [NEXT_TASK](NEXT_TASK.md), [PLAYTEST_NOTES](PLAYTEST_NOTES.md) and [DECISIONS](DECISIONS.md). PR metadata and its final clone receipt identify the exact pushed head. The archive in PR #14 is design/provenance, never a replacement gameplay checkout.
+Read the [task](development/EARTH_CONNECTED_OUTING_TASK_2026-09-20.md), [results](development/EARTH_CONNECTED_OUTING_RESULTS_2026-09-20.md), [vision index](design/COMPREHENSIVE_VISION_INDEX.md), NEXT_TASK, PLAYTEST_NOTES and DECISIONS. The PR records the exact pushed head and subsequent independent remote-clone result.
 
-## Play this slice
+## Play the connected outing
 
-Use `PLAY_FIRSTLIGHT_WINDOWS.cmd` or `python tools/play_local.py` for the stable loopback origin. An existing server serving a different revision is deliberately not replaced; use the verified versioned preview URL recorded with the delivery, or close the conflicting server yourself before launching this checkout.
+Launch `PLAY_FIRSTLIGHT_WINDOWS.cmd` or `python tools/play_local.py` on the stable loopback origin, port 8780. The launcher refuses a conflicting older server rather than changing your save origin or stopping another process.
 
-Open **Map → Near Expanse invitation → Walk to the invitation**, or walk to the small light beside the valley observatory at `(14,-5)`. Press **E**, read the route/return terms and explicitly enter. No kit, class, chapter or equipment prerequisite is required.
+1. At Oren's workshop, take the initial expedition kit. Accept his once-only supplies quest or a separately repeatable materials survey. The Field guide still offers one pinned equipment project and two finite fittings.
+2. Open **Map → Read the Hearthwater marker → Walk to the lake trail marker**, or walk to `(0,23)`. Press E and confirm entry.
+3. Cross the footbridge and take the western orchard lane to the **Riverbank worksite** sign at `(-13,4)`. E shows your current objectives, danger, reward and return route. Confirm the crossing.
+4. Complete the existing riverbank work. The southern exit returns an orchard traveller to the orchard. A traveller who used the original workshop entrance still returns to the workshop.
+5. From Hearthwater, use **Return to Firstlight**, then return to Oren for the existing reward. The road accepts no job and pays nothing.
 
-Three Lamps is inhabited by Teren. The roofed refuge has an approachable bench. Rootcut Lane and the open road connect around a solid ridge and climb 3.2 world units to Anik's occupied observatory. Paths, slopes, cover and surface picking use the same local geometry. The large moon and stars are remote sky images, with no selectable ground or reward authority.
+**V** switches third person/diorama; **R** resets the current view. Remembered framing, manual movement, target selection, stationary attacks, skills and companion commands remain. Orchard and ridge routes join beneath Bellweather's landmark; the actual chapter entrance retains its Sunward prerequisites.
 
-**V** swaps third person and diorama. Existing FOV, per-view framing and reduced motion remain. **M** opens a local route atlas; its bearings walk through the physical paths. **Return to Firstlight** works from anywhere. At the arrival gate, **E** also returns to the exact valley position. The existing combat, companion and menu controls remain; this first visit has no encounters or payout.
+The scene has a readable worksite spur, split orchard wall and packed load. Distant hills sit outside the walking/camera corridor; the watercourse lies below its banks. Cosmos invitation labels no longer appear in Earth, the riverbank or interiors. Earth, riverbank and Cosmos atlases now retain readable map dimensions instead of inheriting the shared icon size.
 
-## Saves and characters
+## Save and ownership contract
 
-Cosmos M1 adds no durable record and no schema migration. World/key **9**, adventure **7**, character envelope/classPath/starter/pursuit/arsenal/cameraViews **1** remain. Levels stay **1–5** and stored XP stays **0–9999**. No automatic equipment, class or soul choice is made.
+No migration. World/key **9**, adventure **7**, character envelope/classPath/starter/pursuit/arsenal/cameraViews **1**, levels **1–5**, stored XP **0–9999** remain.
 
-Entry saves the valley checkpoint before constructing the destination. Confirmation binds the simulation, active character, saved revision, source position and destination. Failed writes refuse entry; failed construction rolls back. Saving, reopening or switching characters resumes on the acknowledged valley side. This is disclosed before travelling. The transient trip does not serialize enemy, reward or journey history.
+Earth owns transient travel checkpoints. Starter owns Oren's quest; pursuit owns survey identities, claims and fittings; adventure/arsenal own combat and equipment. Scenes retain their original local scale. The worksite crossing is an explicit transition, not seamless streaming.
 
-Following companions travel on valid ground. Stay remains an explicit command and does not silently follow a scene change; Follow can recall Briar. Inventories, equipment identities, sockets, Oren temper, finite fittings, quest/run claims, housing, crops, notes, music, completed chapters and soul history retain their existing owners. Personal saves were not read or modified in testing.
+Browser travel binds simulation, character, saved revision, source position and destination. It saves before crossing and restores the source if construction fails. The outer Firstlight lake checkpoint remains the serialized location, including in the riverbank via Earth. Reload or character switching returns there while retaining earned objectives and unpaid rewards. Death uses the existing spring and clears the temporary route. Personal saves were not used.
 
-## Existing game remains available
-
-Oren's once-only supplies quest, the separately repeatable declared-reward survey, one pinned equipment project and finite blade/bow fittings remain. Up to three complete local characters and the optional Hunter/Magician technique remain. Explicit Tab/click targeting, stationary attacks, guard/retreat and both cameras retain their checks. Prior implementation details live in the dated starter, camera, pursuit, character, class and outing records.
-
-Earth remains the lived home. Cosmos M1 is a geography/return experiment, not the full Cosmos campaign. Heaven, Hell and Atlantis are retrieved designs and separate future implementation lanes. Human pacing, beauty, comfort and enjoyment remain pending. No main merge, tag, public deployment, Unreal qualification or live AI integration is implied.
+Campaign, Cosmos, music/export, housing, crops, notes, gear identities, sockets, Oren temper, fittings, classes, companions and independent characters retain regression coverage. Human enjoyment and visual acceptance remain pending. No main merge, tag, public deployment, paid generation, Unreal rewrite or background automation.

@@ -86,3 +86,13 @@ Async music imports/exports belong to the simulation that started them. Switchin
 Following independent character lives, Dom's bounded autonomous direction covers one optional Hunter/Magician choice and one real technique each. Choice is explicit at Oren after the kit, once per character in this prototype; existing characters remain unassigned. Blade/bow, profession, companion, morality and soul history remain independent. Hunter marks the next actual weapon impact, not an input, and Magician resolves a visible targeted spell through authoritative damage. Exact provisional costs, cooldowns, ranges and damage are in the task note and UI. These choices do not establish a class tree, a final respec policy or founder-approved branding.
 
 Adventure schema7 intentionally protects identity from older schema6 writers that would discard an unknown additive field. Migration preserves canonical data and stored XP, adding unassigned classPathv1 only. The character's cooldown is durable; the mark is tied to the transient enemy object/scene/run and expires without carrying across reload or character switch. The current save key is updated normally on saving; managed-library legacy recovery keys remain present. No new economic payout or equipment grant accompanies class choice.
+
+## 2026-09-20: connect useful work to the Earth approach
+
+Fetched newer PR #16 at 67b4eeb before editing. Its Hearthwater geography is the base; the older continuity documents were stale. Connect the orchard to the existing riverbank through a disclosed scene boundary, keeping both local coordinate spaces unscaled. A larger province transform/streaming framework is unnecessary for this link.
+
+The initial kit gates the combat worksite. Accept work and claim rewards at Oren. Earth carries only a temporary orchard return nested under the saved valley checkpoint. Browser crossings bind identity/revision/source/destination, save first and roll back construction failures. The original workshop route retains its exit. Reload, character switching and death clear the temporary route while keeping earned objectives. No new durable schema, reward, class, enemy or XP rule.
+
+Visual inspection caught scenery overlapping the footbridge, a raised watercourse surface and Cosmos labels leaking into foreign scenes. These presentation fixes are included with regression coverage for scene labels and scenery clearance. Human enjoyment remains unmeasured. Road After Rain E2 stays separate.
+
+The shared RPG SVG icon selector also shrank three route maps to 28px. Use a scoped map exception with natural aspect ratio; browser assertions now measure usable map dimensions. This is presentation only and adds no route or save authority.

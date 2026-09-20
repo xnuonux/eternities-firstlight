@@ -115,6 +115,7 @@ try:
         check('companion follows the actual rising route',ev('()=>{const p=Realm.diagnostics.adventure.companion;return p.room===RealmCosmos.ROOM&&RealmCosmos.walkable(p.x,p.z)&&p.z<-15}'))
         page.set_viewport_size({'width':720,'height':740});page.keyboard.press('m');render()
         check('compact reduced-motion atlas retains both routes and explicit return',state()['settings']['reducedMotion'] and page.locator('[data-rpg="cosmos-return"]').is_visible() and page.locator('[data-rpg="cosmos-walk"][data-id="rootcut"]').count()==1)
+        check('compact Cosmos map is readable rather than icon-sized',page.locator('#cosmos-map').bounding_box()['height']>200 and page.locator('#cosmos-map').bounding_box()['width']>250)
         page.screenshot(path=str(OUT/'COMPACT_ATLAS.png'));close();page.set_viewport_size({'width':1280,'height':800})
         def library():
             close();page.locator('[data-rpg="open"][data-id="more"]').click();page.locator('#rpg-content [data-rpg="open"][data-id="characters"]').click()

@@ -85,3 +85,11 @@ Pending human check: keep the original character, create a fresh one, play an eq
 No new human observation was collected during Dom's autonomous window. The actual browser UI now exposes optional Hunter/Magician previews and explicit confirmation; the real riverbank practice and survey exercise their distinct techniques with both cameras. Automated command journeys and recordings use labelled fresh or previously command-earned worlds, never Dom's personal saves.
 
 Pending questions for Dom: did you understand which choice you were making and that it was once per character; did marking an arrow hit or casting a spell make ordinary combat more engaging; could you resume the other character without worrying about lost progress? The two paths still share the same starter kit and weapon models. One technique is an experiment in chosen identity, not evidence of a complete class fantasy. Enjoyment, balance, camera comfort and pacing remain unverified by a human.
+
+## 2026-09-20: connected Earth outing — engineering evidence
+
+Automated blade, bow/Magician and strongest-weapon/Hunter journeys take the orchard route, complete repeated surveys, reload partial/unpaid state, collect normal rewards and craft/fit gear without campaign advancement. These are command-earned fixtures with accelerated simulation, no planted defeats or inventory grants. Browser checks exercise actual controls, scene returns, camera switching, reload and separate characters. The separate normal-time RTX browser recording shows one bow survey and its payout.
+
+Visual inspection found and corrected oversized background hills obstructing the arrival view, a floating water surface and foreign Cosmos labels. This does not establish founder approval of art, pacing or camera comfort.
+
+Pending Dom: fresh and returning outing. Did you know where to go and how to get home? Did the fights feel better? Did the reward make you want another outing? Does the longer orchard route add a place worth visiting, or delay the work? No human answers have been inferred.
