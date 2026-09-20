@@ -94,3 +94,5 @@ Fetched newer PR #16 at 67b4eeb before editing. Its Hearthwater geography is the
 The initial kit gates the combat worksite. Accept work and claim rewards at Oren. Earth carries only a temporary orchard return nested under the saved valley checkpoint. Browser crossings bind identity/revision/source/destination, save first and roll back construction failures. The original workshop route retains its exit. Reload, character switching and death clear the temporary route while keeping earned objectives. No new durable schema, reward, class, enemy or XP rule.
 
 Visual inspection caught scenery overlapping the footbridge, a raised watercourse surface and Cosmos labels leaking into foreign scenes. These presentation fixes are included with regression coverage for scene labels and scenery clearance. Human enjoyment remains unmeasured. Road After Rain E2 stays separate.
+
+The shared RPG SVG icon selector also shrank three route maps to 28px. Use a scoped map exception with natural aspect ratio; browser assertions now measure usable map dimensions. This is presentation only and adds no route or save authority.

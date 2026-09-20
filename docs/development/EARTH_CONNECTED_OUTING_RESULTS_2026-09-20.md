@@ -26,10 +26,10 @@ python tools/verify.py --output verification/earth-connected-source-final
 python tests/earth_browser.py
 ```
 
-Final generated files are identical: **675,202 bytes**, SHA-256 **6eb1ffca780025e1f168a9e9ea164c3ad01fc09add3587622a2f79268bdad008**.
+Final generated files are identical: **675,364 bytes**, SHA-256 **673109f3de73cfea4b49f7bad7373d7315f34f9cbdee4baca69f1f4005f2bc3d**.
 
 - Final source run: **39** JS syntax checks; **516/516** Node rule tests, zero failures/skips; Python **26 passed, 1 skipped** (Windows symlink capability), 27 discovered; **15** command journeys passed.
-- Earlier full local run passed the first eleven browser suites. Its Earth extension then failed on a test locator that retained `legacy` after the character store correctly migrated it to `character-1`. The corrected final Earth suite passed **87/87**, zero browser errors. An earlier iteration also used the wrong enemy-ID delimiter in the test harness; it was corrected to the existing `run:objective` format.
+- Earlier full local run passed the first eleven browser suites. Its Earth extension then failed on a test locator that retained `legacy` after the character store correctly migrated it to `character-1`. The corrected final Earth suite passed **89/89**, zero browser errors. An earlier iteration also used the wrong enemy-ID delimiter in the test harness; it was corrected to the existing `run:objective` format.
 - Presentation fixes landed during local verification. Therefore the early aggregate run is preflight evidence, not a claim that every local suite ran against the final HTML. The independent final-head clone runs the complete verifier again; its actual result belongs in the PR receipt.
 - New rule cases cover both exit origins, stale/replayed/failed transitions, live encounter preservation on failed return, partial Oren bundles, completed unpaid surveys, class cooldown, companion arrival, death recovery, scenery clearance and label scene ownership. Existing campaign, music/export, housing, camera, reflection, cutaway, persistence, class and roster suites stay in the verifier.
 
@@ -47,10 +47,14 @@ The returning bow Hunter browser fixture independently completes a survey throug
 
 ## Actual gameplay footage
 
-See [media and provenance](../evidence/earth-outing/README.md). The final **73.12-second**, silent, **1280×720** recording uses normal RAF, real browser movement/combat/UI and a command-earned fresh bow/Magician source. It takes both scene crossings, switches cameras, finishes a survey and collects once at Oren. Chrome153.0.8010.52 reports ANGLE/NVIDIA RTX3080/D3D11. The video is encoded at25fps; that is not a rendering-performance claim. No GPU frame-time benchmark was run for this change.
+See [media and provenance](../evidence/earth-outing/README.md). The final **86.88-second**, silent, **1280×720** recording uses normal RAF, real browser movement/combat/UI and a command-earned fresh bow/Magician source. It takes both scene crossings, switches cameras, finishes a survey and collects once at Oren. Chrome153.0.8010.52 reports ANGLE/NVIDIA RTX3080/D3D11. The video is encoded at25fps; that is not a rendering-performance claim. No GPU frame-time benchmark was run for this change.
 
 ## Limits and next acceptance
 
 The road adds a choice of route to existing work; it does not add the Road After Rain story, a new reward economy or a full seamless province. Bellweather still has its established chapter prerequisites. Reload returns to the disclosed valley checkpoint. The route's names, pacing, art and convenience remain prototype choices pending Dom's fresh/returning playtest.
 
 Next: ask whether he knew where to go, whether combat felt better and whether the reward motivated another outing. Then scope Earth E2's Road After Rain with explicit objectives, costs, finite rewards, claims and migration. No main merge, tag, public deployment, new engine, paid generation or background schedule was performed.
+
+## Map readability follow-up
+
+Screenshot review found that the shared RPG icon rule forced the Earth, riverbank and Cosmos map SVGs to 28px. A scoped map rule restores full width and natural height. The new bounding-box regression failed before the fix. Final targeted browser runs pass Earth89/89 and Cosmos75/75. The final media receipt names the refreshed recording. The earlier implementation commit remains in history; the PR records the follow-up head and repeats clean-clone verification there.

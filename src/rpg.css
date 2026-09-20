@@ -10,6 +10,8 @@ body.rpg-edition{--gold:#dbc18c;--ink:#111d21;--pane:rgba(15,29,33,.94);--muted:
 #rpg-hud button:focus-visible,#rpg-window :focus-visible{outline:2px solid #f4dba8;outline-offset:3px}
 #rpg-hud button:disabled,#rpg-window button:disabled{cursor:default;opacity:.45;border-color:var(--line)}
 #rpg-hud svg,#rpg-window svg{width:28px;height:28px;flex-shrink:0}
+#rpg-window :is(#earth-map,#cosmos-map,#starter-map){display:block;width:100%;height:auto}
+#rpg-window :is(#earth-map,#cosmos-map,#starter-map) text{stroke:none}
 .rpg-nav{position:absolute;top:23px;left:260px;display:flex;gap:7px;pointer-events:auto}
 .rpg-nav button{border-radius:6px;display:flex;align-items:center;gap:9px;padding:8px 12px;background:var(--pane)!important;font-size:12px}
 .rpg-nav svg{width:19px!important;height:19px!important;color:var(--gold)}

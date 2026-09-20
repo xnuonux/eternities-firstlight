@@ -198,6 +198,10 @@
       "passed": true
     },
     {
+      "name": "riverbank route map is readable rather than icon-sized",
+      "passed": true
+    },
+    {
       "name": "production walking reaches -7,3",
       "passed": true
     },
@@ -338,6 +342,10 @@
       "passed": true
     },
     {
+      "name": "compact Earth map has useful map dimensions",
+      "passed": true
+    },
+    {
       "name": "compact map exposes a reachable worksite route",
       "passed": true
     },
@@ -353,5 +361,5 @@
   "errors": [],
   "browser_errors": [],
   "software_quality": "low",
-  "html_sha256": "6eb1ffca780025e1f168a9e9ea164c3ad01fc09add3587622a2f79268bdad008"
+  "html_sha256": "673109f3de73cfea4b49f7bad7373d7315f34f9cbdee4baca69f1f4005f2bc3d"
 }

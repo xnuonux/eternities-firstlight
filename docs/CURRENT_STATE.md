@@ -16,7 +16,7 @@ Launch `PLAY_FIRSTLIGHT_WINDOWS.cmd` or `python tools/play_local.py` on the stab
 
 **V** switches third person/diorama; **R** resets the current view. Remembered framing, manual movement, target selection, stationary attacks, skills and companion commands remain. Orchard and ridge routes join beneath Bellweather's landmark; the actual chapter entrance retains its Sunward prerequisites.
 
-The scene has a readable worksite spur, split orchard wall and packed load. Distant hills sit outside the walking/camera corridor; the watercourse lies below its banks. Cosmos invitation labels no longer appear in Earth, the riverbank or interiors.
+The scene has a readable worksite spur, split orchard wall and packed load. Distant hills sit outside the walking/camera corridor; the watercourse lies below its banks. Cosmos invitation labels no longer appear in Earth, the riverbank or interiors. Earth, riverbank and Cosmos atlases now retain readable map dimensions instead of inheriting the shared icon size.
 
 ## Save and ownership contract
 

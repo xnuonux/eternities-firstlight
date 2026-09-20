@@ -90,7 +90,8 @@ try:
       page.locator('[data-rpg="earth-confirm"]').click();render();check('orchard confirmation enters existing combat scene',scene()=='riverbank')
     worksite()
     check('riverbank uses the equipped bow and original run identity',ev('()=>Realm.diagnostics.adventure.weapon.style')=='bow' and state()['adventure']['pursuit']['active']['id']==run)
-    page.keyboard.press('m');render();check('riverbank map names the orchard return', 'orchard lane' in page.locator('#rpg-content').inner_text());close()
+    page.keyboard.press('m');render();check('riverbank map names the orchard return', 'orchard lane' in page.locator('#rpg-content').inner_text())
+    check('riverbank route map is readable rather than icon-sized',page.locator('#starter-map').bounding_box()['height']>200);close()
     def command(kind,payload=None):
       result=ev('([t,p])=>Realm.test.adventure("earth-browser-"+t+"-"+performance.now(),t,p)',[kind,payload or {}]);check('accepted '+kind,result.get('ok'));return result
     def fight(objective):
@@ -127,6 +128,7 @@ try:
     library();page.locator(f'[data-rpg="chars-switch"][data-id="{restored_id}"]').click();page.wait_for_function('(id)=>Realm.diagnostics.characters.active===id',arg=restored_id);render()
     check('returning character restores valley checkpoint and its own progress',scene()=='valley' and state()['player']==original['player'] and all(state()['adventure'][k]==original['adventure'][k] for k in ['pursuit','starter','equipment','arsenal','classPath','xp']))
     close();enter();page.set_viewport_size({'width':640,'height':720});render();page.keyboard.press('m');render()
+    check('compact Earth map has useful map dimensions',page.locator('#earth-map').bounding_box()['height']>200 and page.locator('#earth-map').bounding_box()['width']>250)
     check('compact map exposes a reachable worksite route',page.locator('[data-rpg="earth-walk"][data-id="riverbank"]').is_visible());page.screenshot(path=str(OUT/'COMPACT_ROUTES.png'))
     page.locator('[data-rpg="earth-walk"][data-id="riverbank"]').click();ev('()=>{for(let i=0;i<3500&&Realm.test.path.length;i++)Realm.test.step(.05);Realm.test.render()}');page.keyboard.press('e');render()
     check('map walks to the real worksite marker in compact view',page.locator('[data-rpg="earth-confirm"]').count()==1 and scene()=='earth-hearthwater-approach')

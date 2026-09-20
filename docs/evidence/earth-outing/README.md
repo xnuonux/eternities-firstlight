@@ -1,6 +1,6 @@
 # Hearthwater outing evidence
 
-- `HEARTHWATER_OUTING.mp4`: actual 73.12-second Chrome session, normal real-time RAF, automated accepted movement/combat/UI, silent. Both cameras, orchard/worksite crossings and one real survey payout.
+- `HEARTHWATER_OUTING.mp4`: actual 86.88-second Chrome session, normal real-time RAF, automated accepted movement/combat/UI, silent. Both cameras, orchard/worksite crossings and one real survey payout.
 - `VIDEO_ACTIONS.json`: all31 scripted actions. No accelerated ticks or gameplay state grants during recording.
 - `BOW_SURVEY_SOURCE.json` and `SOURCE_RECEIPT.json`: command-earned initial-kit/crafted-bow/Magician source with one accepted survey; generated through `tests/pursuit_journey.cjs --earth --bow`. Source generation uses accelerated ticks. This is labelled automation data, not a personal save.
 - `MEDIA_RECEIPT.json`: exact source/build/video hashes, browser, detected renderer, dimensions, encoding and final claim/balances. The encoded25fps and HUD frame counter are not a qualified GPU benchmark.
