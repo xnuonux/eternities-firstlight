@@ -96,3 +96,15 @@ The initial kit gates the combat worksite. Accept work and claim rewards at Oren
 Visual inspection caught scenery overlapping the footbridge, a raised watercourse surface and Cosmos labels leaking into foreign scenes. These presentation fixes are included with regression coverage for scene labels and scenery clearance. Human enjoyment remains unmeasured. Road After Rain E2 stays separate.
 
 The shared RPG SVG icon selector also shrank three route maps to 28px. Use a scoped map exception with natural aspect ratio; browser assertions now measure usable map dimensions. This is presentation only and adds no route or save authority.
+
+## 2026-09-20: Road After Rain, Earth E2
+
+Dom explicitly asked to keep developing after the connected-outing delivery. The base is PR #17 at26dff6e. Recovered Earth E2 design informs a bounded noncombat local story, with three compatible approaches and one payment. Its names and tuning remain provisional.
+
+Ansel’s root/gate tasks cost two explicitly chosen timber at repair; Darric’s designated public blocks and Fenna’s ridge/shelter/direction survey cost no personal inventory. Each task has a stable ID and prerequisites. Read/decline do nothing. After any completed route, the player chooses the delivery route at Fenna, walks to the west-road handoff, confirms arrival and claims once. Offscreen delivery is disclosed; no timed or simulated escort is claimed. Other improvements can be finished without another reward.
+
+The fixed payment is one existing-survey equivalent:3 copper,4 sunmarks,2 fibre,0 XP. It supports existing blade/bow crafting; it is not universally useful to fully fitted veterans and creates no extra power tier. Capacity refusal preserves the entire unpaid entitlement and all resources. Quest blocks never become fake gear/material ownership. No auto-equip.
+
+Adventure8 requires earthStory1; schema7 migration adds empty, unaccepted state only. Current missing/malformed/future state is rejected. Existing world keys, stored XP, choices, upgrades, notes, housing and music remain. Character libraries own this state as part of the complete local world. Geography checkpoints remain transient and save/reload resumes at the lake.
+
+The handoff/table sits outside gated Bellweather, so a fresh kit character can finish without chapter advancement. Nella’s actual inn/gathering is deferred until its route and story gates are separately designed. The mill mechanism is a finite visible repair, not fluid simulation; quarry packing and detour markers are persistent presentation and do not close the player’s existing paths. No new enemies or encounter rewards. No main merge or deployment.

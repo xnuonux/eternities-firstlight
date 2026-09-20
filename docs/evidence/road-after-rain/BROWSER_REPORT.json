@@ -1,0 +1,576 @@
+{
+  "method": "Road After Rain production UI with command-earned worlds and isolated storage.\nAccelerated walking and setup verify rules/controls, not human pacing or enjoyment.\n",
+  "checks": [
+    {
+      "name": "browser loaded exact current build",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 0,23",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 0,10",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 7,5",
+      "passed": true
+    },
+    {
+      "name": "fresh-blade-detour contract declares all routes, cost, reward and escort method",
+      "passed": true
+    },
+    {
+      "name": "fresh-blade-detour inspection grants no hidden progress",
+      "passed": true
+    },
+    {
+      "name": "dialog consumes camera shortcut",
+      "passed": true
+    },
+    {
+      "name": "fresh-blade-detour explicit accept preserves inventory",
+      "passed": true
+    },
+    {
+      "name": "reload preserves story and unpaid entitlement at valley checkpoint",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 0,23",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 0,10",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 7,5",
+      "passed": true
+    },
+    {
+      "name": "task navigation uses real path to detour-ridge",
+      "passed": true
+    },
+    {
+      "name": "ridge prompt favors available scouting over a blocked repair",
+      "passed": true
+    },
+    {
+      "name": "accepted local interaction completes detour-ridge",
+      "passed": true
+    },
+    {
+      "name": "camera switch retains detour-ridge",
+      "passed": true
+    },
+    {
+      "name": "reload preserves story and unpaid entitlement at valley checkpoint",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 0,23",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 0,10",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 7,5",
+      "passed": true
+    },
+    {
+      "name": "task navigation uses real path to detour-shelter",
+      "passed": true
+    },
+    {
+      "name": "accepted local interaction completes detour-shelter",
+      "passed": true
+    },
+    {
+      "name": "camera switch retains detour-shelter",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 7,5",
+      "passed": true
+    },
+    {
+      "name": "task navigation uses real path to detour-mark",
+      "passed": true
+    },
+    {
+      "name": "accepted local interaction completes detour-mark",
+      "passed": true
+    },
+    {
+      "name": "camera switch retains detour-mark",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 7,5",
+      "passed": true
+    },
+    {
+      "name": "only completed route can be dispatched",
+      "passed": true
+    },
+    {
+      "name": "explicit dispatch keeps payment unpaid",
+      "passed": true
+    },
+    {
+      "name": "reload preserves story and unpaid entitlement at valley checkpoint",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 0,23",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 0,10",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 0,-43",
+      "passed": true
+    },
+    {
+      "name": "arrival is visible before payment",
+      "passed": true
+    },
+    {
+      "name": "reload preserves story and unpaid entitlement at valley checkpoint",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 0,23",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 0,10",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 0,-43",
+      "passed": true
+    },
+    {
+      "name": "fresh-blade-detour one exact payment",
+      "passed": true
+    },
+    {
+      "name": "fresh-blade-detour only declared timber cost",
+      "passed": true
+    },
+    {
+      "name": "fresh-blade-detour gear and prior systems unchanged",
+      "passed": true
+    },
+    {
+      "name": "fresh-blade-detour changed request cannot repay",
+      "passed": true
+    },
+    {
+      "name": "reload preserves story and unpaid entitlement at valley checkpoint",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 0,23",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 0,10",
+      "passed": true
+    },
+    {
+      "name": "fresh-blade-detour paid story survives reload",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 0,23",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 0,10",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 7,5",
+      "passed": true
+    },
+    {
+      "name": "fresh-bow-quarry contract declares all routes, cost, reward and escort method",
+      "passed": true
+    },
+    {
+      "name": "fresh-bow-quarry inspection grants no hidden progress",
+      "passed": true
+    },
+    {
+      "name": "fresh-bow-quarry explicit accept preserves inventory",
+      "passed": true
+    },
+    {
+      "name": "reload preserves story and unpaid entitlement at valley checkpoint",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 0,23",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 0,10",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 7,5",
+      "passed": true
+    },
+    {
+      "name": "task navigation uses real path to quarry-reserve",
+      "passed": true
+    },
+    {
+      "name": "accepted local interaction completes quarry-reserve",
+      "passed": true
+    },
+    {
+      "name": "camera switch retains quarry-reserve",
+      "passed": true
+    },
+    {
+      "name": "reload preserves story and unpaid entitlement at valley checkpoint",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 0,23",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 0,10",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 7,5",
+      "passed": true
+    },
+    {
+      "name": "task navigation uses real path to quarry-grade",
+      "passed": true
+    },
+    {
+      "name": "accepted local interaction completes quarry-grade",
+      "passed": true
+    },
+    {
+      "name": "camera switch retains quarry-grade",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 7,5",
+      "passed": true
+    },
+    {
+      "name": "only completed route can be dispatched",
+      "passed": true
+    },
+    {
+      "name": "explicit dispatch keeps payment unpaid",
+      "passed": true
+    },
+    {
+      "name": "reload preserves story and unpaid entitlement at valley checkpoint",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 0,23",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 0,10",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 0,-43",
+      "passed": true
+    },
+    {
+      "name": "arrival is visible before payment",
+      "passed": true
+    },
+    {
+      "name": "reload preserves story and unpaid entitlement at valley checkpoint",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 0,23",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 0,10",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 0,-43",
+      "passed": true
+    },
+    {
+      "name": "fresh-bow-quarry one exact payment",
+      "passed": true
+    },
+    {
+      "name": "fresh-bow-quarry only declared timber cost",
+      "passed": true
+    },
+    {
+      "name": "fresh-bow-quarry gear and prior systems unchanged",
+      "passed": true
+    },
+    {
+      "name": "fresh-bow-quarry changed request cannot repay",
+      "passed": true
+    },
+    {
+      "name": "reload preserves story and unpaid entitlement at valley checkpoint",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 0,23",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 0,10",
+      "passed": true
+    },
+    {
+      "name": "fresh-bow-quarry paid story survives reload",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 0,23",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 0,10",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 7,5",
+      "passed": true
+    },
+    {
+      "name": "veteran-mill contract declares all routes, cost, reward and escort method",
+      "passed": true
+    },
+    {
+      "name": "veteran-mill inspection grants no hidden progress",
+      "passed": true
+    },
+    {
+      "name": "veteran-mill explicit accept preserves inventory",
+      "passed": true
+    },
+    {
+      "name": "reload preserves story and unpaid entitlement at valley checkpoint",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 0,23",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 0,10",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 7,5",
+      "passed": true
+    },
+    {
+      "name": "task navigation uses real path to mill-root",
+      "passed": true
+    },
+    {
+      "name": "accepted local interaction completes mill-root",
+      "passed": true
+    },
+    {
+      "name": "camera switch retains mill-root",
+      "passed": true
+    },
+    {
+      "name": "reload preserves story and unpaid entitlement at valley checkpoint",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 0,23",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 0,10",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 7,5",
+      "passed": true
+    },
+    {
+      "name": "task navigation uses real path to mill-gate",
+      "passed": true
+    },
+    {
+      "name": "accepted local interaction completes mill-gate",
+      "passed": true
+    },
+    {
+      "name": "camera switch retains mill-gate",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 7,5",
+      "passed": true
+    },
+    {
+      "name": "only completed route can be dispatched",
+      "passed": true
+    },
+    {
+      "name": "explicit dispatch keeps payment unpaid",
+      "passed": true
+    },
+    {
+      "name": "reload preserves story and unpaid entitlement at valley checkpoint",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 0,23",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 0,10",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 0,-43",
+      "passed": true
+    },
+    {
+      "name": "arrival is visible before payment",
+      "passed": true
+    },
+    {
+      "name": "reload preserves story and unpaid entitlement at valley checkpoint",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 0,23",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 0,10",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 0,-43",
+      "passed": true
+    },
+    {
+      "name": "veteran-mill one exact payment",
+      "passed": true
+    },
+    {
+      "name": "veteran-mill only declared timber cost",
+      "passed": true
+    },
+    {
+      "name": "veteran-mill gear and prior systems unchanged",
+      "passed": true
+    },
+    {
+      "name": "veteran-mill changed request cannot repay",
+      "passed": true
+    },
+    {
+      "name": "reload preserves story and unpaid entitlement at valley checkpoint",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 0,23",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 0,10",
+      "passed": true
+    },
+    {
+      "name": "veteran-mill paid story survives reload",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 0,23",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 0,10",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 0,-43",
+      "passed": true
+    },
+    {
+      "name": "capacity-blocked UI preserves all inventory and unpaid story",
+      "passed": true
+    },
+    {
+      "name": "capacity refusal explains how to retry",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 0,23",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 0,10",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 0,-43",
+      "passed": true
+    },
+    {
+      "name": "cleared capacity allows the same earned entitlement once",
+      "passed": true
+    },
+    {
+      "name": "new character inherits neither accepted work nor claimed reward",
+      "passed": true
+    },
+    {
+      "name": "returning character retains its own completed story",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 0,23",
+      "passed": true
+    },
+    {
+      "name": "walk reaches 0,10",
+      "passed": true
+    },
+    {
+      "name": "compact story actions have no horizontal overflow",
+      "passed": true
+    },
+    {
+      "name": "no runtime errors",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "browser_errors": [],
+  "html_sha256": "1e120649179245d10c3fe1a551c88549a53cfbcd020bf2aa71b111b7dcb298b1"
+}

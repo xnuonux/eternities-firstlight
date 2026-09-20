@@ -46,7 +46,34 @@ function terrain(a,rnd){
 }
 function sign(a,x,z,textColor=col.gold){const b=h(x,z);a.box(x,b+.85,z,.16,1.7,.16,col.wood,{cameraSolid:false});a.box(x,b+1.55,z,2.3,.75,.12,0x826c4b,{cameraSolid:false});a.add('octa',x,b+1.57,z+.09,.12,.12,.04,textColor,{em:.15,cameraSolid:false});}
 function make(a){a.begin(C.ROOM);a.e.theme='earth';a.e.isInterior=false;a.e.noWater=false;a.e.ambientOverride=.78;const rnd=G.RealmCore.rng(18092026);terrain(a,rnd);for(const [x,z]of [[0,16],[-8,3],[-13,4],[7,2],[13,-13],[12,-26],[-12,-23],[0,-43]])sign(a,x,z);a.commit();}
-function draw(out,sim,t,a){if(sim.room!==C.ROOM)return;const p=sim.state.player;if(!sim.state.settings?.reducedMotion){for(let i=0;i<5;i++){let q=t*.13+i*1.7,x=-4+Math.sin(q)*5,z=-30+Math.cos(q*.7)*4,b=h(x,z);out.box.push({p:[x,b+5+Math.sin(q*1.8)*.35,z],s:[.38,.045,.12],r:[0,q,.2],c:0x4c5f55});}}out.disc.push({p:[p.x,h(p.x,p.z)+.02,p.z],s:[.8,1,.8],c:0xd5bd83,rough:.8,em:.04});}
+function story(out,sim,t,a){
+ const s=sim.state.adventure.earthStory,quiet=sim.state.settings.reducedMotion,clock=quiet?0:t,done=id=>s.steps.includes(id);
+ const box=(x,y,z,w,ht,d,c,r)=>out.box.push({p:[x,y,z],s:[w,ht,d],c,r:r||[0,0,0],rough:.9,cameraSolid:false});
+ const round=(x,y,z,w,ht,d,c)=>out.round.push({p:[x,y,z],s:[w,ht,d],c,rough:.9});
+ // Residents stand beside supported paths. They never own progression or collision.
+ const fx=s.dispatch?2:8.8,fz=s.dispatch?-43:5;
+ a.person(out,fx,fz,-.6,'#bd8963',clock,false,'drover',false,h(fx,fz));
+ a.person(out,8.7,-6.6,-1.0,'#819b98',clock,false,'millwright',false,h(8.7,-6.6));
+ a.person(out,14.3,-26,-.8,'#989478',clock,false,'reeve',false,h(14.3,-26));
+ // The load changes place only after explicit dispatch; arrival dresses the shared table.
+ const cx=s.dispatch?-3:9.3,cz=s.dispatch?-43:7,b=h(cx,cz);
+ box(cx,b+.63,cz,1.7,.18,2.5,col.wood);for(const x of [-.98,.98])for(const z of [-.78,.78])round(cx+x,b+.48,cz+z,.18,.65,.65,0x514436);
+ for(const x of [-.8,.8])box(cx+x,b+.99,cz,.12,.55,2.45,0x9a7851);
+ for(let i=0;i<4;i++)round(cx+(i%2?-.38:.38),b+1.02,cz+Math.floor(i/2)*.68-.48,.68,.68,.6,0xc3b795);
+ box(cx,b+1.23,cz-.86,1.35,.25,.38,0x7a6748);for(let i=0;i<5;i++)round(cx-.48+i*.23,b+1.42,cz-.86,.21,.20,.20,0xb9694b);
+ // Small headrace machinery remains on the bank; it does not open collision through the pond.
+ const gy=h(5.2,-6);for(const z of [-5.5,-6.5])box(5.2,gy+.8,z,.18,1.6,.18,col.wood);
+ box(5.2,gy+(done('mill-gate')?1.25:.55),-6,.16,.85,.9,done('mill-gate')?0xc0a174:0x70634f);
+ box(5.2,gy+1.65,-6,.25,.16,1.4,col.wood);
+ if(!done('mill-root')){box(5.15,gy+.2,-4.5,.28,.25,1.9,0x5a503d,[0,.5,.25]);box(5.55,gy+.23,-4.4,.8,.14,.18,0x5a503d,[0,-.5,0]);}
+ if(done('mill-gate'))box(5.2,gy+.75,-6,.2,1.1,.16,0xcaa877,[.55,0,0]);
+ // Reserved blocks disappear only after collection; road packing then remains visible.
+ if(!done('quarry-reserve'))for(let i=0;i<3;i++){const x=10.8+i*.62,z=-27;box(x,h(x,z)+.2,z,.55,.4,.6,0xaba185);box(x,h(x,z)+.42,z,.4,.03,.10,0xdac386);}
+ if(done('quarry-grade'))for(let i=0;i<12;i++){const x=13.1+(i%3)*.63,z=-14.4+Math.floor(i/3)*.65;box(x,h(x,z)+.055,z,.6,.1,.58,0xb6ab91);}
+ if(done('detour-mark'))for(const [x,z]of [[11.4,-13],[-10.1,-22],[2,-35]]){const y=h(x,z);box(x,y+.6,z,.09,1.2,.09,col.wood);box(x+.25,y+1.08,z,.62,.3,.07,0xc4aa69);}
+ if(s.arrived){const x=3.8,z=-45,y=h(x,z);box(x,y+.85,z,2.6,.15,1.4,0x9e8155);for(const dx of [-1,1])box(x+dx,y+.43,z,.14,.85,1.1,col.wood);box(x,y+.96,z,1.25,.04,.85,0xcdbd99);for(let i=0;i<3;i++)round(x-.5+i*.5,y+1.05,z,.34,.12,.34,0xbc985b);}
+}
+function draw(out,sim,t,a){if(sim.room!==C.ROOM)return;story(out,sim,t,a);const p=sim.state.player;if(!sim.state.settings?.reducedMotion){for(let i=0;i<5;i++){let q=t*.13+i*1.7,x=-4+Math.sin(q)*5,z=-30+Math.cos(q*.7)*4,b=h(x,z);out.box.push({p:[x,b+5+Math.sin(q*1.8)*.35,z],s:[.38,.045,.12],r:[0,q,.2],c:0x4c5f55});}}out.disc.push({p:[p.x,h(p.x,p.z)+.02,p.z],s:[.8,1,.8],c:0xd5bd83,rough:.8,em:.04});}
 function gate(a){const b=1.3;a.box(C.GATE.x,b+.75,C.GATE.z,.18,1.5,.18,col.wood,{cameraSolid:false});a.box(C.GATE.x,b+1.35,C.GATE.z,1.9,.55,.12,0x826c4b,{cameraSolid:false});a.add('octa',C.GATE.x,b+1.38,C.GATE.z+.08,.12,.12,.04,col.gold,{em:.15,cameraSolid:false});}
 G.RealmEarthArt={make,draw,gate};
 })(globalThis);

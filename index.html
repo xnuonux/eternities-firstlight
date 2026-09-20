@@ -165,6 +165,7 @@ body.rpg-edition{--gold:#dbc18c;--ink:#111d21;--pane:rgba(15,29,33,.94);--muted:
 .earth-atlas section:last-child{display:grid;gap:8px}
 body.in-earth .place-title #place-kicker{color:#d7bd83}
 @media(max-width:760px){.earth-atlas{grid-template-columns:1fr}.earth-atlas svg{max-height:42vh}#earth-home{bottom:215px;right:12px}}
+.rain-reading{max-width:100%;line-height:1.55}.rain-reward,.rain-next{padding:16px;border:1px solid #dfc08280;border-radius:12px;background:#dfc08212;margin:18px 0}.rain-reward strong{color:#ffe0a0}.rain-next button{margin:5px 5px 5px 0}.rain-routes{display:grid;gap:20px;margin-top:20px}.rain-route{border:1px solid #bac6b540;border-radius:14px;overflow:hidden}.rain-route header{padding:14px 18px;background:#8fa88718}.rain-route h3,.rain-task h4{margin:4px 0 8px}.rain-route ol{list-style:none;margin:0;padding:0}.rain-task{padding:16px 18px;border-top:1px solid #bac6b528;display:grid;gap:8px}.rain-task p{margin:6px 0}.rain-task.is-done{background:#829b7110}.rain-complete{color:#b8c8a6;font-size:.85rem}.earth-invitation+.earth-atlas{margin-top:18px}
 </style></head>
 <body><canvas tabindex="0" id="world" aria-label="Interactive isometric Firstlight Valley. Click to walk, drag to orbit, scroll to zoom. Use the Explore menu for accessible destinations."></canvas><canvas tabindex="0" id="map-fallback" aria-label="Interactive map fallback. Click to move or choose a destination in Explore."></canvas><div id="labels" aria-hidden="true"></div>
 <div id="hud"><header class="brand"><span class="seal" aria-hidden="true">Σ</span><div><div class="wordmark">ETERNITIES</div><div class="tagline">A window into another life.</div></div></header>
@@ -177,7 +178,79 @@ body.in-earth .place-title #place-kicker{color:#d7bd83}
 <aside id="drawer" aria-label="Realm panel" inert><div id="drawer-head"><h2 id="panel-title">Explore</h2><button id="close-panel" aria-label="Close panel">✕</button></div><div id="drawer-body"></div></aside><div id="toast" role="status" aria-live="polite"></div><div id="fallback-banner" role="status">3D is unavailable. Explore the same local world using this map.</div></div>
 <button id="photo-exit">Return to the realm · H</button><input id="import-file" class="file-input" type="file" accept=".json,application/json" aria-label="Import a saved local world"><div id="loading"><span class="seal">Σ</span><div>Opening Firstlight Valley</div><p>EVERYTHING IS ALREADY HERE.</p><noscript>This interactive world needs JavaScript enabled in a full browser. Download the HTML and open it in Chrome, Edge, Firefox or Safari rather than a document preview.</noscript></div>
 <dialog id="story-dialog" aria-labelledby="story-title"><div class="story-sigil">✦</div><small id="story-speaker">THE ENVOY</small><h2 id="story-title"></h2><p id="story-body"></p><div id="story-buttons"></div><button id="story-close">Continue another time</button></dialog><dialog id="fallen-dialog" aria-labelledby="fallen-title"><span class="story-sigil">✧</span><h2 id="fallen-title">The light has not left you.</h2><p>Your belongings and home are safe. Defeated encounters and excavated paths remain.</p><button id="revive-button">Return to the spring</button></dialog><dialog id="studio-dialog" aria-labelledby="studio-title"><div class="studio-heading"><div><span class="overline">ETERNITIES · THE LISTENING ROOM</span><h2 id="studio-title">A little music, made here.</h2></div><button id="studio-close" aria-label="Close music workspace">✕</button></div><div id="studio-body"></div></dialog><input id="score-import" class="file-input" type="file" accept=".json,application/json" aria-label="Import an editable score">
-<script>/* Earth E1 — Hearthwater Vale's first connected approach.
+<script>/* Road After Rain. Finite local story authority, separate from repeated surveys. */
+(function(G){'use strict';
+const VERSION=1,ID='road-after-rain',GIVER=Object.freeze({x:7,z:5}),DESTINATION=Object.freeze({x:0,z:-43});
+const REWARD=Object.freeze({ore:3,coins:4,fiber:2});
+const STEPS=Object.freeze([
+ {id:'mill-root',name:'Clear the lodged root',who:'Ansel · millwright',x:6,z:-3,needs:[],wood:0,text:'The root caught the old gate. Pull it free from the bank; the water stays below the road.'},
+ {id:'mill-gate',name:'Repair and test the headrace gate',who:'Ansel · millwright',x:7,z:-7,needs:['mill-root'],wood:2,text:'Fit a timber brace and test the gate. Ansel can keep the mill track dry for Fenna’s load.'},
+ {id:'quarry-reserve',name:'Collect Darric’s designated repair blocks',who:'Darric · public works',x:12,z:-26,needs:[],wood:0,text:'These three marked blocks are reserved for the public road. Darric releases them for this repair; the rest of the quarry stock stays here.'},
+ {id:'quarry-grade',name:'Pack the washed cart grade',who:'Darric · public works',x:14,z:-13,needs:['quarry-reserve'],wood:0,text:'Set the designated blocks into the ruts. This gives Fenna a firm cart road while the mill remains a separate job.'},
+ {id:'detour-ridge',name:'Survey the ridge sightline',who:'Fenna’s route notes',x:13,z:-13,needs:[],wood:0,text:'The upper bend is clear. Note the turn toward the north common; the low watercourse stays off the route.'},
+ {id:'detour-shelter',name:'Check the dry shelter',who:'Fenna’s route notes',x:-12,z:-23,needs:[],wood:0,text:'The shelter has a sound roof and a dry resting place. Fenna can stop here with the load.'},
+ {id:'detour-mark',name:'Mark the north delivery lane',who:'Fenna’s route notes',x:0,z:-35,needs:['detour-ridge','detour-shelter'],wood:0,text:'With sightline and shelter checked, set the direction markers. Fenna can take this surveyed way around the wet grade.'}
+].map(s=>Object.freeze({...s,needs:Object.freeze(s.needs)})));
+const ROUTES=Object.freeze([
+ {id:'mill',name:'Ansel’s mill track',steps:['mill-root','mill-gate'],cost:'2 timber from your inventory',detail:'Clear the root, then brace and test the gate. Restore the small mill mechanism.'},
+ {id:'quarry',name:'Darric’s cart road',steps:['quarry-reserve','quarry-grade'],cost:'No personal materials',detail:'Collect designated public blocks at the quarry and pack the washed grade.'},
+ {id:'detour',name:'Fenna’s surveyed detour',steps:['detour-ridge','detour-shelter','detour-mark'],cost:'No personal materials',detail:'Check the ridge and shelter, then mark the north lane. A quiet route without repairs.'}
+].map(r=>Object.freeze({...r,steps:Object.freeze(r.steps)})));
+function fresh(){return{version:VERSION,accepted:false,steps:[],dispatch:null,arrived:false,claimed:false};}
+function status(a){return a.earthStory;}
+function ready(s,id){const route=ROUTES.find(r=>r.id===id);return !!route&&route.steps.every(id=>s.steps.includes(id));}
+function validate(raw,a){
+ const bad=m=>{throw Error('Invalid Road After Rain: '+m);};
+ if(!raw||typeof raw!=='object'||Array.isArray(raw)||raw.version!==VERSION)bad('version');
+ for(const k of ['accepted','arrived','claimed'])if(typeof raw[k]!=='boolean')bad(k);
+ if(!Array.isArray(raw.steps)||raw.steps.length>STEPS.length||new Set(raw.steps).size!==raw.steps.length||raw.steps.some(id=>!STEPS.some(s=>s.id===id)))bad('objectives');
+ for(const id of raw.steps)if(STEPS.find(s=>s.id===id).needs.some(n=>!raw.steps.includes(n)))bad('objective prerequisites');
+ if(raw.dispatch!==null&&!ready(raw,raw.dispatch))bad('dispatched route');
+ if(raw.arrived&&!raw.dispatch||raw.claimed&&!raw.arrived||!raw.accepted&&(raw.steps.length||raw.dispatch||raw.arrived||raw.claimed)||raw.accepted&&!a.started)bad('story prerequisites');
+ return{version:VERSION,accepted:raw.accepted,steps:raw.steps.slice(),dispatch:raw.dispatch,arrived:raw.arrived,claimed:raw.claimed};
+}
+function at(sim,p){const E=G.RealmEarth;return sim.room===E.ROOM&&E.walkable(sim.state.player.x,sim.state.player.z)&&E.near(sim,p,2.3)&&E.line(sim.state.player,p);}
+function handle(sim,type,p={}){
+ if(!type.startsWith('earth-story-'))return null;
+ const a=sim.state.adventure,s=status(a),inv=sim.state.sandbox.inventory,fail=error=>({ok:false,error}),yes=text=>({ok:true,text});
+ if(!a.started)return fail('First collect Oren’s expedition kit.');
+ if(type==='earth-story-accept'){
+  if(s.accepted||!at(sim,GIVER))return fail('Speak with Fenna at the mill-road fork. This delivery is accepted once.');
+  s.accepted=true;sim.event('quest','Road After Rain accepted: prepare one route, send Fenna’s flour and apples, and meet her on the west road. One payment: 3 copper, 4 sunmarks, 2 fibre; no XP.');
+  return yes('Choose a route on the Hearthwater map. No materials were spent.');
+ }
+ if(!s.accepted)return fail('Read and accept Fenna’s delivery before doing this work.');
+ if(type==='earth-story-step'){
+  const step=STEPS.find(d=>d.id===p.id);
+  if(!step||s.steps.includes(step.id)||!at(sim,step))return fail('Approach an unfinished Road After Rain task.');
+  if(step.needs.some(id=>!s.steps.includes(id)))return fail('Finish the listed preparation first.');
+  if(inv.wood<step.wood)return fail('The gate needs 2 timber. Nothing was spent; the quarry and surveyed detour need no personal materials.');
+  inv.wood-=step.wood;s.steps.push(step.id);sim.event('quest',step.name+' completed'+(step.wood?' for 2 timber.':'.'));
+  return yes(step.name+' complete. '+(s.dispatch?'The delivery and its single payment stay unchanged.':'Return to Fenna when your route is ready.'));
+ }
+ if(type==='earth-story-dispatch'){
+  if(s.dispatch||!at(sim,GIVER)||!ready(s,p.route))return fail('Return to Fenna and choose a completed route. The load travels once.');
+  s.dispatch=p.route;sim.event('quest','Fenna takes '+ROUTES.find(r=>r.id===p.route).name+' with the flour and apples. Meet her at the Bellweather west-road handoff.');
+  return yes('Fenna takes the route offscreen. Meet her on the west road; there is no timed escort.');
+ }
+ if(type==='earth-story-arrive'){
+  if(!s.dispatch||s.arrived||!at(sim,DESTINATION))return fail('Meet Fenna and the dispatched load at the west-road handoff.');
+  s.arrived=true;sim.event('quest','Fenna’s flour and apples reached the west road. The delivery is complete; its payment is still unclaimed.');
+  return yes('“Dry flour, sound apples. That will do nicely.” · Fenna. Claim your payment when ready.');
+ }
+ if(type==='earth-story-claim'){
+  if(!s.arrived||s.claimed||!at(sim,DESTINATION))return fail('Collect this delivery’s once-only payment from Fenna on the west road.');
+  if(a.ore>9999-REWARD.ore||a.coins>9999-REWARD.coins||inv.fiber>G.RealmSandbox.MAX-REWARD.fiber)return fail('Make room for all 3 copper, 4 sunmarks and 2 fibre. Your completed delivery stays unpaid.');
+  a.ore+=REWARD.ore;a.coins+=REWARD.coins;inv.fiber+=REWARD.fiber;s.claimed=true;
+  sim.event('quest','Road After Rain paid once: 3 copper, 4 sunmarks, 2 fibre. The public improvements and delivered load remain.');
+  return yes('Delivery paid. Your equipment and campaign are unchanged. The work you did stays visible.');
+ }
+ return fail('Unknown Road After Rain action.');
+}
+function next(a){const s=status(a);if(!s.accepted)return{id:'fenna',name:'Read Fenna’s delivery request',...GIVER};if(s.dispatch)return s.claimed?null:{id:'delivery',name:s.arrived?'Collect Fenna’s payment':'Meet Fenna on the west road',...DESTINATION};if(ROUTES.some(r=>ready(s,r.id)))return{id:'fenna',name:'Return to Fenna · choose a ready route',...GIVER};return null;}
+const api={VERSION,ID,GIVER,DESTINATION,REWARD,STEPS,ROUTES,fresh,status,ready,validate,at,handle,next};G.RealmEarthStory=api;if(typeof module!=='undefined')module.exports=api;
+})(globalThis);
+</script><script>/* Earth E1 — Hearthwater Vale's first connected approach.
  * Physical ground and transient travel only: no quest completion, payout, class,
  * economy, Bellweather unlock, or durable region state. */
 (function(G){'use strict';
@@ -208,7 +281,7 @@ const POINTS=Object.freeze([
  {id:'bridge',name:'Hearthwater footbridge',x:0,z:16,kind:'route'},
  {id:'orchard',name:'Orchard lane',x:-8,z:3,kind:'view'},
  {id:'riverbank',name:'Riverbank worksite',...RIVER_GATE,kind:'worksite'},
- {id:'millfork',name:'Mill road fork',x:7,z:2,kind:'route'},
+ {id:'millfork',name:'Mill road fork · Fenna',x:7,z:2,kind:'route'},
  {id:'ridge',name:'Ridge road',x:13,z:-13,kind:'view'},
  {id:'quarry',name:'Quarry approach',x:12,z:-26,kind:'route'},
  {id:'shelter',name:'Old ridge shelter',x:-12,z:-23,kind:'rest'},
@@ -1246,8 +1319,9 @@ const CROSS=G.RealmCrossing||(typeof require==='function'?require('./crossing.js
 const Q=G.RealmStarter||(typeof require==='function'?require('./starter.js'):null);
 const H=G.RealmPursuit||(typeof require==='function'?require('./pursuit.js'):null);
 const K=G.RealmClasses||(typeof require==='function'?require('./classes.js'):null);
+const ES=G.RealmEarthStory||(typeof require==='function'?require('./earth-story.js'):null);
 const FORGE=Object.freeze({ore:4,coins:4});
-const VERSION=7,CELL=2,LIMIT=7,REACH=2.8,dist=(a,b)=>Math.hypot(a.x-b.x,a.z-b.z);
+const VERSION=8,CELL=2,LIMIT=7,REACH=2.8,dist=(a,b)=>Math.hypot(a.x-b.x,a.z-b.z);
 const MINE={id:'mine',name:'The Rootbound Underways',x:0,z:-48},ENTRANCE={x:0,z:11,yaw:Math.PI},FOX={x:-8,z:2},RELIC={x:9,z:-10};
 const GEAR=Object.freeze({
  ...AR.GEAR,...CROSS.GEAR,...Q.GEAR,
@@ -1274,7 +1348,7 @@ function mineral(x,z){return!initialFloor(x,z)&&((x*13+z*7)%5===0||x<=-3&&z<=-2)
 function wallHP(x,z){return mineral(x,z)?3:2;}
 function walkable(s,x,z,r=.31){if(!s||!Number.isFinite(x)||!Number.isFinite(z))return false;for(const[dx,dz]of[[-r,-r],[-r,r],[r,-r],[r,r],[0,0]]){const c=cellAt(x+dx,z+dz);if(!isFloor(s,c.gx,c.gz))return false;}return true;}
 function line(s,a,b){const n=Math.ceil(dist(a,b)/.18);for(let i=0;i<=n;i++){const t=n?i/n:0;if(!walkable(s,a.x+(b.x-a.x)*t,a.z+(b.z-a.z)*t,.04))return false;}return true;}
-function fresh(){return{version:VERSION,classPath:K.fresh(),pursuit:H.fresh(),starter:Q.fresh(),crossing:CROSS.fresh(),beacon:B.fresh(),arsenal:AR.fresh(),road:ROAD.fresh(),elapsed:0,revision:0,started:false,dug:[],chips:[],defeated:[],drops:[],ore:0,coins:0,xp:0,hp:100,stamina:100,tonics:3,equipment:{weapon:null,armor:null,charm:null},owned:[],companion:{bonded:false,name:'Briar',mode:'follow'},relic:false,angelSeen:false,reward:null,deaths:0,receipts:[]};}
+function fresh(){return{version:VERSION,earthStory:ES.fresh(),classPath:K.fresh(),pursuit:H.fresh(),starter:Q.fresh(),crossing:CROSS.fresh(),beacon:B.fresh(),arsenal:AR.fresh(),road:ROAD.fresh(),elapsed:0,revision:0,started:false,dug:[],chips:[],defeated:[],drops:[],ore:0,coins:0,xp:0,hp:100,stamina:100,tonics:3,equipment:{weapon:null,armor:null,charm:null},owned:[],companion:{bonded:false,name:'Briar',mode:'follow'},relic:false,angelSeen:false,reward:null,deaths:0,receipts:[]};}
 function level(s){return 1+[30,80,150,260].filter(n=>s.xp>=n).length;}
 function stats(s){let l=level(s),o={level:l,attack:4+(l-1)*2,defense:0,maxHP:100+(l-1)*10};for(const id of Object.values(s.equipment)){const g=GEAR[id];if(g){o.attack+=g.attack+Q.bonus(s,id)+H.bonus(s,id);o.defense+=g.defense;o.maxHP+=g.hp;}}const gem=AR.activeGem(s);if(gem){o.attack+=gem.attack;o.maxHP+=gem.hp;}return o;}
 function validate(raw){
@@ -1284,6 +1358,7 @@ function validate(raw){
  if(raw&&raw.version===4)raw={...raw,version:5,crossing:CROSS.fresh()};
  if(raw&&raw.version===5)raw={...raw,version:6,pursuit:H.fresh(),starter:Q.fresh()};
  if(raw&&raw.version===6)raw={...raw,version:7,classPath:K.fresh()};
+ if(raw&&raw.version===7)raw={...raw,version:8,earthStory:ES.fresh()};
  const no=f=>{throw Error('Invalid adventure: '+f);};if(!raw||raw.version!==VERSION)no('version');const s=fresh();
  for(const k of['elapsed','hp','stamina']){if(!Number.isFinite(raw[k])||raw[k]<0||raw[k]>1e9)no(k);s[k]=raw[k];}
  for(const k of['revision','ore','coins','xp','tonics','deaths']){if(!Number.isSafeInteger(raw[k])||raw[k]<0||raw[k]>(k==='revision'?1e9:9999))no(k);s[k]=raw[k];}
@@ -1301,6 +1376,7 @@ function validate(raw){
  if(s.relic&&!s.defeated.includes('hart')||s.angelSeen&&!s.relic||s.reward&&(!s.angelSeen||!s.owned.includes(s.reward)))no('story prerequisites');
  if(!s.started&&(s.defeated.length||s.dug.length||s.companion.bonded||s.relic||s.owned.length))no('unstarted progression');
  s.classPath=K.validate(raw.classPath,s);
+ s.earthStory=ES.validate(raw.earthStory,s);
  s.starter=Q.validate(raw.starter,s);
  s.pursuit=H.validate(raw.pursuit,s);
  s.arsenal=AR.validate(raw.arsenal,s);
@@ -1402,7 +1478,7 @@ function command(sim,id,type,payload={}){
   if(sim.room!=='road'||dist(p,ROAD.BEACON)>3||s.road.beaconLit||!ROAD.ENEMIES.every(e=>s.defeated.includes(e.id)))return fail('Clear the three road encounters and approach the northern beacon.');s.road.beaconLit=true;awardXP(sim,20);sim.event('quest','The Sunward Beacon is alight. Return home after helping Tessa.');result=yes('The beacon answers. A light is visible through the trees.');break;
  case'road-report':
   if(!surfaceNear(sim,{x:0,z:3},4)||!s.road.beaconLit||!s.road.cartRepaired||s.road.reported)return fail('Repair the cart, light the beacon, then return to the envoy at the spring.');s.road.reported=true;if(!s.owned.includes('wayfarer_band'))s.owned.push('wayfarer_band');awardXP(sim,20);sim.event('quest','You brought the road’s light home. The envoy gave you the Band of the returning light.');result=yes('Chapter II complete · A wayfarer’s band and a light at the Commons.');break;
- default:result=K.handle(sim,type,payload)||H.handle(sim,type,payload)||Q.handle(sim,type,payload)||CROSS.handle(sim,type,payload)||T.handle(sim,type,payload)||B.handle(sim,type,payload)||AR.handle(sim,type,payload);if(!result)return fail('Unknown adventure command.');if(!result.ok)return result;
+ default:result=ES.handle(sim,type,payload)||K.handle(sim,type,payload)||H.handle(sim,type,payload)||Q.handle(sim,type,payload)||CROSS.handle(sim,type,payload)||T.handle(sim,type,payload)||B.handle(sim,type,payload)||AR.handle(sim,type,payload);if(!result)return fail('Unknown adventure command.');if(!result.ok)return result;
  }
  s.revision++;s.receipts.push({id,fp,ok:true});if(s.receipts.length>100)s.receipts.shift();return result;
 }
@@ -2894,7 +2970,7 @@ class RPGUI{
   $('#rpg-close').onclick=()=>this.close();d.addEventListener('cancel',e=>{e.preventDefault();this.close();});
   const click=e=>{const b=e.target.closest('[data-rpg]');if(b)this.action(b);};d.addEventListener('click',click);hud.addEventListener('click',click);
   d.addEventListener('input',e=>{if(e.target.id==='bag-search'){this.search=e.target.value;this.paintBag();}});
-  $('#tracked-open').onclick=()=>this.open(this.quest==='project'?'pursuit':'journal');$('#beacon-menu').onclick=()=>{if(B.runtime(this.sim).phase==='assault')this.run('beacon-repair');else this.open('beacon');};$('#target-clear').onclick=()=>this.run('target-clear');$('#health-orb').onclick=()=>this.open('equipment');
+  $('#tracked-open').onclick=()=>this.open(this.sim.room===G.RealmEarth.ROOM&&this.state.earthStory.accepted?'earth-story':this.quest==='project'?'pursuit':'journal');$('#beacon-menu').onclick=()=>{if(B.runtime(this.sim).phase==='assault')this.run('beacon-repair');else this.open('beacon');};$('#target-clear').onclick=()=>this.run('target-clear');$('#health-orb').onclick=()=>this.open('equipment');
   for(const el of hud.querySelectorAll('[data-skill]'))el.onclick=()=>this.skill(el.dataset.skill);
   this.crossing=new G.RealmCrossingUI.CrossingUI(this);this.starter=new G.RealmStarterUI.StarterUI(this);this.pursuit=new G.RealmPursuitUI.PursuitUI(this);this.characters=new G.RealmCharactersUI.CharactersUI(this);this.classes=new G.RealmClassesUI.ClassesUI(this);this.cosmos=new G.RealmCosmosUI.CosmosUI(this);this.earth=new G.RealmEarthUI.EarthUI(this);if(this.state.starter.accepted&&!this.state.starter.reward)this.quest='starter';
  }
@@ -3638,9 +3714,70 @@ function terrain(a,rnd){
 }
 function sign(a,x,z,textColor=col.gold){const b=h(x,z);a.box(x,b+.85,z,.16,1.7,.16,col.wood,{cameraSolid:false});a.box(x,b+1.55,z,2.3,.75,.12,0x826c4b,{cameraSolid:false});a.add('octa',x,b+1.57,z+.09,.12,.12,.04,textColor,{em:.15,cameraSolid:false});}
 function make(a){a.begin(C.ROOM);a.e.theme='earth';a.e.isInterior=false;a.e.noWater=false;a.e.ambientOverride=.78;const rnd=G.RealmCore.rng(18092026);terrain(a,rnd);for(const [x,z]of [[0,16],[-8,3],[-13,4],[7,2],[13,-13],[12,-26],[-12,-23],[0,-43]])sign(a,x,z);a.commit();}
-function draw(out,sim,t,a){if(sim.room!==C.ROOM)return;const p=sim.state.player;if(!sim.state.settings?.reducedMotion){for(let i=0;i<5;i++){let q=t*.13+i*1.7,x=-4+Math.sin(q)*5,z=-30+Math.cos(q*.7)*4,b=h(x,z);out.box.push({p:[x,b+5+Math.sin(q*1.8)*.35,z],s:[.38,.045,.12],r:[0,q,.2],c:0x4c5f55});}}out.disc.push({p:[p.x,h(p.x,p.z)+.02,p.z],s:[.8,1,.8],c:0xd5bd83,rough:.8,em:.04});}
+function story(out,sim,t,a){
+ const s=sim.state.adventure.earthStory,quiet=sim.state.settings.reducedMotion,clock=quiet?0:t,done=id=>s.steps.includes(id);
+ const box=(x,y,z,w,ht,d,c,r)=>out.box.push({p:[x,y,z],s:[w,ht,d],c,r:r||[0,0,0],rough:.9,cameraSolid:false});
+ const round=(x,y,z,w,ht,d,c)=>out.round.push({p:[x,y,z],s:[w,ht,d],c,rough:.9});
+ // Residents stand beside supported paths. They never own progression or collision.
+ const fx=s.dispatch?2:8.8,fz=s.dispatch?-43:5;
+ a.person(out,fx,fz,-.6,'#bd8963',clock,false,'drover',false,h(fx,fz));
+ a.person(out,8.7,-6.6,-1.0,'#819b98',clock,false,'millwright',false,h(8.7,-6.6));
+ a.person(out,14.3,-26,-.8,'#989478',clock,false,'reeve',false,h(14.3,-26));
+ // The load changes place only after explicit dispatch; arrival dresses the shared table.
+ const cx=s.dispatch?-3:9.3,cz=s.dispatch?-43:7,b=h(cx,cz);
+ box(cx,b+.63,cz,1.7,.18,2.5,col.wood);for(const x of [-.98,.98])for(const z of [-.78,.78])round(cx+x,b+.48,cz+z,.18,.65,.65,0x514436);
+ for(const x of [-.8,.8])box(cx+x,b+.99,cz,.12,.55,2.45,0x9a7851);
+ for(let i=0;i<4;i++)round(cx+(i%2?-.38:.38),b+1.02,cz+Math.floor(i/2)*.68-.48,.68,.68,.6,0xc3b795);
+ box(cx,b+1.23,cz-.86,1.35,.25,.38,0x7a6748);for(let i=0;i<5;i++)round(cx-.48+i*.23,b+1.42,cz-.86,.21,.20,.20,0xb9694b);
+ // Small headrace machinery remains on the bank; it does not open collision through the pond.
+ const gy=h(5.2,-6);for(const z of [-5.5,-6.5])box(5.2,gy+.8,z,.18,1.6,.18,col.wood);
+ box(5.2,gy+(done('mill-gate')?1.25:.55),-6,.16,.85,.9,done('mill-gate')?0xc0a174:0x70634f);
+ box(5.2,gy+1.65,-6,.25,.16,1.4,col.wood);
+ if(!done('mill-root')){box(5.15,gy+.2,-4.5,.28,.25,1.9,0x5a503d,[0,.5,.25]);box(5.55,gy+.23,-4.4,.8,.14,.18,0x5a503d,[0,-.5,0]);}
+ if(done('mill-gate'))box(5.2,gy+.75,-6,.2,1.1,.16,0xcaa877,[.55,0,0]);
+ // Reserved blocks disappear only after collection; road packing then remains visible.
+ if(!done('quarry-reserve'))for(let i=0;i<3;i++){const x=10.8+i*.62,z=-27;box(x,h(x,z)+.2,z,.55,.4,.6,0xaba185);box(x,h(x,z)+.42,z,.4,.03,.10,0xdac386);}
+ if(done('quarry-grade'))for(let i=0;i<12;i++){const x=13.1+(i%3)*.63,z=-14.4+Math.floor(i/3)*.65;box(x,h(x,z)+.055,z,.6,.1,.58,0xb6ab91);}
+ if(done('detour-mark'))for(const [x,z]of [[11.4,-13],[-10.1,-22],[2,-35]]){const y=h(x,z);box(x,y+.6,z,.09,1.2,.09,col.wood);box(x+.25,y+1.08,z,.62,.3,.07,0xc4aa69);}
+ if(s.arrived){const x=3.8,z=-45,y=h(x,z);box(x,y+.85,z,2.6,.15,1.4,0x9e8155);for(const dx of [-1,1])box(x+dx,y+.43,z,.14,.85,1.1,col.wood);box(x,y+.96,z,1.25,.04,.85,0xcdbd99);for(let i=0;i<3;i++)round(x-.5+i*.5,y+1.05,z,.34,.12,.34,0xbc985b);}
+}
+function draw(out,sim,t,a){if(sim.room!==C.ROOM)return;story(out,sim,t,a);const p=sim.state.player;if(!sim.state.settings?.reducedMotion){for(let i=0;i<5;i++){let q=t*.13+i*1.7,x=-4+Math.sin(q)*5,z=-30+Math.cos(q*.7)*4,b=h(x,z);out.box.push({p:[x,b+5+Math.sin(q*1.8)*.35,z],s:[.38,.045,.12],r:[0,q,.2],c:0x4c5f55});}}out.disc.push({p:[p.x,h(p.x,p.z)+.02,p.z],s:[.8,1,.8],c:0xd5bd83,rough:.8,em:.04});}
 function gate(a){const b=1.3;a.box(C.GATE.x,b+.75,C.GATE.z,.18,1.5,.18,col.wood,{cameraSolid:false});a.box(C.GATE.x,b+1.35,C.GATE.z,1.9,.55,.12,0x826c4b,{cameraSolid:false});a.add('octa',C.GATE.x,b+1.38,C.GATE.z+.08,.12,.12,.04,col.gold,{em:.15,cameraSolid:false});}
 G.RealmEarthArt={make,draw,gate};
+})(globalThis);
+</script><script>/* A projection of the finite story rules; reading or walking never accepts work. */
+(function(G){'use strict';const S=G.RealmEarthStory,E=G.RealmEarth;
+const btn=(label,act,id='')=>'<button data-rpg="rain-'+act+'" data-id="'+id+'">'+label+'</button>';
+class EarthStoryUI{
+ constructor(rpg){this.rpg=rpg;}
+ get sim(){return this.rpg.sim;}get state(){return S.status(this.sim.state.adventure);}
+ local(){if(this.sim.room!==E.ROOM)return null;if(S.at(this.sim,S.GIVER))return{name:this.state.dispatch?'Fenna’s delivery board':'Fenna · Road After Rain'};if(!this.state.accepted)return null;if(S.at(this.sim,S.DESTINATION))return{name:'Fenna’s west-road handoff'};return S.STEPS.filter(p=>S.at(this.sim,p)).sort((a,b)=>Number(this.state.steps.includes(a.id))-Number(this.state.steps.includes(b.id))||Number(a.needs.some(id=>!this.state.steps.includes(id)))-Number(b.needs.some(id=>!this.state.steps.includes(id)))||Math.hypot(a.x-this.sim.state.player.x,a.z-this.sim.state.player.z)-Math.hypot(b.x-this.sim.state.player.x,b.z-this.sim.state.player.z))[0]||null;}
+ context(){const p=this.local();return p?'E · '+p.name:null;}
+ interact(){const local=this.local();if(!local)return false;this.rpg.open('earth-story');if(local.id)document.querySelector('[data-rain-task="'+local.id+'"]')?.scrollIntoView({block:'center'});return true;}
+ action(el){const act=el.dataset.rpg,id=el.dataset.id;if(!act?.startsWith('rain-'))return false;
+  if(act==='rain-open'){this.rpg.open('earth-story');return true;}
+  if(act==='rain-walk'){const p=id==='fenna'?S.GIVER:id==='delivery'?S.DESTINATION:S.STEPS.find(s=>s.id===id);if(p&&this.sim.room===E.ROOM){this.rpg.close();this.rpg.api.walkLocal(p.x,p.z);}return true;}
+  const type=act.slice(5);if(['accept','step','dispatch','arrive','claim'].includes(type))this.rpg.run('earth-story-'+type,type==='step'?{id}:type==='dispatch'?{route:id}:{});
+  return true;
+ }
+ invitation(){const s=this.state;return '<section class="earth-invitation"><small>LOCAL STORY · ONE DELIVERY</small><h3>Road After Rain</h3><p>'+(s.claimed?'Fenna’s load has arrived. Your public improvements remain.':s.accepted?'Ansel’s mill, Darric’s road, or Fenna’s detour. Your completed work is remembered.':'A flour-and-apples cart waits at the mill-road fork. Help it reach the west road by a route you prepare.')+'</p>'+btn(s.accepted?'Review delivery & remaining work':'Read Fenna’s request','open')+'</section>';}
+ task(step){const s=this.state,done=s.steps.includes(step.id),near=S.at(this.sim,step),ready=step.needs.every(id=>s.steps.includes(id));
+  return '<li data-rain-task="'+step.id+'" class="rain-task '+(done?'is-done':'')+'"><div><small>'+step.who+'</small><h4>'+(done?'✓ ':'')+step.name+'</h4><p>'+step.text+'</p>'+(step.wood?'<p><strong>Cost: 2 timber</strong> · you carry '+this.sim.state.sandbox.inventory.wood+'. Spent only when you choose the repair.</p>':'<p>No personal materials consumed.</p>')+(!ready?'<p class="earth-note">First: '+step.needs.filter(id=>!s.steps.includes(id)).map(id=>S.STEPS.find(d=>d.id===id).name).join(' and ')+'.</p>':'')+'</div>'+(!done?(near&&ready?btn(step.wood?'Spend 2 timber · repair & test':'Complete this task','step',step.id):btn('Walk to '+step.name.toLowerCase(),'walk',step.id)):'<span class="rain-complete">Work complete · persists on return</span>')+'</li>';
+ }
+ page(tab){if(tab!=='earth-story')return null;const s=this.state,a=this.sim.state.adventure,near=S.at(this.sim,S.GIVER),here=this.sim.room===E.ROOM;
+  let html='<article class="earth-reading rain-reading"><small>HEARTHWATER · ROAD AFTER RAIN</small><h2>'+(s.claimed?'A load brought safely through.':s.arrived?'Dry flour. Sound apples.':s.dispatch?'Meet Fenna on the west road.':'Three ways to get a cart through.')+'</h2><p class="earth-quote">“The gathering needs flour and apples, not another tale about why they never arrived.” — Fenna, drover</p><p>Ansel’s headrace gate is jammed. The cart grade has washed out. Darric can release designated stone, or you can survey a quiet detour. Prepare <strong>any one route</strong>, return to Fenna at the mill-road fork, then meet the delivery at the west-road handoff.</p><div class="rain-reward"><strong>One payment: 3 copper ore · 4 sunmarks · 2 fibre · 0 XP</strong><p>Materials for existing equipment projects, for blade or bow. No new power tier; fully fitted veterans may prefer to keep the materials. No item equips itself. Oren’s supplies and repeated surveys stay separate.</p></div><p class="earth-note">Quiet roads, no required fights or timed escort. The cart travels offscreen after you send it. No chapter advances. The Sunward Beacon and existing Bellweather prerequisites still govern entry into town. Reload resumes at the Firstlight lake with this work remembered.</p>';
+  if(!here)return{title:'Road After Rain',html:html+'<p>Enter Hearthwater and find Fenna at the mill-road fork to act on this request.</p></article>'};
+  if(!s.accepted){html+='<div class="earth-terms">'+S.ROUTES.map(r=>'<section><h3>'+r.name+'</h3><p>'+r.detail+'</p><strong>'+r.cost+'</strong></section>').join('')+'</div><p>Only the mill repair spends your timber, when explicitly chosen. You can finish other improvements later without another delivery payment.</p><div class="earth-actions">'+(!a.started?'<p>First collect the expedition kit from Oren in Firstlight.</p>':near?btn('Accept this delivery · no cost now','accept'):btn('Walk to Fenna · mill-road fork','walk','fenna'))+'<button data-rpg="open" data-id="atlas">Keep exploring · leave unaccepted</button></div>';}
+  else{
+   if(!s.dispatch){const ready=S.ROUTES.filter(r=>S.ready(s,r.id));html+='<section class="rain-next"><h3>'+(ready.length?'A route is ready. Return to Fenna.':'Prepare one route below.')+'</h3>'+(ready.length?(near?ready.map(r=>btn('Send the load by '+r.name,'dispatch',r.id)).join(''):btn('Walk back to Fenna','walk','fenna')):'<p>Choose the work you want to do. The alternatives can all be completed; none requires a fight.</p>')+'</section>';}
+   else{html+='<section class="rain-next"><h3>Delivery route: '+S.ROUTES.find(r=>r.id===s.dispatch).name+'</h3><p>'+(s.claimed?'“We have enough for the table now. Thank you.” The single payment has been collected.':s.arrived?'The delivered flour and apples are here. Your payment is waiting.':'Fenna takes your prepared route offscreen. Walk to the north handoff and check the load with her.')+'</p>'+(!s.claimed?(S.at(this.sim,S.DESTINATION)?btn(s.arrived?'Collect the once-only payment':'Meet Fenna · confirm the load arrived',s.arrived?'claim':'arrive'):btn('Walk to the west-road handoff','walk','delivery')):'')+'</section>';}
+   html+='<div class="rain-routes">'+S.ROUTES.map(r=>'<section class="rain-route"><header><small>'+r.cost+'</small><h3>'+r.name+(S.ready(s,r.id)?' · ready':'')+'</h3><p>'+r.detail+'</p></header><ol>'+r.steps.map(id=>this.task(S.STEPS.find(s=>s.id===id))).join('')+'</ol></section>').join('')+'</div>';
+  }
+  return{title:'Road After Rain · local delivery',html:html+'<div class="earth-actions"><button data-rpg="open" data-id="atlas">Hearthwater map</button><button data-rpg="earth-return">Return to Firstlight</button></div></article>'};
+ }
+ track(){if(!this.state.accepted)return false;const next=S.next(this.sim.state.adventure),s=this.state;document.querySelector('#tracked-chapter').textContent='EARTH · ROAD AFTER RAIN';document.querySelector('#tracked-title').textContent=next?.name||(s.claimed?'Delivery complete · work remembered':'Prepare a route for Fenna');document.querySelector('#tracked-detail').textContent=s.claimed?'One payment collected · other improvements remain optional':s.dispatch?'West-road handoff · north beneath the bell':'Mill repair · quarry road · surveyed detour';document.querySelector('#tracked-progress').textContent=s.steps.length+'/7 public tasks · M for routes · click to review';return true;}
+}
+G.RealmEarthStoryUI={EarthStoryUI};
 })(globalThis);
 </script><script>/* Earth E1 route UI. Geography only; no roadworks contract or new reward. */
 (function(G){'use strict';const N=G.RealmEarth,$=s=>document.querySelector(s);
@@ -3675,15 +3812,15 @@ WORDS.quarry.detail='The stacks belong to the quarry workers. Keep to the marked
 WORDS.shelter.detail='Stay as long as you like. The lake footbridge leads home; your saved return point remains on the Firstlight side.';
 WORDS.bellweather.detail='The road into Bellweather still requires the Sunward Beacon and its existing chapter prerequisites. This approach ends at the bell. Return by the orchard or ridge road.';
 class EarthUI{
- constructor(rpg){this.rpg=rpg;this.ticket=null;this.reading=null;const root=document.createElement('div');root.id='earth-labels';root.setAttribute('aria-hidden','true');$('#hud').append(root);
+ constructor(rpg){this.rpg=rpg;this.story=new G.RealmEarthStoryUI.EarthStoryUI(rpg);this.ticket=null;this.reading=null;const root=document.createElement('div');root.id='earth-labels';root.setAttribute('aria-hidden','true');$('#hud').append(root);
   const home=document.createElement('button');home.id='earth-home';home.hidden=true;home.textContent='Return to Firstlight';home.onclick=()=>this.returnHome();$('#rpg-hud').append(home);
  }
  get sim(){return this.rpg.sim;}
  reset(){N.cancel(this.ticket);this.ticket=null;this.reading=null;}
- context(){if(this.sim.room===N.ROOM){const p=N.POINTS.find(p=>N.near(this.sim,p,p.kind==='worksite'?2.4:2.8));return p?(p.kind==='return'?'E · Return to Firstlight':p.kind==='worksite'?'E · Riverbank worksite':WORDS[p.id]?'E · '+p.name:'E · Read the Hearthwater marker'):'M · Hearthwater routes';}return !this.sim.room&&N.near(this.sim,N.GATE)?'E · Hearthwater trail marker':null;}
- interact(){if(!this.context())return false;if(this.sim.room===N.ROOM){const p=N.POINTS.find(p=>N.near(this.sim,p,p.kind==='worksite'?2.4:2.8));if(p?.kind==='return'){this.returnHome();return true;}this.reset();this.reading=WORDS[p?.id]||p?.id==='riverbank'?p.id:null;this.rpg.open(this.reading?'earth':'atlas');}else{this.reset();this.rpg.open('earth');}return true;}
+ context(){const story=this.story.context();if(story)return story;if(this.sim.room===N.ROOM){const p=N.POINTS.find(p=>N.near(this.sim,p,p.kind==='worksite'?2.4:2.8));return p?(p.kind==='return'?'E · Return to Firstlight':p.kind==='worksite'?'E · Riverbank worksite':WORDS[p.id]?'E · '+p.name:'E · Read the Hearthwater marker'):'M · Hearthwater routes';}return !this.sim.room&&N.near(this.sim,N.GATE)?'E · Hearthwater trail marker':null;}
+ interact(){if(this.story.interact())return true;if(!this.context())return false;if(this.sim.room===N.ROOM){const p=N.POINTS.find(p=>N.near(this.sim,p,p.kind==='worksite'?2.4:2.8));if(p?.kind==='return'){this.returnHome();return true;}this.reset();this.reading=WORDS[p?.id]||p?.id==='riverbank'?p.id:null;this.rpg.open(this.reading?'earth':'atlas');}else{this.reset();this.rpg.open('earth');}return true;}
  returnHome(){const r=this.rpg.api.earthReturn();if(r.ok){this.rpg.close();this.reset();}else this.rpg.api.toast(r.error);}
- action(el){const act=el.dataset.rpg,id=el.dataset.id;
+ action(el){if(this.story.action(el))return true;const act=el.dataset.rpg,id=el.dataset.id;
   if(act==='earth-confirm'){const r=this.rpg.api.earthTravel(this.ticket);this.ticket=null;if(r.ok){this.rpg.close();this.rpg.api.toast(this.sim.room==='riverbank'?'Riverbank worksite · the southern path returns to the orchard lane.':'Hearthwater Vale · orchard lane west, ridge road east.');}else{this.rpg.api.toast(r.error);this.rpg.paint();}return true;}
   if(act==='earth-return'){this.returnHome();return true;}
   if(act==='earth-invitation'){this.reset();this.rpg.open('earth');return true;}
@@ -3697,15 +3834,17 @@ class EarthUI{
   return{title:'Riverbank worksite · orchard path',html:'<article class="earth-reading"><small>OFF THE ORCHARD LANE</small><h2>Bring something useful home.</h2><p class="earth-quote">Wheel tracks turn through the wall toward the river. Oren’s worksite is just beyond the bend.</p>'+work+'<div class="earth-terms"><section><h3>Before you cross</h3><p>The riverbank has hostile creatures. Your expedition kit is required. This sign accepts no work and grants no reward.</p></section><section><h3>Return by the same path</h3><p>The southern worksite exit returns here. From the orchard, return to Firstlight to find Oren. Saving and reopening resumes at the Firstlight lake, keeping your earned progress.</p></section></div><div class="earth-actions">'+(this.ticket?button('Save progress & enter the worksite','earth-confirm'):'<p><strong>First take the expedition kit from Oren at the village workshop.</strong></p>')+button('See Hearthwater routes','open','atlas')+'</div></article>'};
  }
  page(tab){
-  if(tab==='atlas'&&this.sim.room===N.ROOM)return{title:'Hearthwater Vale · routes & work',html:'<div class="earth-atlas"><section>'+mapSVG(this.sim)+'<p>Two physical approaches meet on the north road. The dark center is the mill watercourse and cannot be crossed here.</p></section><section><small>HEARTHWATER VALE</small><h2>Take a road. Bring something home.</h2><p>Orchard lane leads to the riverbank worksite. Accept supplies or a materials survey at Oren’s village workshop before you leave. The ridge road joins the orchard route beneath Bellweather’s bell.</p>'+N.POINTS.map((p,i)=>button('<b>'+String(i+1).padStart(2,'0')+'</b> '+esc(p.name),'earth-walk',p.id)).join('')+button('Return to the Firstlight lake','earth-return')+'<p class="earth-note">Hearthwater’s roads are quiet. The riverbank has hostile creatures. Return home to collect Oren’s rewards.</p></section></div>'};
+  const story=this.story.page(tab);if(story)return story;
+  if(tab==='atlas'&&this.sim.room===N.ROOM)return{title:'Hearthwater Vale · routes & work',html:this.story.invitation()+'<div class="earth-atlas"><section>'+mapSVG(this.sim)+'<p>Two physical approaches meet on the north road. The dark center is the mill watercourse and cannot be crossed here.</p></section><section><small>HEARTHWATER VALE</small><h2>Take a road. Bring something home.</h2><p>Orchard lane leads to the riverbank worksite. Accept supplies or a materials survey at Oren’s village workshop before you leave. The ridge road joins the orchard route beneath Bellweather’s bell.</p>'+N.POINTS.map((p,i)=>button('<b>'+String(i+1).padStart(2,'0')+'</b> '+esc(p.name),'earth-walk',p.id)).join('')+button('Return to the Firstlight lake','earth-return')+'<p class="earth-note">Hearthwater’s roads are quiet. The riverbank has hostile creatures. Return home to collect Oren’s rewards.</p></section></div>'};
   if(tab!=='earth')return null;
   if(this.sim.room===N.ROOM){if(this.reading==='riverbank')return this.worksite();const word=WORDS[this.reading]||WORDS.bridge;return{title:word.title,html:'<article class="earth-reading"><small>HEARTHWATER VALE</small><h2>'+word.title+'</h2><p class="earth-quote">'+word.text+'</p><p>'+word.detail+'</p><div class="earth-actions">'+button('See the whole approach','open','atlas')+button('Return to Firstlight','earth-return')+'</div></article>'};}
   const near=!this.sim.room&&N.near(this.sim,N.GATE);
   if(near&&!this.ticket){const r=N.preview(this.rpg.api.earthContext());if(r.ok)this.ticket=r.ticket;}
-  return{title:'Hearthwater Vale · trail marker',html:'<article class="earth-reading"><small>OPTIONAL EARTH JOURNEY</small><h2>Walk the country between places.</h2><p class="earth-quote">A stone footbridge crosses the lake edge. Orchard walls take the western grade. Quarry tracks climb east. Both roads meet beneath Bellweather’s distant bell.</p><div class="earth-terms"><section><h3>The roads ahead</h3><p>Follow the western orchard lane to the riverbank worksite and shelter. The quarry ridge climbs east. Both meet at Bellweather’s west-road boundary.</p></section><section><h3>Work along the way</h3><p>Accept Oren’s supplies or a materials survey in the village, then take your expedition kit to the orchard worksite sign. Oren pays when you return; walking this road adds no new payout. Bellweather still requires its Sunward chapter progress.</p></section><section><h3>Your way home</h3><p>Return is available from the start and anywhere on the route. Saving and reopening, or switching characters, resumes at this Firstlight lake checkpoint.</p></section></div><p><strong>Traveller:</strong> '+esc(this.sim.state.visitor.name)+' · <strong>Return:</strong> lake footbridge.</p><div class="earth-actions">'+(near&&this.ticket?button('Save checkpoint & enter Hearthwater','earth-confirm'):button('Walk to the lake trail marker','earth-walk','gate'))+'</div><p class="earth-note">V switches third person and your remembered diorama view. M shows local routes.</p></article>'};
+  return{title:'Hearthwater Vale · trail marker',html:'<article class="earth-reading"><small>OPTIONAL EARTH JOURNEY</small><h2>Walk the country between places.</h2><p class="earth-quote">A stone footbridge crosses the lake edge. Orchard walls take the western grade. Quarry tracks climb east. Both roads meet beneath Bellweather’s distant bell.</p><div class="earth-terms"><section><h3>The roads ahead</h3><p>Follow the western orchard lane to the riverbank worksite and shelter. The quarry ridge climbs east. Both meet at Bellweather’s west-road boundary.</p></section><section><h3>Work along the way</h3><p>Accept Oren’s supplies or a materials survey in the village, then take your expedition kit to the orchard worksite sign. Oren pays when you return; walking this road adds no new payout. Fenna has a separate, once-only delivery request at the mill-road fork. Bellweather still requires its Sunward chapter progress.</p></section><section><h3>Your way home</h3><p>Return is available from the start and anywhere on the route. Saving and reopening, or switching characters, resumes at this Firstlight lake checkpoint.</p></section></div><p><strong>Traveller:</strong> '+esc(this.sim.state.visitor.name)+' · <strong>Return:</strong> lake footbridge.</p><div class="earth-actions">'+(near&&this.ticket?button('Save checkpoint & enter Hearthwater','earth-confirm'):button('Walk to the lake trail marker','earth-walk','gate'))+'</div><p class="earth-note">V switches third person and your remembered diorama view. M shows local routes.</p></article>'};
  }
  tick(){const inside=this.sim.room===N.ROOM;$('#earth-home').hidden=!inside;document.body.classList.toggle('in-earth',inside);const root=$('#earth-labels');root.replaceChildren();
   if(inside){$('#tracked-chapter').textContent='EARTH · HEARTHWATER VALE';$('#tracked-title').textContent=this.sim.state.player.z<-36?'Bellweather road ahead':'Riverbank worksite · west orchard lane';$('#tracked-detail').textContent='Orchard lane west · quarry ridge east';$('#tracked-progress').textContent='M · local routes · Return to Firstlight for Oren';}
+  if(inside)this.story.track();
   if((this.sim.room&&!inside)||!this.sim.state.settings.labels||this.rpg.dialog.open)return;
   const points=inside?N.POINTS:[{...N.GATE,name:'Hearthwater Vale · trail marker'}],player=this.sim.state.player,shown=[];
   for(const p of points.map(p=>({...p,d:Math.hypot(p.x-player.x,p.z-player.z)})).sort((a,b)=>a.d-b.d)){
