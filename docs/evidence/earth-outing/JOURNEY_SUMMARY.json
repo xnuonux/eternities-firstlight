@@ -1,0 +1,170 @@
+[
+  {
+    "status": "passed",
+    "variant": "fresh-blade",
+    "earthRoute": true,
+    "classPath": null,
+    "commands": 80,
+    "positionEdits": 0,
+    "inventoryGrants": 0,
+    "plantedDefeats": 0,
+    "acceleratedTick": true,
+    "source": null,
+    "claimed": 5,
+    "beforeDamage": 16,
+    "afterDamage": 27,
+    "equipped": "copper_blade",
+    "stats": {
+      "level": 1,
+      "attack": 27,
+      "defense": 1,
+      "maxHP": 100
+    },
+    "xp": 0,
+    "economy": {
+      "initial": {
+        "ore": 0,
+        "coins": 0,
+        "fiber": 0,
+        "wood": 0,
+        "stone": 0,
+        "plank": 0
+      },
+      "end": {
+        "ore": 2,
+        "coins": 4,
+        "fiber": 4,
+        "wood": 0,
+        "stone": 0,
+        "plank": 0
+      },
+      "net": {
+        "ore": 2,
+        "coins": 4,
+        "fiber": 4,
+        "wood": 0,
+        "stone": 0,
+        "plank": 0
+      },
+      "surveys": {
+        "count": 5,
+        "ore": 15,
+        "coins": 20,
+        "fiber": 10
+      }
+    }
+  },
+  {
+    "status": "passed",
+    "variant": "fresh-bow",
+    "earthRoute": true,
+    "classPath": "magician",
+    "commands": 106,
+    "positionEdits": 0,
+    "inventoryGrants": 0,
+    "plantedDefeats": 0,
+    "acceleratedTick": true,
+    "source": null,
+    "claimed": 5,
+    "beforeDamage": 13,
+    "afterDamage": 25,
+    "equipped": "copper_bow",
+    "stats": {
+      "level": 1,
+      "attack": 25,
+      "defense": 1,
+      "maxHP": 100
+    },
+    "xp": 0,
+    "economy": {
+      "initial": {
+        "ore": 0,
+        "coins": 0,
+        "fiber": 0,
+        "wood": 0,
+        "stone": 0,
+        "plank": 0
+      },
+      "end": {
+        "ore": 2,
+        "coins": 2,
+        "fiber": 6,
+        "wood": 2,
+        "stone": 8,
+        "plank": 2
+      },
+      "net": {
+        "ore": 2,
+        "coins": 2,
+        "fiber": 6,
+        "wood": 2,
+        "stone": 8,
+        "plank": 2
+      },
+      "surveys": {
+        "count": 5,
+        "ore": 15,
+        "coins": 20,
+        "fiber": 10
+      }
+    }
+  },
+  {
+    "status": "passed",
+    "variant": "veteran",
+    "earthRoute": true,
+    "classPath": "hunter",
+    "commands": 53,
+    "positionEdits": 0,
+    "inventoryGrants": 0,
+    "plantedDefeats": 0,
+    "acceleratedTick": true,
+    "source": {
+      "path": "C:\\dev\\firstlight-artifacts\\cosmos-2026-09-15\\gameplay\\evidence10\\starter\\veteran\\03_TEMPER_EQUIPPED_RELOADED.json",
+      "sha256": "d8e8ae99251dd13c1bb022e9ef810086ab6a00a58f9754c968b44cc394f03dba"
+    },
+    "claimed": 3,
+    "beforeDamage": 44,
+    "afterDamage": 48,
+    "equipped": "dawn_edge",
+    "stats": {
+      "level": 5,
+      "attack": 48,
+      "defense": 13,
+      "maxHP": 200
+    },
+    "xp": 563,
+    "economy": {
+      "initial": {
+        "ore": 17,
+        "coins": 92,
+        "fiber": 0,
+        "wood": 2,
+        "stone": 0,
+        "plank": 0
+      },
+      "end": {
+        "ore": 17,
+        "coins": 92,
+        "fiber": 0,
+        "wood": 2,
+        "stone": 0,
+        "plank": 0
+      },
+      "net": {
+        "ore": 0,
+        "coins": 0,
+        "fiber": 0,
+        "wood": 0,
+        "stone": 0,
+        "plank": 0
+      },
+      "surveys": {
+        "count": 3,
+        "ore": 9,
+        "coins": 12,
+        "fiber": 6
+      }
+    }
+  }
+]

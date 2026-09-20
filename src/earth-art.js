@@ -5,7 +5,8 @@ const col={grass:0x74835c,meadow:0x89946a,stone:0x8f8a74,path:0xa79a78,wood:0x72
 const paths=[
  [[0,25],[0,17],[0,10],[-7,5],[-12,-3],[-14,-12],[-14,-22],[-10,-30],[0,-35],[0,-44]],
  [[0,10],[7,5],[13,-3],[14,-12],[14,-22],[11,-30],[0,-35],[0,-44]],
- [[-14,-22],[-12,-24]]
+ [[-14,-22],[-12,-24]],
+ [[-7,5],[-10,4],[-13,4]]
 ];
 function pathDistance(x,z){let best=Infinity;for(const ps of paths)for(let i=1;i<ps.length;i++){const u=ps[i-1],v=ps[i],dx=v[0]-u[0],dz=v[1]-u[1],d=dx*dx+dz*dz,t=d?Math.max(0,Math.min(1,((x-u[0])*dx+(z-u[1])*dz)/d)):0;best=Math.min(best,Math.hypot(x-u[0]-dx*t,z-u[1]-dz*t));}return best;}
 function paving(a,points,width=1.7){for(let i=1;i<points.length;i++){const u=points[i-1],v=points[i],d=Math.hypot(v[0]-u[0],v[1]-u[1]);for(let t=0;t<d;t+=.68){const f=t/d,x=u[0]+(v[0]-u[0])*f,z=u[1]+(v[1]-u[1])*f;if(C.walkable(x,z,.08))a.add('disc',x,h(x,z)+.025,z,width,1,width,col.path,{rough:1,cameraSolid:false,r:[Math.atan2(h(x,z-.1)-h(x,z+.1),.2),0,0]});}}}
@@ -16,12 +17,16 @@ function terrain(a,rnd){
  }
  for(const ps of paths)paving(a,ps);
  // Mill pond/watercourse is a visible reason the direct center is not walkable in E1.
- a.box(0,h(0,-15)-.12,-15,8.8,.12,19.7,col.water,{rough:.25,wet:1,cameraSolid:false,cutaway:false});
+ a.box(0,1.32,-12.5,8.8,.08,33,col.water,{rough:.25,wet:1,cameraSolid:false,cutaway:false});
  for(let i=0;i<9;i++){let z=-7-i*2.1;a.add('disc',Math.sin(i*.8)*1.2,h(0,z)-.04,z,.55,1,.55,0x6e8f69,{cameraSolid:false,rough:.8});}
  // Low stone walls make the orchard road legible without turning every fence into a collision maze.
- for(let z=6;z>-9;z-=1.15){a.box(-15.6,h(-15.6,z)+.28,z,.5,.56,1.02,col.stone,{cameraSolid:true});}
+ for(let z=6;z>-9;z-=1.15){if(z>2.7&&z<5.3)continue;a.box(-15.6,h(-15.6,z)+.28,z,.5,.56,1.02,col.stone,{cameraSolid:true});}
  // Orchard trees: solids are limited to the declared shed; trunks here are presentation-scale.
  for(let row=0;row<3;row++)for(let i=0;i<5;i++){let x=-12+row*3,z=5-i*2.6;if(pathDistance(x,z)<1.25)continue;let b=h(x,z);a.add('cylinder',x,b,z,.22,1.65,.22,col.wood,{cameraSolid:false});a.add('round',x,b+2,z,1.45,1.35,1.45,col.leaf,{cameraSolid:false,rough:1});for(let f=0;f<3;f++){let q=(i*3+f)*2.1;a.add('round',x+Math.sin(q)*.7,b+2.05+f*.1,z+Math.cos(q)*.7,.12,.12,.12,col.fruit,{cameraSolid:false});}}
+ // A worksite gateway: split wall, timber posts and a small packed load.
+ for(const z of [2.8,5.2]){const b=h(-14.7,z);a.box(-14.7,b+.85,z,.22,1.7,.22,col.wood,{cameraSolid:false});}
+ for(const z of [3.1,3.65])a.box(-14.5,h(-14.5,z)+.28,z,.7,.56,.46,col.wood,{cameraSolid:false});
+ a.box(-14.5,h(-14.5,3.4)+.6,3.4,.78,.12,1.12,0xb3a07b,{cameraSolid:false});
  // Orchard shed.
  {let x=-8,z=0,b=h(x,z);a.box(x,b+1.75,z,4.4,3.5,4.2,0xa99a79);a.add('roof',x,b+3.5,z,5,1.5,4.8,col.roof,{cameraSolid:true});a.box(x,b+1.2,z+2.12,1.3,2.4,.08,0x594b3a);}
  // Quarry stacks and worked stone.
@@ -37,10 +42,10 @@ function terrain(a,rnd){
  // Field dressing respects route clearance.
  for(let i=0;i<850;i++){let x=-18+rnd()*36,z=-49+rnd()*74;if(!C.walkable(x,z,.45)||pathDistance(x,z)<1.25)continue;let b=h(x,z),s=.07+rnd()*.11;a.add('leaf',x,b+.02,z,s,s*2.6,s,i%7===0?0xb3a56f:0x678150,{wind:1,rough:1,cameraSolid:false,r:[0,rnd()*TAU,0]});if(i%33===0)a.add('octa',x,b+.18,z,.10,.16,.10,[0xdfc78f,0xcaa6a1,0xd9d3a2][i%3],{cameraSolid:false});}
  // Distant wooded hills are scenery only.
- for(let i=0;i<26;i++){let a0=i/26*TAU,r=44+rnd()*22,x=Math.cos(a0)*r,z=-12+Math.sin(a0)*r*.55,b=1.0+rnd()*1.5;a.add('cone',x,-1.2,z,9+rnd()*11,8+rnd()*15,9+rnd()*11,i%3?0x60755d:0x75846b,{cameraSolid:false,cutaway:false,rough:1});if(i%2===0)a.add('round',x,b+5,z,7,4,7,0x647858,{cameraSolid:false,cutaway:false,rough:1});}
+ for(let i=0;i<26;i++){let a0=i/26*TAU,r=95+rnd()*22,x=Math.cos(a0)*r,z=-12+Math.sin(a0)*r*.8,b=1.0+rnd()*1.5;a.add('round',x,-1.2,z,14+rnd()*8,8+rnd()*10,14+rnd()*8,i%3?0x60755d:0x75846b,{cameraSolid:false,cutaway:false,rough:1});if(i%2===0)a.add('round',x,b+5,z,7,4,7,0x647858,{cameraSolid:false,cutaway:false,rough:1});}
 }
 function sign(a,x,z,textColor=col.gold){const b=h(x,z);a.box(x,b+.85,z,.16,1.7,.16,col.wood,{cameraSolid:false});a.box(x,b+1.55,z,2.3,.75,.12,0x826c4b,{cameraSolid:false});a.add('octa',x,b+1.57,z+.09,.12,.12,.04,textColor,{em:.15,cameraSolid:false});}
-function make(a){a.begin(C.ROOM);a.e.theme='earth';a.e.isInterior=false;a.e.noWater=false;a.e.ambientOverride=.78;const rnd=G.RealmCore.rng(18092026);terrain(a,rnd);for(const [x,z]of [[0,16],[-8,3],[7,2],[13,-13],[12,-26],[-12,-23],[0,-43]])sign(a,x,z);a.commit();}
+function make(a){a.begin(C.ROOM);a.e.theme='earth';a.e.isInterior=false;a.e.noWater=false;a.e.ambientOverride=.78;const rnd=G.RealmCore.rng(18092026);terrain(a,rnd);for(const [x,z]of [[0,16],[-8,3],[-13,4],[7,2],[13,-13],[12,-26],[-12,-23],[0,-43]])sign(a,x,z);a.commit();}
 function draw(out,sim,t,a){if(sim.room!==C.ROOM)return;const p=sim.state.player;if(!sim.state.settings?.reducedMotion){for(let i=0;i<5;i++){let q=t*.13+i*1.7,x=-4+Math.sin(q)*5,z=-30+Math.cos(q*.7)*4,b=h(x,z);out.box.push({p:[x,b+5+Math.sin(q*1.8)*.35,z],s:[.38,.045,.12],r:[0,q,.2],c:0x4c5f55});}}out.disc.push({p:[p.x,h(p.x,p.z)+.02,p.z],s:[.8,1,.8],c:0xd5bd83,rough:.8,em:.04});}
 function gate(a){const b=1.3;a.box(C.GATE.x,b+.75,C.GATE.z,.18,1.5,.18,col.wood,{cameraSolid:false});a.box(C.GATE.x,b+1.35,C.GATE.z,1.9,.55,.12,0x826c4b,{cameraSolid:false});a.add('octa',C.GATE.x,b+1.38,C.GATE.z+.08,.12,.12,.04,col.gold,{em:.15,cameraSolid:false});}
 G.RealmEarthArt={make,draw,gate};

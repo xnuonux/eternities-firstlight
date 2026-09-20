@@ -1,0 +1,357 @@
+{
+  "method": "Hearthwater E1 UI, physical routes, cameras and safe source-side persistence.\n\nThis suite uses only synthetic/current checked-in fixtures. It verifies geography and\nboundary integrity, not human pacing or performance qualification.\n",
+  "checks": [
+    {
+      "name": "exact generated build loads",
+      "passed": true
+    },
+    {
+      "name": "production walking reaches 0,27",
+      "passed": true
+    },
+    {
+      "name": "existing Lantern Pier rest interaction remains independent",
+      "passed": true
+    },
+    {
+      "name": "Earth invitation appears beside existing realm invitations",
+      "passed": true
+    },
+    {
+      "name": "remote terms explain work, gates and source-side return",
+      "passed": true
+    },
+    {
+      "name": "remote invitation cannot enter before physical arrival",
+      "passed": true
+    },
+    {
+      "name": "map invitation walks to lake rather than teleporting",
+      "passed": true
+    },
+    {
+      "name": "fresh visitor can enter with no class or campaign advancement",
+      "passed": true
+    },
+    {
+      "name": "Earth diagnostics report supported ground",
+      "passed": true
+    },
+    {
+      "name": "E1 introduces no enemies",
+      "passed": true
+    },
+    {
+      "name": "return is available immediately",
+      "passed": true
+    },
+    {
+      "name": "production walking reaches 0,10",
+      "passed": true
+    },
+    {
+      "name": "production walking reaches -13,4",
+      "passed": true
+    },
+    {
+      "name": "unassigned visitor sees worksite danger and kit requirement",
+      "passed": true
+    },
+    {
+      "name": "production walking reaches 0,24",
+      "passed": true
+    },
+    {
+      "name": "production walking reaches 0,10",
+      "passed": true
+    },
+    {
+      "name": "production walking reaches -8,3",
+      "passed": true
+    },
+    {
+      "name": "production walking reaches -14,-12",
+      "passed": true
+    },
+    {
+      "name": "production walking reaches -12,-23",
+      "passed": true
+    },
+    {
+      "name": "production walking reaches -10,-30",
+      "passed": true
+    },
+    {
+      "name": "production walking reaches 0,-35",
+      "passed": true
+    },
+    {
+      "name": "production walking reaches 0,-43",
+      "passed": true
+    },
+    {
+      "name": "north boundary explains that existing Bellweather gates remain authoritative",
+      "passed": true
+    },
+    {
+      "name": "diorama works on connected Earth ground",
+      "passed": true
+    },
+    {
+      "name": "production walking reaches 0,-35",
+      "passed": true
+    },
+    {
+      "name": "production walking reaches 12,-26",
+      "passed": true
+    },
+    {
+      "name": "production walking reaches 14,-12",
+      "passed": true
+    },
+    {
+      "name": "production walking reaches 7,2",
+      "passed": true
+    },
+    {
+      "name": "production walking reaches 0,10",
+      "passed": true
+    },
+    {
+      "name": "production walking reaches 0,24",
+      "passed": true
+    },
+    {
+      "name": "both approaches remain one continuous scene",
+      "passed": true
+    },
+    {
+      "name": "walking changed no durable adventure systems",
+      "passed": true
+    },
+    {
+      "name": "return restores exact lake checkpoint",
+      "passed": true
+    },
+    {
+      "name": "reload remains on acknowledged valley side",
+      "passed": true
+    },
+    {
+      "name": "production walking reaches 0,23",
+      "passed": true
+    },
+    {
+      "name": "physical trail marker opens explicit preview",
+      "passed": true
+    },
+    {
+      "name": "explicit input enters Hearthwater",
+      "passed": true
+    },
+    {
+      "name": "returning Hunter equipment and fittings remain unchanged",
+      "passed": true
+    },
+    {
+      "name": "returning history survives Earth round trip",
+      "passed": true
+    },
+    {
+      "name": "production walking reaches 11,9",
+      "passed": true
+    },
+    {
+      "name": "production walking reaches 0,23",
+      "passed": true
+    },
+    {
+      "name": "physical trail marker opens explicit preview",
+      "passed": true
+    },
+    {
+      "name": "explicit input enters Hearthwater",
+      "passed": true
+    },
+    {
+      "name": "production walking reaches 0,10",
+      "passed": true
+    },
+    {
+      "name": "production walking reaches -13,4",
+      "passed": true
+    },
+    {
+      "name": "orchard sign declares current objectives and exact survey reward",
+      "passed": true
+    },
+    {
+      "name": "orchard confirmation enters existing combat scene",
+      "passed": true
+    },
+    {
+      "name": "riverbank uses the equipped bow and original run identity",
+      "passed": true
+    },
+    {
+      "name": "riverbank map names the orchard return",
+      "passed": true
+    },
+    {
+      "name": "production walking reaches -7,3",
+      "passed": true
+    },
+    {
+      "name": "production bow combat clears west",
+      "passed": true
+    },
+    {
+      "name": "production walking reaches -7,3",
+      "passed": true
+    },
+    {
+      "name": "accepted pickup updates the same survey",
+      "passed": true
+    },
+    {
+      "name": "accepted target-clear",
+      "passed": true
+    },
+    {
+      "name": "partial survey reload returns to lake with earned objective intact",
+      "passed": true
+    },
+    {
+      "name": "production walking reaches 0,23",
+      "passed": true
+    },
+    {
+      "name": "physical trail marker opens explicit preview",
+      "passed": true
+    },
+    {
+      "name": "explicit input enters Hearthwater",
+      "passed": true
+    },
+    {
+      "name": "production walking reaches 0,10",
+      "passed": true
+    },
+    {
+      "name": "production walking reaches -13,4",
+      "passed": true
+    },
+    {
+      "name": "orchard sign declares current objectives and exact survey reward",
+      "passed": true
+    },
+    {
+      "name": "orchard confirmation enters existing combat scene",
+      "passed": true
+    },
+    {
+      "name": "re-entry does not recreate the cleared encounter",
+      "passed": true
+    },
+    {
+      "name": "production walking reaches 5,-3",
+      "passed": true
+    },
+    {
+      "name": "production bow combat clears east",
+      "passed": true
+    },
+    {
+      "name": "production walking reaches 5,-11",
+      "passed": true
+    },
+    {
+      "name": "both survey objectives complete without a road payout",
+      "passed": true
+    },
+    {
+      "name": "production walking reaches 0,12",
+      "passed": true
+    },
+    {
+      "name": "normal exit input returns to exact orchard checkpoint",
+      "passed": true
+    },
+    {
+      "name": "following companion arrives on the same supported route",
+      "passed": true
+    },
+    {
+      "name": "completed unpaid run survives reopen before claim",
+      "passed": true
+    },
+    {
+      "name": "production walking reaches 11,9",
+      "passed": true
+    },
+    {
+      "name": "Oren pays exactly the declared old reward",
+      "passed": true
+    },
+    {
+      "name": "changed request cannot claim the completed outing twice",
+      "passed": true
+    },
+    {
+      "name": "production walking reaches 0,23",
+      "passed": true
+    },
+    {
+      "name": "physical trail marker opens explicit preview",
+      "passed": true
+    },
+    {
+      "name": "explicit input enters Hearthwater",
+      "passed": true
+    },
+    {
+      "name": "production walking reaches 0,10",
+      "passed": true
+    },
+    {
+      "name": "production walking reaches -13,4",
+      "passed": true
+    },
+    {
+      "name": "new character receives neither travel state nor survey payout",
+      "passed": true
+    },
+    {
+      "name": "returning character restores valley checkpoint and its own progress",
+      "passed": true
+    },
+    {
+      "name": "production walking reaches 0,23",
+      "passed": true
+    },
+    {
+      "name": "physical trail marker opens explicit preview",
+      "passed": true
+    },
+    {
+      "name": "explicit input enters Hearthwater",
+      "passed": true
+    },
+    {
+      "name": "compact map exposes a reachable worksite route",
+      "passed": true
+    },
+    {
+      "name": "map walks to the real worksite marker in compact view",
+      "passed": true
+    },
+    {
+      "name": "no runtime browser exceptions",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "browser_errors": [],
+  "software_quality": "low",
+  "html_sha256": "6eb1ffca780025e1f168a9e9ea164c3ad01fc09add3587622a2f79268bdad008"
+}

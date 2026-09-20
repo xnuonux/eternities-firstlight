@@ -5,6 +5,7 @@
 const ROOM='earth-hearthwater-approach';
 const GATE=Object.freeze({x:0,z:23});
 const ENTRY=Object.freeze({x:0,z:24,yaw:Math.PI});
+const RIVER_GATE=Object.freeze({x:-13,z:4});
 const PATCHES=Object.freeze([
  {id:'arrival',x:0,z:21,w:10,d:14},
  {id:'south-meadow',x:0,z:10,w:22,d:12},
@@ -27,6 +28,7 @@ const POINTS=Object.freeze([
  {id:'arrival',name:'Lake footbridge · way home',x:0,z:24,kind:'return'},
  {id:'bridge',name:'Hearthwater footbridge',x:0,z:16,kind:'route'},
  {id:'orchard',name:'Orchard lane',x:-8,z:3,kind:'view'},
+ {id:'riverbank',name:'Riverbank worksite',...RIVER_GATE,kind:'worksite'},
  {id:'millfork',name:'Mill road fork',x:7,z:2,kind:'route'},
  {id:'ridge',name:'Ridge road',x:13,z:-13,kind:'view'},
  {id:'quarry',name:'Quarry approach',x:12,z:-26,kind:'route'},
@@ -73,32 +75,50 @@ function segment(a,b,r=.31){
 }
 function line(a,b){return segment(a,b,.04);}
 function near(sim,p,r=2.8){return dist(sim.state.player,p)<=r;}
+function riverTrip(sim){return !!(sim.earthTrip?.riverCheckpoint&&sim.returnPos&&walkable(sim.earthTrip.riverCheckpoint.x,sim.earthTrip.riverCheckpoint.z));}
+function route(sim){
+ const Q=G.RealmStarter;
+ if(sim.state.adventure.hp<=0)return null;
+ if(!sim.room&&near(sim,GATE))return{destination:ROOM,arrival:ENTRY};
+ if(sim.room===ROOM&&sim.earthTrip&&sim.returnPos&&sim.state.adventure.started&&near(sim,RIVER_GATE,2.4))return{destination:Q.ROOM,arrival:Q.ENTRY};
+ if(sim.room===Q.ROOM&&riverTrip(sim)&&near(sim,Q.ENTRY,2.8))return{destination:ROOM,arrival:sim.earthTrip.riverCheckpoint};
+ return null;
+}
 function preview(ctx){
- const sim=ctx.sim;
- if(sim.room||sim.state.adventure.hp<=0||!near(sim,GATE))return fail('Approach the Hearthwater trail marker at the lake footbridge.');
- const ticket=Object.freeze({destination:ROOM});
- tickets.set(ticket,{sim,active:ctx.active,revision:ctx.revision,position:{...sim.state.player},used:false});
+ const sim=ctx.sim,link=route(sim);
+ if(!link)return fail('Approach the lake trail marker, or take Oren’s initial kit to the orchard worksite sign.');
+ const ticket=Object.freeze({destination:link.destination});
+ tickets.set(ticket,{sim,active:ctx.active,revision:ctx.revision,source:sim.room,trip:sim.earthTrip,position:{...sim.state.player},used:false});
  return{ok:true,ticket};
 }
 function cancel(ticket){const t=tickets.get(ticket);if(t)t.used=true;}
 function enter(ticket,ctx,io){
- const t=tickets.get(ticket),sim=ctx.sim;
- if(!t||t.used||ticket.destination!==ROOM||t.sim!==sim||t.active!==ctx.active||t.revision!==ctx.revision||sim.room||!near(sim,GATE)||dist(sim.state.player,t.position)>.01||sim.state.adventure.hp<=0)return fail('That trail preview has changed. Review the Hearthwater marker again.');
+ const t=tickets.get(ticket),sim=ctx.sim,link=route(sim);
+ if(!t||t.used||!link||ticket.destination!==link.destination||t.sim!==sim||t.active!==ctx.active||t.revision!==ctx.revision||t.source!==sim.room||t.trip!==sim.earthTrip||dist(sim.state.player,t.position)>.01)return fail('That trail preview has changed. Review the marker again.');
  t.used=true;
- if(io.available===false)return fail('The Hearthwater approach scene is unavailable. You are still beside the lake.');
+ if(io.available===false)return fail('That route is unavailable. You are still at the source marker.');
  const source=sim.snapshot();let saved;
  try{saved=io.save(source);}catch(e){return fail('Travel save refused: '+e.message);}
- if(!saved?.ok)return fail(saved?.error||'Save the Firstlight checkpoint before taking the trail.');
- const prior={room:sim.room,returnPos:sim.returnPos,player:{...sim.state.player},path:sim.playerPath,runtime:sim.adventureRuntime};
+ if(!saved?.ok)return fail(saved?.error||'Save your progress before taking the trail.');
+ const prior={room:sim.room,returnPos:sim.returnPos,player:{...sim.state.player},path:sim.playerPath,runtime:sim.adventureRuntime,trip:sim.earthTrip};
  try{
-  sim.returnPos={...t.position};sim.room=ROOM;sim.state.player={...ENTRY};sim.playerPath=[];
-  sim.earthTrip={active:t.active,sourceRegion:'valley',sourceRevision:t.revision,destination:ROOM,checkpoint:{...t.position}};
+  if(!sim.room){sim.returnPos={...t.position};sim.earthTrip={active:t.active,sourceRegion:'valley',sourceRevision:t.revision,destination:ROOM,checkpoint:{...t.position}};}
+  else if(sim.room===ROOM)sim.earthTrip={...sim.earthTrip,riverCheckpoint:{...t.position}};
+  else{sim.earthTrip={...sim.earthTrip};delete sim.earthTrip.riverCheckpoint;}
+  sim.room=link.destination;sim.state.player={...link.arrival};sim.playerPath=[];
   io.build();G.RealmAdventure.syncScene(sim);G.RealmCombat.stop(sim,true);return{ok:true};
  }catch(e){
-  sim.room=prior.room;sim.returnPos=prior.returnPos;sim.state.player=prior.player;sim.playerPath=prior.path;sim.adventureRuntime=prior.runtime;delete sim.earthTrip;
+  sim.room=prior.room;sim.returnPos=prior.returnPos;sim.state.player=prior.player;sim.playerPath=prior.path;sim.adventureRuntime=prior.runtime;if(prior.trip)sim.earthTrip=prior.trip;else delete sim.earthTrip;
   try{io.restore?.();}catch(restoreError){return fail('The route could not load. Your saved valley checkpoint is safe; reopen the game. '+restoreError.message);}
-  return fail('The route could not load. You are back at the lake checkpoint. '+e.message);
+  return fail('The route could not load. You are back at the source marker. '+e.message);
  }
+}
+// Headless command authority uses the same local checkpoint. The browser wraps
+// this return in preview/enter to save first and roll back failed scene builds.
+function backToApproach(sim){
+ if(sim.room!==G.RealmStarter.ROOM||!riverTrip(sim)||!near(sim,G.RealmStarter.ENTRY,2.8))return fail('Return to the southern orchard path.');
+ sim.state.player={...sim.earthTrip.riverCheckpoint};sim.earthTrip={...sim.earthTrip};delete sim.earthTrip.riverCheckpoint;
+ sim.room=ROOM;sim.playerPath=[];G.RealmAdventure.syncScene(sim);G.RealmCombat.stop(sim,true);return{ok:true,text:'Back on the orchard lane. Oren is home in Firstlight.'};
 }
 function leave(sim){
  if(sim.room!==ROOM||!sim.returnPos)return fail('You are already on the Firstlight side.');
@@ -117,6 +137,6 @@ function pick(start,ray,max=420){
  }
  return null;
 }
-const api={ROOM,GATE,ENTRY,PATCHES,SOLIDS,POINTS,height,land,walkable,segment,line,near,preview,cancel,enter,leave,recover,pick};
+const api={ROOM,GATE,ENTRY,RIVER_GATE,PATCHES,SOLIDS,POINTS,height,land,walkable,segment,line,near,preview,cancel,enter,leave,riverTrip,backToApproach,recover,pick};
 G.RealmEarth=api;if(typeof module!=='undefined')module.exports=api;
 })(globalThis);

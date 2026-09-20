@@ -1,0 +1,143 @@
+[
+  {
+    "evaluate": "()=>{Realm.test.pause(false);Realm.test.quality('balanced');const d=Realm.diagnostics;if(!/RTX 3080/.test(d.renderer||''))throw Error('RTX renderer not confirmed');return {renderer:d.renderer,source:Realm.state.player};}",
+    "wait_ms": 600
+  },
+  {
+    "click": "[data-rpg=\"camera\"][data-id=\"adventure\"]"
+  },
+  {
+    "walk": [
+      0,
+      23
+    ]
+  },
+  {
+    "key": "e",
+    "wait_ms": 1800
+  },
+  {
+    "click": "[data-rpg=\"earth-confirm\"]",
+    "wait_ms": 800
+  },
+  {
+    "evaluate": "()=>Realm.test.view({yaw:0,elevation:.28,distance:10})"
+  },
+  {
+    "walk": [
+      0,
+      10
+    ]
+  },
+  {
+    "walk": [
+      -13,
+      4
+    ]
+  },
+  {
+    "key": "e",
+    "wait_ms": 2500
+  },
+  {
+    "click": "[data-rpg=\"earth-confirm\"]",
+    "wait_ms": 900
+  },
+  {
+    "walk": [
+      -7,
+      3
+    ]
+  },
+  {
+    "fight": "riverbank-survey/1:west"
+  },
+  {
+    "walk": [
+      -7,
+      3
+    ]
+  },
+  {
+    "key": "e",
+    "wait_ms": 800
+  },
+  {
+    "key": "v",
+    "wait_ms": 800
+  },
+  {
+    "walk": [
+      5,
+      -3
+    ]
+  },
+  {
+    "fight": "riverbank-survey/1:east"
+  },
+  {
+    "walk": [
+      5,
+      -11
+    ]
+  },
+  {
+    "key": "e",
+    "wait_ms": 800
+  },
+  {
+    "key": "m",
+    "wait_ms": 2200
+  },
+  {
+    "click": "#rpg-close"
+  },
+  {
+    "walk": [
+      0,
+      12
+    ]
+  },
+  {
+    "key": "e",
+    "wait_ms": 1000
+  },
+  {
+    "key": "v",
+    "wait_ms": 800
+  },
+  {
+    "walk": [
+      0,
+      10
+    ]
+  },
+  {
+    "walk": [
+      0,
+      24
+    ]
+  },
+  {
+    "key": "e",
+    "wait_ms": 900
+  },
+  {
+    "walk": [
+      11,
+      9
+    ]
+  },
+  {
+    "key": "e",
+    "wait_ms": 1500
+  },
+  {
+    "click": "[data-rpg=\"pursuit-claim\"]",
+    "wait_ms": 2200
+  },
+  {
+    "evaluate": "()=>{const a=Realm.state.adventure;if(a.pursuit.claimed!==1||a.pursuit.active)throw Error('Survey was not paid exactly once');return {claimed:a.pursuit.claimed,ore:a.ore,coins:a.coins,fiber:Realm.state.sandbox.inventory.fiber,xp:a.xp,weapon:a.equipment.weapon,scene:Realm.diagnostics.scene};}",
+    "wait_ms": 1000
+  }
+]

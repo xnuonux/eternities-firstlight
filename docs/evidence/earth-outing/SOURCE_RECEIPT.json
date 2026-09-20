@@ -1,0 +1,10 @@
+{
+  "source": "tests/pursuit_journey.cjs --earth --bow, run1_01_STARTED.json",
+  "sha256": "209561f05a14d0c8adcd3bfa03ea1e4f8389d63561e6713c9583a3853f0d5cfc",
+  "positionEdits": 0,
+  "inventoryGrants": 0,
+  "plantedDefeats": 0,
+  "generationUsesAcceleratedTicks": true,
+  "recordingUsesNormalRAF": true,
+  "personalSaves": false
+}

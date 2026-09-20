@@ -1,0 +1,32 @@
+{
+  "sourceSha256": "209561f05a14d0c8adcd3bfa03ea1e4f8389d63561e6713c9583a3853f0d5cfc",
+  "htmlSha256": "6eb1ffca780025e1f168a9e9ea164c3ad01fc09add3587622a2f79268bdad008",
+  "videoSha256": "56864258923b5f568a5713ebbc17ebe8df85dcfe168fe233815f5aa15f07f934",
+  "bytes": 14051164,
+  "browser": "153.0.8010.52",
+  "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3080 (0x00002216) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+  "actionsCompleted": 31,
+  "browserErrors": [],
+  "capture": "1280x720, normal real-time RAF, automated accepted movement/combat/UI, silent",
+  "videoMetadata": [
+    "Duration: 00:01:13.12, start: 0.000000, bitrate: 1537 kb/s",
+    "Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt470bg/unknown/unknown, progressive), 1280x720 [SAR 1:1 DAR 16:9], 1534 kb/s, 25 fps, 25 tbr, 12800 tbn (default)"
+  ],
+  "performanceClaim": false,
+  "finalPursuit": {
+    "version": 1,
+    "pinned": "copper_bow",
+    "claimed": 1,
+    "active": null,
+    "fittings": {}
+  },
+  "finalBalances": {
+    "claimed": 1,
+    "ore": 3,
+    "coins": 4,
+    "fiber": 4,
+    "xp": 0,
+    "weapon": "trail_bow",
+    "scene": "valley"
+  }
+}
