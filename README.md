@@ -18,7 +18,9 @@ Oren's services and **More → Class path** let a character compare Hunter and M
 
 The four existing chapters remain playable in their original optional order. For a Chapter IV preview, `examples/REALM10_CROSSING_READY_EARNED.json` is a command-earned Chapter III completion with no Chapter IV rewards. Import it into a free character slot, use M to travel to Sunward, then approach the northern arch. Its earlier test character's explicit soul history belongs only to that imported world.
 
-See [current state and compatibility](docs/CURRENT_STATE.md), [latest refinement results](docs/development/OUTING_READABILITY_RESULTS_2026-09-14.md), [latest gameplay and hardware evidence](docs/evidence/outing-readability/README.md), and [the earlier class combat recording](docs/evidence/classes/README.md). The edition-10 chapter description below is retained as historical context.
+See [current state and compatibility](docs/CURRENT_STATE.md), [latest mystery results](docs/development/MARKS_BENEATH_THE_RAIN_RESULTS_2026-09-20.md), [latest actual gameplay recording](docs/evidence/marks-beneath-the-rain/README.md), and [the earlier class combat recording](docs/evidence/classes/README.md). The edition-10 chapter description below is retained as historical context.
+
+After Fenna's Road After Rain delivery, return to Mara's observatory for **Marks Beneath the Rain**: three physical rubbings, a tracing comparison and a lasting chart. This optional mystery has no cost or XP/item payout and keeps the main campaign open. Both camera styles remain available.
 
 ## What's new
 

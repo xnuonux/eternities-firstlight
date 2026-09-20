@@ -1,0 +1,11 @@
+# Marks Beneath the Rain — actual gameplay evidence
+
+[Play the recording](MARKS_BENEATH_THE_RAIN.mp4). This is an **82.72-second** silent recording of the actual generated browser game, not concept art or a rendered simulation of intended gameplay. Automated UI and accepted pathfinding commands run under normal real-time RAF from a command-earned, unpaid Fenna delivery. It shows acceptance, all three rubbings, both cameras, return, tracing comparison, Mara's written response and the persistent chart.
+
+Recorded on desktop Chrome **153.0.8010.52**, NVIDIA driver **610.74**, RTX3080 confirmed by WebGL's ANGLE/D3D11 renderer, balanced quality, **1280×720**. The MP4 encodes at25fps; this is not a game frame-rate measurement or a human playtest. The game HUD's instantaneous FPS is not a benchmark. Full source/video/fixture hashes and final state are in [VIDEO_RECEIPT.json](VIDEO_RECEIPT.json); the reproducible action list is [VIDEO_ACTIONS.json](VIDEO_ACTIONS.json). No audio track was captured.
+
+The three `*_01_SOURCE.json` files are labelled command-earned fresh blade, fresh bow and four-chapter veteran worlds, produced by `tests/earth_story_journey.cjs` then loaded by `tests/earth_notes_journey.cjs`. Each has a completed **unpaid** delivery, no accepted field notes and no injected quest progress. Their journey reports are included. These are automation fixtures, not Dom's personal saves. The video uses the fresh blade source; it is not a claimed fresh-character session from character creation.
+
+The production UI browser suite additionally uses accelerated walking for save/reload, both valid tracing directions, both hypotheses, compact layout, no-economic-change and independent-character checks. Its screenshots and report are separate from normal-time footage. Source and media provenance are checked against identical generated HTML, SHA256 `14c79b47648e13764fbe4d623d4835ebe0089a54f37bc48d8d6fa7bccc2a8750` (712134bytes).
+
+Human questions remain open: did the clues make sense, did aligning the tracing feel like discovery, and did Mara's reply make you curious? The comparison gives explicit cardinal guidance and intentionally has no reflex or audio-only requirement. No automated test answers whether that is the right difficulty.
