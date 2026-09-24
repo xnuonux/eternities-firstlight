@@ -13,7 +13,7 @@ const VERSES=Object.freeze({
  detour:Object.freeze({name:'The Longer Way Home',color:'#c7a8bf',description:'A slower answering phrase that wanders upward before finding its way back.',reply:'“It was the longer road. Dry flour, sound apples, and nobody left behind. I have taken worse bargains.” — Fenna',pitches:Object.freeze([62,64,66,69,71,74,73,69,67,66,64,66,69,66,64,62])})
 });
 function fresh(){return{version:VERSION,accepted:false,prepared:[],verse:null,shared:false};}
-function available(a){return a.earthStory.arrived;}
+function available(a){return a?.earthStory?.arrived===true;}
 function validVerse(id){return typeof id==='string'&&Object.hasOwn(VERSES,id);}
 function validate(raw,a){
  const bad=m=>{throw Error('Invalid roadside gathering: '+m);};
@@ -25,7 +25,17 @@ function validate(raw,a){
  return{version:VERSION,accepted:raw.accepted,prepared:raw.prepared.slice(),verse:raw.verse,shared:raw.shared};
 }
 function at(sim,p){const E=G.RealmEarth;return sim.room===E.ROOM&&E.walkable(sim.state.player.x,sim.state.player.z)&&E.near(sim,p,1.75)&&E.line(sim.state.player,p);}
-function point(sim){if(!available(sim.state.adventure))return null;if(at(sim,TABLE))return{id:'table',name:'The roadside table',...TABLE};if(sim.state.adventure.earthGathering.accepted)return TASKS.find(t=>t.id!=='stand'&&at(sim,t))||null;return null;}
+function point(sim){
+ const a=sim.state.adventure;if(!available(a))return null;
+ // A sliver of the table's reach overlaps Fenna's handoff. Keep the original
+ // unpaid reward accessible; a gathering never owns another quest's prompt.
+ const story=G.RealmEarthStory;
+ if(!a.earthStory.claimed&&story?.at(sim,story.DESTINATION))return null;
+ if(at(sim,TABLE))return{id:'table',name:'The roadside table',...TABLE};
+ const s=a.earthGathering;
+ if(s.accepted)return TASKS.find(t=>t.id!=='stand'&&!s.prepared.includes(t.id)&&at(sim,t))||null;
+ return null;
+}
 function handle(sim,type,p={}){
  if(typeof type!=='string'||!type.startsWith('gathering-'))return null;
  const a=sim.state.adventure,s=a.earthGathering,fail=error=>({ok:false,error}),yes=text=>({ok:true,text});

@@ -20,11 +20,41 @@ function render(id,rate=RATE){if(!Number.isInteger(rate)||rate<8000||rate>96000)
  return{rate,channels,duration:DURATION};
 }
 class Player{
- constructor(){this.source=null;this.gain=null;this.owner=null;this.generation=0;this.cache=new Map();}
- stop(){this.generation++;const s=this.source;this.source=null;this.owner=null;if(s){s.onended=null;try{s.stop();}catch{}s.disconnect();}if(this.gain){this.gain.disconnect();this.gain=null;}}
- play(id,audio,owner){this.stop();if(!Q.validVerse(id))return false;if(!audio?.enabled&&!audio?.enable())return false;const ctx=audio.ctx;if(!ctx||!audio.master)return false;
-  let data=this.cache.get(id);if(!data){data=render(id);this.cache.set(id,data);}const b=ctx.createBuffer(2,data.channels[0].length,data.rate);data.channels.forEach((v,i)=>b.copyToChannel(v,i));const s=ctx.createBufferSource(),g=ctx.createGain();g.gain.value=.75;s.buffer=b;s.connect(g).connect(audio.master);this.source=s;this.gain=g;this.owner=owner;const token=this.generation;
-  s.onended=()=>{if(this.generation===token)this.stop();};s.start();return true;
+ constructor(){this.source=null;this.gain=null;this.owner=null;this.generation=0;this.cache=new Map();this.status='idle';}
+ stop(){
+  this.generation++;const s=this.source,g=this.gain;
+  this.source=null;this.gain=null;this.owner=null;this.status='idle';
+  if(s){s.onended=null;try{s.stop();}catch{}try{s.disconnect();}catch{}}
+  if(g)try{g.disconnect();}catch{}
+ }
+ async play(id,audio,owner,eligible=()=>true){
+  this.stop();const token=this.generation;
+  if(!Q.validVerse(id)||!owner||typeof eligible!=='function')return false;
+  this.owner=owner;this.status='starting';
+  const fail=()=>{if(token===this.generation)this.stop();return false;};
+  try{
+   if(!audio)return fail();
+   if(!audio.enabled){if(typeof audio.enable!=='function'||!await audio.enable())return fail();}
+   if(token!==this.generation)return false;
+   const ctx=audio.ctx;
+   if(!ctx||!audio.master||ctx.state==='closed')return fail();
+   if(ctx.state!=='running'){
+    if(typeof ctx.resume!=='function')return fail();
+    await ctx.resume();
+   }
+   // A user can leave, mute, close the menu or choose a new character while the
+   // browser asks to resume audio. Never let that old request start afterward.
+   if(token!==this.generation)return false;
+   if(this.owner!==owner||ctx!==audio.ctx||!audio.enabled||ctx.state!=='running'||!eligible())return fail();
+   let data=this.cache.get(id);if(!data){data=render(id);this.cache.set(id,data);}
+   const buffer=ctx.createBuffer(2,data.channels[0].length,data.rate);
+   data.channels.forEach((v,i)=>buffer.copyToChannel(v,i));
+   const source=ctx.createBufferSource();this.source=source;
+   const gain=ctx.createGain();this.gain=gain;
+   gain.gain.value=.75;source.buffer=buffer;source.connect(gain).connect(audio.master);
+   source.onended=()=>{if(this.generation===token)this.stop();};
+   source.start();this.status='playing';return true;
+  }catch{return fail();}
  }
 }
 G.RealmGatheringMusic={RATE,DURATION,score,render,Player};if(typeof module!=='undefined')module.exports=G.RealmGatheringMusic;

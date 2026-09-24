@@ -6,9 +6,9 @@ const Q=G.RealmGathering,M=G.RealmGatheringMusic,E=G.RealmEarth,$=s=>document.qu
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const button=(label,act,id='',disabled=false)=>'<button data-rpg="table-'+act+'" data-id="'+esc(id)+'" '+(disabled?'disabled':'')+'>'+label+'</button>';
 class GatheringUI{
- constructor(rpg){this.rpg=rpg;this.player=new M.Player();this.pending=null;this.caption='Sound is optional. Reading and silent completion are equally complete.';this.boundary=null;
+ constructor(rpg){this.rpg=rpg;this.player=new M.Player();this.pending=null;this.caption='Sound is optional. Reading and silent completion are equally complete.';this.boundary=null;this.playRequest=0;this.lastAudioStatus='idle';
   this.hint=document.createElement('button');this.hint.id='table-context';this.hint.hidden=true;this.hint.onclick=()=>this.interact();$('#rpg-hud').append(this.hint);
-  this.stop=()=>this.player.stop();document.addEventListener('visibilitychange',()=>{if(document.hidden)this.stop();});window.addEventListener('blur',this.stop);window.addEventListener('pagehide',this.stop);
+  this.stop=()=>{this.playRequest++;this.player.stop();};document.addEventListener('visibilitychange',()=>{if(document.hidden)this.stop();});window.addEventListener('blur',this.stop);window.addEventListener('pagehide',this.stop);
  }
  get sim(){return this.rpg.sim;}get state(){return this.sim.state.adventure.earthGathering;}
  reset(){this.stop();this.pending=null;this.caption='Sound is optional. Reading and silent completion are equally complete.';}
@@ -20,12 +20,29 @@ class GatheringUI{
   if(act==='table-walk'){this.walk(id);return true;}
   if(act==='table-stop'){this.stop();this.caption='Music stopped. Your composed score has not changed.';this.rpg.paint();return true;}
   if(act==='table-play'){
-   if(!Q.at(this.sim,Q.TABLE)||!Q.validVerse(id)){this.rpg.api.toast('Approach the table to hear its instrument.');return true;}
-   try{this.caption=this.player.play(id,this.rpg.api.audio(),this.sim)?Q.VERSES[id].name+' · original 26-second arrangement. '+Q.VERSES[id].description:'Sound is unavailable. You can read and finish without it.';}catch{this.stop();this.caption='Sound is unavailable. Silent completion remains available.';}this.rpg.paint();return true;
+   if(!Q.at(this.sim,Q.TABLE)||!Q.validVerse(id)||this.state.prepared.length!==Q.TASKS.length){this.rpg.api.toast('Approach the table to hear its instrument.');return true;}
+   const owner=this.sim,audio=this.rpg.api.audio(),request=++this.playRequest;
+   this.caption='Starting '+Q.VERSES[id].name+'… Sound is optional.';
+   const eligible=()=>owner===this.sim&&this.rpg.dialog.open&&this.rpg.tab==='gathering'&&!document.hidden&&Q.at(this.sim,Q.TABLE)&&this.rpg.api.audio()===audio;
+   this.player.play(id,audio,owner,eligible).then(started=>{
+    if(request!==this.playRequest||owner!==this.sim)return;
+    this.caption=started?Q.VERSES[id].name+' · original 26-second arrangement. '+Q.VERSES[id].description:'Sound is unavailable. Silent completion remains available.';
+    if(this.rpg.dialog.open&&this.rpg.tab==='gathering')this.rpg.paint();
+   });this.rpg.paint();return true;
   }
-  if(act==='table-select'){this.pending=Q.validVerse(id)?id:null;this.rpg.paint();return true;}
-  if(act==='table-cancel'){this.pending=null;this.rpg.paint();return true;}
-  if(act==='table-confirm'){const value=this.pending;this.pending=null;this.rpg.run('gathering-verse',{verse:value});return true;}
+  if(act==='table-select'){
+   if(!Q.validVerse(id)||!Q.at(this.sim,Q.TABLE)||this.state.verse||this.state.prepared.length!==Q.TASKS.length)return true;
+   this.pending={id,sim:this.sim,revision:this.sim.state.adventure.revision};
+   this.rpg.paint();$('#rpg-content [data-rpg="table-confirm"]')?.focus();return true;
+  }
+  if(act==='table-cancel'){const id=this.pending?.id;this.pending=null;this.rpg.paint();if(Q.validVerse(id))$('#rpg-content [data-rpg="table-select"][data-id="'+id+'"]')?.focus();return true;}
+  if(act==='table-confirm'){
+   const p=this.pending;this.pending=null;
+   if(!p||p.sim!==this.sim||p.revision!==this.sim.state.adventure.revision||!Q.at(this.sim,Q.TABLE)){
+    this.rpg.api.toast('The table preview changed. Review your arrangement again.');this.rpg.paint();return true;
+   }
+   this.rpg.run('gathering-verse',{verse:p.id});return true;
+  }
   if(act==='table-accept')this.rpg.run('gathering-accept');
   else if(act==='table-prepare')this.rpg.run('gathering-prepare',{id});
   else if(act==='table-share')this.rpg.run('gathering-share');
@@ -40,7 +57,7 @@ class GatheringUI{
    h+='<ol class="table-tasks">'+Q.TASKS.map(t=>{const done=s.prepared.includes(t.id);return '<li><h3>'+(done?'✓ ':'')+t.name+'</h3><p>'+t.text+'</p>'+(done?'<span>Placed at the table</span>':Q.at(this.sim,t)?button(t.name,'prepare',t.id):button('Walk to this preparation','walk',t.id,this.sim.room!==E.ROOM))+'</li>';}).join('')+'</ol>';
    if(s.prepared.length===Q.TASKS.length){h+='<h3>One melody, three ways home</h3><p>The route you repaired suggests <strong>'+esc(Q.VERSES[a.earthStory.dispatch]?.name||'an arrangement')+'</strong>. You may choose any of the three. Previewing does not choose.</p><div class="table-verses">'+Object.entries(Q.VERSES).map(([id,v])=>'<section style="--verse:'+v.color+'"><h4>'+v.name+'</h4><p>'+v.description+'</p>'+button('Listen · optional','play',id,!near)+(!s.verse?button('Consider this arrangement','select',id,!near):s.verse===id?'<strong>Kept for this table</strong>':'')+'</section>').join('')+'</div>';
     h+='<div class="table-audio" role="status">'+esc(this.caption)+'</div>'+button('Stop music','stop');
-    if(this.pending&&!s.verse)h+='<section class="table-confirm"><h3>Keep '+Q.VERSES[this.pending].name+'?</h3><p>This records the arrangement of your first gathering. It does not change the route, class, allegiance, stats or your own score. Other arrangements remain available to hear.</p>'+button('Keep this arrangement','confirm')+button('Keep looking','cancel')+'</section>';
+    if(this.pending&&!s.verse)h+='<section class="table-confirm"><h3>Keep '+Q.VERSES[this.pending.id].name+'?</h3><p>This records the arrangement of your first gathering. It does not change the route, class, allegiance, stats or your own score. Other arrangements remain available to hear.</p>'+button('Keep this arrangement','confirm')+button('Keep looking','cancel')+'</section>';
     if(s.verse&&!s.shared)h+='<section class="table-ending"><h3>There is a place for you.</h3><p>You do not have to listen to the end. You do not have to turn on sound.</p>'+button('Share the evening · silent is welcome','share','',!near)+'</section>';
    }
    if(s.shared)h+='<section class="table-ending"><small>A LOCAL MEMORY · NOT AN ITEM REWARD</small><h3>A place kept.</h3><p>'+Q.VERSES[s.verse].reply+'</p><p>Fenna moves one bowl away from the rain dripping off the awning. The lantern catches the stitching in Nella’s cloth. A little melody is still here when you decide to leave.</p><p>The table’s colored pennant remembers your arrangement. No payment or XP was created. Your unfinished quests are still yours.</p></section>';
@@ -48,7 +65,12 @@ class GatheringUI{
   return h+'<p class="table-note">An authored single-player gathering. No online players, live AI, forced grief, offline neglect, or player-composed music is involved.</p></article>';
  }
  tick(){const sim=this.sim,show=!this.rpg.dialog.open&&!!Q.point(sim)&&!this.rpg.api.panel();this.hint.hidden=!show;if(show)this.hint.textContent='E · '+Q.point(sim).name;
-  if(this.player.source&&(document.hidden||this.player.owner!==sim||sim.room!==E.ROOM||!Q.at(sim,Q.TABLE)||!this.rpg.api.audio()?.enabled))this.stop();
+  if(this.player.owner&&(document.hidden||this.player.owner!==sim||sim.room!==E.ROOM||!Q.at(sim,Q.TABLE)||!this.rpg.api.audio()?.enabled))this.stop();
+  if(this.lastAudioStatus==='playing'&&this.player.status==='idle'){
+   this.caption='Preview finished or stopped. Your arrangement and composed score are unchanged.';
+   if(this.rpg.dialog.open&&this.rpg.tab==='gathering'){const status=$('#rpg-content .table-audio');if(status)status.textContent=this.caption;}
+  }
+  this.lastAudioStatus=this.player.status;
  }
 }
 function get(rpg){return rpg.gathering||(rpg.gathering=new GatheringUI(rpg));}
