@@ -1,0 +1,32 @@
+name: Portable source snapshot
+on:
+  push:
+    branches: [gameplay/a-table-after-the-rain]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: source-snapshot-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 1
+      - name: Export committed files and identify the source
+        shell: bash
+        run: |
+          mkdir -p /tmp/firstlight-snapshot
+          git archive --format=zip --output=/tmp/firstlight-snapshot/FIRSTLIGHT_SOURCE.zip HEAD
+          git rev-parse HEAD > /tmp/firstlight-snapshot/HEAD.txt
+          git ls-tree -r HEAD > /tmp/firstlight-snapshot/TREE.txt
+          sha256sum /tmp/firstlight-snapshot/FIRSTLIGHT_SOURCE.zip > /tmp/firstlight-snapshot/SHA256SUMS.txt
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: firstlight-source-${{ github.sha }}
+          path: /tmp/firstlight-snapshot/
+          retention-days: 14
+          if-no-files-found: error
