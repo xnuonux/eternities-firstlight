@@ -1,0 +1,22 @@
+/* Roadside gathering: readable text, explicit controls, no forced effects. */
+#table-context{position:fixed;right:24px;top:144px;z-index:22;max-width:255px;padding:10px 14px;background:#263b32;border:1px solid #d2b986;border-radius:8px;pointer-events:auto;color:#f8ecd2;text-align:left}
+#table-context[hidden]{display:none}
+.table-invitation{margin-top:18px;padding:18px;border:1px solid #bca57866;border-radius:12px;background:linear-gradient(120deg,#354139,#242f31)}
+.table-invitation small,.table-reading>small{color:#e5cfa4;letter-spacing:.1em;font-size:11px}
+.table-reading{max-width:950px;margin:auto;color:#eae2d0}
+.table-reading h2{font:30px/1.2 Georgia,serif;color:#f3dfb5}
+.table-reading blockquote{margin:22px 0;padding:12px 20px;border-left:2px solid #c5a76c;font:20px/1.6 Georgia,serif;color:#eddfc5}
+.table-reading cite{display:block;margin-top:12px;font:12px/1.4 system-ui;color:#bdc6bc}
+.table-terms,.table-confirm,.table-ending{padding:18px;margin:18px 0;border:1px solid #d4bd834a;border-radius:12px;background:#cfb5740c}
+.table-tasks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px;list-style:none;padding:0}
+.table-tasks li{padding:16px;border:1px solid #adbc9b44;border-radius:10px;background:#14291f36}
+.table-tasks h3{font-size:15px}.table-tasks p,.table-verses p{font-size:13px;line-height:1.65}
+.table-tasks li>span{color:#b2d4ba;font-size:12px}
+.table-verses{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.table-verses section{padding:16px;border-top:3px solid var(--verse);border-radius:8px;background:#090f1629}
+.table-verses h4{color:var(--verse);font:19px Georgia,serif;margin:6px 0 12px}
+.table-verses button{display:block;margin-top:9px;width:100%}.table-verses strong{display:block;margin-top:12px;color:var(--verse)}
+.table-reading button{min-height:42px;margin:4px 6px 4px 0;padding:10px 14px;white-space:normal}
+.table-audio{margin:18px 0 8px;font-size:13px;line-height:1.6;color:#cbd8c8;min-height:2.6em}
+.table-note{font-size:12px;line-height:1.6;color:#b2c0b8}
+@media(max-width:760px){.table-verses,.table-tasks{grid-template-columns:1fr}.table-reading blockquote{font-size:17px;padding:10px 14px}#table-context{top:auto;bottom:202px;right:12px;max-width:200px;font-size:11px}.table-reading h2{font-size:25px}}
